@@ -1,0 +1,57 @@
+{
+  "resultIdToNotes": {
+    "0|0": {
+      "status": 1,
+      "comment": ""
+    },
+    "0|2": {
+      "status": 1,
+      "comment": ""
+    },
+    "0|3": {
+      "status": 1,
+      "comment": ""
+    },
+    "0|4": {
+      "status": 1,
+      "comment": ""
+    },
+    "0|5": {
+      "status": 1,
+      "comment": ""
+    },
+    "0|6": {
+      "status": 1,
+      "comment": ""
+    },
+    "0|8": {
+      "status": 1,
+      "comment": ""
+    },
+    "0|9": {
+      "status": 1,
+      "comment": ""
+    },
+    "0|11": {
+      "status": 1,
+      "comment": ""
+    },
+    "0|13": {
+      "status": 1,
+      "comment": ""
+    },
+    "0|10": {
+      "status": 1,
+      "comment": ""
+    },
+    "0|12": {
+      "status": 1,
+      "comment": ""
+    },
+    "0|7": {
+      "status": 2,
+      "comment": ""
+    }
+  },
+  "hiddenRules": []
+}
