@@ -1,0 +1,12 @@
+---
+sourceLocationPrefix: /Users/raptor/Research/from-day-zero-to-zero-day/chapter-03/command-injection-example/app
+baselineLinesOfCode: 16
+unicodeNewlines: true
+columnKind: utf16
+primaryLanguage: javascript
+creationMetadata:
+  cliVersion: 2.22.3
+  creationTime: 2025-08-17T15:11:26.023134Z
+overlayBaseDatabase: false
+overlayDatabase: false
+finalised: true
