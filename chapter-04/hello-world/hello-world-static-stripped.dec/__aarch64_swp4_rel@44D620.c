@@ -1,0 +1,11 @@
+__int64 __fastcall _aarch64_swp4_rel(unsigned int a1, atomic_uint *a2)
+{
+  __int64 result; // x0
+
+  if ( byte_496C38 )
+    return atomic_exchange_explicit(a2, a1, memory_order_release);
+  do
+    result = __ldxr((unsigned int *)a2);
+  while ( __stlxr(a1, (unsigned int *)a2) );
+  return result;
+}

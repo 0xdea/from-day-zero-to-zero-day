@@ -1,0 +1,4 @@
+void Unwind_DebugHook()
+{
+  ;
+}

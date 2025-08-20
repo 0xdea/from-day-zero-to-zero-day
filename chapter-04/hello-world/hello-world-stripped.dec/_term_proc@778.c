@@ -1,0 +1,4 @@
+void term_proc()
+{
+  ;
+}
