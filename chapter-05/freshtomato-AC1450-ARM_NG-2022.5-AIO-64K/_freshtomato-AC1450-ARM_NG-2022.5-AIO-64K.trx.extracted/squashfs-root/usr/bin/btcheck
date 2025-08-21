@@ -1,0 +1,37 @@
+#!/bin/sh
+
+# Script for checking/adding transmission to cron
+
+BTON=$(nvram get bt_enable)
+BTCH=$(nvram get bt_check)
+
+case "$1" in
+	addcru)
+		ISCRU=$(cru l | grep btinside | wc -l)
+		INTERVAL=$(nvram get bt_check_time)
+
+		[ "$BTON" -eq 1 ] && {
+			[ "$BTCH" -eq 1 ] && {
+				[ "$ISCRU" -eq 0 ] && {
+					cru a btinside "*/$INTERVAL * * * * /usr/bin/btcheck check"
+				} || {
+					cru d btinside
+					cru a btinside "*/$INTERVAL * * * * /usr/bin/btcheck check"
+				}
+			} || {
+				[ "$ISCRU" -eq 1 ] && cru d btinside
+			}
+		} || {
+			[ "$ISCRU" -eq 1 ] && cru d btinside
+		}
+	;;
+	check)
+		[ "$BTON" -eq 1 -a "$BTCH" -eq 1 -a "$(nvram get g_upgrade)" != "1" -a "$(nvram get g_reboot)" != "1" ] && {
+			pidof transmission-daemon >/dev/null || {
+				logger -t btcheck "Transmission stopped? Starting..."
+				service bittorrent restart
+			}
+		}
+	;;
+esac
+exit 0

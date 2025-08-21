@@ -1,0 +1,37 @@
+#!/bin/sh
+
+# Script for checking/adding MySQL to cron
+
+MYON=$(nvram get mysql_enable)
+MYCH=$(nvram get mysql_check)
+
+case "$1" in
+	addcru)
+		ISCRU=$(cru l | grep mysql_inside | wc -l)
+		INTERVAL=$(nvram get mysql_check_time)
+
+		[ "$MYON" -eq 1 ] && {
+			[ "$MYCH" -eq 1 ] && {
+				[ "$ISCRU" -eq 0 ] && {
+					cru a mysql_inside "*/$INTERVAL * * * * /usr/bin/mycheck check"
+				} || {
+					cru d mysql_inside
+					cru a mysql_inside "*/$INTERVAL * * * * /usr/bin/mycheck check"
+				}
+			} || {
+				[ "$ISCRU" -eq 1 ] && cru d mysql_inside
+			}
+		} || {
+			[ "$ISCRU" -eq 1 ] && cru d mysql_inside
+		}
+	;;
+	check)
+		[ "$MYON" -eq 1 -a "$MYCH" -eq 1 -a "$(nvram get g_upgrade)" != "1" -a "$(nvram get g_reboot)" != "1" ] && {
+			pidof mysqld >/dev/null || {
+				logger -t mycheck "MySQL stopped? Starting..."
+				service mysql restart
+			}
+		}
+	;;
+esac
+exit 0

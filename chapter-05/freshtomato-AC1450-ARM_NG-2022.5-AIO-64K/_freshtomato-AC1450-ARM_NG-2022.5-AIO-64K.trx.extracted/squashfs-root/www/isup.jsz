@@ -1,0 +1,25 @@
+//	<% etherstates(); %>
+isup = {};
+isup.time = '<% time(); %>';
+isup.telnetd = parseInt('<% psup("telnetd"); %>');
+isup.miniupnpd = parseInt('<% psup("miniupnpd"); %>');
+isup.qos = <% nv("qos_enable"); %>;
+isup.bwl = <% nv("bwl_enable"); %>;
+var OVPN_CLIENT_COUNT = 3;
+isup.vpnclient3 = parseInt('<% psup("vpnclient3"); %>');
+isup.vpnclient1 = parseInt('<% psup("vpnclient1"); %>');
+isup.vpnclient2 = parseInt('<% psup("vpnclient2"); %>');
+var OVPN_SERVER_COUNT = 2;
+isup.vpnserver1 = parseInt('<% psup("vpnserver1"); %>');
+isup.vpnserver2 = parseInt('<% psup("vpnserver2"); %>');
+isup.pptpclient = parseInt('<% psup("pptpclient"); %>');
+isup.pptpd = parseInt('<% psup("pptpd"); %>');
+isup.nginx = parseInt('<% psup("nginx"); %>');
+isup.mysqld = parseInt('<% psup("mysqld"); %>');
+isup.dropbear = parseInt('<% psup("dropbear"); %>');
+isup.minidlna = parseInt('<% psup("minidlna"); %>');
+isup.tincd = parseInt('<% psup("tincd"); %>');
+isup.transmission = parseInt('<% psup("transmission-da"); %>');
+isup.samba = parseInt('<% psup("smbd"); %>');
+isup.ftpd = parseInt('<% psup("vsftpd"); %>');
+isup.tor = parseInt('<% psup("tor"); %>');
