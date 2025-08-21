@@ -1,4 +1,0 @@
-void term_proc()
-{
-  ;
-}
