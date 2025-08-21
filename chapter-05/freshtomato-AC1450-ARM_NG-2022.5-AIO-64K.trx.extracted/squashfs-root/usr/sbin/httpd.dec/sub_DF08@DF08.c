@@ -1,0 +1,19 @@
+bool __fastcall sub_DF08(const char *a1)
+{
+  int i; // r4
+  int j; // r4
+  _BOOL4 result; // r0
+
+  for ( i = 10; !is_value_in_nvram_0((int)"action_service", &s) && i; --i )
+    sleep(1u);
+  nvram_set("action_service", a1);
+  kill(1, 10);
+  for ( j = 3; ; --j )
+  {
+    result = is_value_in_nvram_0((int)"action_service", a1);
+    if ( !result || !j )
+      break;
+    sleep(1u);
+  }
+  return result;
+}
