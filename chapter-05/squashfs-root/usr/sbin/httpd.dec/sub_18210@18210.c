@@ -1,4 +1,4 @@
-int __fastcall sub_18210(_DWORD *a1)
+_DWORD *__fastcall sub_18210(_DWORD *a1)
 {
   _DWORD *v1; // r4
 

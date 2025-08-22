@@ -12,14 +12,13 @@ int sub_E2EC()
   const char *v9; // r2
   int result; // r0
   const char *v11; // r0
-  char *v12; // r0
-  const char *v13; // r0
-  int v14; // r0
+  const char *v12; // r0
+  int v13; // r0
+  const char *v14; // r0
   const char *v15; // r0
-  const char *v16; // r0
-  const char *v17; // r5
-  int v18; // r0
-  const char *v19; // r0
+  const char *v16; // r5
+  int v17; // r0
+  const char *v18; // r0
   int i; // r5
 
   v0 = &s;
@@ -48,7 +47,7 @@ int sub_E2EC()
     if ( !sub_E0A4(0) )
     {
       if ( !v7 )
-        return sub_111F4("error.asp");
+        return sub_111F4();
       v9 = sub_E064();
       return sub_13970(0, "@msg:%s", v9);
     }
@@ -64,57 +63,46 @@ int sub_E2EC()
   dword_30C9C = atoi(v11);
   if ( dword_30C9C )
   {
-    v12 = "reboot.asp";
-LABEL_34:
-    v14 = sub_111F4(v12);
-    goto LABEL_35;
+LABEL_31:
+    v13 = sub_111F4();
+    goto LABEL_32;
   }
-  if ( v7 )
+  if ( !v7 )
   {
-    v13 = sub_E064();
-    v14 = sub_13970(0, "@msg:%s", v13);
+    v14 = (const char *)WebsGetVar("_moveip");
+    if ( !v14 )
+      v14 = "0";
+    v13 = atoi(v14);
+    if ( !v13 && *v0 )
+      goto LABEL_32;
+    goto LABEL_31;
   }
-  else
-  {
-    v15 = (const char *)WebsGetVar("_moveip");
-    if ( !v15 )
-      v15 = "0";
-    v14 = atoi(v15);
-    if ( v14 )
-    {
-      v12 = "saved-moved.asp";
-      goto LABEL_34;
-    }
-    if ( !*v0 )
-    {
-      v12 = "saved.asp";
-      goto LABEL_34;
-    }
-  }
-LABEL_35:
+  v12 = sub_E064();
+  v13 = sub_13970(0, "@msg:%s", v12);
+LABEL_32:
   if ( v3 | v5 )
-    nvram_commit_x(v14);
-  v16 = (const char *)WebsGetVar("_service");
-  v17 = v16;
-  if ( v16 && *v16 )
+    nvram_commit_x(v13);
+  v15 = (const char *)WebsGetVar("_service");
+  v16 = v15;
+  if ( v15 && *v15 )
   {
-    v18 = *(unsigned __int8 *)v0;
+    v17 = *(unsigned __int8 *)v0;
     if ( !*v0 )
     {
       if ( v7 )
-        v18 = sub_13970(v18, " Some services are being restarted...");
-      sub_13CC8(v18);
+        v17 = sub_13970(v17, " Some services are being restarted...");
+      sub_13CC8(v17);
     }
     sleep(1u);
-    if ( *v17 == 42 )
+    if ( *v16 == 42 )
       kill(1, 1);
     else
-      sub_DF08(v17);
+      sub_DF08(v16);
   }
-  v19 = (const char *)WebsGetVar("_sleep");
-  if ( !v19 )
-    v19 = "0";
-  result = atoi(v19);
+  v18 = (const char *)WebsGetVar("_sleep");
+  if ( !v18 )
+    v18 = "0";
+  result = atoi(v18);
   for ( i = result; i > 0; --i )
     result = sleep(1u);
   if ( *v0 )

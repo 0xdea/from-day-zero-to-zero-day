@@ -13,6 +13,6 @@ int sub_19350()
   else
     snprintf(v3, 0x20u, "wwansignal wan%d -stdout", v1);
   sub_13954("\nwwanstatus = '");
-  sub_13D58(v3, 1);
+  sub_13D58(v3);
   return sub_13954("';");
 }

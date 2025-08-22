@@ -27,7 +27,7 @@ int __fastcall sub_19994(const char *a1, int a2)
   v12 = 0;
   snprintf(s, 8u, "%d", a2);
   memset(v10, 0, sizeof(v10));
-  v5 = (const char *)sub_19758("wan_domain");
+  v5 = sub_19758((int)"wan_domain");
   if ( v5 && *v5 )
     snprintf(v10, 0x40u, ".%s", v5);
   memset(v9, 0, sizeof(v9));

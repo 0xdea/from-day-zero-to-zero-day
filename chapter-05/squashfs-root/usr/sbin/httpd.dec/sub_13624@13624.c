@@ -16,7 +16,7 @@ int __fastcall sub_13624(int a1, int a2)
     sub_FF00();
     sub_13954("\n");
     snprintf(v7, 0x80u, "cat $(ls -1rv %s %s.*) | tail -n %d", v6, v6, v5);
-    return sub_13D58(v7, 0);
+    return sub_13D58(v7);
   }
   return result;
 }

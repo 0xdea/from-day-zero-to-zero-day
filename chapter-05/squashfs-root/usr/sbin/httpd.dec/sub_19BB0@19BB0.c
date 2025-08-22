@@ -4,7 +4,7 @@ _BYTE *__fastcall sub_19BB0(int a1, _BYTE *a2, int a3)
   bool v5; // nf
   _BYTE *result; // r0
 
-  v4 = f_read(a1, a2, a3 - 1);
+  v4 = f_read(a1, (int)a2, a3 - 1);
   v5 = v4 < 0;
   if ( v4 >= 0 )
     a2[v4] = 0;

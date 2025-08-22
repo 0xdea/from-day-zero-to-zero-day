@@ -6,7 +6,7 @@ int __fastcall sub_DF08(int a1)
 
   for ( i = 10; !is_value_in_nvram_0("action_service", &s) && i; --i )
     sleep(1u);
-  nvram_set("action_service", a1);
+  nvram_set((int)"action_service", a1);
   kill(1, 10);
   for ( j = 3; ; --j )
   {

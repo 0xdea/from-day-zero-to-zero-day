@@ -12,10 +12,10 @@ size_t __fastcall sub_1585C(int a1, const char **a2)
     v4 = -1;
   s[0] = v4;
   sub_13954("\nwlscandata = [");
-  if ( foreach_wif(0, s, sub_14A20) )
+  if ( foreach_wif(0, (int)s, (int)sub_14A20) )
   {
     sleep(3u);
-    if ( foreach_wif(0, s, sub_151BC) )
+    if ( foreach_wif(0, (int)s, (int)sub_151BC) )
       v5 = "];\n";
     else
       v5 = "[null,'Unable to obtain scan results.']];\n";

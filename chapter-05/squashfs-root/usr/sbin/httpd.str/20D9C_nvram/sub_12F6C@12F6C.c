@@ -3,14 +3,12 @@ int sub_12F6C()
   int v0; // r5
   FILE *v1; // r4
   char v3[20]; // [sp+0h] [bp-40h] BYREF
-  _DWORD ptr[5]; // [sp+14h] [bp-2Ch] BYREF
-  _BYTE v5[4]; // [sp+28h] [bp-18h] BYREF
-  int v6; // [sp+2Ch] [bp-14h] BYREF
+  _DWORD ptr[11]; // [sp+14h] [bp-2Ch] BYREF
 
-  v0 = mtd_getinfo("nvram", &v6, v5);
+  v0 = mtd_getinfo();
   if ( v0 )
   {
-    snprintf(v3, 0x14u, "/dev/mtd%dro", v6);
+    snprintf(v3, 0x14u, "/dev/mtd%dro", ptr[6]);
     v1 = fopen(v3, "r");
     if ( v1 )
     {

@@ -9,8 +9,8 @@ const char *__fastcall sub_1590C(int a1, int a2, int a3, int a4)
   char v10[28]; // [sp+14h] [bp-1Ch] BYREF
 
   sub_144B8(0, a2, a3, a4);
-  sub_111F4((int)"saved.asp");
-  v4 = wl_nvname("radio");
+  sub_111F4();
+  v4 = wl_nvname("radio", dword_30CA0, 0);
   result = (const char *)nvram_get_int(v4);
   if ( result )
   {

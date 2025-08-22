@@ -18,7 +18,7 @@ void __fastcall __spoils<R2,R3,R12> sub_16CD0(int a1, int a2, const char *a3, in
     {
       sub_10BFC();
       do_led(1, 1);
-      v6 = sub_111F4((int)"reboot-default.asp");
+      v6 = sub_111F4();
       sub_13CC8(v6);
       if ( nvram_get_int("remote_upgrade") )
       {
@@ -28,7 +28,7 @@ void __fastcall __spoils<R2,R3,R12> sub_16CD0(int a1, int a2, const char *a3, in
       sleep(2u);
       if ( v5 == 1 )
       {
-        v7 = nvram_set("restore_defaults", "1");
+        v7 = nvram_set((int)"restore_defaults", (int)"1");
         nvram_commit(v7);
       }
       else

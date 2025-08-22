@@ -79,7 +79,7 @@ FILE *__fastcall sub_1226C(int a1, const char **a2)
   v6 = inet_addr(v5);
   v51 = v6 & v49;
   v7 = nvram_get_int("ipv6_prefix_length");
-  if ( get_ipv6_service() )
+  if ( get_ipv6_service(v7) )
   {
     v8 = (const char *)sub_11858("ipv6_prefix");
     inet_pton(10, v8, buf);

@@ -1,4 +1,4 @@
-void __fastcall tty_vhangup_self_1(int a1)
+void __fastcall tty_vhangup_self_1(unsigned __int8 *a1)
 {
   char *v1; // r0
   char *v2; // r4

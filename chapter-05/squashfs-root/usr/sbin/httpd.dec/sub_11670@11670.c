@@ -16,7 +16,7 @@ DIR *__fastcall sub_11670(const char *a1, _DWORD *a2)
       v7 = readdir(v4);
       if ( !v7 )
         break;
-      strlcpy(v8, v7->d_name, 255);
+      strlcpy((int)v8, (int)v7->d_name, 255);
       v5 = strstr(v8, ".pat");
       if ( v5 )
       {

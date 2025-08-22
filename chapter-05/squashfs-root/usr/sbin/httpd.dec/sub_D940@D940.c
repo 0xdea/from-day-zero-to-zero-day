@@ -70,7 +70,7 @@ LABEL_38:
           else
           {
             a3 = a1[1] != 7;
-            nvram_set(a2, v7);
+            nvram_set((int)a2, (int)v7);
           }
         }
         if ( a1[1] == 2 )

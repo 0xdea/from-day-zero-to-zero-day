@@ -10,17 +10,17 @@ int __fastcall sub_1317C(const char *a1, int a2, int a3, unsigned int a4)
   char *v15; // r7
   const char *v16; // r1
   char *v17; // r5
-  int v18; // r0
+  const char *v18; // r0
   const char *v19; // r2
   const char *v20; // r3
-  void *v21; // r8
+  char *v21; // r8
   _BOOL4 v22; // r3
   unsigned int v24; // [sp+14h] [bp-784h]
   int v25; // [sp+18h] [bp-780h]
   FILE *stream; // [sp+1Ch] [bp-77Ch]
   char v27[1024]; // [sp+20h] [bp-778h] BYREF
   char v28[508]; // [sp+424h] [bp-374h] BYREF
-  char v29[252]; // [sp+624h] [bp-174h] BYREF
+  unsigned __int8 v29[252]; // [sp+624h] [bp-174h] BYREF
   char v30[60]; // [sp+724h] [bp-74h] BYREF
   unsigned __int8 *v31; // [sp+764h] [bp-34h] BYREF
   unsigned int v32; // [sp+768h] [bp-30h] BYREF
@@ -68,14 +68,14 @@ int __fastcall sub_1317C(const char *a1, int a2, int a3, unsigned int a4)
                 v17 = 0;
               }
               ++v9;
-              v18 = sub_17C28(v29);
+              v18 = (const char *)sub_17C28(v29);
               v19 = &s;
               v20 = &s;
               if ( v18 )
-                v19 = (const char *)v18;
+                v19 = v18;
               if ( v17 )
                 v20 = v17;
-              v21 = (void *)v18;
+              v21 = (char *)v18;
               sub_13970(0, "%c['%lu','%s','%s', '%s']", v25, v33, v30, v19, v20);
               free(v21);
               free(v17);

@@ -1,61 +1,58 @@
 size_t sub_175E8()
 {
   int v0; // r8
-  const char *v1; // r11
-  int v2; // r6
-  FILE *v3; // r7
-  int v4; // r4
-  int v5; // r2
-  const char *v7; // [sp+14h] [bp-194h]
-  char v8[228]; // [sp+1Ch] [bp-18Ch] BYREF
-  char v9[48]; // [sp+11Ch] [bp-8Ch] BYREF
+  int v1; // r6
+  FILE *v2; // r7
+  int v3; // r4
+  int v4; // r2
+  char v6[228]; // [sp+1Ch] [bp-18Ch] BYREF
+  char v7[48]; // [sp+11Ch] [bp-8Ch] BYREF
   char dest[28]; // [sp+14Ch] [bp-5Ch] BYREF
-  __int64 v11; // [sp+168h] [bp-40h] BYREF
-  __int64 v12; // [sp+170h] [bp-38h] BYREF
-  _WORD v13[22]; // [sp+17Ch] [bp-2Ch] BYREF
+  __int64 v9; // [sp+168h] [bp-40h] BYREF
+  __int64 v10; // [sp+170h] [bp-38h] BYREF
+  _WORD v11[22]; // [sp+17Ch] [bp-2Ch] BYREF
 
   v0 = 32;
-  v1 = sub_170DC((int)"cstats_exclude");
-  v7 = sub_170DC((int)"cstats_include");
-  v2 = 0;
+  sub_170DC((int)"cstats_exclude");
+  sub_170DC((int)"cstats_include");
+  v1 = 0;
   strcpy(dest, "/proc/net/ipt_account/lanX");
   sub_13954("\n\niptmon={");
   do
   {
-    v13[0] = 48;
-    if ( v2 )
-      LOBYTE(v13[0]) += v2;
+    v11[0] = 48;
+    if ( v1 )
+      LOBYTE(v11[0]) += v1;
     else
-      strcpy((char *)v13, &s); // XXX
-    snprintf(dest, 0x1Bu, "/proc/net/ipt_account/lan%s", (const char *)v13);
-    v3 = fopen(dest, "r");
-    if ( v3 )
+      strcpy((char *)v11, &s); // XXX
+    snprintf(dest, 0x1Bu, "/proc/net/ipt_account/lan%s", (const char *)v11);
+    v2 = fopen(dest, "r");
+    if ( v2 )
     {
-      v4 = 1;
-      while ( fgets(v8, 256, v3) )
+      v3 = 1;
+      while ( fgets(v6, 256, v2) )
       {
         if ( sscanf(
-               v8,
+               v6,
                "ip = %s bytes_src = %llu %*u %*u %*u %*u packets_src = %*u %*u %*u %*u %*u bytes_dst = %llu %*u %*u %*u %"
                "*u packets_dst = %*u %*u %*u %*u %*u time = %*u",
-               v9,
-               &v12,
-               &v11) == 3 ) // XXX
+               v7,
+               &v10,
+               &v9) == 3 ) // XXX
         {
-          if ( !find_word(v1, v9)
-            && (find_word(v7, v9) || v4 == 1 || nvram_get_int("cstats_all") && (v11 > 0 || v12 > 0)) )
+          if ( !find_word() && (find_word() || v3 == 1 || nvram_get_int("cstats_all") && (v9 > 0 || v10 > 0)) )
           {
-            v5 = v0;
+            v4 = v0;
             v0 = 44;
-            sub_13970(0, "%c'%s':{rx:0x%llx,tx:0x%llx}", v5, v9, v11, v12);
+            sub_13970(0, "%c'%s':{rx:0x%llx,tx:0x%llx}", v4, v7, v9, v10);
           }
-          v4 = 0;
+          v3 = 0;
         }
       }
-      fclose(v3);
+      fclose(v2);
     }
-    v2 = (unsigned __int8)(v2 + 1);
+    v1 = (unsigned __int8)(v1 + 1);
   }
-  while ( v2 != 4 );
+  while ( v1 != 4 );
   return sub_13954("};\n");
 }

@@ -20,7 +20,7 @@ int __fastcall sub_18B50(const char *a1, int a2, const char *a3, const char *a4,
   char v26[128]; // [sp+18h] [bp-E0h] BYREF
   statfs buf; // [sp+98h] [bp-60h] BYREF
 
-  label_or_uuid = (const char *)find_label_or_uuid(a1, v26, 0);
+  label_or_uuid = (const char *)find_label_or_uuid();
   if ( !v26[0] )
     strncpy(v26, a4, 0x80u);
   if ( a5 < 0 )
@@ -39,7 +39,7 @@ int __fastcall sub_18B50(const char *a1, int a2, const char *a3, const char *a4,
     sub_13970(0, "%s['%s',", v11, v10);
     free(v12);
   }
-  v13 = findmntents(a1, 0, 0, 0);
+  v13 = findmntents();
   v14 = (const char **)v13;
   if ( v13 )
   {
@@ -59,7 +59,7 @@ int __fastcall sub_18B50(const char *a1, int a2, const char *a3, const char *a4,
     }
     return 1;
   }
-  v20 = findmntents(a1, 1, 0, 0);
+  v20 = findmntents();
   if ( v20 )
   {
     if ( a5 < 0 )

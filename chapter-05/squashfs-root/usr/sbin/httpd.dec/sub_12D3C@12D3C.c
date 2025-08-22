@@ -27,7 +27,7 @@ char *__fastcall sub_12D3C(char *result, char *a2)
           tty_vhangup_self_1();
           sub_13954("',\n");
           if ( !strncmp(v4, "wl_", 3u) )
-            foreach_wif(1, v4, sub_12CF8);
+            foreach_wif(1, (int)v4, (int)sub_12CF8);
         }
       }
       free(v2);

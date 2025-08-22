@@ -25,15 +25,15 @@ bool __fastcall sub_C450(int a1)
     snprintf(s, 0x48u, "%s,%ld", buf, v5 & 0xFFC0);
     if ( !is_value_in_nvram((int)"http_id_warn", s) )
     {
-      nvram_set("http_id_warn", s);
+      nvram_set((int)"http_id_warn", (int)s);
       v6 = (const char *)WebsGetVar("_http_id");
       if ( v6 )
         v7 = v6;
       else
         v7 = &::s;
-      strlcpy(s, v7, 72);
+      strlcpy((int)s, (int)v7, 72);
       v8 = (const char *)sub_E6BC(s);
-      strlcpy(s, a1, 72);
+      strlcpy((int)s, a1, 72);
       v9 = sub_E6BC(s);
       v10 = v9 == 0;
       if ( v9 )

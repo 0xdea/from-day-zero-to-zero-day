@@ -16,7 +16,7 @@ size_t __fastcall sub_15A98(const char *a1, int a2, int a3, int a4)
   _DWORD *v18; // r5
   _DWORD *v19; // r4
   unsigned int v20; // t1
-  int v22; // [sp+8h] [bp-28h] BYREF
+  __int16 v22; // [sp+8h] [bp-28h]
   int v23; // [sp+Ch] [bp-24h] BYREF
   int v24; // [sp+10h] [bp-20h] BYREF
   char src[28]; // [sp+14h] [bp-1Ch] BYREF
@@ -28,15 +28,15 @@ size_t __fastcall sub_15A98(const char *a1, int a2, int a3, int a4)
   if ( !v4 )
     a1 = *(const char **)a2;
   sub_144B8(a1, a2, a3, a4);
-  v7 = wl_nvname("ifname");
+  v7 = wl_nvname("ifname", dword_30CA0, 0);
   v8 = sub_13E24(v7);
   wl_ioctl(v8, 83, src, 4);
   if ( wl_ioctl(v8, 141, &v24, 4) )
   {
-    v9 = wl_nvname("nband");
+    v9 = wl_nvname("nband", dword_30CA0, 0);
     v24 = nvram_get_int(v9);
   }
-  wl_iovar_getint(v8, "chanspec", &v22);
+  wl_iovar_getint();
   if ( v5 <= 1 )
   {
     wl_ioctl(v8, 39, &v23, 4);

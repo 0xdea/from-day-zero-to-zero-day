@@ -1,8 +1,9 @@
 bool __fastcall sub_B738(int a1, int a2, int a3, int a4)
 {
-  const char *v5; // r0
+  int v5; // r0
+  const char *v6; // r0
 
-  wl_nvname("ifname");
-  v5 = sub_B1C8();
-  return wl_ioctl(v5, 262, a4, 184) == 0;
+  v5 = wl_nvname("ifname", a2, a3);
+  v6 = sub_B1C8(v5);
+  return wl_ioctl(v6, 262, a4, 184) == 0;
 }

@@ -21,7 +21,7 @@ size_t sub_16798()
   sub_159DC();
   sub_13954("wldev = [");
   v16 = 32;
-  foreach_wif(1, &v16, sub_162AC);
+  foreach_wif(1, (int)&v16, (int)sub_162AC);
   sub_13954("];\n");
   v14 = "wan_ifname,wan2_ifname,wan3_ifname,wan4_ifname,wan_iface,wan2_iface,wan3_iface,wan4_iface,wan_proto,wan2_proto,w"
         "an3_proto,wan4_proto,wan_ifnameX,wan2_ifnameX,wan3_ifnameX,wan4_ifnameX,wan_ifnames,wan2_ifnames,wan3_ifnames,wa"
@@ -39,7 +39,7 @@ size_t sub_16798()
     || sub_165B0((int)"lan2_proto")
     || sub_165B0((int)"lan3_proto") )
   {
-    f_write("/var/tmp/dhcp/leases.!");
+    f_write("/var/tmp/dhcp/leases.!", 0, 0, 0, 438);
     if ( !killall("dnsmasq", 12) )
       f_wait_notexists("/var/tmp/dhcp/leases.!", 5);
     v0 = fopen("/var/tmp/dhcp/leases", "r");

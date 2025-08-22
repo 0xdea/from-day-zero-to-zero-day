@@ -1,4 +1,4 @@
-int __fastcall sub_18108(_DWORD *a1)
+_DWORD *__fastcall sub_18108(_DWORD *a1)
 {
   _DWORD *v2; // r0
   _DWORD *v3; // r3
@@ -9,7 +9,7 @@ int __fastcall sub_18108(_DWORD *a1)
   int v8; // r0
   int v9; // r2
   int v10; // r1
-  int result; // r0
+  _DWORD *result; // r0
   int v12; // r3
   int v13; // r1
   int v14; // r3
@@ -45,7 +45,7 @@ int __fastcall sub_18108(_DWORD *a1)
         if ( v17 > a1[8] )
           a1[8] = v17;
       }
-      result = (int)a1;
+      result = a1;
       ++a1[8];
     }
     else
@@ -61,8 +61,8 @@ int __fastcall sub_18108(_DWORD *a1)
       else
         v15 = 0;
       if ( v13 - v15 < 0 )
-        a1[6] = ((int (*)(void))sub_18234)();
-      return sub_18210(a1);
+        a1[6] = sub_18234(v2);
+      return (_DWORD *)sub_18210(a1);
     }
   }
   else
@@ -78,8 +78,8 @@ int __fastcall sub_18108(_DWORD *a1)
     else
       v10 = 0;
     if ( v8 - v10 > 0 )
-      a1[7] = sub_18210(a1[7]);
-    return sub_18234(a1);
+      a1[7] = sub_18210((_DWORD *)a1[7]);
+    return (_DWORD *)sub_18234(a1);
   }
   return result;
 }

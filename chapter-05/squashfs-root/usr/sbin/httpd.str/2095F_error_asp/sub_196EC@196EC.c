@@ -5,5 +5,5 @@ int sub_196EC()
     sub_C30C("/splashd.asp");
     exit(0);
   }
-  return sub_111F4((int)"error.asp");
+  return sub_111F4();
 }

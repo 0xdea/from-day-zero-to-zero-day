@@ -1,7 +1,7 @@
 unsigned __int8 *__fastcall sub_17D14(unsigned __int8 *result)
 {
-  _BYTE *v1; // r3
-  _BYTE *v2; // r2
+  unsigned __int8 *v1; // r3
+  unsigned __int8 *v2; // r2
   unsigned int v3; // r1
   unsigned int v4; // t1
 

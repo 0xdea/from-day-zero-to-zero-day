@@ -1,54 +1,54 @@
-int __fastcall sub_13E84(int a1)
+int __fastcall sub_13E84(int a1, int a2)
 {
-  int v2; // r0
-  const char *v3; // r6
   int v4; // r0
-  const char *v5; // r4
-  int v6; // r2
-  int v7; // r3
-  bool v8; // zf
-  size_t v9; // r4
-  _DWORD *v10; // r5
-  unsigned int v11; // r4
-  int v12; // r2
-  int v13; // t1
-  int v14; // r6
-  int v15; // r0
-  const char *v16; // r5
-  int v17; // r3
-  int v18; // r2
+  const char *v5; // r6
+  int v6; // r0
+  const char *v7; // r4
+  int v8; // r2
+  int v9; // r3
+  bool v10; // zf
+  size_t v11; // r4
+  _DWORD *v12; // r5
+  unsigned int v13; // r4
+  int v14; // r2
+  int v15; // t1
+  int v16; // r6
+  int v17; // r0
+  const char *v18; // r5
   int v19; // r3
-  _DWORD v21[9]; // [sp+4h] [bp-24h] BYREF
+  int v20; // r2
+  int v21; // r3
+  _DWORD v23[9]; // [sp+4h] [bp-24h] BYREF
 
-  v2 = wl_nvname("ifname");
-  v3 = sub_13E24(v2);
-  v4 = wl_nvname("phytype");
+  v4 = wl_nvname("ifname", a2, 0);
   v5 = sub_13E24(v4);
+  v6 = wl_nvname("phytype", a2, 0);
+  v7 = sub_13E24(v6);
   if ( a1 )
-    v6 = 44;
+    v8 = 44;
   else
-    v6 = 32;
-  sub_13970(0, "%c[", v6);
-  v7 = *(unsigned __int8 *)v5;
-  v8 = v7 == 110;
-  if ( v7 != 110 )
-    v8 = v7 == 108;
-  if ( v8 || (v9 = 0, v7 == 115 || v7 == 99 || v7 == 118 || v7 == 104) )
+    v8 = 32;
+  sub_13970(0, "%c[", v8);
+  v9 = *(unsigned __int8 *)v7;
+  v10 = v9 == 110;
+  if ( v9 != 110 )
+    v10 = v9 == 108;
+  if ( v10 || (v11 = 0, v9 == 115 || v9 == 99 || v9 == 118 || v9 == 104) )
   {
-    if ( wl_ioctl(v3, 140, v21, 12) >= 0 )
+    if ( wl_ioctl(v5, 140, v23, 12) >= 0 )
     {
-      v10 = v21;
-      v11 = 1;
-      v12 = 32;
-      if ( v21[0] > 2 )
-        v21[0] = 2;
-      while ( v11 <= v21[0] )
+      v12 = v23;
+      v13 = 1;
+      v14 = 32;
+      if ( v23[0] > 2 )
+        v23[0] = 2;
+      while ( v13 <= v23[0] )
       {
-        v13 = v10[1];
-        ++v10;
-        ++v11;
-        sub_13970(0, "%c'%d'", v12, v13);
-        v12 = 44;
+        v15 = v12[1];
+        ++v12;
+        ++v13;
+        sub_13970(0, "%c'%d'", v14, v15);
+        v14 = 44;
       }
     }
     else
@@ -59,20 +59,20 @@ int __fastcall sub_13E84(int a1)
   }
   else
   {
-    v14 = 32;
-    v15 = wl_nvname("phytypes");
-    v16 = sub_13E24(v15);
-    while ( v9 < strlen(v16) )
+    v16 = 32;
+    v17 = wl_nvname("phytypes", a2, 0);
+    v18 = sub_13E24(v17);
+    while ( v11 < strlen(v18) )
     {
-      v17 = (unsigned __int8)v16[v9];
-      v18 = v14;
-      ++v9;
-      v14 = 44;
-      if ( v17 == 97 )
-        v19 = 1;
+      v19 = (unsigned __int8)v18[v11];
+      v20 = v16;
+      ++v11;
+      v16 = 44;
+      if ( v19 == 97 )
+        v21 = 1;
       else
-        v19 = 2;
-      sub_13970(0, "%c'%d'", v18, v19);
+        v21 = 2;
+      sub_13970(0, "%c'%d'", v20, v21);
     }
   }
   sub_13954("]");

@@ -18,7 +18,7 @@ int __fastcall sub_109C8(int a1, const char **a2)
   strcpy(dest, v2);
   memset(v7, 0, sizeof(v7));
   snprintf(v7, 0x100u, "/var/lib/misc/dhcpc-%s.expires", dest);
-  result = using_dhcpc(dest);
+  result = using_dhcpc();
   if ( result )
   {
     if ( f_read_string(v7, v9, 32) <= 0 || (v4 = atol(v9), v4 <= 0) )

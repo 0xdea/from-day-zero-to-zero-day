@@ -11,7 +11,7 @@ int __fastcall sub_CEE0(const char *a1, const char *a2, const char *a3)
 
   if ( !a1 )
     return -1;
-  strlcpy(v13, a1, 10240);
+  strlcpy((int)v13, (int)a1, 10240);
   v7 = 0;
   memset(v14, 0, 0x2800u);
   while ( 1 )
@@ -26,10 +26,10 @@ int __fastcall sub_CEE0(const char *a1, const char *a2, const char *a3)
     memcpy(&v14[&v11[v7] - v13], a3, v8);
     v7 += v11 - v13 + strlen(a3);
     v9 = strlen(a2);
-    strlcpy(v13, &v11[v9], 10240);
+    strlcpy((int)v13, (int)&v11[v9], 10240);
   }
   strlcat(v14, v13, 10240);
   v12 = strlen(a1);
-  strlcpy(a1, v14, v12 + 1);
+  strlcpy((int)a1, (int)v14, v12 + 1);
   return 0;
 }

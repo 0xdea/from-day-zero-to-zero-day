@@ -1,7 +1,7 @@
 int __fastcall sub_13AAC(FILE *stream, int a2)
 {
   int result; // r0
-  char v5[2072]; // [sp+0h] [bp-818h] BYREF
+  unsigned __int8 v5[2072]; // [sp+0h] [bp-818h] BYREF
 
   while ( 1 )
   {
@@ -11,15 +11,15 @@ int __fastcall sub_13AAC(FILE *stream, int a2)
     v5[result] = 0;
     if ( a2 == 1 )
     {
-      tty_vhangup_self_1((int)v5);
+      tty_vhangup_self_1(v5);
     }
     else if ( a2 == 2 )
     {
-      tty_vhangup_self();
+      tty_vhangup_self(v5);
     }
     else
     {
-      sub_13954(v5);
+      sub_13954((char *)v5);
     }
   }
   return result;

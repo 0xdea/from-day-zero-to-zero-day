@@ -44,15 +44,15 @@ void __fastcall sub_197B8(int a1)
       "openssl req -days 3650 -nodes -new -x509 -keyout /tmp/openssl/cakey.pem -out /tmp/openssl/cacert.pem -subj %s >>/t"
       "mp/openssl/openssl.log 2>&1",
       v5);
-    syslog(4, v6); // XXX fmt
+    syslog(4, v6); // XXX
     system(v6); // XXX
   }
   else
   {
     syslog(4, "Found CA KEY for server %d, creating from NVRAM", a1);
-    NVRAMVar = (const char *)getNVRAMVar("vpn_server%d_ca_key", a1);
+    NVRAMVar = (const char *)getNVRAMVar();
     sub_19774("/tmp/openssl/cakey.pem", NVRAMVar);
-    v4 = (const char *)getNVRAMVar("vpn_server%d_ca", a1);
+    v4 = (const char *)getNVRAMVar();
     sub_19774("/tmp/openssl/cacert.pem", v4);
   }
 }

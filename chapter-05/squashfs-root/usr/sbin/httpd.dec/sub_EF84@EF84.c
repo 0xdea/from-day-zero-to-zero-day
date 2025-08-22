@@ -70,7 +70,7 @@ int sub_EF84()
   char v68[12]; // [sp+4E4h] [bp-34h] BYREF
 
   strcpy(v65, "/proc/stat");
-  sub_17D84((int)v57, (int)v56, (int)v68, (int)v67, v66);
+  sub_17D84(v57, v56, v68, v67, v66);
   sub_15EFC(v54);
   memset(v63, 0, sizeof(v63));
   v0 = (const char *)nvram_get("board_id");

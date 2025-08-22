@@ -7,7 +7,7 @@ int sub_173C4()
   if ( !Var )
     Var = "bwm";
   if ( !dword_30C9C )
-    return sub_111F4((int)"error.asp");
+    return sub_111F4();
   if ( !strcmp(Var, "bwm") )
     v1 = "/bwm-daily.asp";
   else

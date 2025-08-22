@@ -1,9 +1,11 @@
 {
   "resultIdToNotes": {
-    "0|394": {
+    "0|442": {
       "status": 1,
       "comment": ""
     }
   },
-  "hiddenRules": []
+  "hiddenRules": [
+    "Users.raptor.Downloads.github.semgrep-rules.c.raptor-incorrect-use-of-strncpy-stpncpy-strlcpy"
+  ]
 }

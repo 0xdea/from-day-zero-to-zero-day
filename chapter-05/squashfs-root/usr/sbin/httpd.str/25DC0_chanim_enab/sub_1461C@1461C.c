@@ -28,7 +28,7 @@ int __fastcall sub_1461C(int a1, int a2)
   int v30; // [sp+144h] [bp-54h] BYREF
   int v31; // [sp+14Ch] [bp-4Ch]
   _DWORD s[3]; // [sp+150h] [bp-48h] BYREF
-  int v33; // [sp+15Ch] [bp-3Ch] BYREF
+  int v33; // [sp+15Ch] [bp-3Ch]
   int v34; // [sp+160h] [bp-38h] BYREF
   int v35; // [sp+164h] [bp-34h] BYREF
   int v36; // [sp+168h] [bp-30h] BYREF
@@ -49,7 +49,7 @@ int __fastcall sub_1461C(int a1, int a2)
   v8 = nvram_get_int(v7);
   if ( sub_13D94(v37) )
   {
-    if ( wl_iovar_getint(v4, "chanspec", &v35) )
+    if ( wl_iovar_getint() )
     {
       v9 = wl_nvname("nctrlsb", a2, 0);
       v10 = (const char *)sub_13E24(v9);
@@ -129,7 +129,7 @@ LABEL_32:
 LABEL_35:
   v27 = sub_13DC8(v8, v34);
 LABEL_36:
-  if ( wl_iovar_getint(v4, "chanim_enab", &v33) )
+  if ( wl_iovar_getint() )
     v33 = 0;
   if ( v33 )
   {

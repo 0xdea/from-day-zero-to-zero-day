@@ -85,7 +85,7 @@ LABEL_31:
                 {
                   v13 = v24;
                   close(v11);
-                  strlcpy(v24, v21, 16);
+                  strlcpy((int)v24, (int)v21, 16);
                   goto LABEL_28;
                 }
               }
@@ -95,7 +95,7 @@ LABEL_31:
           v13 = v8;
 LABEL_28:
           v14 = (unsigned __int8)*a4;
-          v15 = (const char *)ether_etoa(dest, v23);
+          v15 = (const char *)ether_etoa((int)dest, (int)v23);
           sub_13970(0, "%c['%s','%s',%d,%d,%d,%u,%d]", v14, v13, v15, v27, v20[17], v20[18], v20[11], a2);
           *a4 = 44;
         }

@@ -14,7 +14,7 @@ int __fastcall sub_1416C(int a1, int a2, int a3)
   int v17; // r0
   int v18; // r0
   int v19; // r0
-  int v20; // r0
+  unsigned __int8 *v20; // r0
   char *v21; // r8
   int v22; // r9
   int v23; // r0
@@ -86,7 +86,7 @@ int __fastcall sub_1416C(int a1, int a2, int a3)
   v18 = sub_13E24(v17);
   wl_ioctl(v18, 23, v35, 6);
   v19 = wl_nvname("ssid", a2, a3);
-  v20 = sub_13E24(v19);
+  v20 = (unsigned __int8 *)sub_13E24(v19);
   v21 = (char *)sub_17C28(v20);
   if ( a1 )
     v22 = 44;

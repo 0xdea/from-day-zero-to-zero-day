@@ -1,45 +1,45 @@
-int __fastcall sub_D564(const char *a1, const char *a2, const char *a3, const char *a4, int a5)
+int __fastcall sub_D564(const char *a1, const char *a2, const char *a3, const char *a4)
 {
-  int v9; // r10
-  int v10; // r5
-  char *v11; // r0
-  FILE *v12; // r7
-  const char *v13; // r10
-  const char *v14; // r1
-  char *v15; // r3
-  const char *v16; // r0
-  const char *v17; // r2
-  FILE *v18; // r0
-  FILE *v19; // r6
+  int v8; // r10
+  int v9; // r5
+  char *v10; // r0
+  FILE *v11; // r7
+  const char *v12; // r10
+  const char *v13; // r1
+  char *v14; // r3
+  const char *v15; // r0
+  const char *v16; // r2
+  FILE *v17; // r0
+  FILE *v18; // r6
   char s[28]; // [sp+1Ch] [bp-2Ch] BYREF
-  char v22[16]; // [sp+38h] [bp-10h] BYREF
+  char v21[16]; // [sp+38h] [bp-10h] BYREF
   char name[16]; // [sp+48h] [bp+0h] BYREF
 
   strcpy(name, "/tmp/.wxXXXXXX");
-  strcpy(v22, "/tmp/.wqXXXXXX");
-  v9 = mkstemp(name);
-  if ( v9 < 0 )
+  strcpy(v21, "/tmp/.wqXXXXXX");
+  v8 = mkstemp(name);
+  if ( v8 < 0 )
     goto LABEL_6;
   if ( a3 )
   {
-    v10 = mkstemp(v22);
-    if ( v10 < 0 )
+    v9 = mkstemp(v21);
+    if ( v9 < 0 )
     {
-      close(v9);
-      v11 = name;
+      close(v8);
+      v10 = name;
 LABEL_5:
-      unlink(v11);
+      unlink(v10);
       goto LABEL_6;
     }
   }
   else
   {
-    v10 = -1;
+    v9 = -1;
   }
-  v12 = fdopen(v9, "wb");
-  if ( !v12 )
+  v11 = fdopen(v8, "wb");
+  if ( !v11 )
   {
-    close(v9);
+    close(v8);
     unlink(name);
     if ( a3 )
       goto LABEL_27;
@@ -47,61 +47,61 @@ LABEL_6:
     exit(1);
   }
   if ( dword_30CB0 )
-    v13 = "POST";
+    v12 = "POST";
   else
-    v13 = "GET";
-  v15 = getenv("PATH");
+    v12 = "GET";
+  v14 = getenv("PATH");
   if ( a2 )
   {
-    v16 = &::s;
+    v15 = &::s;
   }
   else
   {
     a2 = a1;
-    v16 = "./";
+    v15 = "./";
   }
   if ( a3 )
   {
-    v14 = v22;
-    v17 = "<";
+    v13 = v21;
+    v16 = "<";
   }
   else
   {
-    v17 = &::s;
+    v16 = &::s;
   }
   if ( !a3 )
-    v14 = v17;
+    v13 = v16;
   fprintf(
-    v12,
+    v11,
     "#!/bin/sh\nexport REQUEST_METHOD=\"%s\"\nexport PATH=%s\n. /etc/profile\ncd %s\n%s%s %s%s\n",
-    v13,
-    v15,
+    v12,
+    v14,
     a4,
-    v16,
+    v15,
     a2,
-    v17,
-    v14);
-  fclose(v12);
+    v16,
+    v13);
+  fclose(v11);
   chmod(name, 0x1C0u);
   if ( a3 )
   {
-    v18 = fdopen(v10, "wb");
-    v19 = v18;
-    if ( v18 )
+    v17 = fdopen(v9, "wb");
+    v18 = v17;
+    if ( v17 )
     {
-      fprintf(v18, "%s\n", a3);
-      fclose(v19);
+      fprintf(v17, "%s\n", a3);
+      fclose(v18);
       goto LABEL_28;
     }
     unlink(name);
 LABEL_27:
-    close(v10);
-    v11 = v22;
+    close(v9);
+    v10 = v21;
     goto LABEL_5;
   }
 LABEL_28:
   snprintf(s, 0x19u, "%s 2>&1", name);
-  sub_13D58(s, a5);
-  unlink(v22);
+  sub_13D58(s);
+  unlink(v21);
   return unlink(name);
 }

@@ -45,7 +45,7 @@ int __fastcall sub_19994(const char *a1, int a2)
     a1,
     v4,
     v9);
-  syslog(4, v8); // XXX fmt
+  syslog(4, v8); // XXX
   system(v8); // XXX
   memset(v8, 0, sizeof(v8));
   snprintf(
@@ -57,7 +57,7 @@ int __fastcall sub_19994(const char *a1, int a2)
     a1,
     v4,
     v9);
-  syslog(4, v8); // XXX fmt
+  syslog(4, v8); // XXX
   system(v8); // XXX
   memset(v8, 0, sizeof(v8));
   snprintf(
@@ -66,6 +66,6 @@ int __fastcall sub_19994(const char *a1, int a2)
     "openssl x509 -in /tmp/openssl/%s.crt -inform PEM -out /tmp/openssl/%s.crt -outform PEM >>/tmp/openssl/openssl.log 2>&1",
     a1,
     a1);
-  syslog(4, v8); // XXX fmt
+  syslog(4, v8); // XXX
   return system(v8); // XXX
 }

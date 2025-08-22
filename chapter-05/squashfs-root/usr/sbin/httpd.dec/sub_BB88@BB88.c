@@ -16,28 +16,27 @@ void sub_BB88()
   int v13; // r2
   bool v14; // zf
   size_t v15; // r0
-  size_t v16; // r0
-  char *v17; // r0
-  char *v18; // r7
-  const char *v19; // r0
-  const char *v20; // r1
-  const char *v21; // r0
-  const char *v22; // r1
-  int v23; // r0
-  int v24; // r1
-  char *v25; // r2
-  char *v26; // r5
-  size_t v27; // r0
-  char *v28; // r9
-  bool v29; // zf
-  void (__fastcall *v30)(const char *, unsigned int, char *); // r3
-  const char *v31; // r2
-  void (__fastcall *v32)(const char *); // r3
+  char *v16; // r0
+  char *v17; // r7
+  const char *v18; // r0
+  const char *v19; // r1
+  const char *v20; // r0
+  const char *v21; // r1
+  int v22; // r0
+  int v23; // r1
+  char *v24; // r2
+  char *v25; // r5
+  size_t v26; // r0
+  char *v27; // r9
+  bool v28; // zf
+  void (__fastcall *v29)(const char *, unsigned int, char *); // r3
+  const char *v30; // r2
+  void (__fastcall *v31)(const char *); // r3
   char s[10000]; // [sp+4h] [bp-2944h] BYREF
-  char v34[492]; // [sp+2714h] [bp-234h] BYREF
+  char v33[492]; // [sp+2714h] [bp-234h] BYREF
   char *i; // [sp+2914h] [bp-34h] BYREF
-  char *v36; // [sp+2918h] [bp-30h] BYREF
-  char *v37; // [sp+291Ch] [bp-2Ch] BYREF
+  char *v35; // [sp+2918h] [bp-30h] BYREF
+  char *v36; // [sp+291Ch] [bp-2Ch] BYREF
 
   dword_30CB4 = 0;
   memset(s, 0, sizeof(s));
@@ -46,19 +45,19 @@ void sub_BB88()
   {
     v1 = 400;
 LABEL_110:
-    v25 = (char *)v0;
+    v24 = (char *)v0;
     goto LABEL_111;
   }
-  v37 = s;
-  strsep(&v37, " ");
-  while ( v37 && *v37 == 32 )
-    ++v37;
-  v36 = v37;
+  v36 = s;
   strsep(&v36, " ");
   while ( v36 && *v36 == 32 )
     ++v36;
-  v2 = v37;
-  if ( !v37 || !v36 )
+  v35 = v36;
+  strsep(&v35, " ");
+  while ( v35 && *v35 == 32 )
+    ++v35;
+  v2 = v36;
+  if ( !v36 || !v35 )
     goto LABEL_25;
   if ( strcasecmp(s, "get") && strcasecmp(s, "post") )
   {
@@ -104,12 +103,12 @@ LABEL_25:
   }
   v7 = 0;
   v8 = 0;
-  i = v36;
+  i = v35;
   v9 = 0;
   strsep(&i, " ");
   v10 = 0;
-  v11 = &v36[strlen(v36) + 1];
-  while ( sub_1389C(v11, v34 - v11) && strcmp(v11, "\n") && strcmp(v11, "\r\n") )
+  v11 = &v35[strlen(v35) + 1];
+  while ( sub_1389C(v11, v33 - v11) && strcmp(v11, "\n") && strcmp(v11, "\r\n") )
   {
     if ( !strncasecmp(v11, "Authorization:", 0xEu) )
     {
@@ -167,38 +166,38 @@ LABEL_25:
       v15 = strlen((const char *)(v10 + 6));
       if ( (unsigned int)base64_decoded_len(v15) > 0x200 )
         goto LABEL_75;
-      v16 = strlen((const char *)v10);
-      v34[base64_decode(v10 + 6, v34, v16 - 6)] = 0;
-      v17 = strchr(v34, 58);
-      v18 = v17;
-      if ( !v17 )
+      strlen((const char *)v10);
+      v33[base64_decode()] = 0;
+      v16 = strchr(v33, 58);
+      v17 = v16;
+      if ( !v16 )
         goto LABEL_75;
-      *v17 = 0;
-      v19 = (const char *)nvram_get("http_username");
-      v20 = v19;
-      if ( v19 )
+      *v16 = 0;
+      v18 = (const char *)nvram_get("http_username");
+      v19 = v18;
+      if ( v18 )
       {
-        if ( !*v19 )
-          v20 = "root";
+        if ( !*v18 )
+          v19 = "root";
       }
       else
       {
-        v20 = "root";
+        v19 = "root";
       }
-      if ( !strcmp(v34, v20) )
+      if ( !strcmp(v33, v19) )
       {
-        v21 = (const char *)nvram_get("http_passwd");
-        v22 = v21;
-        if ( v21 )
+        v20 = (const char *)nvram_get("http_passwd");
+        v21 = v20;
+        if ( v20 )
         {
-          if ( !*v21 )
-            v22 = "admin";
+          if ( !*v20 )
+            v21 = "admin";
         }
         else
         {
-          v22 = "admin";
+          v21 = "admin";
         }
-        if ( !strcmp(v18 + 1, v22) )
+        if ( !strcmp(v17 + 1, v21) )
           v10 = 1;
         else
           v10 = 2;
@@ -214,8 +213,8 @@ LABEL_75:
       v10 = 0;
     }
   }
-  v23 = strcmp(v3, "logout");
-  if ( !v23 )
+  v22 = strcmp(v3, "logout");
+  if ( !v22 )
   {
     sub_DEF0(v3, v7, v9);
     sub_B888();
@@ -229,9 +228,9 @@ LABEL_75:
 LABEL_82:
       v1 = 404;
       v0 = 0;
-      v25 = "Goodbye";
+      v24 = "Goodbye";
 LABEL_111:
-      sub_BA5C(v1, v0, v25);
+      sub_BA5C(v1, v0, v24);
       return;
     }
     sub_BAB4();
@@ -239,8 +238,8 @@ LABEL_111:
   }
   if ( v10 == 2 )
   {
-    v23 = v7;
-    v24 = 1;
+    v22 = v7;
+    v23 = 1;
   }
   else
   {
@@ -249,12 +248,12 @@ LABEL_111:
   if ( v10 == 2 )
   {
 LABEL_107:
-    sub_BB3C(v23, v24);
+    sub_BB3C(v22, v23);
     return;
   }
   while ( 2 )
   {
-    v28 = *(char **)v8;
+    v27 = *(char **)v8;
     if ( !*(_DWORD *)v8 )
     {
       if ( v10 == 1 )
@@ -264,21 +263,21 @@ LABEL_109:
         v0 = 0;
         goto LABEL_110;
       }
-      v23 = v7;
-      v24 = *(_DWORD *)v8;
+      v22 = v7;
+      v23 = *(_DWORD *)v8;
       goto LABEL_107;
     }
     while ( 1 )
     {
-      v26 = strchr(v28, 124);
-      if ( !v26 )
+      v25 = strchr(v27, 124);
+      if ( !v25 )
         break;
-      if ( __uri_match_pages((unsigned __int8 *)v28, v26 - v28, v3) )
+      if ( __uri_match_pages((unsigned __int8 *)v27, v25 - v27, v3) )
         goto LABEL_93;
-      v28 = v26 + 1;
+      v27 = v25 + 1;
     }
-    v27 = strlen(v28);
-    if ( !__uri_match_pages((unsigned __int8 *)v28, v27, v3) )
+    v26 = strlen(v27);
+    if ( !__uri_match_pages((unsigned __int8 *)v27, v26, v3) )
     {
       v8 += 24;
       continue;
@@ -286,23 +285,23 @@ LABEL_109:
     break;
   }
 LABEL_93:
-  v29 = v10 == 1;
+  v28 = v10 == 1;
   if ( v10 != 1 )
-    v29 = *((_DWORD *)v8 + 5) == 0;
-  if ( !v29 )
+    v28 = *((_DWORD *)v8 + 5) == 0;
+  if ( !v28 )
   {
-    v23 = v7;
-    v24 = 0;
+    v22 = v7;
+    v23 = 0;
     goto LABEL_107;
   }
-  v30 = (void (__fastcall *)(const char *, unsigned int, char *))*((_DWORD *)v8 + 3);
-  if ( v30 )
-    v30(v3, v7, v9);
+  v29 = (void (__fastcall *)(const char *, unsigned int, char *))*((_DWORD *)v8 + 3);
+  if ( v29 )
+    v29(v3, v7, v9);
   sub_B888();
-  v31 = (const char *)*((_DWORD *)v8 + 1);
+  v30 = (const char *)*((_DWORD *)v8 + 1);
+  if ( v30 )
+    sub_B928(200, 0, v30, *((_DWORD *)v8 + 2));
+  v31 = (void (__fastcall *)(const char *))*((_DWORD *)v8 + 4);
   if ( v31 )
-    sub_B928(200, 0, v31, *((_DWORD *)v8 + 2));
-  v32 = (void (__fastcall *)(const char *))*((_DWORD *)v8 + 4);
-  if ( v32 )
-    v32(v3);
+    v31(v3);
 }

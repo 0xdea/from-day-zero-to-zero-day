@@ -3,7 +3,6 @@ int __fastcall sub_10218(int result, const char **a2)
   int v3; // r12
   const char *v4; // r4
   struct statfs buf; // [sp+14h] [bp-5Ch] BYREF
-  char v6; // [sp+54h] [bp-1Ch] BYREF
 
   if ( result == 2 )
   {
@@ -13,7 +12,7 @@ int __fastcall sub_10218(int result, const char **a2)
       v4 = a2[1];
       if ( !strncmp(v4, "jffs", 4u) || !strncmp(v4, "brcmnand", 8u) )
       {
-        v3 = mtd_getinfo(v4, &v6, &buf.f_blocks);
+        v3 = mtd_getinfo();
         if ( !v3 )
           return sub_13970(
                    0,

@@ -2,7 +2,7 @@ FILE *sub_18494()
 {
   int v0; // r5
   int i; // r6
-  _BYTE *v2; // r0
+  const char *v2; // r0
   int v3; // r3
   const char *v4; // r0
   in_addr_t v5; // r9
@@ -17,8 +17,8 @@ FILE *sub_18494()
   int v14; // r8
   int v15; // r10
   int v16; // r0
-  int v17; // r8
-  int v18; // r0
+  _DWORD *v17; // r8
+  char *v18; // r0
   char *v19; // r7
   FILE *stream; // [sp+14h] [bp-240h]
   char v21[256]; // [sp+18h] [bp-23Ch] BYREF
@@ -46,17 +46,17 @@ FILE *sub_18494()
       strcpy(v25, &::s);
     memset(s, 0, sizeof(s));
     snprintf(s, 0x100u, "lan%s_ifname", v25);
-    v2 = (_BYTE *)sub_180E0(s);
-    v3 = (unsigned __int8)*v2;
+    v2 = sub_180E0((int)s);
+    v3 = *(unsigned __int8 *)v2;
     if ( *v2 )
     {
       memset(s, 0, sizeof(s));
       snprintf(s, 0x100u, "lan%s_ipaddr", v25);
-      v4 = (const char *)sub_180E0(s);
+      v4 = sub_180E0((int)s);
       v5 = inet_addr(v4);
       memset(s, 0, sizeof(s));
       snprintf(s, 0x100u, "lan%s_netmask", v25);
-      v6 = (const char *)sub_180E0(s);
+      v6 = sub_180E0((int)s);
       v7 = inet_addr(v6);
       *(_DWORD *)&v27[v0] = v7;
       *(_DWORD *)&v27[v0 + 16] = v7 & v5;
@@ -95,7 +95,7 @@ FILE *sub_18494()
                 if ( sscanf(v12, "src=%s dst=%s", v29, v28) == 2 )
                 {
                   snprintf(v21, 0x100u, "%s %s %s %s", v31, v30, v29, v28);
-                  remove_dups(v21, 256);
+                  remove_dups();
                   v13 = &v21[strspn(v21, " ")];
                   strncpy(v25, v13, 0x10u);
                   v25[strcspn(v25, " ")] = 0;
@@ -118,13 +118,13 @@ FILE *sub_18494()
                         goto LABEL_33;
                     }
                     strncpy(v23, v25, 0x10u);
-                    v16 = sub_182C0(dword_30B38, v23, off_30B3C);
+                    v16 = sub_182C0(dword_30B38, (int)v23, (int (__fastcall *)(int, int))off_30B3C);
                     if ( !v16 )
                     {
-                      v17 = dword_30B38;
+                      v17 = (_DWORD *)dword_30B38;
                       v18 = sub_1844C(v25);
-                      dword_30B38 = sub_18258(v17, v18, off_30B3C);
-                      v16 = sub_182C0(dword_30B38, v23, off_30B3C);
+                      dword_30B38 = sub_18258(v17, (int)v18, (int (__fastcall *)(int, _DWORD *))off_30B3C);
+                      v16 = sub_182C0(dword_30B38, (int)v23, (int (__fastcall *)(int, int))off_30B3C);
                     }
                     if ( v33 == 6 )
                     {

@@ -50,7 +50,7 @@ int __fastcall sub_1193C(int result, const char **a2)
   if ( result == 1 )
   {
     v3 = nvram_get_int("ipv6_prefix_length");
-    if ( get_ipv6_service() )
+    if ( get_ipv6_service(v3) )
     {
       v4 = (const char *)sub_11858("ipv6_prefix");
       inet_pton(10, v4, buf);

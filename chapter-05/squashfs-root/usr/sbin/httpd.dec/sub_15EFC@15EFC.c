@@ -48,7 +48,7 @@ char *__fastcall sub_15EFC(char *a1)
           v5 = v6++;
         }
         while ( v4 == 32 );
-        trimstr(v5);
+        trimstr();
       }
       while ( !*v5 || strncasecmp(v5, "eth", 3u) );
       memset(v23, 0, sizeof(v23));
@@ -131,7 +131,7 @@ LABEL_41:
   {
     a1[v19 - 24] = 0;
 LABEL_45:
-    trimstr(a1);
+    trimstr();
     return a1;
   }
   if ( v19 )

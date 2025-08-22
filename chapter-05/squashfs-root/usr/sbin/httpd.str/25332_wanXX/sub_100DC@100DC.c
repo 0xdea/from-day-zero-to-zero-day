@@ -12,7 +12,7 @@ int __fastcall sub_100DC(int a1, const char **a2)
     v2 = *a2;
   strcpy(dest, v2);
   strcpy(v5, "-");
-  if ( check_wanup(dest) )
+  if ( check_wanup() )
   {
     v3 = check_wanup_time(dest);
     sub_E81C(v5, v3);

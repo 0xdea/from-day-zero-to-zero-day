@@ -12,6 +12,6 @@ int __fastcall sub_14550(int a1)
     return -99;
   snprintf(s, 0x20u, "%d", v7);
   v5 = wl_nvname("tnoise", a1, 0);
-  nvram_set(v5, s);
+  nvram_set(v5, (int)s);
   return v7;
 }

@@ -42,7 +42,7 @@ int __fastcall sub_151BC(int a1, int a2, int a3, int *a4)
   v7 = *a4;
   if ( v7 >= 0 && v7 != a2 )
     return 0;
-  v8 = wl_nvname("ifname");
+  v8 = wl_nvname("ifname", a2, 0);
   v9 = sub_13E24(v8);
   v10 = malloc(0x1008Cu);
   v11 = v10;

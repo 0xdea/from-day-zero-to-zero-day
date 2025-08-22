@@ -22,7 +22,8 @@ int __fastcall sub_E0A4(int a1)
   {
     v3 = sub_D940(i, *i, v11);
     if ( v3 < 0
-      || !strncmp(*i, "wl_", 3u) && ((v15 = v1, v14[0] = i, foreach_wif(1, v14, sub_DB84)) || (v3 |= v15, v3 < 0)) )
+      || !strncmp(*i, "wl_", 3u)
+      && ((v15 = v1, v14[0] = i, foreach_wif(1, (int)v14, (int)sub_DB84)) || (v3 |= v15, v3 < 0)) )
     {
       snprintf(s, 0x100u, "The field \"%s\" is invalid. Please report this problem.", *i);
 LABEL_18:
@@ -31,7 +32,7 @@ LABEL_18:
     }
     v1 |= v3;
   }
-  foreach_wif(0, &v11, sub_DBC8);
+  foreach_wif(0, (int)&v11, (int)sub_DBC8);
   Var = (const char *)WebsGetVar("set_password_1");
   v5 = Var;
   if ( Var && strcmp(Var, "**********") )
@@ -45,7 +46,7 @@ LABEL_18:
     if ( v11 && !is_value_in_nvram_0((int)"http_passwd", v5) )
     {
       v1 = 1;
-      nvram_set("http_passwd", v5);
+      nvram_set((int)"http_passwd", (int)v5);
     }
   }
   for ( j = 0; j != 50; ++j )
@@ -65,7 +66,7 @@ LABEL_18:
       if ( v11 && !is_value_in_nvram_0((int)s, v9) )
       {
         v1 = 1;
-        nvram_set(s, v9);
+        nvram_set((int)s, (int)v9);
       }
     }
   }

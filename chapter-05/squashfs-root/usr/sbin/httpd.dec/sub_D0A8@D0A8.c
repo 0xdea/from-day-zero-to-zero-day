@@ -6,7 +6,7 @@ char *__fastcall sub_D0A8(char *s)
   char *v5; // r4
   int v6; // r3
   size_t v7; // r0
-  char *v8; // r1
+  int v8; // r1
   size_t v9; // r0
   char *v10; // r0
   char *v11; // r4
@@ -47,15 +47,15 @@ char *__fastcall sub_D0A8(char *s)
           if ( strlen(v10 + 1) <= 1 )
           {
             v9 = strlen(v5);
-            strlcpy(v5, &::s, v9 + 1);
+            strlcpy((int)v5, (int)&::s, v9 + 1);
           }
           else
           {
             sscanf(v5 + 1, "%02x", &v12);
             *v5 = v12;
             v7 = strlen(v5 + 1);
-            v8 = v5 + 3;
-            strlcpy(++v5, v8, v7 + 1);
+            v8 = (int)(v5 + 3);
+            strlcpy((int)++v5, v8, v7 + 1);
           }
         }
         else if ( v6 == 43 )

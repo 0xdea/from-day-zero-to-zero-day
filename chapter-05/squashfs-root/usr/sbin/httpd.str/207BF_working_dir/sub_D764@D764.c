@@ -16,13 +16,13 @@ int sub_D764()
     v3 = "/www";
     if ( v2 )
       v3 = v2;
-    return sub_D564(0, v1, 0, v3, 0);
+    return sub_D564(0, v1, 0, v3);
   }
   else
   {
     sub_13954("\ncmdresult = '");
     v5 = (const char *)WebsGetVar("command");
-    sub_D564(0, v5, 0, "/www", 1);
+    sub_D564(0, v5, 0, "/www");
     return sub_13954("';");
   }
 }

@@ -27,7 +27,7 @@ FILE *sub_18494()
   char dest[24]; // [sp+23Ch] [bp-18h] BYREF
   char v25[15]; // [sp+254h] [bp+0h] BYREF
   char j; // [sp+263h] [bp+Fh]
-  _BYTE v27[32]; // [sp+264h] [bp+10h]
+  char v27[32]; // [sp+264h] [bp+10h]
   char v28[16]; // [sp+284h] [bp+30h] BYREF
   char v29[16]; // [sp+294h] [bp+40h] BYREF
   char v30[16]; // [sp+2A4h] [bp+50h] BYREF
@@ -95,7 +95,7 @@ FILE *sub_18494()
                 if ( sscanf(v12, "src=%s dst=%s", v29, v28) == 2 ) // XXX
                 {
                   snprintf(v21, 0x100u, "%s %s %s %s", v31, v30, v29, v28);
-                  remove_dups(v21, 256);
+                  remove_dups();
                   v13 = &v21[strspn(v21, " ")];
                   strncpy(v25, v13, 0x10u);
                   v25[strcspn(v25, " ")] = 0;
@@ -123,7 +123,7 @@ FILE *sub_18494()
                     {
                       v17 = (_DWORD *)dword_30B38;
                       v18 = sub_1844C(v25);
-                      dword_30B38 = sub_18258(v17, (int)v18, (int (__fastcall *)(int, _DWORD *))off_30B3C);
+                      dword_30B38 = (int)sub_18258(v17, (int)v18, (int (__fastcall *)(int, _DWORD *))off_30B3C);
                       v16 = sub_182C0(dword_30B38, (int)v23, (int (__fastcall *)(int, int))off_30B3C);
                     }
                     if ( v33 == 6 )

@@ -16,7 +16,7 @@ int __fastcall sub_15A98(int a1, int a2)
   _DWORD *v16; // r5
   _DWORD *v17; // r4
   int v18; // t1
-  int v20; // [sp+8h] [bp-28h] BYREF
+  __int16 v20; // [sp+8h] [bp-28h]
   int v21; // [sp+Ch] [bp-24h] BYREF
   int v22; // [sp+10h] [bp-20h] BYREF
   char src[28]; // [sp+14h] [bp-1Ch] BYREF
@@ -36,7 +36,7 @@ int __fastcall sub_15A98(int a1, int a2)
     v7 = wl_nvname("nband", dword_30CA0, 0);
     v22 = nvram_get_int(v7);
   }
-  wl_iovar_getint(v6, "chanspec", &v20);
+  wl_iovar_getint();
   if ( v3 <= 1 )
   {
     wl_ioctl(v6, 39, &v21, 4);

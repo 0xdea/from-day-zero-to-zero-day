@@ -1,4 +1,4 @@
-int sub_1AAB8()
+FILE *sub_1AAB8()
 {
   const char *v0; // r0
   const char *v1; // r0
@@ -23,17 +23,17 @@ int sub_1AAB8()
       if ( v3.st_size <= 0 )
       {
         v1 = "{ \"mode\": \"Client preparing\"}";
-        return sub_13954(v1);
+        return (FILE *)sub_13954(v1);
       }
     }
     else if ( access("/tmp/iperf_interval", 0) == -1 || (stat("/tmp/iperf_interval", &v3), v3.st_size <= 0) )
     {
       v1 = "{ \"mode\": \"Server waiting\"}";
-      return sub_13954(v1);
+      return (FILE *)sub_13954(v1);
     }
     v0 = "/tmp/iperf_interval";
     return sub_C3F0(v0);
   }
   v1 = "{ \"mode\": \"Stopped\" }";
-  return sub_13954(v1);
+  return (FILE *)sub_13954(v1);
 }

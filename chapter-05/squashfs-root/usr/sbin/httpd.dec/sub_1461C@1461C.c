@@ -28,13 +28,13 @@ int __fastcall sub_1461C(int a1, int a2)
   unsigned int v30; // [sp+144h] [bp-54h] BYREF
   int v31; // [sp+14Ch] [bp-4Ch]
   _DWORD s[3]; // [sp+150h] [bp-48h] BYREF
-  int v33; // [sp+15Ch] [bp-3Ch] BYREF
+  int v33; // [sp+15Ch] [bp-3Ch]
   int v34; // [sp+160h] [bp-38h] BYREF
   int v35; // [sp+164h] [bp-34h] BYREF
   int v36; // [sp+168h] [bp-30h] BYREF
   int v37; // [sp+16Ch] [bp-2Ch] BYREF
 
-  v3 = wl_nvname("ifname");
+  v3 = wl_nvname("ifname", a2, 0);
   v4 = sub_13E24(v3);
   v5 = wl_client(a2, 0);
   wl_ioctl(v4, 39, &v37, 4);
@@ -42,18 +42,18 @@ int __fastcall sub_1461C(int a1, int a2)
     v36 = 0;
   if ( wl_ioctl(v4, 141, &v34, 4) < 0 )
   {
-    v6 = wl_nvname("nband");
+    v6 = wl_nvname("nband", a2, 0);
     v34 = nvram_get_int(v6);
   }
-  v7 = wl_nvname("channel");
+  v7 = wl_nvname("channel", a2, 0);
   v8 = nvram_get_int(v7);
   if ( sub_13D94(v37) )
   {
-    if ( wl_iovar_getint(v4, "chanspec", &v35) )
+    if ( wl_iovar_getint() )
     {
-      v9 = wl_nvname("nctrlsb");
+      v9 = wl_nvname("nctrlsb", a2, 0);
       v10 = sub_13E24(v9);
-      v11 = wl_nvname("nbw");
+      v11 = wl_nvname("nbw", a2, 0);
       v12 = nvram_get_int(v11);
       goto LABEL_32;
     }
@@ -129,7 +129,7 @@ LABEL_32:
 LABEL_35:
   v27 = sub_13DC8(v8, v34);
 LABEL_36:
-  if ( wl_iovar_getint(v4, "chanim_enab", &v33) )
+  if ( wl_iovar_getint() )
     v33 = 0;
   if ( v33 )
   {
@@ -159,7 +159,7 @@ LABEL_36:
   v20 = v36;
   v21 = s[0];
   v25 = radio;
-  v22 = sub_145D4(v5);
+  v22 = sub_145D4(v5, a2);
   sub_13970(
     0,
     "%c{ radio: %d, client: %d, channel: %c%d, mhz: %d, rate: %d, ctrlsb: '%s', nbw: %d, rssi: %d, noise: %d, intf: %d }\n",

@@ -1,13 +1,13 @@
-void __fastcall tty_vhangup_self()
+void __fastcall tty_vhangup_self(unsigned __int8 *a1)
 {
-  char *v0; // r0
-  char *v1; // r4
+  char *v1; // r0
+  char *v2; // r4
 
-  v0 = (char *)sub_17C38();
-  v1 = v0;
-  if ( v0 )
+  v1 = (char *)sub_17C38(a1);
+  v2 = v1;
+  if ( v1 )
   {
-    sub_13954(v0);
-    free(v1);
+    sub_13954(v1);
+    free(v2);
   }
 }

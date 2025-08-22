@@ -16,11 +16,11 @@ int __fastcall sub_FFCC(int a1, const char **a2)
   snprintf(v6, 0x40u, "/var/lib/misc/%s_dhcpc.renewing", dest);
   memset(v5, 0, sizeof(v5));
   snprintf(v5, 0x40u, "/var/lib/misc/%s.connecting", dest);
-  if ( using_dhcpc(dest) && f_exists(v6) )
+  if ( using_dhcpc() && f_exists(v6) )
   {
     v3 = "Renewing...";
   }
-  else if ( check_wanup(dest) )
+  else if ( check_wanup() )
   {
     v3 = "Connected";
   }

@@ -2,7 +2,7 @@ int sub_17048()
 {
   if ( dword_30C9C )
   {
-    sub_111F4((int)"reboot.asp");
+    sub_111F4();
     sub_13CC8();
     if ( nvram_get_int("remote_upgrade") )
     {
@@ -15,5 +15,5 @@ int sub_17048()
     reboot(19088743);
     exit(0);
   }
-  return sub_111F4((int)"error.asp");
+  return sub_111F4();
 }

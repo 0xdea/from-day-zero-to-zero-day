@@ -14,7 +14,7 @@ int __fastcall sub_1416C(int a1, int a2, int a3)
   int v17; // r0
   const char *v18; // r0
   int v19; // r0
-  const char *v20; // r0
+  unsigned __int8 *v20; // r0
   char *v21; // r8
   int v22; // r9
   int v23; // r0
@@ -34,7 +34,7 @@ int __fastcall sub_1416C(int a1, int a2, int a3)
   if ( a3 <= 0 )
   {
     snprintf(dest, 7u, "%d", a2);
-    v7 = wl_nvname("ifname");
+    v7 = wl_nvname("ifname", a2, 0);
     v8 = sub_13E24(v7);
     wl_iovar_get(v8, "cap", v30, 256);
     v9 = &v30[strspn(v30, " ")];
@@ -68,7 +68,7 @@ int __fastcall sub_1416C(int a1, int a2, int a3)
   v13 = socket(2, 3, 255);
   if ( v13 >= 0 )
   {
-    v15 = wl_nvname("ifname");
+    v15 = wl_nvname("ifname", a2, a3);
     v16 = sub_13E24(v15);
     strcpy(v33, v16); // XXX
     if ( ioctl(v13, 0x8913u, v33) )
@@ -82,21 +82,21 @@ int __fastcall sub_1416C(int a1, int a2, int a3)
     syslog(3, "[%s %d]: error opening socket %m\n", "print_wif", 1221);
     v14 = 0;
   }
-  v17 = wl_nvname("ifname");
+  v17 = wl_nvname("ifname", a2, a3);
   v18 = sub_13E24(v17);
   wl_ioctl(v18, 23, v35, 6);
-  v19 = wl_nvname("ssid");
-  v20 = sub_13E24(v19);
+  v19 = wl_nvname("ssid", a2, a3);
+  v20 = (unsigned __int8 *)sub_13E24(v19);
   v21 = (char *)sub_17C28(v20);
   if ( a1 )
     v22 = 44;
   else
     v22 = 32;
-  v23 = wl_nvname("ifname");
+  v23 = wl_nvname("ifname", a2, a3);
   v24 = sub_13E24(v23);
-  v25 = wl_nvname("hwaddr");
+  v25 = wl_nvname("hwaddr", a2, a3);
   v26 = sub_13E24(v25);
-  v27 = wl_nvname("mode");
+  v27 = wl_nvname("mode", a2, a3);
   v28 = sub_13E24(v27);
   sub_13970(
     0,

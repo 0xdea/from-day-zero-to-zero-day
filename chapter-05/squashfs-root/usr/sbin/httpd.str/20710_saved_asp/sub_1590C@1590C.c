@@ -9,7 +9,7 @@ const char *sub_1590C()
   char v6[28]; // [sp+14h] [bp-1Ch] BYREF
 
   sub_144B8(0);
-  sub_111F4((int)"saved.asp");
+  sub_111F4();
   v0 = wl_nvname("radio", dword_30CA0, 0);
   result = (const char *)nvram_get_int(v0);
   if ( result )

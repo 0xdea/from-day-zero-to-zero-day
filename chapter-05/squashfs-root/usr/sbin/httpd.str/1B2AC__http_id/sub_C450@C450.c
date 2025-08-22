@@ -1,8 +1,8 @@
-int __fastcall sub_C450(int a1)
+bool __fastcall sub_C450(int a1)
 {
   const char *Var; // r0
   const char *v3; // r1
-  int result; // r0
+  _BOOL4 result; // r0
   __int16 v5; // r0
   const char *v6; // r0
   const char *v7; // r1
@@ -17,23 +17,23 @@ int __fastcall sub_C450(int a1)
     v3 = Var;
   else
     v3 = &::s;
-  result = is_value_in_nvram("http_id", v3);
+  result = is_value_in_nvram((int)"http_id", v3);
   if ( !result )
   {
     memset(s, 0, 0x48u);
     v5 = time(0);
     snprintf(s, 0x48u, "%s,%ld", buf, v5 & 0xFFC0);
-    if ( !is_value_in_nvram("http_id_warn", s) )
+    if ( !is_value_in_nvram((int)"http_id_warn", s) )
     {
-      nvram_set("http_id_warn", s);
+      nvram_set((int)"http_id_warn", (int)s);
       v6 = (const char *)WebsGetVar("_http_id");
       if ( v6 )
         v7 = v6;
       else
         v7 = &::s;
-      strlcpy(s, v7, 72);
+      strlcpy((int)s, (int)v7, 72);
       v8 = (const char *)sub_E6BC(s);
-      strlcpy(s, a1, 72);
+      strlcpy((int)s, a1, 72);
       v9 = sub_E6BC(s);
       v10 = v9 == 0;
       if ( v9 )

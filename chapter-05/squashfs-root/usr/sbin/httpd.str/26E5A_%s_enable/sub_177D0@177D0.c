@@ -27,7 +27,7 @@ int __fastcall sub_177D0(int result, const char **a2)
       }
       unlink(v5);
       killall(v3, v4);
-      f_wait_exists(v5, 5);
+      f_wait_exists();
       sub_C3F0(v5);
       return unlink(v5);
     }

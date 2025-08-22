@@ -57,7 +57,7 @@ LABEL_7:
           if ( v5 )
           {
             v19 = wl_nvname("bw_cap", a2, 0);
-            nvram_set(v19, "3");
+            nvram_set(v19, (int)"3");
           }
           if ( *Var != 48 )
             v23[strlen(v23)] = *v12;
@@ -66,7 +66,7 @@ LABEL_7:
           if ( v5 )
           {
             v20 = wl_nvname("bw_cap", a2, 0);
-            nvram_set(v20, "7");
+            nvram_set(v20, (int)"7");
           }
           if ( *Var != 48 )
           {
@@ -78,10 +78,10 @@ LABEL_7:
           if ( v5 )
           {
             v18 = wl_nvname("bw_cap", a2, v17);
-            nvram_set(v18, "1");
+            nvram_set(v18, (int)"1");
 LABEL_36:
             v22 = wl_nvname("chanspec", a2, 0);
-            nvram_set(v22, v23);
+            nvram_set(v22, (int)v23);
             return 0;
           }
           return v5;

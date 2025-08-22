@@ -1,8 +1,8 @@
-const char *sub_B1C8()
+const char *__fastcall sub_B1C8(int a1)
 {
   const char *result; // r0
 
-  result = (const char *)nvram_get();
+  result = (const char *)nvram_get(a1);
   if ( !result )
     return &s;
   return result;

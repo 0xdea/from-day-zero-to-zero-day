@@ -32,7 +32,7 @@ char *__fastcall sub_133A0(char *a1)
     {
       if ( *result == 47 )
       {
-        result = (char *)f_write(result);
+        result = (char *)f_write(result, s, 0, 1, 0);
         if ( (int)result >= 0 )
           v2 = v6;
       }

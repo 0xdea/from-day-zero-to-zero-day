@@ -11,7 +11,7 @@ int __fastcall sub_12EA0(int result, const char **a2)
     v3 = atoi(a2[3]);
     for ( i = atoi(a2[2]); i <= v3; ++i )
     {
-      snprintf(v7, 0x100u, a2[1], i); // XXX fmt
+      snprintf(v7, 0x100u, a2[1], i); // XXX
       sub_13954("'");
       sub_12CDC((int)v7);
       tty_vhangup_self_1();

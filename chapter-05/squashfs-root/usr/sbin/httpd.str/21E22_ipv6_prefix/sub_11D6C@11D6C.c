@@ -68,7 +68,7 @@ int __fastcall sub_11D6C(int result, const char **a2)
     v4 = inet_addr(v3);
     v43 = v4 & v40;
     v5 = nvram_get_int("ipv6_prefix_length");
-    if ( get_ipv6_service() )
+    if ( get_ipv6_service(v5) )
     {
       v6 = (const char *)sub_11858("ipv6_prefix");
       inet_pton(10, v6, buf);

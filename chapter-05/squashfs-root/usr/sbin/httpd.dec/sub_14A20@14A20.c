@@ -11,7 +11,7 @@ int __fastcall sub_14A20(int a1, int a2, int a3, int *a4)
   v14 = 40;
   if ( a1 > 2 || *a4 >= 0 && *a4 != a2 )
     return 0;
-  v7 = wl_nvname("ifname");
+  v7 = wl_nvname("ifname", a2, 0);
   v8 = sub_13E24(v7);
   memset(v13, 0, sizeof(v13));
   v9 = 3 * a1;
