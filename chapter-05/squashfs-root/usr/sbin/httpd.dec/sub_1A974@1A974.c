@@ -18,7 +18,7 @@ size_t sub_1A974()
     v1 = 32;
     while ( fgets(s, 128, v0) )
     {
-      if ( sscanf(s, "%d %s %s %s %s %d", &v10, v8, v6, v5, v7, &v9) == 6 )
+      if ( sscanf(s, "%d %s %s %s %s %d", &v10, v8, v6, v5, v7, &v9) == 6 ) // XXX
       {
         v2 = v1;
         v1 = 44;

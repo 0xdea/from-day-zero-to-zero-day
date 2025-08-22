@@ -85,7 +85,7 @@ LABEL_31:
                 {
                   v12 = v23;
                   close(v10);
-                  strlcpy(v23, v20, 16);
+                  strlcpy(v23, v20, 16); // KKK
                   goto LABEL_28;
                 }
               }

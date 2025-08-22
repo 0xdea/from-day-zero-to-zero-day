@@ -15,7 +15,7 @@ int __fastcall sub_109C8(int a1, const char **a2)
     v2 = "wan";
   else
     v2 = *a2;
-  strcpy(dest, v2);
+  strcpy(dest, v2); // XXX
   memset(v7, 0, sizeof(v7));
   snprintf(v7, 0x100u, "/var/lib/misc/dhcpc-%s.expires", dest);
   result = using_dhcpc(dest);

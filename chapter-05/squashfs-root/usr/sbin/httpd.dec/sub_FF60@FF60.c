@@ -10,7 +10,7 @@ int __fastcall sub_FF60(int a1, const char **a2)
     v2 = "wan";
   else
     v2 = *a2;
-  strcpy((char *)v5, v2);
+  strcpy((char *)v5, v2); // XXX
   if ( check_wanup(v5) )
     v3 = "1";
   else

@@ -54,7 +54,7 @@ int __fastcall sub_1317C(const char *a1, int a2, int a3, unsigned int a4)
             v16 = (const char *)((unsigned int)v11 <= v24 ? v11 : v11 + 1);
             strncpy(v14, v16, v10 - v11);
             v15[v10 - v11] = 0;
-            if ( sscanf(v15, "%lu\t%s\t%s", &v33, v30, v29) == 3 )
+            if ( sscanf(v15, "%lu\t%s\t%s", &v33, v30, v29) == 3 ) // XXX
             {
               if ( a3 )
               {

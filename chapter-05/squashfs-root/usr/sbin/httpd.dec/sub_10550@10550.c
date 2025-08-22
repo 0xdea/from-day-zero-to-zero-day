@@ -15,7 +15,7 @@ int __fastcall sub_10550(int a1, const char **a2)
     v2 = "wan";
   else
     v2 = *a2;
-  strcpy(dest, v2);
+  strcpy(dest, v2); // XXX
   dns = (_DWORD *)get_dns(dest);
   v4 = 0;
   strcpy(v10, "[");

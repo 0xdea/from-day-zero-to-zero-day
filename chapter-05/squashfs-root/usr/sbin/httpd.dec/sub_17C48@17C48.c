@@ -28,7 +28,7 @@ int __fastcall sub_17C48(int a1)
     v12 = a1 + 44;
     v5 = a1 + 20;
     a1 += 48;
-    sscanf(v13, "%s %u %u %u %u %u %u %u", v4, v5, v7, v8, v9, v10, v11, v12);
+    sscanf(v13, "%s %u %u %u %u %u %u %u", v4, v5, v7, v8, v9, v10, v11, v12); // XXX
   }
   return fclose(v3);
 }

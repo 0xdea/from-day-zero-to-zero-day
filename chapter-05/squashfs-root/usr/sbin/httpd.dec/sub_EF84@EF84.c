@@ -76,7 +76,7 @@ int sub_EF84()
   v0 = (const char *)nvram_get("board_id");
   v1 = (const char *)nvram_get("cfe_version");
   v2 = (const char *)nvram_get("bl_version");
-  strcpy(v64, &::s);
+  strcpy(v64, &::s); // XXX
   if ( v2 )
   {
     v3 = strlen(v2);
@@ -135,7 +135,7 @@ LABEL_22:
     strcpy(v64, "--");
     goto LABEL_24;
   }
-  strcpy(v64, (const char *)v63);
+  strcpy(v64, (const char *)v63); // XXX
   v64[strcspn(v64, "\n")] = 0;
 LABEL_24:
   v9 = sub_13954("\nsysinfo = {\n");
@@ -159,7 +159,7 @@ LABEL_24:
       if ( i )
         LOBYTE(v63[0]) += i;
       else
-        strcpy((char *)v63, &::s);
+        strcpy((char *)v63, &::s); // XXX
       memset(v62, 0, sizeof(v62));
       snprintf(v62, 0x10u, "lan%s_ipaddr", (const char *)v63);
       v13 = sub_E670((int)v62);

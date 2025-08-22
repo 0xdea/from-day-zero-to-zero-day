@@ -36,7 +36,7 @@ size_t sub_17430()
         {
           if ( !find_word(v0, v7) )
           {
-            if ( v4 < 0 || (strcpy(v11, v7), !ioctl(v4, 0x8913u, v11)) && (v11[16] & 1) != 0 )
+            if ( v4 < 0 || (strcpy(v11, v7), !ioctl(v4, 0x8913u, v11)) && (v11[16] & 1) != 0 ) // XXX
             {
               if ( sscanf(v5 + 1, "%llu%*u%*u%*u%*u%*u%*u%*u%llu", &v13, &v12) == 2 )
               {

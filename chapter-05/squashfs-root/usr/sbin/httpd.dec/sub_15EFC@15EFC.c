@@ -25,7 +25,7 @@ char *__fastcall sub_15EFC(char *a1)
   _DWORD v26[3]; // [sp+308h] [bp-38h] BYREF
   char *v27; // [sp+314h] [bp-2Ch] BYREF
 
-  strcpy(a1, &s);
+  strcpy(a1, &s); // XXX
   v2 = sub_13E24((int)"wl_ifnames");
   v3 = strdup(v2);
   ptr = v3;
@@ -114,13 +114,13 @@ LABEL_34:
       strcpy(v22, v16);
       if ( v25[0] && v22[0] && (strcmp(v25, "--") || strcmp(v22, "--")) )
       {
-        strcat(a1, v5);
+        strcat(a1, v5); // XXX
         strcat(a1, ": ");
-        strcat(a1, v22);
+        strcat(a1, v22); // XXX
         strcat(a1, " - ");
-        strcat(a1, v25);
+        strcat(a1, v25); // XXX
         strcat(a1, "&#176;C&nbsp;/&nbsp;");
-        strcat(a1, v24);
+        strcat(a1, v24); // XXX
         strcat(a1, "&#176;F&nbsp;&nbsp;&nbsp;&nbsp;");
       }
     }

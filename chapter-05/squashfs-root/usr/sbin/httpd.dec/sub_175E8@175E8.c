@@ -26,7 +26,7 @@ size_t sub_175E8()
     if ( v2 )
       LOBYTE(v13[0]) += v2;
     else
-      strcpy((char *)v13, &s);
+      strcpy((char *)v13, &s); // XXX
     snprintf(dest, 0x1Bu, "/proc/net/ipt_account/lan%s", (const char *)v13);
     v3 = fopen(dest, "r");
     if ( v3 )
@@ -40,7 +40,7 @@ size_t sub_175E8()
                "*u packets_dst = %*u %*u %*u %*u %*u time = %*u",
                v9,
                &v12,
-               &v11) == 3 )
+               &v11) == 3 ) // XXX
         {
           if ( !find_word(v1, v9)
             && (find_word(v7, v9) || v4 == 1 || nvram_get_int("cstats_all") && (v11 > 0 || v12 > 0)) )

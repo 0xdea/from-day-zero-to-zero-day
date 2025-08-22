@@ -39,6 +39,6 @@ char *__fastcall sub_133A0(char *a1)
     }
   }
   if ( a1 )
-    return strcpy(a1, v2);
+    return strcpy(a1, v2); // XXX
   return result;
 }

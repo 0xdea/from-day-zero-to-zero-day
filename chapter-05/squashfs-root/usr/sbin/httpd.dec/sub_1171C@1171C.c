@@ -11,7 +11,7 @@ FILE *__fastcall sub_1171C(const char *a1, int a2)
   char *v11; // [sp+10Ch] [bp-2Ch] BYREF
 
   snprintf(s, 0x100u, "tc -s class ls dev %s", a1);
-  result = popen(s, "r");
+  result = popen(s, "r"); // XXX
   v3 = result;
   if ( result )
   {

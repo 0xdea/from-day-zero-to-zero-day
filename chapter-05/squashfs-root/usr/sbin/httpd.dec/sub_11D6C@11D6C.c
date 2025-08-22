@@ -119,7 +119,7 @@ int __fastcall sub_11D6C(int result, const char **a2)
               v17 = v16;
               if ( v16 )
               {
-                if ( sscanf(v16, "src=%s dst=%s %n", v50, v49, &v61) == 2 )
+                if ( sscanf(v16, "src=%s dst=%s %n", v50, v49, &v61) == 2 ) // XXX
                   break;
               }
             }
@@ -132,13 +132,13 @@ int __fastcall sub_11D6C(int result, const char **a2)
         v20 = v19;
         if ( v19 )
         {
-          if ( sscanf(v18, "sport=%s dport=%s %*s bytes=%s %n", v57, v56, v55, &v61) == 3 )
+          if ( sscanf(v18, "sport=%s dport=%s %*s bytes=%s %n", v57, v56, v55, &v61) == 3 ) // XXX
           {
             v18 += v61;
             v21 = strstr(v18, "bytes=");
             if ( v21 )
             {
-              if ( sscanf(v21, "bytes=%s", v54) == 1 )
+              if ( sscanf(v21, "bytes=%s", v54) == 1 ) // XXX
                 goto LABEL_34;
             }
           }
@@ -171,8 +171,8 @@ LABEL_63:
                 if ( v60 != 6 )
                   v23 = v60 == 17;
                 if ( v23
-                   ? sscanf(v22, "src=%s dst=%s sport=%s dport=%s", v49, v50, v56, v57) == 4
-                   : sscanf(v22, "src=%s dst=%s", v49, v50) == 2 )
+                   ? sscanf(v22, "src=%s dst=%s sport=%s dport=%s", v49, v50, v56, v57) == 4 // XXX
+                   : sscanf(v22, "src=%s dst=%s", v49, v50) == 2 ) // XXX
                 {
 LABEL_67:
                   v29 = v59;

@@ -85,7 +85,7 @@ int __fastcall sub_151BC(int a1, int a2, int a3, int *a4)
         *((unsigned __int8 *)v16 + 11),
         *((unsigned __int8 *)v16 + 12),
         *((unsigned __int8 *)v16 + 13));
-      strcpy(dest, s);
+      strcpy(dest, s); // XXX
       memset(&dest[18], 0, 0x21u);
       memcpy(&dest[18], (char *)v16 + 19, *((unsigned __int8 *)v16 + 18));
       v19 = *((_WORD *)v16 + 36);

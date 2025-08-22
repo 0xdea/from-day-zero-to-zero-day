@@ -44,8 +44,8 @@ void __fastcall sub_197B8(int a1)
       "openssl req -days 3650 -nodes -new -x509 -keyout /tmp/openssl/cakey.pem -out /tmp/openssl/cacert.pem -subj %s >>/t"
       "mp/openssl/openssl.log 2>&1",
       v5);
-    syslog(4, v6);
-    system(v6);
+    syslog(4, v6); // XXX fmt
+    system(v6); // XXX
   }
   else
   {

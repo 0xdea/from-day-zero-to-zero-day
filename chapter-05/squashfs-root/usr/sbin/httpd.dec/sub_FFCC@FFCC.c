@@ -11,7 +11,7 @@ int __fastcall sub_FFCC(int a1, const char **a2)
     v2 = "wan";
   else
     v2 = *a2;
-  strcpy(dest, v2);
+  strcpy(dest, v2); // XXX
   memset(v6, 0, sizeof(v6));
   snprintf(v6, 0x40u, "/var/lib/misc/%s_dhcpc.renewing", dest);
   memset(v5, 0, sizeof(v5));

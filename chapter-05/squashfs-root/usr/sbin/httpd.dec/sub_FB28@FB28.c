@@ -52,14 +52,14 @@ int sub_FB28()
           v4 = inet_ntoa(v36);
         else
           v4 = "default";
-        strcpy(v30, v4);
+        strcpy(v30, v4); // XXX
         if ( v35.s_addr )
           v5 = inet_ntoa(v35);
         else
           v5 = (char *)"*";
-        strcpy(v29, v5);
+        strcpy(v29, v5); // XXX
         v6 = inet_ntoa(in);
-        strcpy(v28, v6);
+        strcpy(v28, v6); // XXX
         v7 = v3++ == 0;
         v8 = (char *)&::s;
         if ( !v7 )
@@ -81,7 +81,7 @@ int sub_FB28()
     {
       while ( fgets(s, 512, v9) )
       {
-        if ( sscanf(s, "%32s%x%*s%*s%32s%x%*s%*s%lx%s\n", v19, &v31, &v20[7], &v32, &v34, v27) == 6 && (v34 & 1) != 0 )
+        if ( sscanf(s, "%32s%x%*s%*s%32s%x%*s%*s%lx%s\n", v19, &v31, &v20[7], &v32, &v34, v27) == 6 && (v34 & 1) != 0 ) // XXX
         {
           v10 = v19;
           v11 = 0;

@@ -14,8 +14,8 @@ int __fastcall sub_D240(int a1, const char **a2)
   if ( result )
   {
     if ( !strncmp(v2, "traceroute", 0xAu) )
-      strcat(v4, v2);
-    return system(v4);
+      strcat(v4, v2); // XXX
+    return system(v4); // XXX
   }
   return result;
 }

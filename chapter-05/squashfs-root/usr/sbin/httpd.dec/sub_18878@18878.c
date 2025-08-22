@@ -34,7 +34,7 @@ int sub_18878()
     if ( v0 )
       LOBYTE(v20[0]) += v0;
     else
-      strcpy((char *)v20, &::s);
+      strcpy((char *)v20, &::s); // XXX
     snprintf(dest, 0x1Bu, "/proc/net/ipt_account/lan%s", (const char *)v20);
     v2 = fopen(dest, "r");
     if ( v2 )
@@ -54,7 +54,7 @@ int sub_18878()
                &v18,
                &v16,
                &v14,
-               &v12) == 9
+               &v12) == 9 // XXX
           && !find_word(v7, v11)
           && (v19 || v18) )
         {

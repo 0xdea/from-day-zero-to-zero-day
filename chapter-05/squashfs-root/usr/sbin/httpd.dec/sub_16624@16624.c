@@ -24,7 +24,7 @@ size_t sub_16624()
         && v10 )
       {
         if ( sub_10644(v9, v5) || !strcmp(v9, v5) )
-          strcpy(v5, &s);
+          strcpy(v5, &s); // XXX
         v2 = strchr(v5, 46);
         if ( v2 )
           *v2 = 0;

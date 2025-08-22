@@ -70,7 +70,7 @@ int __fastcall sub_1416C(int a1, int a2, int a3)
   {
     v15 = wl_nvname("ifname");
     v16 = sub_13E24(v15);
-    strcpy(v33, v16);
+    strcpy(v33, v16); // XXX
     if ( ioctl(v13, 0x8913u, v33) )
       v14 = 0;
     else

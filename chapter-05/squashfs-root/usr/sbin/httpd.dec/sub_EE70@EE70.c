@@ -16,7 +16,7 @@ int sub_EE70()
       v1 = 0;
       while ( fgets(s, 32, v0) )
       {
-        if ( sscanf(s, "have_update=%s", &v7) == 1 )
+        if ( sscanf(s, "have_update=%s", &v7) == 1 ) // XXX
         {
           if ( v1++ == 0 )
             v3 = (char *)&::s;

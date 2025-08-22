@@ -134,7 +134,7 @@ FILE *__fastcall sub_1226C(int a1, const char **a2)
         s1 = v22;
         if ( v22 )
         {
-          if ( sscanf(v22, "src=%s dst=%s sport=%s dport=%s%n %*s bytes=%u %n", v57, v56, v63, v62, &v70, &v73, &v71) == 5 )
+          if ( sscanf(v22, "src=%s dst=%s sport=%s dport=%s%n %*s bytes=%u %n", v57, v56, v63, v62, &v70, &v73, &v71) == 5 ) // XXX
           {
             v23 = strstr(&s1[v71], "bytes=");
             if ( v23 )
@@ -219,7 +219,7 @@ LABEL_45:
                       }
                       if ( af != 2
                         || (v38 = strstr(&s1[v71], "src=")) != 0
-                        && sscanf(v38, "src=%s dst=%s sport=%s dport=%s", v56, v57, v62, v63) == 4 )
+                        && sscanf(v38, "src=%s dst=%s sport=%s dport=%s", v56, v57, v62, v63) == 4 ) // XXX
                       {
                         v44 = v36;
                         v45 = v35;

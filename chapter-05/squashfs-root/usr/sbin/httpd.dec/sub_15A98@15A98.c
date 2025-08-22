@@ -105,7 +105,7 @@ LABEL_24:
     if ( v17 )
     {
       *(_DWORD *)v17 = 0x2000;
-      strcpy((char *)v17 + 8, src);
+      strcpy((char *)v17 + 8, src); // XXX
       v18[1] = v16;
       if ( !wl_ioctl(v8, 260, v18, *v18) )
       {

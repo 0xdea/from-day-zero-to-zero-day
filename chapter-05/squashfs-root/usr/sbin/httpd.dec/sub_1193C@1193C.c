@@ -163,7 +163,7 @@ LABEL_35:
         {
           if ( !v8
             || (v18 = strstr(v42, "src=")) != 0
-            && sscanf(v18, "src=%s dst=%s", v46, &v45) == 2
+            && sscanf(v18, "src=%s dst=%s", v46, &v45) == 2 // XXX
             && inet_pton(10, v46, v47) > 0
             && ((inet_ntop(10, v47, v46, 0x2Eu), memcmp(buf, v47, n))
              || v37 && ((unsigned __int8)v47[n] ^ (unsigned __int8)buf[n]) >> v36) )

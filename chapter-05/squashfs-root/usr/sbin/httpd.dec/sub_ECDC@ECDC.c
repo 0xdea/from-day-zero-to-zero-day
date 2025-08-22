@@ -21,22 +21,22 @@ int sub_ECDC()
   v2 = 0;
   while ( fgets(s, 32, v1) )
   {
-    if ( sscanf(s, "Port 0: %s", &v8) == 1 )
+    if ( sscanf(s, "Port 0: %s", &v8) == 1 ) // XXX
     {
       v3 = "port0";
       goto LABEL_16;
     }
-    if ( sscanf(s, "Port 1: %s", &v8) == 1 )
+    if ( sscanf(s, "Port 1: %s", &v8) == 1 ) // XXX
     {
       v3 = "port1";
       goto LABEL_16;
     }
-    if ( sscanf(s, "Port 2: %s", &v8) == 1 )
+    if ( sscanf(s, "Port 2: %s", &v8) == 1 ) // XXX
     {
       v3 = "port2";
       goto LABEL_16;
     }
-    if ( sscanf(s, "Port 3: %s", &v8) == 1 )
+    if ( sscanf(s, "Port 3: %s", &v8) == 1 ) // XXX
     {
       v3 = "port3";
 LABEL_16:
@@ -46,7 +46,7 @@ LABEL_16:
         v5 = ",\n";
       sub_13970(0, "%s\t%s: '%s'", v5, v3, &v8);
     }
-    else if ( sscanf(s, "Port 4: %s", &v8) == 1 )
+    else if ( sscanf(s, "Port 4: %s", &v8) == 1 ) // XXX
     {
       v3 = "port4";
       goto LABEL_16;

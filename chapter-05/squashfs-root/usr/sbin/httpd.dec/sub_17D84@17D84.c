@@ -16,25 +16,25 @@ bool __fastcall sub_17D84(char *a1, char *a2, char *a3, char *a4, char *a5)
   {
     src[0] = v15;
     v9 = strsep(src, ":");
-    strcpy(v17, v9);
+    strcpy(v17, v9); // XXX
     if ( src[0] )
     {
-      strcpy(v16, src[0]);
+      strcpy(v16, src[0]); // XXX
       sub_17D14((unsigned __int8 *)v16);
       if ( !sub_17D5C(v17, "Processor") )
       {
         ++v7;
-        strcpy(a1, v16);
+        strcpy(a1, v16); // XXX
       }
       if ( !sub_17D5C(v17, "cpu model") )
       {
         ++v7;
-        strcpy(a2, v16);
+        strcpy(a2, v16); // XXX
       }
       if ( !sub_17D5C(v17, "BogoMIPS") )
       {
         ++v7;
-        strcpy(a3, v16);
+        strcpy(a3, v16); // XXX
       }
     }
   }
@@ -44,20 +44,20 @@ bool __fastcall sub_17D84(char *a1, char *a2, char *a3, char *a4, char *a5)
   {
     src[0] = v15;
     v11 = strsep(src, ":");
-    strcpy(v17, v11);
+    strcpy(v17, v11); // XXX
     if ( src[0] )
     {
-      strcpy(v16, src[0]);
+      strcpy(v16, src[0]); // XXX
       sub_17D14((unsigned __int8 *)v16);
       if ( !sub_17D5C(v17, "cpu MHz") )
       {
         ++v7;
-        strcpy(a4, v16);
+        strcpy(a4, v16); // XXX
       }
       if ( !sub_17D5C(v17, "cpu Temp") )
       {
         ++v7;
-        strcpy(a5, v16);
+        strcpy(a5, v16); // XXX
       }
     }
   }

@@ -10,7 +10,7 @@ int __fastcall sub_100DC(int a1, const char **a2)
     v2 = "wan";
   else
     v2 = *a2;
-  strcpy(dest, v2);
+  strcpy(dest, v2); // XXX
   strcpy(v5, "-");
   if ( check_wanup(dest) )
   {

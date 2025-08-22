@@ -43,7 +43,7 @@ FILE *sub_18494()
     if ( i )
       v25[0] += i;
     else
-      strcpy(v25, &::s);
+      strcpy(v25, &::s); // XXX
     memset(s, 0, sizeof(s));
     snprintf(s, 0x100u, "lan%s_ifname", v25);
     v2 = sub_180E0((int)s);
@@ -87,12 +87,12 @@ FILE *sub_18494()
           v11 = v10;
           if ( v10 )
           {
-            if ( sscanf(v10, "src=%s dst=%s %n", v31, v30, &v32) == 2 )
+            if ( sscanf(v10, "src=%s dst=%s %n", v31, v30, &v32) == 2 ) // XXX
             {
               v12 = strstr(&v11[v32], "src=");
               if ( v12 )
               {
-                if ( sscanf(v12, "src=%s dst=%s", v29, v28) == 2 )
+                if ( sscanf(v12, "src=%s dst=%s", v29, v28) == 2 ) // XXX
                 {
                   snprintf(v21, 0x100u, "%s %s %s %s", v31, v30, v29, v28);
                   remove_dups(v21, 256);
