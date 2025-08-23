@@ -72,7 +72,7 @@ const char *sub_1ABC0()
           v10);
       }
     }
-    v13 = popen(command, "r"); // VULN? cmd inj via _host
+    v13 = popen(command, "r"); // VULN cmd inj via _host
     return (const char *)pclose(v13);
   }
   return result;
