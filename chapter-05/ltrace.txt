@@ -1,3 +1,4 @@
+# ltrace -x '*' -o ltrace.txt -f -S -s 1024 ./squashfs-root/usr/bin/magick identify -define video:pixel-format='canary123' example.mov
 4064738 SYS_brk(0)                                                                                                    = 0x6526bc97d000
 4064738 SYS_mmap(0, 8192, 3, 34)                                                                                      = 0x78e67ef8a000
 4064738 SYS_readlinkat(0xffffff9c, 0x78e67efba1c3, 0x7ffda43b27a0, 4096)                                              = 41
