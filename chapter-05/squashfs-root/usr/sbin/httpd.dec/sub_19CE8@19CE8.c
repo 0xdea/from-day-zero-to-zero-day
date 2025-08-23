@@ -40,7 +40,7 @@ void sub_19CE8()
   {
     v7 = "openvpn --genkey secret /tmp/genvpnkey >/dev/null 2>&1 && cat /tmp/genvpnkey | tail -n +4 && rm /tmp/genvpnkey";
 LABEL_19:
-    sub_13D58(v7, 0);
+    sub_13D58(v7, 0); // KKK
     return;
   }
   if ( !strcmp(v2, "static2") )

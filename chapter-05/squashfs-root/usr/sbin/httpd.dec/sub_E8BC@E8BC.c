@@ -18,7 +18,7 @@ int __fastcall sub_E8BC(int a1, int a2)
     else
       snprintf(v6, 0x100u, "ip neigh show %s", &v8);
   }
-  v4 = popen(v6, "r"); // XXX
+  v4 = popen(v6, "r"); // VULN? cmd inj
   if ( !v4 )
     return 0;
   while ( fgets(v6, 256, v4) )

@@ -24,7 +24,7 @@ const char *sub_193DC()
     snprintf(v4, 0x40u, "gcom -d %s -s /etc/gcom/getsmses.gcom | pdureader", result);
     sub_13954("\n");
     sub_13954("\nwwansms = '");
-    sub_13D58(v4, 1);
+    sub_13D58(v4, 1); // KKK?
     return (const char *)sub_13954("';");
   }
   return result;

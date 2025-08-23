@@ -3,9 +3,75 @@
     "0|442": {
       "status": 1,
       "comment": ""
+    },
+    "0|93": {
+      "status": 1,
+      "comment": ""
+    },
+    "0|277": {
+      "status": 2,
+      "comment": ""
+    },
+    "0|765": {
+      "status": 1,
+      "comment": ""
+    },
+    "0|784": {
+      "status": 1,
+      "comment": ""
+    },
+    "0|791": {
+      "status": 1,
+      "comment": ""
+    },
+    "0|798": {
+      "status": 1,
+      "comment": ""
+    },
+    "0|902": {
+      "status": 2,
+      "comment": ""
+    },
+    "0|1042": {
+      "status": 1,
+      "comment": ""
+    },
+    "0|1150": {
+      "status": 2,
+      "comment": ""
+    },
+    "0|262": {
+      "status": 1,
+      "comment": ""
+    },
+    "0|187": {
+      "status": 1,
+      "comment": ""
+    },
+    "0|764": {
+      "status": 1,
+      "comment": ""
+    },
+    "0|783": {
+      "status": 1,
+      "comment": ""
+    },
+    "0|790": {
+      "status": 1,
+      "comment": ""
+    },
+    "0|797": {
+      "status": 1,
+      "comment": ""
+    },
+    "0|1139": {
+      "status": 1,
+      "comment": ""
     }
   },
   "hiddenRules": [
-    "Users.raptor.Downloads.github.semgrep-rules.c.raptor-incorrect-use-of-strncpy-stpncpy-strlcpy"
+    "Users.raptor.Downloads.github.semgrep-rules.c.raptor-incorrect-use-of-strncpy-stpncpy-strlcpy",
+    "Users.raptor.Downloads.github.semgrep-rules.c.raptor-format-string-bugs",
+    "Users.raptor.Downloads.github.semgrep-rules.c.raptor-insecure-api-sprintf-vsprintf"
   ]
 }

@@ -11,7 +11,7 @@ int __fastcall sub_E60C(int a1, const char **a2)
   }
   v2 = atoi(*a2);
   if ( v2 == 2 )
-    return sub_13D58("uname -r");
+    return sub_13D58("uname -r"); // KKK
   if ( v2 != 3 )
   {
     v3 = &tomato_version;

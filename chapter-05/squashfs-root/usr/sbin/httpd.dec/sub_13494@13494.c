@@ -34,7 +34,7 @@ const char *sub_13494()
           {
             *v3 = 0;
             snprintf(s, 0x80u, "grep -ih \"%s\" $(ls -1rv %s %s.*)", v10, v9, v9);
-            return (const char *)sub_13D58(s);
+            return (const char *)sub_13D58(s); // VULN? cmd inj
           }
           if ( v5 == 62 )
             goto LABEL_14;
@@ -83,7 +83,7 @@ LABEL_14:
       }
       sub_B928(200, 0, "text/plain", 0);
       snprintf(s, 0x80u, "cat $(ls -1rv %s %s.*) | tail -n %d", v9, v9, v8);
-      return (const char *)sub_13D58(s);
+      return (const char *)sub_13D58(s); // VULN? cmd inj
     }
   }
   return result;

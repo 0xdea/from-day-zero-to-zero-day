@@ -44,7 +44,7 @@ const char *sub_1948C()
     snprintf(v8, 0x96u, "MODE=\"AT+CMGD=%d\" gcom -d %s -s /etc/gcom/setverbose.gcom", v6, result);
     sub_13954("\n");
     sub_13954("\nwwansms_delete = '");
-    sub_13D58(v8, 1);
+    sub_13D58(v8, 1); // KKK?
     v3 = "';";
     return (const char *)sub_13954(v3);
   }

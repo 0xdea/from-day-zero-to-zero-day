@@ -16,7 +16,7 @@ int sub_13970(int a1, const char *a2, ...)
     v6 = v5;
     if ( !v5 )
       return 0;
-    v7 = vsnprintf(v5, v3, a2, varg_r2); // XXX
+    v7 = vsnprintf(v5, v3, a2, varg_r2); // KKK? fmt str, see callers but ugly
     if ( v7 < 0 )
     {
       v3 *= 2;

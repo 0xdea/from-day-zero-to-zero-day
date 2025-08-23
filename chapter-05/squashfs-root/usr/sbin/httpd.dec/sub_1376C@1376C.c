@@ -36,7 +36,7 @@ LABEL_6:
     {
       sub_B928(200, 0, "application/tomato-binary-file", 0);
       snprintf(v6, 0x80u, "cat $(ls -1rv %s %s.*)", v5, v5);
-      return (FILE *)sub_13D58(v6);
+      return (FILE *)sub_13D58(v6); // KKK?
     }
   }
   return result;

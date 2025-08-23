@@ -80,7 +80,7 @@ LABEL_6:
     v15,
     a2,
     v16,
-    v13);
+    v13); // VULN? cmd inj
   fclose(v11);
   chmod(name, 0x1C0u);
   if ( a3 )
@@ -101,7 +101,7 @@ LABEL_27:
   }
 LABEL_28:
   snprintf(s, 0x19u, "%s 2>&1", name);
-  sub_13D58(s);
+  sub_13D58(s); // KKK
   unlink(v21);
   return unlink(name);
 }

@@ -23,7 +23,7 @@ int sub_11074()
       v4 = "0";
     v5 = atoi(v4);
     snprintf(v6, 0x100u, "traceroute -I -m %u -w %u %s", v3, v5, (const char *)Var);
-    sub_13D58(v6);
+    sub_13D58(v6); // VULN? cmd inj in addr via popen()
     return sub_13954("';");
   }
   return result;
