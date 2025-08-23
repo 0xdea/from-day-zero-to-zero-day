@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuremap [
+  <!ELEMENT configuremap (configure)+>
+  <!ATTLIST configuremap xmlns CDATA #FIXED ''>
+  <!ELEMENT configure EMPTY>
+  <!ATTLIST configure xmlns CDATA #FIXED '' name NMTOKEN #REQUIRED
+    value CDATA #REQUIRED>
+]>
+<!--
+  ImageMagick build configuration.
+-->
+<configuremap>
+  <configure name="CC" value="gcc"/>
+  <configure name="CFLAGS" value="-I/usr/include/libxml2   -I/usr/include/x86_64-linux-gnu -I/usr/include/libpng16 -I/usr/include/OpenEXR  -I/usr/include/lqr-1 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -I/usr/include/harfbuzz -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/fribidi -I/usr/include/freetype2 -I/usr/include/libpng16 -I/usr/include/freetype2 -I/usr/include/libpng16 -I/usr/include/freetype2 -I/usr/include/libpng16 -I/usr/include/freetype2 -I/usr/include/libpng16 -pthread  -fopenmp -Wall -Wno-deprecated-declarations -Wdeclaration-after-statement -Wno-error=unused-variable -mtune=broadwell -fexceptions -pthread -DMAGICKCORE_HDRI_ENABLE=1 -DMAGICKCORE_QUANTUM_DEPTH=16"/>
+  <configure name="CODER_PATH" value="/usr/lib/ImageMagick-7.1.1/modules-Q16HDRI/coders"/>
+  <configure name="CONFIGURE_PATH" value="/usr/etc/ImageMagick-7/"/>
+  <configure name="CONFIGURE" value="./configure  '--with-quantum-depth=16' '--without-magick-plus-plus' '--without-perl' '--prefix=/usr' 'CC=gcc' 'CFLAGS=-Wno-deprecated-declarations -Wdeclaration-after-statement -Wno-error=unused-variable' 'CXX=g++'"/>
+  <configure name="COPYRIGHT" value="Copyright (C) 1999 ImageMagick Studio LLC"/>
+  <configure name="CPPFLAGS" value="-I/usr/include/ImageMagick-7"/>
+  <configure name="CXXFLAGS" value="-g -O2 -pthread"/>
+  <configure name="CXX" value="g++"/>
+  <configure name="DEFS" value="-DHAVE_CONFIG_H"/>
+  <configure name="DELEGATES" value="bzlib djvu fontconfig freetype heic jbig jng jpeg lcms lqr lzma openexr png raqm tiff webp x xml zlib"/>
+  <configure name="DISTCHECK_CONFIG_FLAGS" value="'CC=gcc' 'CFLAGS=-Wno-deprecated-declarations -Wdeclaration-after-statement -Wno-error=unused-variable' 'CXX=g++'  --disable-deprecated  --with-quantum-depth=16  --with-jemalloc=no  --with-umem=no  --with-autotrace=no  --with-dps=no  --with-fftw=no  --with-flif=no  --with-fpx=no  --with-gslib=no  --with-fontpath=  --with-rsvg=no  --with-wmf=no  --with-perl=no "/>
+  <configure name="DOCUMENTATION_PATH" value="/usr/share/doc/ImageMagick-7"/>
+  <configure name="EXEC-PREFIX" value="/usr"/>
+  <configure name="EXECUTABLE_PATH" value="/usr/bin"/>
+  <configure name="FEATURES" value="DPC HDRI Cipher OpenMP"/>
+  <configure name="FILTER_PATH" value="/usr/lib/ImageMagick-7.1.1/modules-Q16HDRI/filters"/>
+  <configure name="GIT_REVISION" value="ac5f29e7e:20230514" />
+  <configure name="HOST" value="x86_64-pc-linux-gnu"/>
+  <configure name="INCLUDE_PATH" value="/usr/include/ImageMagick-7"/>
+  <configure name="LDFLAGS" value="-L/usr/lib  "/>
+  <configure name="LIBRARY_PATH" value="/usr/lib/ImageMagick-7.1.1"/>
+  <configure name="LIBS" value=" -ljbig -llcms2  -ltiff -lfreetype -lraqm -lfreetype -ljpeg   -llqr-1 -lglib-2.0 -lpng16 -lz  -ldjvulibre    -lfontconfig -lfreetype -lheif -lwebpmux -lwebpdemux -lwebp -lwebp       -lX11  -llzma -lbz2 -lIlmImf -lImath -lHalf -lIex -lIexMath -lIlmThread -lpthread     -lxml2  -lz     -lm    -lpthread  -lgomp"/>
+  <configure name="LIB_VERSION_NUMBER" value="7,1,1,9"/>
+  <configure name="LIB_VERSION" value="0x711"/>
+  <configure name="NAME" value="ImageMagick"/>
+  <configure name="PCFLAGS" value="-fopenmp -DMAGICKCORE_HDRI_ENABLE=1 -DMAGICKCORE_QUANTUM_DEPTH=16"/>
+  <configure name="PREFIX" value="/usr"/>
+  <configure name="QuantumDepth" value="16"/>
+  <configure name="RELEASE_DATE" value="2023-05-14"/>
+  <configure name="SHAREARCH_PATH" value="/usr/lib/ImageMagick-7.1.1/config-Q16HDRI"/>
+  <configure name="SHARE_PATH" value="/usr/share/ImageMagick-7"/>
+  <configure name="TARGET_CPU" value="x86_64"/>
+  <configure name="TARGET_OS" value="linux-gnu"/>
+  <configure name="TARGET_VENDOR" value="pc"/>
+  <configure name="VERSION" value="7.1.1"/>
+  <configure name="WEBSITE" value="https://imagemagick.org"/>
+</configuremap>
