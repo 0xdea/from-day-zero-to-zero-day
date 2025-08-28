@@ -1,3 +1,9 @@
+#
+# For another take on this challenge, see:
+# https://github.com/0xdea/frida-scripts/blob/master/raptor_frida_linux_enum.js
+# https://github.com/0xdea/frida-scripts/blob/master/raptor_frida_linux_trace.js
+#
+
 import threading
 
 from frida_tools.application import Reactor
