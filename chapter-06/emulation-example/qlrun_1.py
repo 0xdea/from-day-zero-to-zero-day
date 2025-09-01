@@ -1,8 +1,16 @@
 #
+# qlrun.py
+#
+# Use Qiling to emulate a MIPS binary with Unicorn engine and collect code coverage data.
+#
 # Usage:
-# $ pipx install qiling===1.4.6
-# $ sudo apt install python3-unicorn # Version: 6.1.0-2build2
-# $ pipx run --spec qiling python qlrun_1.py
+# $ grep PRETTY /etc/os-release
+# PRETTY_NAME="Ubuntu 24.04.2 LTS"
+# $ python3 -m venv venv-unicorn
+# $ source venv-unicorn/bin/activate
+# (venv-unicorn) $ pip install qiling===1.4.6
+# (venv-unicorn) $ pip install unicorn==2.0.1
+# (venv-unicorn) $ python qlrun.py
 # 
 
 from qiling import Qiling
@@ -10,7 +18,7 @@ from qiling.extensions.coverage import utils as cov_utils
 from qiling.const import QL_VERBOSE
 
 
-PROJECT_ROOT = "/home/kali/Desktop/freshtomato/squashfs-root/"
+PROJECT_ROOT = "/home/raptor/freshtomato-mips/squashfs-root/"
 BINARY_PATH = "usr/sbin/httpd"
 ql = Qiling(
     [PROJECT_ROOT + BINARY_PATH],
