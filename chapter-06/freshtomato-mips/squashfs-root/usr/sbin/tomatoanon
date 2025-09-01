@@ -1,0 +1,83 @@
+#!/bin/sh
+ANON_ENABLED=$(nvram get tomatoanon_enable)
+ANON_ANSWER=$(nvram get tomatoanon_answer)
+ANON_NOTIFY=$(nvram get tomatoanon_notify)
+WGET="/usr/bin/wget"
+[ "$ANON_ANSWER" -eq 1 ] && {
+[ "$ANON_ENABLED" -eq 1 ] && {
+MOD=FreshTomato
+IS_USB=$(nvram get os_version | grep USB | wc -l)
+[ "$IS_USB" -eq 0 ] && { # if K26
+VER=$(nvram get os_version | awk '{ print $1" "$(NF-1) }')
+} || { # if K26USB
+VER=$(nvram get os_version | awk '{ print $1" "$(NF-2)" "$(NF-1) }')
+}
+BUILDTYPE=$(nvram get os_version | awk '{ print $NF }')
+[ "$1" == "checkver" -a "$ANON_NOTIFY" -eq 1 ] && {
+VER_MAJ=$(echo $VER | awk '{print $1}' | cut -d "." -f1 | sed 's/[^0-9]*//g')
+VER_MNR=$(echo $VER | awk '{print $1}' | cut -d "." -f2 | sed 's/[^0-9]*//g')
+RESCHK=$($WGET -O- "http://freshtomato.org/version.txt")
+CHKVER_MAJ=$(echo $RESCHK | awk '{print $1}' | cut -d "." -f1 | sed 's/[^0-9]*//g')
+ISMNR=$(echo $RESCHK | grep "\." | wc -l)
+[ "$ISMNR" -eq 0 ] && {
+CHKVER_MNR=""
+} || {
+CHKVER_MNR=$(echo $RESCHK | awk '{print $1}' | cut -d "." -f2 | sed 's/[^0-9]*//g')
+}
+RESULT="/tmp/anon.version"
+if [ "$CHKVER_MAJ" -eq "$VER_MAJ" ]; then
+[ ! -z "$CHKVER_MNR" -a "$CHKVER_MNR" -gt "$VER_MNR" ] && {
+echo "have_update=$CHKVER_MAJ.$CHKVER_MNR" > $RESULT
+} || {
+echo "have_update=no" > $RESULT
+}
+elif [ "$CHKVER_MAJ" -gt "$VER_MAJ" ]; then
+[ ! -z "$CHKVER_MNR" ] && {
+echo "have_update=$CHKVER_MAJ.$CHKVER_MNR" > $RESULT
+} || {
+echo "have_update=$CHKVER_MAJ" > $RESULT
+}
+else
+echo "have_update=no" > $RESULT
+fi
+ISCRU=$(cru l | grep checkver | wc -l)
+[ "$ISCRU" -eq 0 ] && {
+MINUTES=$(awk 'BEGIN {srand(); printf "%d", 60*rand()}')
+HOUR=$(awk 'BEGIN {srand(); printf "%d", 23*rand()}')
+cru a checkver "$MINUTES $HOUR * * * /usr/sbin/tomatoanon checkver"
+}
+} || { # just update anon database
+UPTIME=$(uptime | cut -d "," -f1 | cut -d " " -f4,5)
+WANMAC=$(nvram get wan_hwaddr)
+LANMAC=$(nvram get lan_hwaddr)
+MODEL=$(nvram get t_model_name)
+DRIVER=$(wl ver | grep version | awk '{ print $7 }')
+WANMAC_MD5=$(echo "$WANMAC+$LANMAC" | md5sum | awk '{ print $1 }')
+ROUTERID=$(nvram get tomatoanon_id)
+[ ! "$ROUTERID" == "$WANMAC_MD5" ] && {
+nvram set tomatoanon_id="$WANMAC_MD5"
+nvram commit
+}
+ANONSEND=$(echo "http://anon.groov.pl/index.php?wanmac_md5=$WANMAC_MD5&model=$MODEL&version=$VER&buildtype=$BUILDTYPE&driver=$DRIVER&uptime=$UPTIME&mod=$MOD&anon=1" | sed "s/ /%20/g")
+RESULT="/tmp/anon.result"
+$WGET -O $RESULT $ANONSEND
+ISCRU=$(cru l | grep anonupdate | wc -l)
+[ "$ISCRU" -eq 0 ] && {
+MINUTES=$(awk 'BEGIN {srand(); printf "%d", 60*rand()}')
+HOUR=$(awk 'BEGIN {srand(); printf "%d", 23*rand()}')
+DAY=$(awk 'BEGIN {srand(); printf "%d", 6*rand()}')
+cru a anonupdate "$MINUTES $HOUR * * $DAY /usr/sbin/tomatoanon"
+}
+}
+} || { # if anon is not enabled or was disabled right now
+ISCRU=$(cru l | grep anonupdate | wc -l)
+[ "$ISCRU" -eq 0 ] && cru d anonupdate
+ISCRU=$(cru l | grep checkver | wc -l)
+[ "$ISCRU" -eq 0 ] && cru d checkver
+} # end ANON_ENABLE
+} || { # if answer is not enabled or was disabled right now
+ISCRU=$(cru l | grep anonupdate | wc -l)
+[ "$ISCRU" -eq 0 ] && cru d anonupdate
+ISCRU=$(cru l | grep checkver | wc -l)
+[ "$ISCRU" -eq 0 ] && cru d checkver
+} # end ANON_ANSWER

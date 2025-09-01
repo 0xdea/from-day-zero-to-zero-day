@@ -1,0 +1,87 @@
+HOME = .
+RANDFILE = $ENV::HOME/tmp/.rnd
+oid_section = new_oids
+[ new_oids ]
+[ ca ]
+default_ca = CA_default
+[ CA_default ]
+dir = /tmp/openssl
+certs = $dir
+crl_dir = $dir/crl
+database = $dir/index.txt
+new_certs_dir = $dir
+certificate = $dir/cacert.pem
+serial = $dir/serial
+crl = $dir/crl.pem
+private_key = $dir/cakey.pem
+RANDFILE = $dir/rand
+x509_extensions = usr_cert
+default_days = 7305
+default_crl_days = 30
+default_md = sha256
+preserve = no
+policy = policy_match
+[ policy_match ]
+countryName = match
+stateOrProvinceName = match
+organizationName = match
+organizationalUnitName = optional
+commonName = supplied
+emailAddress = optional
+[ policy_anything ]
+countryName = optional
+stateOrProvinceName = optional
+localityName = optional
+organizationName = optional
+organizationalUnitName = optional
+commonName = supplied
+emailAddress = optional
+[ usr_cert ]
+basicConstraints=CA:FALSE
+nsCertType = client
+keyUsage = digitalSignature, keyEncipherment
+extendedKeyUsage = clientAuth
+nsComment = "FreshTomato Generated Client Certificate"
+subjectKeyIdentifier = hash
+authorityKeyIdentifier = keyid,issuer:always
+[ v3_req ]
+basicConstraints = CA:FALSE
+keyUsage = nonRepudiation, digitalSignature, keyEncipherment
+[ v3_ca ]
+subjectKeyIdentifier = hash
+authorityKeyIdentifier = keyid:always,issuer:always
+basicConstraints = CA:true
+[ server_cert ]
+basicConstraints=CA:FALSE
+nsCertType = server
+nsComment = "FreshTomato Generated Server Certificate"
+subjectKeyIdentifier = hash
+authorityKeyIdentifier = keyid,issuer:always
+extendedKeyUsage = serverAuth
+keyUsage = digitalSignature, keyEncipherment
+[ crl_ext ]
+authorityKeyIdentifier = keyid:always,issuer:always
+[ engine ]
+default = openssl
+[ req ]
+default_bits = 2048
+default_keyfile = privkey.pem
+distinguished_name = req_distinguished_name
+attributes = req_attributes
+x509_extensions = v3_ca
+string_mask = nombstr
+req_extensions = v3_req
+[ req_attributes ]
+challengePassword = .
+challengePassword_value =
+unstructuredName = .
+unstructuredName_value =
+[ req_distinguished_name ]
+emailAddress = "Administrative Email Address"
+emailAddress_value = root@localhost
+countryName = "Country Name (2 letter code)"
+countryName_value = US
+stateOrProvinceName = "State Name (full name)"
+stateOrProvinceName_value = Ohio
+localityName = "Locality Name (e.g., city)"
+localityName_value = Columbus

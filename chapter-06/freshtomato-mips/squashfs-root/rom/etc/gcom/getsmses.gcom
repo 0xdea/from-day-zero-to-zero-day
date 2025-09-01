@@ -1,0 +1,34 @@
+
+opengt
+ # set the terminal settings
+ set com 115200n81
+ # echo commands
+ set comecho on
+ # use a tiny delay between each keypress
+ set senddelay 0.02
+ # wait for things to be silent on the serial port
+ waitquiet 1 0.2
+ # reset things a bit
+ flash 0.1
+ # set it to textmode
+ send "AT+CMGF=0"
+ send "^m"
+ # wait for OK
+ waitfor 1 "OK"
+ # tell it to list all messages
+ send "AT+CMGL=4^m"
+ # loop over each line received
+ :getl
+  # store the line, up until ^m into $l
+  get 10 "^m" $l
+  # if we time out something went wrong
+  if % = -1 goto endl
+  # print it
+  print $l
+  # if we have \nOK in $l, exit loop
+  if len($l) < 2 goto getl
+  if $right($l,2) = "OK" goto endl
+  # loop
+  goto getl
+ :endl
+ exit 0

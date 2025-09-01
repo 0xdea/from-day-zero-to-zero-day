@@ -1,0 +1,192 @@
+kernel/net/netfilter/nf_conntrack_ftp.ko:
+kernel/drivers/usb/pl2303.ko: kernel/drivers/usb/usbserial.ko kernel/drivers/usb/usbcore.ko
+kernel/drivers/net/usbnet.ko: kernel/drivers/usb/usbcore.ko kernel/drivers/net/mii.ko
+kernel/net/ipv4/netfilter/nf_nat_pptp.ko: kernel/net/netfilter/nf_conntrack_pptp.ko kernel/net/netfilter/nf_conntrack_proto_gre.ko kernel/net/ipv4/netfilter/nf_nat_proto_gre.ko
+kernel/net/ipv4/netfilter/ip_set_iphash.ko: kernel/net/ipv4/netfilter/ip_set.ko
+kernel/drivers/scsi/scsi_mod.ko:
+kernel/crypto/md5.ko:
+kernel/net/netfilter/xt_statistic.ko:
+kernel/fs/ext2.ko: kernel/fs/mbcache.ko
+kernel/net/ipv4/netfilter/ipt_ipp2p.ko:
+kernel/net/ipv6/netfilter/ip6t_LOG.ko:
+kernel/net/netfilter/xt_NOTRACK.ko:
+kernel/drivers/leds/ledtrig-usbdev.ko: kernel/drivers/usb/usbcore.ko
+kernel/drivers/scsi/scsi_wait_scan.ko: kernel/drivers/scsi/scsi_mod.ko
+kernel/net/sunrpc.ko:
+kernel/net/netfilter/xt_recent.ko:
+kernel/net/ipv6/sit.ko: kernel/net/ipv4/tunnel4.ko
+kernel/drivers/input/input-core.ko:
+kernel/net/ipv4/netfilter/ipt_webmon.ko:
+kernel/drivers/leds/led-class.ko:
+kernel/net/bridge/netfilter/ebt_ip6.ko: kernel/net/bridge/netfilter/ebtables.ko
+kernel/net/ipv6/netfilter/nf_conntrack_ipv6.ko:
+kernel/net/bridge/netfilter/ebt_limit.ko: kernel/net/bridge/netfilter/ebtables.ko
+kernel/net/bridge/netfilter/ebt_redirect.ko: kernel/net/bridge/netfilter/ebtables.ko
+kernel/net/ipv4/netfilter/ip_set_macipmap.ko: kernel/net/ipv4/netfilter/ip_set.ko
+kernel/net/bridge/netfilter/ebtable_nat.ko: kernel/net/bridge/netfilter/ebtables.ko
+kernel/drivers/usb/ehci-hcd.ko: kernel/drivers/usb/usbcore.ko
+kernel/fs/vfat.ko: kernel/fs/fat.ko
+kernel/crypto/cast6.ko:
+kernel/net/ipv6/netfilter/ip6t_REJECT.ko:
+kernel/net/ipv4/netfilter/ipt_SET.ko: kernel/net/ipv4/netfilter/ip_set.ko
+kernel/lib/zlib_deflate.ko:
+kernel/drivers/net/imq.ko:
+kernel/net/xfrm/xfrm_user.ko:
+kernel/drivers/mmc/mmc_core.ko:
+kernel/net/netfilter/xt_DSCP.ko:
+kernel/net/ipv4/netfilter/nf_nat_rtsp.ko: kernel/net/netfilter/nf_conntrack_rtsp.ko
+kernel/crypto/sha256.ko:
+kernel/drivers/usb/usb-storage.ko: kernel/drivers/scsi/scsi_mod.ko kernel/drivers/usb/usbcore.ko
+kernel/crypto/deflate.ko: kernel/lib/zlib_deflate.ko kernel/lib/zlib_inflate.ko
+kernel/net/bridge/netfilter/ebtable_filter.ko: kernel/net/bridge/netfilter/ebtables.ko
+kernel/net/netfilter/nf_conntrack_pptp.ko: kernel/net/netfilter/nf_conntrack_proto_gre.ko
+kernel/drivers/usb/usblp.ko: kernel/drivers/usb/usbcore.ko
+kernel/crypto/crypto_null.ko:
+kernel/net/ipv6/netfilter/ip6table_filter.ko:
+kernel/net/ipv4/netfilter/ip_set_iptreemap.ko: kernel/net/ipv4/netfilter/ip_set.ko
+kernel/fs/lockd.ko: kernel/net/sunrpc.ko
+kernel/net/ipv6/netfilter/ip6t_ROUTE.ko:
+kernel/net/netfilter/xt_webmon.ko:
+kernel/net/netfilter/xt_layer7.ko:
+kernel/lib/ts_bm.ko:
+kernel/drivers/net/cdc_ether.ko: kernel/drivers/net/usbnet.ko kernel/drivers/net/mii.ko kernel/drivers/usb/usbcore.ko
+kernel/net/ipv4/ah4.ko:
+kernel/drivers/net/igs.ko: kernel/drivers/net/emf.ko
+kernel/net/netfilter/nf_conntrack_sip.ko:
+kernel/drivers/net/tun.ko:
+kernel/net/ipv6/ipcomp6.ko: kernel/net/ipv6/xfrm6_tunnel.ko kernel/net/ipv6/tunnel6.ko
+kernel/net/ipv4/esp4.ko:
+kernel/fs/fat.ko:
+kernel/drivers/usb/cdc-wdm.ko: kernel/drivers/usb/usbcore.ko
+kernel/fs/mbcache.ko:
+kernel/drivers/usb/cdc-acm.ko: kernel/drivers/usb/usbcore.ko
+kernel/drivers/net/wl.ko: kernel/net/ipv4/netfilter/dnsmq.ko kernel/drivers/net/igs.ko kernel/drivers/net/emf.ko
+kernel/net/ipv4/xfrm4_mode_beet.ko:
+kernel/net/netfilter/xt_NFQUEUE.ko:
+kernel/net/ipv4/netfilter/nf_nat_proto_gre.ko:
+kernel/drivers/net/qmi_wwan.ko: kernel/drivers/usb/cdc-wdm.ko kernel/drivers/net/usbnet.ko kernel/drivers/net/mii.ko kernel/drivers/usb/usbcore.ko
+kernel/drivers/leds/leds-usb.ko: kernel/drivers/leds/led-class.ko kernel/drivers/leds/ledtrig-usbdev.ko kernel/drivers/usb/usbcore.ko
+kernel/crypto/twofish_common.ko:
+kernel/net/bridge/netfilter/ebtable_broute.ko: kernel/net/bridge/netfilter/ebtables.ko
+kernel/lib/ts_kmp.ko:
+kernel/net/ipv4/netfilter/ip_set_ipmap.ko: kernel/net/ipv4/netfilter/ip_set.ko
+kernel/crypto/xcbc.ko:
+kernel/fs/nls_euc-jp.ko:
+kernel/drivers/net/rndis_host.ko: kernel/drivers/net/cdc_ether.ko kernel/drivers/net/usbnet.ko kernel/drivers/net/mii.ko kernel/drivers/usb/usbcore.ko
+kernel/drivers/block/loop.ko:
+kernel/net/bridge/netfilter/ebt_ip.ko: kernel/net/bridge/netfilter/ebtables.ko
+kernel/net/ipv4/xfrm4_mode_transport.ko:
+kernel/drivers/usb/option.ko: kernel/drivers/usb/usbserial.ko kernel/drivers/usb/usbcore.ko
+kernel/net/ipv6/xfrm6_mode_beet.ko:
+kernel/net/netfilter/xt_HL.ko:
+kernel/net/ipv4/netfilter/dnsmq.ko:
+kernel/net/ipv4/netfilter/ip_set_ipportnethash.ko: kernel/net/ipv4/netfilter/ip_set.ko
+kernel/lib/zlib_inflate.ko:
+kernel/fs/nls_cp932.ko:
+kernel/drivers/scsi/sd_mod.ko: kernel/drivers/scsi/scsi_mod.ko
+kernel/net/ipv4/netfilter/ipt_time.ko:
+kernel/net/ipv4/netfilter/ipt_tos.ko:
+kernel/net/ipv6/xfrm6_tunnel.ko: kernel/net/ipv6/tunnel6.ko
+kernel/net/bridge/netfilter/ebt_log.ko: kernel/net/bridge/netfilter/ebtables.ko
+kernel/net/ipv4/netfilter/ip_set_setlist.ko: kernel/net/ipv4/netfilter/ip_set.ko
+kernel/drivers/hid/hid.ko: kernel/drivers/input/input-core.ko
+kernel/fs/nls_cp949.ko:
+kernel/fs/nls_cp950.ko:
+kernel/net/bridge/netfilter/ebt_pkttype.ko: kernel/net/bridge/netfilter/ebtables.ko
+kernel/drivers/hid/usbhid.ko: kernel/drivers/usb/usbcore.ko kernel/drivers/hid/hid.ko kernel/drivers/input/input-core.ko
+kernel/net/netfilter/xt_quota.ko:
+kernel/fs/exportfs.ko:
+kernel/net/ipv6/xfrm6_mode_tunnel.ko:
+kernel/net/netfilter/xt_length.ko:
+kernel/net/ipv4/netfilter/iptable_raw.ko:
+kernel/crypto/md4.ko:
+kernel/net/ipv4/netfilter/ipt_TOS.ko:
+kernel/net/ipv6/esp6.ko:
+kernel/crypto/serpent.ko:
+kernel/net/netfilter/nf_conntrack_rtsp.ko:
+kernel/net/bridge/netfilter/ebt_stp.ko: kernel/net/bridge/netfilter/ebtables.ko
+kernel/fs/nfs.ko: kernel/fs/lockd.ko kernel/net/sunrpc.ko
+kernel/crypto/sha512.ko:
+kernel/net/bridge/netfilter/ebt_snat.ko: kernel/net/bridge/netfilter/ebtables.ko
+kernel/net/ipv4/tcp_vegas.ko:
+kernel/net/ipv4/netfilter/ip_set_iptree.ko: kernel/net/ipv4/netfilter/ip_set.ko
+kernel/net/key/af_key.ko:
+kernel/fs/hfsplus.ko:
+kernel/net/bridge/netfilter/ebt_vlan.ko: kernel/net/bridge/netfilter/ebtables.ko
+kernel/net/ipv4/netfilter/ip_set_ipportiphash.ko: kernel/net/ipv4/netfilter/ip_set.ko
+kernel/net/netfilter/xt_hl.ko:
+kernel/fs/nls_cp866.ko:
+kernel/net/ipv4/tunnel4.ko:
+kernel/fs/nls_cp850.ko:
+kernel/drivers/usb/sierra.ko: kernel/drivers/usb/usbserial.ko kernel/drivers/usb/usbcore.ko
+kernel/drivers/net/mii.ko:
+kernel/crypto/twofish.ko: kernel/crypto/twofish_common.ko
+kernel/fs/hfs.ko:
+kernel/fs/ufsd.ko:
+kernel/net/netfilter/xt_CLASSIFY.ko:
+kernel/net/netfilter/xt_policy.ko:
+kernel/net/netfilter/nf_conntrack_h323.ko:
+kernel/net/ipv4/xfrm4_mode_tunnel.ko:
+kernel/net/ipv4/netfilter/ipt_web.ko:
+kernel/drivers/connector/cn.ko:
+kernel/fs/fuse.ko:
+kernel/drivers/net/emf.ko:
+kernel/net/bridge/netfilter/ebtables.ko:
+kernel/drivers/usb/usbcore.ko:
+kernel/net/ipv4/netfilter/ip_set_ipporthash.ko: kernel/net/ipv4/netfilter/ip_set.ko
+kernel/net/sched/sch_esfq.ko:
+kernel/crypto/cast5.ko:
+kernel/net/ipv6/netfilter/ip6table_mangle.ko:
+kernel/drivers/usb/usbserial.ko: kernel/drivers/usb/usbcore.ko
+kernel/crypto/tea.ko:
+kernel/net/ipv4/xfrm4_tunnel.ko: kernel/net/ipv4/tunnel4.ko
+kernel/net/netfilter/nf_conntrack_proto_gre.ko:
+kernel/net/netfilter/xt_hashlimit.ko:
+kernel/net/ipv6/netfilter/ip6table_raw.ko:
+kernel/fs/jbd.ko:
+kernel/crypto/des.ko:
+kernel/net/netfilter/xt_string.ko:
+kernel/net/netfilter/xt_IMQ.ko:
+kernel/net/ipv4/netfilter/ip_set_portmap.ko: kernel/net/ipv4/netfilter/ip_set.ko
+kernel/fs/nfsd.ko: kernel/fs/lockd.ko kernel/net/sunrpc.ko kernel/fs/exportfs.ko
+kernel/lib/ts_fsm.ko:
+kernel/net/sched/sch_hfsc.ko:
+kernel/net/bridge/netfilter/ebt_mark.ko: kernel/net/bridge/netfilter/ebtables.ko
+kernel/drivers/net/et.ko:
+kernel/fs/ext3.ko: kernel/fs/mbcache.ko kernel/fs/jbd.ko
+kernel/net/netfilter/xt_dscp.ko:
+kernel/net/ipv6/tunnel6.ko:
+kernel/fs/cifs.ko:
+kernel/net/ipv4/netfilter/ip_set.ko:
+kernel/fs/jffs2.ko: kernel/lib/zlib_inflate.ko kernel/lib/zlib_deflate.ko
+kernel/drivers/usb/ohci-hcd.ko: kernel/drivers/usb/usbcore.ko
+kernel/drivers/net/cdc_ncm.ko: kernel/drivers/net/usbnet.ko kernel/drivers/net/mii.ko kernel/drivers/usb/usbcore.ko
+kernel/fs/nls_cp437.ko:
+kernel/net/ipv6/xfrm6_mode_transport.ko:
+kernel/net/ipv4/netfilter/ipt_REDIRECT.ko:
+kernel/fs/nls_cp852.ko:
+kernel/net/bridge/netfilter/ebt_dnat.ko: kernel/net/bridge/netfilter/ebtables.ko
+kernel/fs/nls_cp936.ko:
+kernel/net/ipv4/netfilter/nf_nat_h323.ko: kernel/net/netfilter/nf_conntrack_h323.ko
+kernel/net/ipv4/netfilter/ipt_NETMAP.ko:
+kernel/crypto/blowfish.ko:
+kernel/drivers/usb/uhci-hcd.ko: kernel/drivers/usb/usbcore.ko
+kernel/drivers/usb/ftdi_sio.ko: kernel/drivers/usb/usbserial.ko kernel/drivers/usb/usbcore.ko
+kernel/net/ipv4/netfilter/nf_nat_ftp.ko: kernel/net/netfilter/nf_conntrack_ftp.ko
+kernel/net/bridge/netfilter/ebt_arp.ko: kernel/net/bridge/netfilter/ebtables.ko
+kernel/net/ipv4/netfilter/ipt_ROUTE.ko:
+kernel/crypto/aes.ko:
+kernel/net/ipv4/netfilter/ip_set_nethash.ko: kernel/net/ipv4/netfilter/ip_set.ko
+kernel/net/ipv4/ipcomp.ko:
+kernel/net/ipv6/ah6.ko:
+kernel/net/ipv4/netfilter/nf_nat_sip.ko: kernel/net/netfilter/nf_conntrack_sip.ko
+kernel/net/bridge/netfilter/ebt_arpreply.ko: kernel/net/bridge/netfilter/ebtables.ko
+kernel/drivers/net/huawei_ether.ko: kernel/drivers/net/mii.ko kernel/drivers/usb/usbcore.ko
+kernel/drivers/mmc/mmc_block.ko: kernel/drivers/mmc/mmc_core.ko
+kernel/net/netfilter/xt_geoip.ko:
+kernel/drivers/net/hso_26-v1.14/hso.ko: kernel/drivers/usb/usbcore.ko
+kernel/net/ipv4/netfilter/ipt_set.ko: kernel/net/ipv4/netfilter/ip_set.ko
+kernel/net/sched/sch_tbf.ko:
+kernel/drivers/net/bonding/bonding.ko:
+kernel/drivers/mmc/sdhci.ko: kernel/drivers/mmc/mmc_core.ko
+kernel/net/netfilter/xt_condition.ko:
