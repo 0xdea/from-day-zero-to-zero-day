@@ -64,15 +64,16 @@ class GetOptHook(angr.SimProcedure):
         # return '?'
         return ord("?")
 
+TARGET = "freshtomato-mips/squashfs-root/usr/sbin/httpd"
 
-proj = angr.Project("httpd", auto_load_libs=False)
+proj = angr.Project(TARGET, auto_load_libs=False)
 proj.hook_symbol("getopt", GetOptHook())
 
 # add command-line option symbol of length 12
 argv1 = claripy.BVS("argv1", 12 * 8)
 
 # insert symbol into simulation as command-line option
-state = proj.factory.entry_state(args=["./httpd", argv1])
+state = proj.factory.entry_state(args=[TARGET, argv1])
 simgr = proj.factory.simulation_manager(state)
 
 # execute until instruction address within options parsing block
