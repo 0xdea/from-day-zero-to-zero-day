@@ -18,7 +18,7 @@ from qiling.extensions.coverage import utils as cov_utils
 from qiling.const import QL_VERBOSE
 
 
-PROJECT_ROOT = "/home/raptor/freshtomato-mips/squashfs-root/"
+PROJECT_ROOT = "freshtomato-mips/squashfs-root/"
 BINARY_PATH = "usr/sbin/httpd"
 ql = Qiling(
     [PROJECT_ROOT + BINARY_PATH],
