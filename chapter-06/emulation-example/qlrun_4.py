@@ -9,8 +9,14 @@
 # $ python3 -m venv venv-0day
 # $ source venv-0day/bin/activate
 # (venv-0day) $ pip install qiling===1.4.6
-# (venv-0day) $ pip install unicorn==2.0.1
+# (venv-0day) $ pip install unicorn===2.0.1
 # (venv-0day) $ python qlrun.py
+#
+# Alternatively, use pipenv:
+# $ sudo apt install pipenv
+# $ pipenv install qiling===1.4.6 unicorn===2.0.1
+# $ pipenv shell
+# (raptor) $ python qlrun.py
 # 
 
 from qiling import Qiling
