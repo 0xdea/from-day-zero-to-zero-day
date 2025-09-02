@@ -16,7 +16,7 @@
 # $ sudo apt install pipenv
 # $ pipenv install qiling===1.4.6 unicorn===2.0.1
 # $ pipenv shell
-# (raptor) $ python qlrun.py
+# (0day-book) $ python qlrun.py
 # 
 
 from qiling import Qiling
