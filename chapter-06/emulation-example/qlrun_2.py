@@ -6,11 +6,11 @@
 # Usage:
 # $ grep PRETTY /etc/os-release
 # PRETTY_NAME="Ubuntu 24.04.2 LTS"
-# $ python3 -m venv venv-unicorn
-# $ source venv-unicorn/bin/activate
-# (venv-unicorn) $ pip install qiling===1.4.6
-# (venv-unicorn) $ pip install unicorn==2.0.1
-# (venv-unicorn) $ python qlrun.py
+# $ python3 -m venv venv-0day
+# $ source venv-0day/bin/activate
+# (venv-0day) $ pip install qiling===1.4.6
+# (venv-0day) $ pip install unicorn==2.0.1
+# (venv-0day) $ python qlrun.py
 # 
 
 from qiling import Qiling
