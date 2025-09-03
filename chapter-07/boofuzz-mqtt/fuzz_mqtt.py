@@ -61,7 +61,7 @@ with s_block("FixedHeader"):
                 name="ClientIDLength",
             )
             with s_block("ClientID"):
-                s_string(fuzzable=True, value="Client1")
+                s_string(fuzzable=False, value="Client1")
 
 s_initialize("Publish")
 with s_block("FixedHeader"):
