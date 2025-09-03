@@ -1,3 +1,15 @@
+#
+# Usage:
+# % sw_vers
+# ProductName:		macOS
+# ProductVersion:		15.5
+# BuildVersion:		24F74
+# % brew install pipenv
+# % pipenv install boofuzz
+# % pipenv shell
+# (boofuzz-mqtt) $ python fuzz_mqtt.py
+#
+
 from boofuzz import *
 
 session = Session(
@@ -49,7 +61,7 @@ with s_block("FixedHeader"):
                 name="ClientIDLength",
             )
             with s_block("ClientID"):
-                s_string(fuzzable=False, value="Client1")
+                s_string(fuzzable=True, value="Client1")
 
 s_initialize("Publish")
 with s_block("FixedHeader"):
