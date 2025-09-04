@@ -10,7 +10,7 @@
 # (boofuzz-mqtt) $ python fuzz_mqtt.py
 #
 # See also:
-# https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html
+# https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#_Toc3901101
 #
 
 from boofuzz import *
