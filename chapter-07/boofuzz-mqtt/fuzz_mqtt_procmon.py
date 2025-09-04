@@ -1,7 +1,7 @@
 from boofuzz import *
 
 procmon = ProcessMonitor('localhost', 26002)
-procmon.set_options(start_commands=['/home/kali/Downloads/nanomq-0.17.5/build/nanomq/nanomq start'])
+procmon.set_options(start_commands=['./nanomq-0.17.5/nanomq/nanomq start'])
 
 session = Session(
     target=Target(
