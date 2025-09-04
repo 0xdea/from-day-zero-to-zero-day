@@ -26,7 +26,7 @@ with s_block("FixedHeader"):
     )
     s_size(
         block_name="Remaining",
-        fuzzable=True,
+        fuzzable=False,
         length=1,
         endian=BIG_ENDIAN,
         name="RemainingLength",
@@ -73,7 +73,7 @@ with s_block("FixedHeader"):
     )
     s_size(
         block_name="Remaining",
-        fuzzable=False,
+        fuzzable=True,
         length=1,
         endian=BIG_ENDIAN,
         name="RemainingLength",
