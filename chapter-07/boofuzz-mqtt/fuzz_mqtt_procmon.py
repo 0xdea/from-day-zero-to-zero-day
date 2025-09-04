@@ -1,3 +1,18 @@
+#
+# Usage:
+# % sw_vers
+# ProductName:		macOS
+# ProductVersion:		15.5
+# BuildVersion:		24F74
+# % brew install pipenv
+# % pipenv install boofuzz
+# % pipenv shell
+# (boofuzz-mqtt) $ python fuzz_mqtt.py
+#
+# See also:
+# https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html
+#
+
 from boofuzz import *
 
 procmon = ProcessMonitor('localhost', 26002)
