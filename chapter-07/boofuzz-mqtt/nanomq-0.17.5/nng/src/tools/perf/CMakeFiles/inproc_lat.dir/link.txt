@@ -1,0 +1,1 @@
+/usr/bin/cc  -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address -g CMakeFiles/inproc_lat.dir/perf.c.o -o inproc_lat  ../../../libnng.a -lrt -lpthread -latomic 

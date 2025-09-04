@@ -1,0 +1,1 @@
+/usr/bin/cc  -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address -g CMakeFiles/tcp6.dir/tcp6.c.o CMakeFiles/tcp6.dir/convey.c.o -o tcp6  ../libnng_testing.a -lrt -lpthread -latomic 

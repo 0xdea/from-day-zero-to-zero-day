@@ -1,0 +1,1 @@
+/usr/bin/c++  -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address -g CMakeFiles/cplusplus_pair.dir/cplusplus_pair.cc.o -o cplusplus_pair  ../libnng_testing.a -lrt -lpthread -latomic 

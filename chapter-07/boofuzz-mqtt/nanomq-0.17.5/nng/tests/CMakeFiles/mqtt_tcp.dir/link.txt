@@ -1,0 +1,1 @@
+/usr/bin/cc  -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address -g CMakeFiles/mqtt_tcp.dir/mqtt_tcp.c.o CMakeFiles/mqtt_tcp.dir/convey.c.o -o mqtt_tcp  ../libnng_testing.a -lrt -lpthread -latomic 

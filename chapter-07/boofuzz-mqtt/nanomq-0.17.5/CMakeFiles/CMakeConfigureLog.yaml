@@ -1,0 +1,1692 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineSystem.cmake:233 (message)"
+      - "CMakeLists.txt:11 (project)"
+    message: |
+      The system is: Linux - 6.8.0-54-generic - x86_64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:11 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: /usr/bin/cc 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+      
+      The C compiler identification is GNU, found in:
+        /home/raptor/nanomq-0.17.5/CMakeFiles/3.28.3/CompilerIdC/a.out
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:11 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+      
+      The CXX compiler identification is GNU, found in:
+        /home/raptor/nanomq-0.17.5/CMakeFiles/3.28.3/CompilerIdCXX/a.out
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerABI.cmake:57 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:11 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-OvP2e7"
+      binary: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-OvP2e7"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-OvP2e7'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_16702/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_16702.dir/build.make CMakeFiles/cmTC_16702.dir/build
+        gmake[1]: Entering directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-OvP2e7'
+        Building C object CMakeFiles/cmTC_16702.dir/CMakeCCompilerABI.c.o
+        /usr/bin/cc   -v -o CMakeFiles/cmTC_16702.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake-3.28/Modules/CMakeCCompilerABI.c
+        Using built-in specs.
+        COLLECT_GCC=/usr/bin/cc
+        OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa
+        OFFLOAD_TARGET_DEFAULT=1
+        Target: x86_64-linux-gnu
+        Configured with: ../src/configure -v --with-pkgversion='Ubuntu 13.3.0-6ubuntu2~24.04' --with-bugurl=file:///usr/share/doc/gcc-13/README.Bugs --enable-languages=c,ada,c++,go,d,fortran,objc,obj-c++,m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-13 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/libexec --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-libstdcxx-backtrace --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-cet --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-13-fG75Ri/gcc-13-13.3.0/debian/tmp-nvptx/usr,amdgcn-amdhsa=/build/gcc-13-fG75Ri/gcc-13-13.3.0/debian/tmp-gcn/usr --enable-offload-defaulted --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu --with-build-config=bootstrap-lto-lean --enable-link-serialization=2
+        Thread model: posix
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04) 
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_16702.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_16702.dir/'
+         /usr/libexec/gcc/x86_64-linux-gnu/13/cc1 -quiet -v -imultiarch x86_64-linux-gnu /usr/share/cmake-3.28/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_16702.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/cc53dXAN.s
+        GNU C17 (Ubuntu 13.3.0-6ubuntu2~24.04) version 13.3.0 (x86_64-linux-gnu)
+        	compiled by GNU C version 13.3.0, GMP version 6.3.0, MPFR version 4.2.1, MPC version 1.3.1, isl version isl-0.26-GMP
+        
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        ignoring nonexistent directory "/usr/local/include/x86_64-linux-gnu"
+        ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/13/include-fixed/x86_64-linux-gnu"
+        ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/13/include-fixed"
+        ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/include"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /usr/lib/gcc/x86_64-linux-gnu/13/include
+         /usr/local/include
+         /usr/include/x86_64-linux-gnu
+         /usr/include
+        End of search list.
+        Compiler executable checksum: 38987c28e967c64056a6454abdef726e
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_16702.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_16702.dir/'
+         as -v --64 -o CMakeFiles/cmTC_16702.dir/CMakeCCompilerABI.c.o /tmp/cc53dXAN.s
+        GNU assembler version 2.42 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.42
+        COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/
+        LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_16702.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_16702.dir/CMakeCCompilerABI.c.'
+        Linking C executable cmTC_16702
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_16702.dir/link.txt --verbose=1
+        /usr/bin/cc  -v -rdynamic CMakeFiles/cmTC_16702.dir/CMakeCCompilerABI.c.o -o cmTC_16702 
+        Using built-in specs.
+        COLLECT_GCC=/usr/bin/cc
+        COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper
+        OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa
+        OFFLOAD_TARGET_DEFAULT=1
+        Target: x86_64-linux-gnu
+        Configured with: ../src/configure -v --with-pkgversion='Ubuntu 13.3.0-6ubuntu2~24.04' --with-bugurl=file:///usr/share/doc/gcc-13/README.Bugs --enable-languages=c,ada,c++,go,d,fortran,objc,obj-c++,m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-13 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/libexec --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-libstdcxx-backtrace --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-cet --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-13-fG75Ri/gcc-13-13.3.0/debian/tmp-nvptx/usr,amdgcn-amdhsa=/build/gcc-13-fG75Ri/gcc-13-13.3.0/debian/tmp-gcn/usr --enable-offload-defaulted --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu --with-build-config=bootstrap-lto-lean --enable-link-serialization=2
+        Thread model: posix
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04) 
+        COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/
+        LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/
+        COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_16702' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_16702.'
+         /usr/libexec/gcc/x86_64-linux-gnu/13/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper -plugin-opt=-fresolution=/tmp/ccWw055M.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_16702 /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. CMakeFiles/cmTC_16702.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o
+        COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_16702' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_16702.'
+        gmake[1]: Leaving directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-OvP2e7'
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerABI.cmake:127 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:11 (project)"
+    message: |
+      Parsed C implicit include dir info: rv=done
+        found start of include info
+        found start of implicit include info
+          add: [/usr/lib/gcc/x86_64-linux-gnu/13/include]
+          add: [/usr/local/include]
+          add: [/usr/include/x86_64-linux-gnu]
+          add: [/usr/include]
+        end of search list found
+        collapse include dir [/usr/lib/gcc/x86_64-linux-gnu/13/include] ==> [/usr/lib/gcc/x86_64-linux-gnu/13/include]
+        collapse include dir [/usr/local/include] ==> [/usr/local/include]
+        collapse include dir [/usr/include/x86_64-linux-gnu] ==> [/usr/include/x86_64-linux-gnu]
+        collapse include dir [/usr/include] ==> [/usr/include]
+        implicit include dirs: [/usr/lib/gcc/x86_64-linux-gnu/13/include;/usr/local/include;/usr/include/x86_64-linux-gnu;/usr/include]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerABI.cmake:159 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:11 (project)"
+    message: |
+      Parsed C implicit link information:
+        link line regex: [^( *|.*[/\\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        ignore line: [Change Dir: '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-OvP2e7']
+        ignore line: []
+        ignore line: [Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_16702/fast]
+        ignore line: [/usr/bin/gmake  -f CMakeFiles/cmTC_16702.dir/build.make CMakeFiles/cmTC_16702.dir/build]
+        ignore line: [gmake[1]: Entering directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-OvP2e7']
+        ignore line: [Building C object CMakeFiles/cmTC_16702.dir/CMakeCCompilerABI.c.o]
+        ignore line: [/usr/bin/cc   -v -o CMakeFiles/cmTC_16702.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake-3.28/Modules/CMakeCCompilerABI.c]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/usr/bin/cc]
+        ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa]
+        ignore line: [OFFLOAD_TARGET_DEFAULT=1]
+        ignore line: [Target: x86_64-linux-gnu]
+        ignore line: [Configured with: ../src/configure -v --with-pkgversion='Ubuntu 13.3.0-6ubuntu2~24.04' --with-bugurl=file:///usr/share/doc/gcc-13/README.Bugs --enable-languages=c ada c++ go d fortran objc obj-c++ m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-13 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/libexec --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-libstdcxx-backtrace --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-cet --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32 m64 mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-13-fG75Ri/gcc-13-13.3.0/debian/tmp-nvptx/usr amdgcn-amdhsa=/build/gcc-13-fG75Ri/gcc-13-13.3.0/debian/tmp-gcn/usr --enable-offload-defaulted --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu --with-build-config=bootstrap-lto-lean --enable-link-serialization=2]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04) ]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_16702.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_16702.dir/']
+        ignore line: [ /usr/libexec/gcc/x86_64-linux-gnu/13/cc1 -quiet -v -imultiarch x86_64-linux-gnu /usr/share/cmake-3.28/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_16702.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/cc53dXAN.s]
+        ignore line: [GNU C17 (Ubuntu 13.3.0-6ubuntu2~24.04) version 13.3.0 (x86_64-linux-gnu)]
+        ignore line: [	compiled by GNU C version 13.3.0  GMP version 6.3.0  MPFR version 4.2.1  MPC version 1.3.1  isl version isl-0.26-GMP]
+        ignore line: []
+        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+        ignore line: [ignoring nonexistent directory "/usr/local/include/x86_64-linux-gnu"]
+        ignore line: [ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/13/include-fixed/x86_64-linux-gnu"]
+        ignore line: [ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/13/include-fixed"]
+        ignore line: [ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/include"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ /usr/lib/gcc/x86_64-linux-gnu/13/include]
+        ignore line: [ /usr/local/include]
+        ignore line: [ /usr/include/x86_64-linux-gnu]
+        ignore line: [ /usr/include]
+        ignore line: [End of search list.]
+        ignore line: [Compiler executable checksum: 38987c28e967c64056a6454abdef726e]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_16702.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_16702.dir/']
+        ignore line: [ as -v --64 -o CMakeFiles/cmTC_16702.dir/CMakeCCompilerABI.c.o /tmp/cc53dXAN.s]
+        ignore line: [GNU assembler version 2.42 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.42]
+        ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/]
+        ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_16702.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_16702.dir/CMakeCCompilerABI.c.']
+        ignore line: [Linking C executable cmTC_16702]
+        ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_16702.dir/link.txt --verbose=1]
+        ignore line: [/usr/bin/cc  -v -rdynamic CMakeFiles/cmTC_16702.dir/CMakeCCompilerABI.c.o -o cmTC_16702 ]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/usr/bin/cc]
+        ignore line: [COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper]
+        ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa]
+        ignore line: [OFFLOAD_TARGET_DEFAULT=1]
+        ignore line: [Target: x86_64-linux-gnu]
+        ignore line: [Configured with: ../src/configure -v --with-pkgversion='Ubuntu 13.3.0-6ubuntu2~24.04' --with-bugurl=file:///usr/share/doc/gcc-13/README.Bugs --enable-languages=c ada c++ go d fortran objc obj-c++ m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-13 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/libexec --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-libstdcxx-backtrace --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-cet --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32 m64 mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-13-fG75Ri/gcc-13-13.3.0/debian/tmp-nvptx/usr amdgcn-amdhsa=/build/gcc-13-fG75Ri/gcc-13-13.3.0/debian/tmp-gcn/usr --enable-offload-defaulted --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu --with-build-config=bootstrap-lto-lean --enable-link-serialization=2]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04) ]
+        ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/]
+        ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_16702' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_16702.']
+        link line: [ /usr/libexec/gcc/x86_64-linux-gnu/13/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper -plugin-opt=-fresolution=/tmp/ccWw055M.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_16702 /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. CMakeFiles/cmTC_16702.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o]
+          arg [/usr/libexec/gcc/x86_64-linux-gnu/13/collect2] ==> ignore
+          arg [-plugin] ==> ignore
+          arg [/usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so] ==> ignore
+          arg [-plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper] ==> ignore
+          arg [-plugin-opt=-fresolution=/tmp/ccWw055M.res] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [-plugin-opt=-pass-through=-lc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [--build-id] ==> ignore
+          arg [--eh-frame-hdr] ==> ignore
+          arg [-m] ==> ignore
+          arg [elf_x86_64] ==> ignore
+          arg [--hash-style=gnu] ==> ignore
+          arg [--as-needed] ==> ignore
+          arg [-export-dynamic] ==> ignore
+          arg [-dynamic-linker] ==> ignore
+          arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+          arg [-pie] ==> ignore
+          arg [-znow] ==> ignore
+          arg [-zrelro] ==> ignore
+          arg [-o] ==> ignore
+          arg [cmTC_16702] ==> ignore
+          arg [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o]
+          arg [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o]
+          arg [/usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o]
+          arg [-L/usr/lib/gcc/x86_64-linux-gnu/13] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/13]
+          arg [-L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu]
+          arg [-L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib]
+          arg [-L/lib/x86_64-linux-gnu] ==> dir [/lib/x86_64-linux-gnu]
+          arg [-L/lib/../lib] ==> dir [/lib/../lib]
+          arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
+          arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
+          arg [-L/usr/lib/gcc/x86_64-linux-gnu/13/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/13/../../..]
+          arg [CMakeFiles/cmTC_16702.dir/CMakeCCompilerABI.c.o] ==> ignore
+          arg [-lgcc] ==> lib [gcc]
+          arg [--push-state] ==> ignore
+          arg [--as-needed] ==> ignore
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [--pop-state] ==> ignore
+          arg [-lc] ==> lib [c]
+          arg [-lgcc] ==> lib [gcc]
+          arg [--push-state] ==> ignore
+          arg [--as-needed] ==> ignore
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [--pop-state] ==> ignore
+          arg [/usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o]
+          arg [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o]
+        collapse obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o] ==> [/usr/lib/x86_64-linux-gnu/Scrt1.o]
+        collapse obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o] ==> [/usr/lib/x86_64-linux-gnu/crti.o]
+        collapse obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o] ==> [/usr/lib/x86_64-linux-gnu/crtn.o]
+        collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/13] ==> [/usr/lib/gcc/x86_64-linux-gnu/13]
+        collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu] ==> [/usr/lib/x86_64-linux-gnu]
+        collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib] ==> [/usr/lib]
+        collapse library dir [/lib/x86_64-linux-gnu] ==> [/lib/x86_64-linux-gnu]
+        collapse library dir [/lib/../lib] ==> [/lib]
+        collapse library dir [/usr/lib/x86_64-linux-gnu] ==> [/usr/lib/x86_64-linux-gnu]
+        collapse library dir [/usr/lib/../lib] ==> [/usr/lib]
+        collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/13/../../..] ==> [/usr/lib]
+        implicit libs: [gcc;gcc_s;c;gcc;gcc_s]
+        implicit objs: [/usr/lib/x86_64-linux-gnu/Scrt1.o;/usr/lib/x86_64-linux-gnu/crti.o;/usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o;/usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o;/usr/lib/x86_64-linux-gnu/crtn.o]
+        implicit dirs: [/usr/lib/gcc/x86_64-linux-gnu/13;/usr/lib/x86_64-linux-gnu;/usr/lib;/lib/x86_64-linux-gnu;/lib]
+        implicit fwks: []
+      
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerABI.cmake:57 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:11 (project)"
+    checks:
+      - "Detecting CXX compiler ABI info"
+    directories:
+      source: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-z5V7Vl"
+      binary: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-z5V7Vl"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_CXX_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-z5V7Vl'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_17734/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_17734.dir/build.make CMakeFiles/cmTC_17734.dir/build
+        gmake[1]: Entering directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-z5V7Vl'
+        Building CXX object CMakeFiles/cmTC_17734.dir/CMakeCXXCompilerABI.cpp.o
+        /usr/bin/c++   -v -o CMakeFiles/cmTC_17734.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp
+        Using built-in specs.
+        COLLECT_GCC=/usr/bin/c++
+        OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa
+        OFFLOAD_TARGET_DEFAULT=1
+        Target: x86_64-linux-gnu
+        Configured with: ../src/configure -v --with-pkgversion='Ubuntu 13.3.0-6ubuntu2~24.04' --with-bugurl=file:///usr/share/doc/gcc-13/README.Bugs --enable-languages=c,ada,c++,go,d,fortran,objc,obj-c++,m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-13 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/libexec --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-libstdcxx-backtrace --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-cet --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-13-fG75Ri/gcc-13-13.3.0/debian/tmp-nvptx/usr,amdgcn-amdhsa=/build/gcc-13-fG75Ri/gcc-13-13.3.0/debian/tmp-gcn/usr --enable-offload-defaulted --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu --with-build-config=bootstrap-lto-lean --enable-link-serialization=2
+        Thread model: posix
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04) 
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_17734.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_17734.dir/'
+         /usr/libexec/gcc/x86_64-linux-gnu/13/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /usr/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_17734.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccE0yg9A.s
+        GNU C++17 (Ubuntu 13.3.0-6ubuntu2~24.04) version 13.3.0 (x86_64-linux-gnu)
+        	compiled by GNU C version 13.3.0, GMP version 6.3.0, MPFR version 4.2.1, MPC version 1.3.1, isl version isl-0.26-GMP
+        
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        ignoring duplicate directory "/usr/include/x86_64-linux-gnu/c++/13"
+        ignoring nonexistent directory "/usr/local/include/x86_64-linux-gnu"
+        ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/13/include-fixed/x86_64-linux-gnu"
+        ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/13/include-fixed"
+        ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/include"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /usr/include/c++/13
+         /usr/include/x86_64-linux-gnu/c++/13
+         /usr/include/c++/13/backward
+         /usr/lib/gcc/x86_64-linux-gnu/13/include
+         /usr/local/include
+         /usr/include/x86_64-linux-gnu
+         /usr/include
+        End of search list.
+        Compiler executable checksum: c81c05345ce537099dafd5580045814a
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_17734.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_17734.dir/'
+         as -v --64 -o CMakeFiles/cmTC_17734.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccE0yg9A.s
+        GNU assembler version 2.42 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.42
+        COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/
+        LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_17734.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_17734.dir/CMakeCXXCompilerABI.cpp.'
+        Linking CXX executable cmTC_17734
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_17734.dir/link.txt --verbose=1
+        /usr/bin/c++  -v -rdynamic CMakeFiles/cmTC_17734.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_17734 
+        Using built-in specs.
+        COLLECT_GCC=/usr/bin/c++
+        COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper
+        OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa
+        OFFLOAD_TARGET_DEFAULT=1
+        Target: x86_64-linux-gnu
+        Configured with: ../src/configure -v --with-pkgversion='Ubuntu 13.3.0-6ubuntu2~24.04' --with-bugurl=file:///usr/share/doc/gcc-13/README.Bugs --enable-languages=c,ada,c++,go,d,fortran,objc,obj-c++,m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-13 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/libexec --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-libstdcxx-backtrace --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-cet --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-13-fG75Ri/gcc-13-13.3.0/debian/tmp-nvptx/usr,amdgcn-amdhsa=/build/gcc-13-fG75Ri/gcc-13-13.3.0/debian/tmp-gcn/usr --enable-offload-defaulted --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu --with-build-config=bootstrap-lto-lean --enable-link-serialization=2
+        Thread model: posix
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04) 
+        COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/
+        LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/
+        COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_17734' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_17734.'
+         /usr/libexec/gcc/x86_64-linux-gnu/13/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper -plugin-opt=-fresolution=/tmp/ccUxsmH5.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_17734 /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. CMakeFiles/cmTC_17734.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o
+        COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_17734' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_17734.'
+        gmake[1]: Leaving directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-z5V7Vl'
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerABI.cmake:127 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:11 (project)"
+    message: |
+      Parsed CXX implicit include dir info: rv=done
+        found start of include info
+        found start of implicit include info
+          add: [/usr/include/c++/13]
+          add: [/usr/include/x86_64-linux-gnu/c++/13]
+          add: [/usr/include/c++/13/backward]
+          add: [/usr/lib/gcc/x86_64-linux-gnu/13/include]
+          add: [/usr/local/include]
+          add: [/usr/include/x86_64-linux-gnu]
+          add: [/usr/include]
+        end of search list found
+        collapse include dir [/usr/include/c++/13] ==> [/usr/include/c++/13]
+        collapse include dir [/usr/include/x86_64-linux-gnu/c++/13] ==> [/usr/include/x86_64-linux-gnu/c++/13]
+        collapse include dir [/usr/include/c++/13/backward] ==> [/usr/include/c++/13/backward]
+        collapse include dir [/usr/lib/gcc/x86_64-linux-gnu/13/include] ==> [/usr/lib/gcc/x86_64-linux-gnu/13/include]
+        collapse include dir [/usr/local/include] ==> [/usr/local/include]
+        collapse include dir [/usr/include/x86_64-linux-gnu] ==> [/usr/include/x86_64-linux-gnu]
+        collapse include dir [/usr/include] ==> [/usr/include]
+        implicit include dirs: [/usr/include/c++/13;/usr/include/x86_64-linux-gnu/c++/13;/usr/include/c++/13/backward;/usr/lib/gcc/x86_64-linux-gnu/13/include;/usr/local/include;/usr/include/x86_64-linux-gnu;/usr/include]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerABI.cmake:159 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:11 (project)"
+    message: |
+      Parsed CXX implicit link information:
+        link line regex: [^( *|.*[/\\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        ignore line: [Change Dir: '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-z5V7Vl']
+        ignore line: []
+        ignore line: [Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_17734/fast]
+        ignore line: [/usr/bin/gmake  -f CMakeFiles/cmTC_17734.dir/build.make CMakeFiles/cmTC_17734.dir/build]
+        ignore line: [gmake[1]: Entering directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-z5V7Vl']
+        ignore line: [Building CXX object CMakeFiles/cmTC_17734.dir/CMakeCXXCompilerABI.cpp.o]
+        ignore line: [/usr/bin/c++   -v -o CMakeFiles/cmTC_17734.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/usr/bin/c++]
+        ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa]
+        ignore line: [OFFLOAD_TARGET_DEFAULT=1]
+        ignore line: [Target: x86_64-linux-gnu]
+        ignore line: [Configured with: ../src/configure -v --with-pkgversion='Ubuntu 13.3.0-6ubuntu2~24.04' --with-bugurl=file:///usr/share/doc/gcc-13/README.Bugs --enable-languages=c ada c++ go d fortran objc obj-c++ m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-13 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/libexec --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-libstdcxx-backtrace --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-cet --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32 m64 mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-13-fG75Ri/gcc-13-13.3.0/debian/tmp-nvptx/usr amdgcn-amdhsa=/build/gcc-13-fG75Ri/gcc-13-13.3.0/debian/tmp-gcn/usr --enable-offload-defaulted --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu --with-build-config=bootstrap-lto-lean --enable-link-serialization=2]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04) ]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_17734.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_17734.dir/']
+        ignore line: [ /usr/libexec/gcc/x86_64-linux-gnu/13/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /usr/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_17734.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccE0yg9A.s]
+        ignore line: [GNU C++17 (Ubuntu 13.3.0-6ubuntu2~24.04) version 13.3.0 (x86_64-linux-gnu)]
+        ignore line: [	compiled by GNU C version 13.3.0  GMP version 6.3.0  MPFR version 4.2.1  MPC version 1.3.1  isl version isl-0.26-GMP]
+        ignore line: []
+        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+        ignore line: [ignoring duplicate directory "/usr/include/x86_64-linux-gnu/c++/13"]
+        ignore line: [ignoring nonexistent directory "/usr/local/include/x86_64-linux-gnu"]
+        ignore line: [ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/13/include-fixed/x86_64-linux-gnu"]
+        ignore line: [ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/13/include-fixed"]
+        ignore line: [ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/include"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ /usr/include/c++/13]
+        ignore line: [ /usr/include/x86_64-linux-gnu/c++/13]
+        ignore line: [ /usr/include/c++/13/backward]
+        ignore line: [ /usr/lib/gcc/x86_64-linux-gnu/13/include]
+        ignore line: [ /usr/local/include]
+        ignore line: [ /usr/include/x86_64-linux-gnu]
+        ignore line: [ /usr/include]
+        ignore line: [End of search list.]
+        ignore line: [Compiler executable checksum: c81c05345ce537099dafd5580045814a]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_17734.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_17734.dir/']
+        ignore line: [ as -v --64 -o CMakeFiles/cmTC_17734.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccE0yg9A.s]
+        ignore line: [GNU assembler version 2.42 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.42]
+        ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/]
+        ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_17734.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_17734.dir/CMakeCXXCompilerABI.cpp.']
+        ignore line: [Linking CXX executable cmTC_17734]
+        ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_17734.dir/link.txt --verbose=1]
+        ignore line: [/usr/bin/c++  -v -rdynamic CMakeFiles/cmTC_17734.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_17734 ]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/usr/bin/c++]
+        ignore line: [COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper]
+        ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa]
+        ignore line: [OFFLOAD_TARGET_DEFAULT=1]
+        ignore line: [Target: x86_64-linux-gnu]
+        ignore line: [Configured with: ../src/configure -v --with-pkgversion='Ubuntu 13.3.0-6ubuntu2~24.04' --with-bugurl=file:///usr/share/doc/gcc-13/README.Bugs --enable-languages=c ada c++ go d fortran objc obj-c++ m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-13 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/libexec --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-libstdcxx-backtrace --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-cet --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32 m64 mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-13-fG75Ri/gcc-13-13.3.0/debian/tmp-nvptx/usr amdgcn-amdhsa=/build/gcc-13-fG75Ri/gcc-13-13.3.0/debian/tmp-gcn/usr --enable-offload-defaulted --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu --with-build-config=bootstrap-lto-lean --enable-link-serialization=2]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04) ]
+        ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/]
+        ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_17734' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_17734.']
+        link line: [ /usr/libexec/gcc/x86_64-linux-gnu/13/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper -plugin-opt=-fresolution=/tmp/ccUxsmH5.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_17734 /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. CMakeFiles/cmTC_17734.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o]
+          arg [/usr/libexec/gcc/x86_64-linux-gnu/13/collect2] ==> ignore
+          arg [-plugin] ==> ignore
+          arg [/usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so] ==> ignore
+          arg [-plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper] ==> ignore
+          arg [-plugin-opt=-fresolution=/tmp/ccUxsmH5.res] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [--build-id] ==> ignore
+          arg [--eh-frame-hdr] ==> ignore
+          arg [-m] ==> ignore
+          arg [elf_x86_64] ==> ignore
+          arg [--hash-style=gnu] ==> ignore
+          arg [--as-needed] ==> ignore
+          arg [-export-dynamic] ==> ignore
+          arg [-dynamic-linker] ==> ignore
+          arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+          arg [-pie] ==> ignore
+          arg [-znow] ==> ignore
+          arg [-zrelro] ==> ignore
+          arg [-o] ==> ignore
+          arg [cmTC_17734] ==> ignore
+          arg [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o]
+          arg [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o]
+          arg [/usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o]
+          arg [-L/usr/lib/gcc/x86_64-linux-gnu/13] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/13]
+          arg [-L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu]
+          arg [-L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib]
+          arg [-L/lib/x86_64-linux-gnu] ==> dir [/lib/x86_64-linux-gnu]
+          arg [-L/lib/../lib] ==> dir [/lib/../lib]
+          arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
+          arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
+          arg [-L/usr/lib/gcc/x86_64-linux-gnu/13/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/13/../../..]
+          arg [CMakeFiles/cmTC_17734.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+          arg [-lstdc++] ==> lib [stdc++]
+          arg [-lm] ==> lib [m]
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [-lgcc] ==> lib [gcc]
+          arg [-lc] ==> lib [c]
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [-lgcc] ==> lib [gcc]
+          arg [/usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o]
+          arg [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o]
+        collapse obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o] ==> [/usr/lib/x86_64-linux-gnu/Scrt1.o]
+        collapse obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o] ==> [/usr/lib/x86_64-linux-gnu/crti.o]
+        collapse obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o] ==> [/usr/lib/x86_64-linux-gnu/crtn.o]
+        collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/13] ==> [/usr/lib/gcc/x86_64-linux-gnu/13]
+        collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu] ==> [/usr/lib/x86_64-linux-gnu]
+        collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib] ==> [/usr/lib]
+        collapse library dir [/lib/x86_64-linux-gnu] ==> [/lib/x86_64-linux-gnu]
+        collapse library dir [/lib/../lib] ==> [/lib]
+        collapse library dir [/usr/lib/x86_64-linux-gnu] ==> [/usr/lib/x86_64-linux-gnu]
+        collapse library dir [/usr/lib/../lib] ==> [/usr/lib]
+        collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/13/../../..] ==> [/usr/lib]
+        implicit libs: [stdc++;m;gcc_s;gcc;c;gcc_s;gcc]
+        implicit objs: [/usr/lib/x86_64-linux-gnu/Scrt1.o;/usr/lib/x86_64-linux-gnu/crti.o;/usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o;/usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o;/usr/lib/x86_64-linux-gnu/crtn.o]
+        implicit dirs: [/usr/lib/gcc/x86_64-linux-gnu/13;/usr/lib/x86_64-linux-gnu;/usr/lib;/lib/x86_64-linux-gnu;/lib]
+        implicit fwks: []
+      
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckCompilerFlag.cmake:18 (cmake_check_source_compiles)"
+      - "/usr/share/cmake-3.28/Modules/CheckCCompilerFlag.cmake:51 (cmake_check_compiler_flag)"
+      - "CMakeLists.txt:63 (check_c_compiler_flag)"
+    checks:
+      - "Performing Test NANO_HIDDEN_VISIBILITY"
+    directories:
+      source: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-pgw6DS"
+      binary: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-pgw6DS"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/raptor/nanomq-0.17.5/cmake"
+    buildResult:
+      variable: "NANO_HIDDEN_VISIBILITY"
+      cached: true
+      stdout: |
+        Change Dir: '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-pgw6DS'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_664aa/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_664aa.dir/build.make CMakeFiles/cmTC_664aa.dir/build
+        gmake[1]: Entering directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-pgw6DS'
+        Building C object CMakeFiles/cmTC_664aa.dir/src.c.o
+        /usr/bin/cc -DNANO_HIDDEN_VISIBILITY  -fvisibility=hidden -o CMakeFiles/cmTC_664aa.dir/src.c.o -c /home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-pgw6DS/src.c
+        Linking C executable cmTC_664aa
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_664aa.dir/link.txt --verbose=1
+        /usr/bin/cc -rdynamic CMakeFiles/cmTC_664aa.dir/src.c.o -o cmTC_664aa 
+        gmake[1]: Leaving directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-pgw6DS'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckCompilerFlag.cmake:18 (cmake_check_source_compiles)"
+      - "/usr/share/cmake-3.28/Modules/CheckCCompilerFlag.cmake:51 (cmake_check_compiler_flag)"
+      - "nng/CMakeLists.txt:169 (check_c_compiler_flag)"
+    checks:
+      - "Performing Test NNG_HIDDEN_VISIBILITY"
+    directories:
+      source: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-ZMMbsc"
+      binary: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-ZMMbsc"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address"
+      CMAKE_MODULE_PATH: "/home/raptor/nanomq-0.17.5/nng/cmake"
+    buildResult:
+      variable: "NNG_HIDDEN_VISIBILITY"
+      cached: true
+      stdout: |
+        Change Dir: '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-ZMMbsc'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_5d7d2/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_5d7d2.dir/build.make CMakeFiles/cmTC_5d7d2.dir/build
+        gmake[1]: Entering directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-ZMMbsc'
+        Building C object CMakeFiles/cmTC_5d7d2.dir/src.c.o
+        /usr/bin/cc -DNNG_HIDDEN_VISIBILITY  -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address    -fvisibility=hidden -o CMakeFiles/cmTC_5d7d2.dir/src.c.o -c /home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-ZMMbsc/src.c
+        Linking C executable cmTC_5d7d2
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5d7d2.dir/link.txt --verbose=1
+        /usr/bin/cc  -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address  -rdynamic CMakeFiles/cmTC_5d7d2.dir/src.c.o -o cmTC_5d7d2 
+        gmake[1]: Leaving directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-ZMMbsc'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckSymbolExists.cmake:140 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/CheckSymbolExists.cmake:66 (__CHECK_SYMBOL_EXISTS_IMPL)"
+      - "nng/cmake/NNGHelpers.cmake:137 (check_symbol_exists)"
+      - "nng/src/core/CMakeLists.txt:13 (nng_check_sym)"
+    checks:
+      - "Looking for strlcpy"
+    directories:
+      source: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-T79nUk"
+      binary: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-T79nUk"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address"
+      CMAKE_MODULE_PATH: "/home/raptor/nanomq-0.17.5/nng/cmake"
+    buildResult:
+      variable: "NNG_HAVE_STRLCPY"
+      cached: true
+      stdout: |
+        Change Dir: '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-T79nUk'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_3899d/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_3899d.dir/build.make CMakeFiles/cmTC_3899d.dir/build
+        gmake[1]: Entering directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-T79nUk'
+        Building C object CMakeFiles/cmTC_3899d.dir/CheckSymbolExists.c.o
+        /usr/bin/cc   -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address  -o CMakeFiles/cmTC_3899d.dir/CheckSymbolExists.c.o -c /home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-T79nUk/CheckSymbolExists.c
+        Linking C executable cmTC_3899d
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3899d.dir/link.txt --verbose=1
+        /usr/bin/cc  -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address  -rdynamic CMakeFiles/cmTC_3899d.dir/CheckSymbolExists.c.o -o cmTC_3899d 
+        gmake[1]: Leaving directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-T79nUk'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckSymbolExists.cmake:140 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/CheckSymbolExists.cmake:66 (__CHECK_SYMBOL_EXISTS_IMPL)"
+      - "nng/cmake/NNGHelpers.cmake:137 (check_symbol_exists)"
+      - "nng/src/core/CMakeLists.txt:14 (nng_check_sym)"
+    checks:
+      - "Looking for strnlen"
+    directories:
+      source: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-S09j4A"
+      binary: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-S09j4A"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address"
+      CMAKE_MODULE_PATH: "/home/raptor/nanomq-0.17.5/nng/cmake"
+    buildResult:
+      variable: "NNG_HAVE_STRNLEN"
+      cached: true
+      stdout: |
+        Change Dir: '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-S09j4A'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_87fb5/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_87fb5.dir/build.make CMakeFiles/cmTC_87fb5.dir/build
+        gmake[1]: Entering directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-S09j4A'
+        Building C object CMakeFiles/cmTC_87fb5.dir/CheckSymbolExists.c.o
+        /usr/bin/cc   -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address  -o CMakeFiles/cmTC_87fb5.dir/CheckSymbolExists.c.o -c /home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-S09j4A/CheckSymbolExists.c
+        Linking C executable cmTC_87fb5
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_87fb5.dir/link.txt --verbose=1
+        /usr/bin/cc  -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address  -rdynamic CMakeFiles/cmTC_87fb5.dir/CheckSymbolExists.c.o -o cmTC_87fb5 
+        gmake[1]: Leaving directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-S09j4A'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckSymbolExists.cmake:140 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/CheckSymbolExists.cmake:66 (__CHECK_SYMBOL_EXISTS_IMPL)"
+      - "nng/cmake/NNGHelpers.cmake:137 (check_symbol_exists)"
+      - "nng/src/core/CMakeLists.txt:15 (nng_check_sym)"
+    checks:
+      - "Looking for strcasecmp"
+    directories:
+      source: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-ec1i6m"
+      binary: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-ec1i6m"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address"
+      CMAKE_MODULE_PATH: "/home/raptor/nanomq-0.17.5/nng/cmake"
+    buildResult:
+      variable: "NNG_HAVE_STRCASECMP"
+      cached: true
+      stdout: |
+        Change Dir: '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-ec1i6m'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_cc4d3/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_cc4d3.dir/build.make CMakeFiles/cmTC_cc4d3.dir/build
+        gmake[1]: Entering directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-ec1i6m'
+        Building C object CMakeFiles/cmTC_cc4d3.dir/CheckSymbolExists.c.o
+        /usr/bin/cc   -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address  -o CMakeFiles/cmTC_cc4d3.dir/CheckSymbolExists.c.o -c /home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-ec1i6m/CheckSymbolExists.c
+        Linking C executable cmTC_cc4d3
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_cc4d3.dir/link.txt --verbose=1
+        /usr/bin/cc  -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address  -rdynamic CMakeFiles/cmTC_cc4d3.dir/CheckSymbolExists.c.o -o cmTC_cc4d3 
+        gmake[1]: Leaving directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-ec1i6m'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckSymbolExists.cmake:140 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/CheckSymbolExists.cmake:66 (__CHECK_SYMBOL_EXISTS_IMPL)"
+      - "nng/cmake/NNGHelpers.cmake:137 (check_symbol_exists)"
+      - "nng/src/core/CMakeLists.txt:16 (nng_check_sym)"
+    checks:
+      - "Looking for strncasecmp"
+    directories:
+      source: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-M4G9rT"
+      binary: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-M4G9rT"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address"
+      CMAKE_MODULE_PATH: "/home/raptor/nanomq-0.17.5/nng/cmake"
+    buildResult:
+      variable: "NNG_HAVE_STRNCASECMP"
+      cached: true
+      stdout: |
+        Change Dir: '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-M4G9rT'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_91301/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_91301.dir/build.make CMakeFiles/cmTC_91301.dir/build
+        gmake[1]: Entering directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-M4G9rT'
+        Building C object CMakeFiles/cmTC_91301.dir/CheckSymbolExists.c.o
+        /usr/bin/cc   -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address  -o CMakeFiles/cmTC_91301.dir/CheckSymbolExists.c.o -c /home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-M4G9rT/CheckSymbolExists.c
+        Linking C executable cmTC_91301
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_91301.dir/link.txt --verbose=1
+        /usr/bin/cc  -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address  -rdynamic CMakeFiles/cmTC_91301.dir/CheckSymbolExists.c.o -o cmTC_91301 
+        gmake[1]: Leaving directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-M4G9rT'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/CheckCSourceCompiles.cmake:52 (cmake_check_source_compiles)"
+      - "/usr/share/cmake-3.28/Modules/FindThreads.cmake:97 (CHECK_C_SOURCE_COMPILES)"
+      - "/usr/share/cmake-3.28/Modules/FindThreads.cmake:163 (_threads_check_libc)"
+      - "nng/cmake/NNGHelpers.cmake:46 (find_package)"
+      - "nng/src/platform/posix/CMakeLists.txt:16 (nng_find_package)"
+    checks:
+      - "Performing Test CMAKE_HAVE_LIBC_PTHREAD"
+    directories:
+      source: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-7yMwbB"
+      binary: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-7yMwbB"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address"
+      CMAKE_MODULE_PATH: "/home/raptor/nanomq-0.17.5/nng/cmake"
+    buildResult:
+      variable: "CMAKE_HAVE_LIBC_PTHREAD"
+      cached: true
+      stdout: |
+        Change Dir: '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-7yMwbB'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_92aab/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_92aab.dir/build.make CMakeFiles/cmTC_92aab.dir/build
+        gmake[1]: Entering directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-7yMwbB'
+        Building C object CMakeFiles/cmTC_92aab.dir/src.c.o
+        /usr/bin/cc -DCMAKE_HAVE_LIBC_PTHREAD  -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address  -o CMakeFiles/cmTC_92aab.dir/src.c.o -c /home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-7yMwbB/src.c
+        Linking C executable cmTC_92aab
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_92aab.dir/link.txt --verbose=1
+        /usr/bin/cc  -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address  -rdynamic CMakeFiles/cmTC_92aab.dir/src.c.o -o cmTC_92aab 
+        gmake[1]: Leaving directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-7yMwbB'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckFunctionExists.cmake:86 (try_compile)"
+      - "nng/cmake/NNGHelpers.cmake:128 (check_function_exists)"
+      - "nng/src/platform/posix/CMakeLists.txt:27 (nng_check_func)"
+    checks:
+      - "Looking for lockf"
+    directories:
+      source: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-b3OaRF"
+      binary: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-b3OaRF"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address"
+      CMAKE_MODULE_PATH: "/home/raptor/nanomq-0.17.5/nng/cmake"
+    buildResult:
+      variable: "NNG_HAVE_LOCKF"
+      cached: true
+      stdout: |
+        Change Dir: '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-b3OaRF'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_043cd/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_043cd.dir/build.make CMakeFiles/cmTC_043cd.dir/build
+        gmake[1]: Entering directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-b3OaRF'
+        Building C object CMakeFiles/cmTC_043cd.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address -DCHECK_FUNCTION_EXISTS=lockf -o CMakeFiles/cmTC_043cd.dir/CheckFunctionExists.c.o -c /home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-b3OaRF/CheckFunctionExists.c
+        Linking C executable cmTC_043cd
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_043cd.dir/link.txt --verbose=1
+        /usr/bin/cc  -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address -DCHECK_FUNCTION_EXISTS=lockf -rdynamic CMakeFiles/cmTC_043cd.dir/CheckFunctionExists.c.o -o cmTC_043cd 
+        gmake[1]: Leaving directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-b3OaRF'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckFunctionExists.cmake:86 (try_compile)"
+      - "nng/cmake/NNGHelpers.cmake:128 (check_function_exists)"
+      - "nng/src/platform/posix/CMakeLists.txt:28 (nng_check_func)"
+    checks:
+      - "Looking for flock"
+    directories:
+      source: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-TB7gv2"
+      binary: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-TB7gv2"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address"
+      CMAKE_MODULE_PATH: "/home/raptor/nanomq-0.17.5/nng/cmake"
+    buildResult:
+      variable: "NNG_HAVE_FLOCK"
+      cached: true
+      stdout: |
+        Change Dir: '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-TB7gv2'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_1a591/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_1a591.dir/build.make CMakeFiles/cmTC_1a591.dir/build
+        gmake[1]: Entering directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-TB7gv2'
+        Building C object CMakeFiles/cmTC_1a591.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address -DCHECK_FUNCTION_EXISTS=flock -o CMakeFiles/cmTC_1a591.dir/CheckFunctionExists.c.o -c /home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-TB7gv2/CheckFunctionExists.c
+        Linking C executable cmTC_1a591
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1a591.dir/link.txt --verbose=1
+        /usr/bin/cc  -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address -DCHECK_FUNCTION_EXISTS=flock -rdynamic CMakeFiles/cmTC_1a591.dir/CheckFunctionExists.c.o -o cmTC_1a591 
+        gmake[1]: Leaving directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-TB7gv2'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckFunctionExists.cmake:86 (try_compile)"
+      - "nng/cmake/NNGHelpers.cmake:128 (check_function_exists)"
+      - "nng/src/platform/posix/CMakeLists.txt:29 (nng_check_func)"
+    checks:
+      - "Looking for getrandom"
+    directories:
+      source: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-FrL8sE"
+      binary: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-FrL8sE"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address"
+      CMAKE_MODULE_PATH: "/home/raptor/nanomq-0.17.5/nng/cmake"
+    buildResult:
+      variable: "NNG_HAVE_GETRANDOM"
+      cached: true
+      stdout: |
+        Change Dir: '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-FrL8sE'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_ead7a/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_ead7a.dir/build.make CMakeFiles/cmTC_ead7a.dir/build
+        gmake[1]: Entering directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-FrL8sE'
+        Building C object CMakeFiles/cmTC_ead7a.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address -DCHECK_FUNCTION_EXISTS=getrandom -o CMakeFiles/cmTC_ead7a.dir/CheckFunctionExists.c.o -c /home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-FrL8sE/CheckFunctionExists.c
+        Linking C executable cmTC_ead7a
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ead7a.dir/link.txt --verbose=1
+        /usr/bin/cc  -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address -DCHECK_FUNCTION_EXISTS=getrandom -rdynamic CMakeFiles/cmTC_ead7a.dir/CheckFunctionExists.c.o -o cmTC_ead7a 
+        gmake[1]: Leaving directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-FrL8sE'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckFunctionExists.cmake:86 (try_compile)"
+      - "nng/cmake/NNGHelpers.cmake:128 (check_function_exists)"
+      - "nng/src/platform/posix/CMakeLists.txt:30 (nng_check_func)"
+    checks:
+      - "Looking for arc4random_buf"
+    directories:
+      source: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-xvEAiw"
+      binary: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-xvEAiw"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address"
+      CMAKE_MODULE_PATH: "/home/raptor/nanomq-0.17.5/nng/cmake"
+    buildResult:
+      variable: "NNG_HAVE_ARC4RANDOM"
+      cached: true
+      stdout: |
+        Change Dir: '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-xvEAiw'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_124d8/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_124d8.dir/build.make CMakeFiles/cmTC_124d8.dir/build
+        gmake[1]: Entering directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-xvEAiw'
+        Building C object CMakeFiles/cmTC_124d8.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address -DCHECK_FUNCTION_EXISTS=arc4random_buf -o CMakeFiles/cmTC_124d8.dir/CheckFunctionExists.c.o -c /home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-xvEAiw/CheckFunctionExists.c
+        Linking C executable cmTC_124d8
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_124d8.dir/link.txt --verbose=1
+        /usr/bin/cc  -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address -DCHECK_FUNCTION_EXISTS=arc4random_buf -rdynamic CMakeFiles/cmTC_124d8.dir/CheckFunctionExists.c.o -o cmTC_124d8 
+        gmake[1]: Leaving directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-xvEAiw'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckLibraryExists.cmake:69 (try_compile)"
+      - "nng/cmake/NNGHelpers.cmake:146 (check_library_exists)"
+      - "nng/src/platform/posix/CMakeLists.txt:32 (nng_check_lib)"
+    checks:
+      - "Looking for clock_gettime in rt"
+    directories:
+      source: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-PSTKDn"
+      binary: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-PSTKDn"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address"
+      CMAKE_MODULE_PATH: "/home/raptor/nanomq-0.17.5/nng/cmake"
+    buildResult:
+      variable: "NNG_HAVE_CLOCK_GETTIME"
+      cached: true
+      stdout: |
+        Change Dir: '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-PSTKDn'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_5684b/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_5684b.dir/build.make CMakeFiles/cmTC_5684b.dir/build
+        gmake[1]: Entering directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-PSTKDn'
+        Building C object CMakeFiles/cmTC_5684b.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address -DCHECK_FUNCTION_EXISTS=clock_gettime -o CMakeFiles/cmTC_5684b.dir/CheckFunctionExists.c.o -c /home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-PSTKDn/CheckFunctionExists.c
+        Linking C executable cmTC_5684b
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5684b.dir/link.txt --verbose=1
+        /usr/bin/cc  -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address -DCHECK_FUNCTION_EXISTS=clock_gettime -rdynamic CMakeFiles/cmTC_5684b.dir/CheckFunctionExists.c.o -o cmTC_5684b  -lrt 
+        gmake[1]: Leaving directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-PSTKDn'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckLibraryExists.cmake:69 (try_compile)"
+      - "nng/cmake/NNGHelpers.cmake:146 (check_library_exists)"
+      - "nng/src/platform/posix/CMakeLists.txt:33 (nng_check_lib)"
+    checks:
+      - "Looking for sem_wait in pthread"
+    directories:
+      source: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-iuA75i"
+      binary: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-iuA75i"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address"
+      CMAKE_MODULE_PATH: "/home/raptor/nanomq-0.17.5/nng/cmake"
+    buildResult:
+      variable: "NNG_HAVE_SEMAPHORE_PTHREAD"
+      cached: true
+      stdout: |
+        Change Dir: '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-iuA75i'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_d8f31/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_d8f31.dir/build.make CMakeFiles/cmTC_d8f31.dir/build
+        gmake[1]: Entering directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-iuA75i'
+        Building C object CMakeFiles/cmTC_d8f31.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address -DCHECK_FUNCTION_EXISTS=sem_wait -o CMakeFiles/cmTC_d8f31.dir/CheckFunctionExists.c.o -c /home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-iuA75i/CheckFunctionExists.c
+        Linking C executable cmTC_d8f31
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d8f31.dir/link.txt --verbose=1
+        /usr/bin/cc  -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address -DCHECK_FUNCTION_EXISTS=sem_wait -rdynamic CMakeFiles/cmTC_d8f31.dir/CheckFunctionExists.c.o -o cmTC_d8f31  -lpthread 
+        gmake[1]: Leaving directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-iuA75i'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckLibraryExists.cmake:69 (try_compile)"
+      - "nng/cmake/NNGHelpers.cmake:146 (check_library_exists)"
+      - "nng/src/platform/posix/CMakeLists.txt:34 (nng_check_lib)"
+    checks:
+      - "Looking for pthread_atfork in pthread"
+    directories:
+      source: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-fEwBNE"
+      binary: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-fEwBNE"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address"
+      CMAKE_MODULE_PATH: "/home/raptor/nanomq-0.17.5/nng/cmake"
+    buildResult:
+      variable: "NNG_HAVE_PTHREAD_ATFORK_PTHREAD"
+      cached: true
+      stdout: |
+        Change Dir: '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-fEwBNE'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_31b40/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_31b40.dir/build.make CMakeFiles/cmTC_31b40.dir/build
+        gmake[1]: Entering directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-fEwBNE'
+        Building C object CMakeFiles/cmTC_31b40.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address -DCHECK_FUNCTION_EXISTS=pthread_atfork -o CMakeFiles/cmTC_31b40.dir/CheckFunctionExists.c.o -c /home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-fEwBNE/CheckFunctionExists.c
+        Linking C executable cmTC_31b40
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_31b40.dir/link.txt --verbose=1
+        /usr/bin/cc  -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address -DCHECK_FUNCTION_EXISTS=pthread_atfork -rdynamic CMakeFiles/cmTC_31b40.dir/CheckFunctionExists.c.o -o cmTC_31b40  -lpthread 
+        gmake[1]: Leaving directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-fEwBNE'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckLibraryExists.cmake:69 (try_compile)"
+      - "nng/cmake/NNGHelpers.cmake:146 (check_library_exists)"
+      - "nng/src/platform/posix/CMakeLists.txt:35 (nng_check_lib)"
+    checks:
+      - "Looking for pthread_set_name_np in pthread"
+    directories:
+      source: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-FdwOiF"
+      binary: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-FdwOiF"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address"
+      CMAKE_MODULE_PATH: "/home/raptor/nanomq-0.17.5/nng/cmake"
+    buildResult:
+      variable: "NNG_HAVE_PTHREAD_SET_NAME_NP"
+      cached: true
+      stdout: |
+        Change Dir: '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-FdwOiF'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_b14d2/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_b14d2.dir/build.make CMakeFiles/cmTC_b14d2.dir/build
+        gmake[1]: Entering directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-FdwOiF'
+        Building C object CMakeFiles/cmTC_b14d2.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address -DCHECK_FUNCTION_EXISTS=pthread_set_name_np -o CMakeFiles/cmTC_b14d2.dir/CheckFunctionExists.c.o -c /home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-FdwOiF/CheckFunctionExists.c
+        Linking C executable cmTC_b14d2
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b14d2.dir/link.txt --verbose=1
+        /usr/bin/cc  -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address -DCHECK_FUNCTION_EXISTS=pthread_set_name_np -rdynamic CMakeFiles/cmTC_b14d2.dir/CheckFunctionExists.c.o -o cmTC_b14d2  -lpthread 
+        /usr/bin/ld: CMakeFiles/cmTC_b14d2.dir/CheckFunctionExists.c.o: in function `main':
+        /home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-FdwOiF/CheckFunctionExists.c:17:(.text+0x14): undefined reference to `pthread_set_name_np'
+        collect2: error: ld returned 1 exit status
+        gmake[1]: *** [CMakeFiles/cmTC_b14d2.dir/build.make:99: cmTC_b14d2] Error 1
+        gmake[1]: Leaving directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-FdwOiF'
+        gmake: *** [Makefile:127: cmTC_b14d2/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckLibraryExists.cmake:69 (try_compile)"
+      - "nng/cmake/NNGHelpers.cmake:146 (check_library_exists)"
+      - "nng/src/platform/posix/CMakeLists.txt:36 (nng_check_lib)"
+    checks:
+      - "Looking for pthread_setname_np in pthread"
+    directories:
+      source: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-FPUz0p"
+      binary: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-FPUz0p"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address"
+      CMAKE_MODULE_PATH: "/home/raptor/nanomq-0.17.5/nng/cmake"
+    buildResult:
+      variable: "NNG_HAVE_PTHREAD_SETNAME_NP"
+      cached: true
+      stdout: |
+        Change Dir: '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-FPUz0p'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_b7ba1/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_b7ba1.dir/build.make CMakeFiles/cmTC_b7ba1.dir/build
+        gmake[1]: Entering directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-FPUz0p'
+        Building C object CMakeFiles/cmTC_b7ba1.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address -DCHECK_FUNCTION_EXISTS=pthread_setname_np -o CMakeFiles/cmTC_b7ba1.dir/CheckFunctionExists.c.o -c /home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-FPUz0p/CheckFunctionExists.c
+        Linking C executable cmTC_b7ba1
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b7ba1.dir/link.txt --verbose=1
+        /usr/bin/cc  -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address -DCHECK_FUNCTION_EXISTS=pthread_setname_np -rdynamic CMakeFiles/cmTC_b7ba1.dir/CheckFunctionExists.c.o -o cmTC_b7ba1  -lpthread 
+        gmake[1]: Leaving directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-FPUz0p'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckLibraryExists.cmake:69 (try_compile)"
+      - "nng/cmake/NNGHelpers.cmake:146 (check_library_exists)"
+      - "nng/src/platform/posix/CMakeLists.txt:37 (nng_check_lib)"
+    checks:
+      - "Looking for gethostbyname in nsl"
+    directories:
+      source: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-F1znGz"
+      binary: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-F1znGz"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address"
+      CMAKE_MODULE_PATH: "/home/raptor/nanomq-0.17.5/nng/cmake"
+    buildResult:
+      variable: "NNG_HAVE_LIBNSL"
+      cached: true
+      stdout: |
+        Change Dir: '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-F1znGz'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_149a7/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_149a7.dir/build.make CMakeFiles/cmTC_149a7.dir/build
+        gmake[1]: Entering directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-F1znGz'
+        Building C object CMakeFiles/cmTC_149a7.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address -DCHECK_FUNCTION_EXISTS=gethostbyname -o CMakeFiles/cmTC_149a7.dir/CheckFunctionExists.c.o -c /home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-F1znGz/CheckFunctionExists.c
+        Linking C executable cmTC_149a7
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_149a7.dir/link.txt --verbose=1
+        /usr/bin/cc  -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address -DCHECK_FUNCTION_EXISTS=gethostbyname -rdynamic CMakeFiles/cmTC_149a7.dir/CheckFunctionExists.c.o -o cmTC_149a7  -lnsl 
+        /usr/bin/ld: cannot find -lnsl: No such file or directory
+        collect2: error: ld returned 1 exit status
+        gmake[1]: *** [CMakeFiles/cmTC_149a7.dir/build.make:99: cmTC_149a7] Error 1
+        gmake[1]: Leaving directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-F1znGz'
+        gmake: *** [Makefile:127: cmTC_149a7/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckLibraryExists.cmake:69 (try_compile)"
+      - "nng/cmake/NNGHelpers.cmake:146 (check_library_exists)"
+      - "nng/src/platform/posix/CMakeLists.txt:38 (nng_check_lib)"
+    checks:
+      - "Looking for socket in socket"
+    directories:
+      source: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-R4rPd6"
+      binary: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-R4rPd6"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address"
+      CMAKE_MODULE_PATH: "/home/raptor/nanomq-0.17.5/nng/cmake"
+    buildResult:
+      variable: "NNG_HAVE_LIBSOCKET"
+      cached: true
+      stdout: |
+        Change Dir: '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-R4rPd6'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_070e2/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_070e2.dir/build.make CMakeFiles/cmTC_070e2.dir/build
+        gmake[1]: Entering directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-R4rPd6'
+        Building C object CMakeFiles/cmTC_070e2.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address -DCHECK_FUNCTION_EXISTS=socket -o CMakeFiles/cmTC_070e2.dir/CheckFunctionExists.c.o -c /home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-R4rPd6/CheckFunctionExists.c
+        Linking C executable cmTC_070e2
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_070e2.dir/link.txt --verbose=1
+        /usr/bin/cc  -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address -DCHECK_FUNCTION_EXISTS=socket -rdynamic CMakeFiles/cmTC_070e2.dir/CheckFunctionExists.c.o -o cmTC_070e2  -lsocket 
+        /usr/bin/ld: cannot find -lsocket: No such file or directory
+        collect2: error: ld returned 1 exit status
+        gmake[1]: *** [CMakeFiles/cmTC_070e2.dir/build.make:99: cmTC_070e2] Error 1
+        gmake[1]: Leaving directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-R4rPd6'
+        gmake: *** [Makefile:127: cmTC_070e2/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckLibraryExists.cmake:69 (try_compile)"
+      - "nng/cmake/NNGHelpers.cmake:146 (check_library_exists)"
+      - "nng/src/platform/posix/CMakeLists.txt:47 (nng_check_lib)"
+    checks:
+      - "Looking for __atomic_load_1 in atomic"
+    directories:
+      source: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-b8p8JU"
+      binary: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-b8p8JU"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address"
+      CMAKE_MODULE_PATH: "/home/raptor/nanomq-0.17.5/nng/cmake"
+    buildResult:
+      variable: "NNG_HAVE_LIBATOMIC"
+      cached: true
+      stdout: |
+        Change Dir: '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-b8p8JU'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_a80f8/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_a80f8.dir/build.make CMakeFiles/cmTC_a80f8.dir/build
+        gmake[1]: Entering directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-b8p8JU'
+        Building C object CMakeFiles/cmTC_a80f8.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address -DCHECK_FUNCTION_EXISTS=__atomic_load_1 -o CMakeFiles/cmTC_a80f8.dir/CheckFunctionExists.c.o -c /home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-b8p8JU/CheckFunctionExists.c
+        <command-line>: warning: conflicting types for built-in function ‘__atomic_load_1’; expected ‘unsigned char(const volatile void *, int)’ [-Wbuiltin-declaration-mismatch]
+        /home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-b8p8JU/CheckFunctionExists.c:7:3: note: in expansion of macro ‘CHECK_FUNCTION_EXISTS’
+            7 |   CHECK_FUNCTION_EXISTS(void);
+              |   ^~~~~~~~~~~~~~~~~~~~~
+        Linking C executable cmTC_a80f8
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a80f8.dir/link.txt --verbose=1
+        /usr/bin/cc  -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address -DCHECK_FUNCTION_EXISTS=__atomic_load_1 -rdynamic CMakeFiles/cmTC_a80f8.dir/CheckFunctionExists.c.o -o cmTC_a80f8  -latomic 
+        gmake[1]: Leaving directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-b8p8JU'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckSymbolExists.cmake:140 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/CheckSymbolExists.cmake:66 (__CHECK_SYMBOL_EXISTS_IMPL)"
+      - "nng/cmake/NNGHelpers.cmake:137 (check_symbol_exists)"
+      - "nng/src/platform/posix/CMakeLists.txt:49 (nng_check_sym)"
+    checks:
+      - "Looking for AF_UNIX"
+    directories:
+      source: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-ACZAJx"
+      binary: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-ACZAJx"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address"
+      CMAKE_MODULE_PATH: "/home/raptor/nanomq-0.17.5/nng/cmake"
+    buildResult:
+      variable: "NNG_HAVE_UNIX_SOCKETS"
+      cached: true
+      stdout: |
+        Change Dir: '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-ACZAJx'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_87976/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_87976.dir/build.make CMakeFiles/cmTC_87976.dir/build
+        gmake[1]: Entering directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-ACZAJx'
+        Building C object CMakeFiles/cmTC_87976.dir/CheckSymbolExists.c.o
+        /usr/bin/cc   -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address  -o CMakeFiles/cmTC_87976.dir/CheckSymbolExists.c.o -c /home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-ACZAJx/CheckSymbolExists.c
+        Linking C executable cmTC_87976
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_87976.dir/link.txt --verbose=1
+        /usr/bin/cc  -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address  -rdynamic CMakeFiles/cmTC_87976.dir/CheckSymbolExists.c.o -o cmTC_87976 
+        gmake[1]: Leaving directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-ACZAJx'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckSymbolExists.cmake:140 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/CheckSymbolExists.cmake:66 (__CHECK_SYMBOL_EXISTS_IMPL)"
+      - "nng/cmake/NNGHelpers.cmake:137 (check_symbol_exists)"
+      - "nng/src/platform/posix/CMakeLists.txt:50 (nng_check_sym)"
+    checks:
+      - "Looking for backtrace_symbols_fd"
+    directories:
+      source: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-uXKrjn"
+      binary: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-uXKrjn"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address"
+      CMAKE_MODULE_PATH: "/home/raptor/nanomq-0.17.5/nng/cmake"
+    buildResult:
+      variable: "NNG_HAVE_BACKTRACE"
+      cached: true
+      stdout: |
+        Change Dir: '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-uXKrjn'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_bb3e9/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_bb3e9.dir/build.make CMakeFiles/cmTC_bb3e9.dir/build
+        gmake[1]: Entering directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-uXKrjn'
+        Building C object CMakeFiles/cmTC_bb3e9.dir/CheckSymbolExists.c.o
+        /usr/bin/cc   -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address  -o CMakeFiles/cmTC_bb3e9.dir/CheckSymbolExists.c.o -c /home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-uXKrjn/CheckSymbolExists.c
+        Linking C executable cmTC_bb3e9
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_bb3e9.dir/link.txt --verbose=1
+        /usr/bin/cc  -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address  -rdynamic CMakeFiles/cmTC_bb3e9.dir/CheckSymbolExists.c.o -o cmTC_bb3e9 
+        gmake[1]: Leaving directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-uXKrjn'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/CheckSourceCompiles.cmake:77 (cmake_check_source_compiles)"
+      - "/usr/share/cmake-3.28/Modules/CheckStructHasMember.cmake:77 (CHECK_SOURCE_COMPILES)"
+      - "nng/cmake/NNGHelpers.cmake:157 (check_struct_has_member)"
+      - "nng/src/platform/posix/CMakeLists.txt:51 (nng_check_struct_member)"
+    checks:
+      - "Performing Test NNG_HAVE_MSG_CONTROL"
+    directories:
+      source: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-R46d35"
+      binary: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-R46d35"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address"
+      CMAKE_MODULE_PATH: "/home/raptor/nanomq-0.17.5/nng/cmake"
+    buildResult:
+      variable: "NNG_HAVE_MSG_CONTROL"
+      cached: true
+      stdout: |
+        Change Dir: '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-R46d35'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_1b0b1/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_1b0b1.dir/build.make CMakeFiles/cmTC_1b0b1.dir/build
+        gmake[1]: Entering directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-R46d35'
+        Building C object CMakeFiles/cmTC_1b0b1.dir/src.c.o
+        /usr/bin/cc -DNNG_HAVE_MSG_CONTROL  -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address  -o CMakeFiles/cmTC_1b0b1.dir/src.c.o -c /home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-R46d35/src.c
+        Linking C executable cmTC_1b0b1
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1b0b1.dir/link.txt --verbose=1
+        /usr/bin/cc  -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address  -rdynamic CMakeFiles/cmTC_1b0b1.dir/src.c.o -o cmTC_1b0b1 
+        gmake[1]: Leaving directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-R46d35'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckSymbolExists.cmake:140 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/CheckSymbolExists.cmake:66 (__CHECK_SYMBOL_EXISTS_IMPL)"
+      - "nng/cmake/NNGHelpers.cmake:137 (check_symbol_exists)"
+      - "nng/src/platform/posix/CMakeLists.txt:52 (nng_check_sym)"
+    checks:
+      - "Looking for eventfd"
+    directories:
+      source: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-AUdb7Z"
+      binary: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-AUdb7Z"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address"
+      CMAKE_MODULE_PATH: "/home/raptor/nanomq-0.17.5/nng/cmake"
+    buildResult:
+      variable: "NNG_HAVE_EVENTFD"
+      cached: true
+      stdout: |
+        Change Dir: '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-AUdb7Z'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_345b2/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_345b2.dir/build.make CMakeFiles/cmTC_345b2.dir/build
+        gmake[1]: Entering directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-AUdb7Z'
+        Building C object CMakeFiles/cmTC_345b2.dir/CheckSymbolExists.c.o
+        /usr/bin/cc   -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address  -o CMakeFiles/cmTC_345b2.dir/CheckSymbolExists.c.o -c /home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-AUdb7Z/CheckSymbolExists.c
+        Linking C executable cmTC_345b2
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_345b2.dir/link.txt --verbose=1
+        /usr/bin/cc  -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address  -rdynamic CMakeFiles/cmTC_345b2.dir/CheckSymbolExists.c.o -o cmTC_345b2 
+        gmake[1]: Leaving directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-AUdb7Z'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckSymbolExists.cmake:140 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/CheckSymbolExists.cmake:66 (__CHECK_SYMBOL_EXISTS_IMPL)"
+      - "nng/cmake/NNGHelpers.cmake:137 (check_symbol_exists)"
+      - "nng/src/platform/posix/CMakeLists.txt:53 (nng_check_sym)"
+    checks:
+      - "Looking for kqueue"
+    directories:
+      source: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-jY2Zlq"
+      binary: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-jY2Zlq"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address"
+      CMAKE_MODULE_PATH: "/home/raptor/nanomq-0.17.5/nng/cmake"
+    buildResult:
+      variable: "NNG_HAVE_KQUEUE"
+      cached: true
+      stdout: |
+        Change Dir: '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-jY2Zlq'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_4e038/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_4e038.dir/build.make CMakeFiles/cmTC_4e038.dir/build
+        gmake[1]: Entering directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-jY2Zlq'
+        Building C object CMakeFiles/cmTC_4e038.dir/CheckSymbolExists.c.o
+        /usr/bin/cc   -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address  -o CMakeFiles/cmTC_4e038.dir/CheckSymbolExists.c.o -c /home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-jY2Zlq/CheckSymbolExists.c
+        /home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-jY2Zlq/CheckSymbolExists.c:2:10: fatal error: sys/event.h: No such file or directory
+            2 | #include <sys/event.h>
+              |          ^~~~~~~~~~~~~
+        compilation terminated.
+        gmake[1]: *** [CMakeFiles/cmTC_4e038.dir/build.make:78: CMakeFiles/cmTC_4e038.dir/CheckSymbolExists.c.o] Error 1
+        gmake[1]: Leaving directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-jY2Zlq'
+        gmake: *** [Makefile:127: cmTC_4e038/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckSymbolExists.cmake:140 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/CheckSymbolExists.cmake:66 (__CHECK_SYMBOL_EXISTS_IMPL)"
+      - "nng/cmake/NNGHelpers.cmake:137 (check_symbol_exists)"
+      - "nng/src/platform/posix/CMakeLists.txt:54 (nng_check_sym)"
+    checks:
+      - "Looking for port_create"
+    directories:
+      source: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-w0tBYJ"
+      binary: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-w0tBYJ"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address"
+      CMAKE_MODULE_PATH: "/home/raptor/nanomq-0.17.5/nng/cmake"
+    buildResult:
+      variable: "NNG_HAVE_PORT_CREATE"
+      cached: true
+      stdout: |
+        Change Dir: '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-w0tBYJ'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_be060/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_be060.dir/build.make CMakeFiles/cmTC_be060.dir/build
+        gmake[1]: Entering directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-w0tBYJ'
+        Building C object CMakeFiles/cmTC_be060.dir/CheckSymbolExists.c.o
+        /usr/bin/cc   -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address  -o CMakeFiles/cmTC_be060.dir/CheckSymbolExists.c.o -c /home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-w0tBYJ/CheckSymbolExists.c
+        /home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-w0tBYJ/CheckSymbolExists.c:2:10: fatal error: port.h: No such file or directory
+            2 | #include <port.h>
+              |          ^~~~~~~~
+        compilation terminated.
+        gmake[1]: *** [CMakeFiles/cmTC_be060.dir/build.make:78: CMakeFiles/cmTC_be060.dir/CheckSymbolExists.c.o] Error 1
+        gmake[1]: Leaving directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-w0tBYJ'
+        gmake: *** [Makefile:127: cmTC_be060/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckSymbolExists.cmake:140 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/CheckSymbolExists.cmake:66 (__CHECK_SYMBOL_EXISTS_IMPL)"
+      - "nng/cmake/NNGHelpers.cmake:137 (check_symbol_exists)"
+      - "nng/src/platform/posix/CMakeLists.txt:55 (nng_check_sym)"
+    checks:
+      - "Looking for epoll_create"
+    directories:
+      source: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-oEXFaF"
+      binary: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-oEXFaF"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address"
+      CMAKE_MODULE_PATH: "/home/raptor/nanomq-0.17.5/nng/cmake"
+    buildResult:
+      variable: "NNG_HAVE_EPOLL"
+      cached: true
+      stdout: |
+        Change Dir: '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-oEXFaF'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_6b5c5/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_6b5c5.dir/build.make CMakeFiles/cmTC_6b5c5.dir/build
+        gmake[1]: Entering directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-oEXFaF'
+        Building C object CMakeFiles/cmTC_6b5c5.dir/CheckSymbolExists.c.o
+        /usr/bin/cc   -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address  -o CMakeFiles/cmTC_6b5c5.dir/CheckSymbolExists.c.o -c /home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-oEXFaF/CheckSymbolExists.c
+        Linking C executable cmTC_6b5c5
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6b5c5.dir/link.txt --verbose=1
+        /usr/bin/cc  -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address  -rdynamic CMakeFiles/cmTC_6b5c5.dir/CheckSymbolExists.c.o -o cmTC_6b5c5 
+        gmake[1]: Leaving directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-oEXFaF'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckSymbolExists.cmake:140 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/CheckSymbolExists.cmake:66 (__CHECK_SYMBOL_EXISTS_IMPL)"
+      - "nng/cmake/NNGHelpers.cmake:137 (check_symbol_exists)"
+      - "nng/src/platform/posix/CMakeLists.txt:56 (nng_check_sym)"
+    checks:
+      - "Looking for epoll_create1"
+    directories:
+      source: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-YiXoPU"
+      binary: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-YiXoPU"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address"
+      CMAKE_MODULE_PATH: "/home/raptor/nanomq-0.17.5/nng/cmake"
+    buildResult:
+      variable: "NNG_HAVE_EPOLL_CREATE1"
+      cached: true
+      stdout: |
+        Change Dir: '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-YiXoPU'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_f9c1c/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_f9c1c.dir/build.make CMakeFiles/cmTC_f9c1c.dir/build
+        gmake[1]: Entering directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-YiXoPU'
+        Building C object CMakeFiles/cmTC_f9c1c.dir/CheckSymbolExists.c.o
+        /usr/bin/cc   -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address  -o CMakeFiles/cmTC_f9c1c.dir/CheckSymbolExists.c.o -c /home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-YiXoPU/CheckSymbolExists.c
+        Linking C executable cmTC_f9c1c
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f9c1c.dir/link.txt --verbose=1
+        /usr/bin/cc  -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address  -rdynamic CMakeFiles/cmTC_f9c1c.dir/CheckSymbolExists.c.o -o cmTC_f9c1c 
+        gmake[1]: Leaving directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-YiXoPU'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckSymbolExists.cmake:140 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/CheckSymbolExists.cmake:66 (__CHECK_SYMBOL_EXISTS_IMPL)"
+      - "nng/cmake/NNGHelpers.cmake:137 (check_symbol_exists)"
+      - "nng/src/platform/posix/CMakeLists.txt:57 (nng_check_sym)"
+    checks:
+      - "Looking for getpeereid"
+    directories:
+      source: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-EowouA"
+      binary: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-EowouA"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address"
+      CMAKE_MODULE_PATH: "/home/raptor/nanomq-0.17.5/nng/cmake"
+    buildResult:
+      variable: "NNG_HAVE_GETPEEREID"
+      cached: true
+      stdout: |
+        Change Dir: '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-EowouA'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_79d99/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_79d99.dir/build.make CMakeFiles/cmTC_79d99.dir/build
+        gmake[1]: Entering directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-EowouA'
+        Building C object CMakeFiles/cmTC_79d99.dir/CheckSymbolExists.c.o
+        /usr/bin/cc   -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address  -o CMakeFiles/cmTC_79d99.dir/CheckSymbolExists.c.o -c /home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-EowouA/CheckSymbolExists.c
+        /home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-EowouA/CheckSymbolExists.c: In function ‘main’:
+        /home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-EowouA/CheckSymbolExists.c:8:19: error: ‘getpeereid’ undeclared (first use in this function); did you mean ‘getegid’?
+            8 |   return ((int*)(&getpeereid))[argc];
+              |                   ^~~~~~~~~~
+              |                   getegid
+        /home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-EowouA/CheckSymbolExists.c:8:19: note: each undeclared identifier is reported only once for each function it appears in
+        /home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-EowouA/CheckSymbolExists.c:4:14: warning: parameter ‘argc’ set but not used [-Wunused-but-set-parameter]
+            4 | int main(int argc, char** argv)
+              |          ~~~~^~~~
+        gmake[1]: *** [CMakeFiles/cmTC_79d99.dir/build.make:78: CMakeFiles/cmTC_79d99.dir/CheckSymbolExists.c.o] Error 1
+        gmake[1]: Leaving directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-EowouA'
+        gmake: *** [Makefile:127: cmTC_79d99/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckSymbolExists.cmake:140 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/CheckSymbolExists.cmake:66 (__CHECK_SYMBOL_EXISTS_IMPL)"
+      - "nng/cmake/NNGHelpers.cmake:137 (check_symbol_exists)"
+      - "nng/src/platform/posix/CMakeLists.txt:58 (nng_check_sym)"
+    checks:
+      - "Looking for SO_PEERCRED"
+    directories:
+      source: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-YggESI"
+      binary: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-YggESI"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address"
+      CMAKE_MODULE_PATH: "/home/raptor/nanomq-0.17.5/nng/cmake"
+    buildResult:
+      variable: "NNG_HAVE_SOPEERCRED"
+      cached: true
+      stdout: |
+        Change Dir: '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-YggESI'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_1532f/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_1532f.dir/build.make CMakeFiles/cmTC_1532f.dir/build
+        gmake[1]: Entering directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-YggESI'
+        Building C object CMakeFiles/cmTC_1532f.dir/CheckSymbolExists.c.o
+        /usr/bin/cc   -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address  -o CMakeFiles/cmTC_1532f.dir/CheckSymbolExists.c.o -c /home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-YggESI/CheckSymbolExists.c
+        Linking C executable cmTC_1532f
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1532f.dir/link.txt --verbose=1
+        /usr/bin/cc  -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address  -rdynamic CMakeFiles/cmTC_1532f.dir/CheckSymbolExists.c.o -o cmTC_1532f 
+        gmake[1]: Leaving directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-YggESI'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/CheckSourceCompiles.cmake:77 (cmake_check_source_compiles)"
+      - "/usr/share/cmake-3.28/Modules/CheckStructHasMember.cmake:77 (CHECK_SOURCE_COMPILES)"
+      - "nng/cmake/NNGHelpers.cmake:157 (check_struct_has_member)"
+      - "nng/src/platform/posix/CMakeLists.txt:59 (nng_check_struct_member)"
+    checks:
+      - "Performing Test NNG_HAVE_SOCKPEERCRED"
+    directories:
+      source: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-rRhBWs"
+      binary: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-rRhBWs"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address"
+      CMAKE_MODULE_PATH: "/home/raptor/nanomq-0.17.5/nng/cmake"
+    buildResult:
+      variable: "NNG_HAVE_SOCKPEERCRED"
+      cached: true
+      stdout: |
+        Change Dir: '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-rRhBWs'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_94d7e/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_94d7e.dir/build.make CMakeFiles/cmTC_94d7e.dir/build
+        gmake[1]: Entering directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-rRhBWs'
+        Building C object CMakeFiles/cmTC_94d7e.dir/src.c.o
+        /usr/bin/cc -DNNG_HAVE_SOCKPEERCRED  -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address  -o CMakeFiles/cmTC_94d7e.dir/src.c.o -c /home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-rRhBWs/src.c
+        /home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-rRhBWs/src.c: In function ‘main’:
+        /home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-rRhBWs/src.c:6:42: error: invalid use of undefined type ‘struct sockpeercred’
+            6 |   (void)sizeof(((struct sockpeercred *)0)->uid);
+              |                                          ^~
+        gmake[1]: *** [CMakeFiles/cmTC_94d7e.dir/build.make:78: CMakeFiles/cmTC_94d7e.dir/src.c.o] Error 1
+        gmake[1]: Leaving directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-rRhBWs'
+        gmake: *** [Makefile:127: cmTC_94d7e/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckSymbolExists.cmake:140 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/CheckSymbolExists.cmake:66 (__CHECK_SYMBOL_EXISTS_IMPL)"
+      - "nng/cmake/NNGHelpers.cmake:137 (check_symbol_exists)"
+      - "nng/src/platform/posix/CMakeLists.txt:60 (nng_check_sym)"
+    checks:
+      - "Looking for LOCAL_PEERCRED"
+    directories:
+      source: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-4GCYWJ"
+      binary: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-4GCYWJ"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address"
+      CMAKE_MODULE_PATH: "/home/raptor/nanomq-0.17.5/nng/cmake"
+    buildResult:
+      variable: "NNG_HAVE_LOCALPEERCRED"
+      cached: true
+      stdout: |
+        Change Dir: '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-4GCYWJ'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_e2d15/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_e2d15.dir/build.make CMakeFiles/cmTC_e2d15.dir/build
+        gmake[1]: Entering directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-4GCYWJ'
+        Building C object CMakeFiles/cmTC_e2d15.dir/CheckSymbolExists.c.o
+        /usr/bin/cc   -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address  -o CMakeFiles/cmTC_e2d15.dir/CheckSymbolExists.c.o -c /home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-4GCYWJ/CheckSymbolExists.c
+        /home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-4GCYWJ/CheckSymbolExists.c: In function ‘main’:
+        /home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-4GCYWJ/CheckSymbolExists.c:8:19: error: ‘LOCAL_PEERCRED’ undeclared (first use in this function)
+            8 |   return ((int*)(&LOCAL_PEERCRED))[argc];
+              |                   ^~~~~~~~~~~~~~
+        /home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-4GCYWJ/CheckSymbolExists.c:8:19: note: each undeclared identifier is reported only once for each function it appears in
+        /home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-4GCYWJ/CheckSymbolExists.c:4:14: warning: parameter ‘argc’ set but not used [-Wunused-but-set-parameter]
+            4 | int main(int argc, char** argv)
+              |          ~~~~^~~~
+        gmake[1]: *** [CMakeFiles/cmTC_e2d15.dir/build.make:78: CMakeFiles/cmTC_e2d15.dir/CheckSymbolExists.c.o] Error 1
+        gmake[1]: Leaving directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-4GCYWJ'
+        gmake: *** [Makefile:127: cmTC_e2d15/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckSymbolExists.cmake:140 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/CheckSymbolExists.cmake:66 (__CHECK_SYMBOL_EXISTS_IMPL)"
+      - "nng/cmake/NNGHelpers.cmake:137 (check_symbol_exists)"
+      - "nng/src/platform/posix/CMakeLists.txt:61 (nng_check_sym)"
+    checks:
+      - "Looking for LOCAL_PEERPID"
+    directories:
+      source: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-pn0eE5"
+      binary: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-pn0eE5"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address"
+      CMAKE_MODULE_PATH: "/home/raptor/nanomq-0.17.5/nng/cmake"
+    buildResult:
+      variable: "NNG_HAVE_LOCALPEERPID"
+      cached: true
+      stdout: |
+        Change Dir: '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-pn0eE5'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_d2e49/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_d2e49.dir/build.make CMakeFiles/cmTC_d2e49.dir/build
+        gmake[1]: Entering directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-pn0eE5'
+        Building C object CMakeFiles/cmTC_d2e49.dir/CheckSymbolExists.c.o
+        /usr/bin/cc   -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address  -o CMakeFiles/cmTC_d2e49.dir/CheckSymbolExists.c.o -c /home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-pn0eE5/CheckSymbolExists.c
+        /home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-pn0eE5/CheckSymbolExists.c: In function ‘main’:
+        /home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-pn0eE5/CheckSymbolExists.c:8:19: error: ‘LOCAL_PEERPID’ undeclared (first use in this function)
+            8 |   return ((int*)(&LOCAL_PEERPID))[argc];
+              |                   ^~~~~~~~~~~~~
+        /home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-pn0eE5/CheckSymbolExists.c:8:19: note: each undeclared identifier is reported only once for each function it appears in
+        /home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-pn0eE5/CheckSymbolExists.c:4:14: warning: parameter ‘argc’ set but not used [-Wunused-but-set-parameter]
+            4 | int main(int argc, char** argv)
+              |          ~~~~^~~~
+        gmake[1]: *** [CMakeFiles/cmTC_d2e49.dir/build.make:78: CMakeFiles/cmTC_d2e49.dir/CheckSymbolExists.c.o] Error 1
+        gmake[1]: Leaving directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-pn0eE5'
+        gmake: *** [Makefile:127: cmTC_d2e49/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckSymbolExists.cmake:140 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/CheckSymbolExists.cmake:66 (__CHECK_SYMBOL_EXISTS_IMPL)"
+      - "nng/cmake/NNGHelpers.cmake:137 (check_symbol_exists)"
+      - "nng/src/platform/posix/CMakeLists.txt:62 (nng_check_sym)"
+    checks:
+      - "Looking for getpeerucred"
+    directories:
+      source: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-IVgivv"
+      binary: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-IVgivv"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address"
+      CMAKE_MODULE_PATH: "/home/raptor/nanomq-0.17.5/nng/cmake"
+    buildResult:
+      variable: "NNG_HAVE_GETPEERUCRED"
+      cached: true
+      stdout: |
+        Change Dir: '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-IVgivv'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_e9ac9/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_e9ac9.dir/build.make CMakeFiles/cmTC_e9ac9.dir/build
+        gmake[1]: Entering directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-IVgivv'
+        Building C object CMakeFiles/cmTC_e9ac9.dir/CheckSymbolExists.c.o
+        /usr/bin/cc   -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address  -o CMakeFiles/cmTC_e9ac9.dir/CheckSymbolExists.c.o -c /home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-IVgivv/CheckSymbolExists.c
+        /home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-IVgivv/CheckSymbolExists.c:2:10: fatal error: ucred.h: No such file or directory
+            2 | #include <ucred.h>
+              |          ^~~~~~~~~
+        compilation terminated.
+        gmake[1]: *** [CMakeFiles/cmTC_e9ac9.dir/build.make:78: CMakeFiles/cmTC_e9ac9.dir/CheckSymbolExists.c.o] Error 1
+        gmake[1]: Leaving directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-IVgivv'
+        gmake: *** [Makefile:127: cmTC_e9ac9/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckSymbolExists.cmake:140 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/CheckSymbolExists.cmake:66 (__CHECK_SYMBOL_EXISTS_IMPL)"
+      - "nng/cmake/NNGHelpers.cmake:137 (check_symbol_exists)"
+      - "nng/src/platform/posix/CMakeLists.txt:63 (nng_check_sym)"
+    checks:
+      - "Looking for atomic_flag_test_and_set"
+    directories:
+      source: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-2sH9ka"
+      binary: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-2sH9ka"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address"
+      CMAKE_MODULE_PATH: "/home/raptor/nanomq-0.17.5/nng/cmake"
+    buildResult:
+      variable: "NNG_HAVE_STDATOMIC"
+      cached: true
+      stdout: |
+        Change Dir: '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-2sH9ka'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_04d51/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_04d51.dir/build.make CMakeFiles/cmTC_04d51.dir/build
+        gmake[1]: Entering directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-2sH9ka'
+        Building C object CMakeFiles/cmTC_04d51.dir/CheckSymbolExists.c.o
+        /usr/bin/cc   -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address  -o CMakeFiles/cmTC_04d51.dir/CheckSymbolExists.c.o -c /home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-2sH9ka/CheckSymbolExists.c
+        Linking C executable cmTC_04d51
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_04d51.dir/link.txt --verbose=1
+        /usr/bin/cc  -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address  -rdynamic CMakeFiles/cmTC_04d51.dir/CheckSymbolExists.c.o -o cmTC_04d51 
+        gmake[1]: Leaving directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-2sH9ka'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckSymbolExists.cmake:140 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/CheckSymbolExists.cmake:66 (__CHECK_SYMBOL_EXISTS_IMPL)"
+      - "nng/cmake/NNGHelpers.cmake:137 (check_symbol_exists)"
+      - "nng/tests/CMakeLists.txt:47 (nng_check_sym)"
+    checks:
+      - "Looking for nl_langinfo"
+    directories:
+      source: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-jqSQ12"
+      binary: "/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-jqSQ12"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address"
+      CMAKE_MODULE_PATH: "/home/raptor/nanomq-0.17.5/nng/cmake"
+    buildResult:
+      variable: "NNG_HAVE_LANGINFO"
+      cached: true
+      stdout: |
+        Change Dir: '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-jqSQ12'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_f5aeb/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_f5aeb.dir/build.make CMakeFiles/cmTC_f5aeb.dir/build
+        gmake[1]: Entering directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-jqSQ12'
+        Building C object CMakeFiles/cmTC_f5aeb.dir/CheckSymbolExists.c.o
+        /usr/bin/cc   -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address  -o CMakeFiles/cmTC_f5aeb.dir/CheckSymbolExists.c.o -c /home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-jqSQ12/CheckSymbolExists.c
+        Linking C executable cmTC_f5aeb
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f5aeb.dir/link.txt --verbose=1
+        /usr/bin/cc  -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address  -rdynamic CMakeFiles/cmTC_f5aeb.dir/CheckSymbolExists.c.o -o cmTC_f5aeb 
+        gmake[1]: Leaving directory '/home/raptor/nanomq-0.17.5/CMakeFiles/CMakeScratch/TryCompile-jqSQ12'
+        
+      exitCode: 0
+...

@@ -1,0 +1,1 @@
+/usr/bin/cc  -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address -g CMakeFiles/buf_size_test.dir/buf_size_test.c.o -o buf_size_test  ../../libnng_testing.a -lrt -lpthread -latomic 

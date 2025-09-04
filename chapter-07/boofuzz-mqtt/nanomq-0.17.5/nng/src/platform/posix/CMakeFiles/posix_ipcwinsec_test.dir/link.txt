@@ -1,0 +1,1 @@
+/usr/bin/cc  -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address -g CMakeFiles/posix_ipcwinsec_test.dir/posix_ipcwinsec_test.c.o -o posix_ipcwinsec_test  ../../../libnng_testing.a -lrt -lpthread -latomic 

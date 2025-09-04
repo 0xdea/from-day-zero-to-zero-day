@@ -1,0 +1,1 @@
+/usr/bin/cc  -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address -g CMakeFiles/xsurvey_test.dir/xsurvey_test.c.o -o xsurvey_test  ../../../../libnng_testing.a -lrt -lpthread -latomic 

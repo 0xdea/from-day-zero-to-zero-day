@@ -1,0 +1,1 @@
+/usr/bin/cc  -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address -g CMakeFiles/compat_cmsg.dir/compat_cmsg.c.o CMakeFiles/compat_cmsg.dir/compat_testutil.c.o -o compat_cmsg  ../libnng_testing.a -lrt -lpthread -latomic 

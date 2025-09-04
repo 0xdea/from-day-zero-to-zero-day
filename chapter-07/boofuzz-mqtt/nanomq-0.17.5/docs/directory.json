@@ -1,0 +1,164 @@
+{
+  "cn": [
+    {
+      "title": "NanoMQ 介绍",
+      "path": "./"
+    },
+    {
+      "title": "开始使用",
+      "path": "quick-start"
+    },
+    {
+      "title": "功能特性",
+      "path": "features"
+    },
+    {
+      "title": "配置说明",
+      "children": [
+        {
+          "title": "配置说明(v014)",
+          "path": "config-description/v014"
+        },
+        {
+          "title": "配置说明(v013)",
+          "path": "config-description/v013"
+        }
+      ]
+    },
+    {
+      "title": "编译选项",
+      "path": "build-options"
+    },
+    {
+      "title": "HTTP APIs",
+      "children": [
+        {
+          "title": "HTTP APIs",
+          "path": "http-api/v4"
+        },
+        {
+          "title": "HTTP-API (v1)",
+          "path": "http-api/v1"
+        }
+      ]
+    },
+    {
+      "title": "Web Hook",
+      "path": "web-hook"
+    },
+    {
+      "title": "工具集",
+      "path": "toolkit"
+    },
+    {
+      "title": "测试报告",
+      "path": "test-report"
+    },
+    {
+      "title": "ZMQ 网关",
+      "path": "zmq-gateway"
+    },
+    {
+      "title": "Docker",
+      "path": "docker"
+    },
+    {
+      "title": "MQTT 桥接",
+      "children": [
+        {
+          "title": "MQTT over TCP桥接",
+          "path": "bridges/tcp-bridge"
+        },
+        {
+          "title": "MQTT over QUIC桥接",
+          "path": "bridges/quic-bridge"
+        }
+      ]
+    },
+    {
+      "title": "DDS",
+      "path": "dds"
+    }
+  ],
+  "en": [
+    {
+      "title": "Introduction",
+      "path": "./"
+    },
+    {
+      "title": "Getting Started",
+      "path": "quick-start"
+    },
+    {
+      "title": "Configuration",
+      "children": [
+        {
+          "title": "Configuration(v014)",
+          "path": "config-description/v014"
+        },
+        {
+          "title": "Configuration(v013)",
+          "path": "config-description/v013"
+        }
+      ]
+    },
+    {
+      "title": "Features",
+      "path": "features"
+    },
+    {
+      "title": "Build Options",
+      "path": "build-options"
+    },
+    {
+      "title": "HTTP APIs",
+      "children": [
+        {
+          "title": "HTTP APIs",
+          "path": "http-api/v4"
+        },
+        {
+          "title": "HTTP-API (v1)",
+          "path": "http-api/v1"
+        }
+      ]
+    },
+    {
+      "title": "Web Hook",
+      "path": "web-hook"
+    },
+    {
+      "title": "TOOLKIT",
+      "path": "toolkit"
+    },
+    {
+      "title": "Test Report",
+      "path": "test-report"
+    },
+    {
+      "title": "ZMQ Gateway",
+      "path": "zmq-gateway"
+    },
+    {
+      "title": "Docker",
+      "path": "docker"
+    },
+    {
+      "title": "MQTT Bridge",
+      "children": [
+        {
+          "title": "MQTT over TCP Bridge",
+          "path": "bridges/tcp-bridge"
+        },
+        {
+          "title": "MQTT over QUIC Bridge",
+          "path": "bridges/quic-bridge"
+        }
+      ]
+    },
+    {
+      "title": "DDS",
+      "path": "dds"
+    }
+  ]
+}

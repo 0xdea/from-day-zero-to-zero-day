@@ -1,0 +1,2 @@
+/usr/bin/ar qc libapps.a CMakeFiles/apps.dir/broker.c.o CMakeFiles/apps.dir/broker_test.c.o
+/usr/bin/ranlib libapps.a

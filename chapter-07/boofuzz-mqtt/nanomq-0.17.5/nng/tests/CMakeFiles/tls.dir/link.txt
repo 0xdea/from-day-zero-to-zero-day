@@ -1,0 +1,1 @@
+/usr/bin/cc  -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address -g CMakeFiles/tls.dir/tls.c.o CMakeFiles/tls.dir/convey.c.o -o tls  ../libnng_testing.a -lrt -lpthread -latomic 

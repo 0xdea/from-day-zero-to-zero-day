@@ -1,0 +1,1 @@
+/usr/bin/cc  -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address -g CMakeFiles/remote_thr.dir/perf.c.o -o remote_thr  ../../../libnng.a -lrt -lpthread -latomic 

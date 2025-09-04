@@ -1,0 +1,1 @@
+/usr/bin/cc  -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address -g CMakeFiles/rep_test.dir/rep_test.c.o -o rep_test  ../../../../libnng_testing.a -lrt -lpthread -latomic 

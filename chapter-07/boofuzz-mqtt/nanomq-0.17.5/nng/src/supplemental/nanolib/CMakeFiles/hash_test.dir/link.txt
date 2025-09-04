@@ -1,0 +1,1 @@
+/usr/bin/cc  -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address -g CMakeFiles/hash_test.dir/hash_test.c.o -o hash_test  ../../../libnng_testing.a -lrt -lpthread -latomic 

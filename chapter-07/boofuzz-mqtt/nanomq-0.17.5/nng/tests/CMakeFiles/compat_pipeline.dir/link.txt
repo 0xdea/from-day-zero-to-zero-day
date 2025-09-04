@@ -1,0 +1,1 @@
+/usr/bin/cc  -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address -g CMakeFiles/compat_pipeline.dir/compat_pipeline.c.o CMakeFiles/compat_pipeline.dir/compat_testutil.c.o -o compat_pipeline  ../libnng_testing.a -lrt -lpthread -latomic 

@@ -1,0 +1,45 @@
+name: Function test
+
+on:
+  push:
+  pull_request:
+  release:
+    types:
+    - published
+
+jobs:
+  function_test:
+    runs-on: ubuntu-22.04
+
+    steps:
+    - name: install lib
+      run: |
+        sudo apt update
+        sudo apt install -y cmake ninja-build rpm
+        sudo apt install -y pip
+        sudo apt install -y python3-pip
+        sudo apt install -y mosquitto-clients
+        pip install Jinja2
+        pip install paho-mqtt
+
+    - uses: actions/checkout@v3
+    - run: git submodule update --init --recursive
+    - name: build
+      run: |
+        set -eu
+        git clone https://github.com/Mbed-TLS/mbedtls.git && cd mbedtls
+        git reset --hard 919ff15ec
+        mkdir build && cd build
+        cmake ..
+        cmake --build .
+        sudo make install
+        cd ../..
+
+        mkdir -p build
+        cd build
+        cmake -DDEBUG=ON -DASAN=ON -DNNG_ENABLE_TLS=ON -DNOLOG=OFF ..
+        make
+        sudo make install
+    - name: test
+      run: |
+        python3 .github/scripts/test.py 

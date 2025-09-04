@@ -1,0 +1,98 @@
+name: Deploy Docs
+
+concurrency: 
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'docs/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-20.04
+    if: github.repository_owner == 'emqx'
+    steps:
+    - name: clone docs
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+        path: docs-files
+
+    - name: clone frontend
+      uses: actions/checkout@v3
+      with:
+        repository: 'emqx/emqx-io-docs-frontend'
+        token: ${{ secrets.CI_GIT_TOKEN }}
+        path: frontend
+
+    - name: use node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.15
+
+    - name: set env
+      run: |
+         BRANCH=$(echo ${{ github.ref }} | sed -r  "s ^refs/heads/|^refs/tags/(.*) \1 g")
+         if [ "$BRANCH" = "master" ];then
+         VERSION="latest"
+         else
+         VERSION=v$BRANCH
+         fi
+         echo "DOCS_BRANCH=$BRANCH" >> $GITHUB_ENV
+         echo "VERSION=$VERSION" >> $GITHUB_ENV
+         echo "DOCS_TYPE=nanomq" >> $GITHUB_ENV
+
+    - name: remove unused files
+      run: |
+        cd docs-files
+        python3 .github/scripts/remove_unused.py $(pwd)/docs
+
+    - name: move files
+      run: |
+        rm frontend/docs/en/README.md || true
+        rm frontend/docs/zh/README.md || true
+        rm frontend/docs/*.md || true
+        rm frontend/README.md
+        mkdir -p frontend/docs/en/${VERSION}/
+        mkdir -p frontend/docs/zh/${VERSION}/
+        mkdir -p frontend/docs/.vuepress/public/api/
+        cp -r docs-files/docs/en_US/* frontend/docs/en/${VERSION}/
+        cp -r docs-files/docs/zh_CN/* frontend/docs/zh/${VERSION}/
+        cp docs-files/docs/directory.json frontend/docs/.vuepress/config/directory.json
+        echo "[\"latest\"]" > frontend/docs/.vuepress/public/api/${DOCS_TYPE}_versions.json
+
+    - name: build docs
+      run: |
+        cd frontend
+        yarn && yarn build
+
+    - name: upload dist
+      run: |
+        cd frontend/docs/.vuepress/
+        pip3 install coscmd
+        coscmd config -a ${{ secrets.TENCENT_COS_ID }} -s ${{ secrets.TENCENT_COS_KEY }} -b nanomq-io-1302406139 -r ap-hongkong
+        coscmd delete -r -f docs/en/${VERSION} || true
+        coscmd delete -r -f docs/zh/${VERSION} || true
+        coscmd config -a ${{ secrets.TENCENT_COS_ID }} -s ${{ secrets.TENCENT_COS_KEY }} -b nanomq-io-1302406139 -e cos.accelerate.myqcloud.com
+        coscmd upload -r dist/ /docs/
+
+    - name: refresh cdn cache
+      run: |
+        pip3 install tccli
+        tccli configure set secretId ${{ secrets.TENCENT_COS_ID }}
+        tccli configure set secretKey ${{ secrets.TENCENT_COS_KEY }}
+        tccli configure set region ap-hongkong
+        tccli cdn PurgePathCache --Paths '["https://nanomq.io/docs/", "https://nanomq-docs.emqx.net/"]' --FlushType delete
+
+    - name: update search index
+      uses: Swilder-M/docsearch-scraper-simple@v4
+      env:
+        APPLICATION_ID: ${{ secrets.ALGOLIA_APPLICATION_ID }}
+        API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
+      with:
+        docs_type: ${{ env.DOCS_TYPE }}
+        docs_version: ${{ env.VERSION }}

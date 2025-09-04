@@ -1,0 +1,1 @@
+/usr/bin/cc  -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address -g CMakeFiles/httpserver.dir/httpserver.c.o CMakeFiles/httpserver.dir/convey.c.o -o httpserver  ../libnng_testing.a -lrt -lpthread -latomic 

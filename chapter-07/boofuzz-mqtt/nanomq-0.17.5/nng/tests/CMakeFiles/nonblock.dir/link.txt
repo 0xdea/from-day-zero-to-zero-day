@@ -1,0 +1,1 @@
+/usr/bin/cc  -g -fsanitize=address -Wall -Wextra -fno-omit-frame-pointer  -fsanitize=address -g CMakeFiles/nonblock.dir/nonblock.c.o CMakeFiles/nonblock.dir/convey.c.o -o nonblock  ../libnng_testing.a -lrt -lpthread -latomic 

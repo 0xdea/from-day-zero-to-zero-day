@@ -1,0 +1,29 @@
+FROM gcc:11 as builder
+
+COPY . /nanomq
+
+RUN apt update && DEBIAN_FRONTEND=noninteractive apt install -y --no-install-recommends libmbedtls-dev cmake && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /nanomq/build
+
+RUN cmake -DNNG_ENABLE_TLS=ON -DNNG_ENABLE_SQLITE=ON .. && make
+
+FROM debian:11-slim
+
+WORKDIR /usr/local/nanomq
+
+COPY --from=builder /nanomq/build/nanomq/nanomq /usr/local/nanomq/
+COPY --from=builder /nanomq/build/nanomq_cli/nanomq_cli /usr/local/nanomq/
+COPY etc/nanomq.conf /etc/nanomq.conf
+COPY deploy/docker/docker-entrypoint.sh /usr/bin/docker-entrypoint.sh
+
+RUN ln -s /usr/local/nanomq/nanomq /usr/bin/nanomq && \
+    ln -s /usr/local/nanomq/nanomq_cli /usr/bin/nanomq_cli
+
+RUN apt update && DEBIAN_FRONTEND=noninteractive apt install -y --no-install-recommends libmbedtls-dev libatomic1 && rm -rf /var/lib/apt/lists/*
+
+EXPOSE 1883 8883
+
+ENTRYPOINT ["/usr/bin/docker-entrypoint.sh"]
+
+CMD ["--conf", "/etc/nanomq.conf"]
