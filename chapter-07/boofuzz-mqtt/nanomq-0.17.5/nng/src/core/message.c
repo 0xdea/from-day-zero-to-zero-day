@@ -771,7 +771,7 @@ nni_msg_get_pub_pid(nni_msg *m)
 
 	pos = nni_msg_body(m);
 	NNI_GET16(pos, len);
-	NNI_GET16(pos + len + 2, pid);
+	NNI_GET16(pos + len + 2, pid); // VULN: crash
 	return pid;
 }
 

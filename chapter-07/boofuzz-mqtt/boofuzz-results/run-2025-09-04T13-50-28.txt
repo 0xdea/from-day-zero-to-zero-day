@@ -1,0 +1,76 @@
+==223245==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x507000037086 at pc 0x57c8dd98a8fe bp 0x76cf44fffa40 sp 0x76cf44fffa30
+READ of size 1 at 0x507000037086 thread T9
+...
+    #0 0x57c8dd98a8fd in nni_msg_get_pub_pid /home/raptor/nanomq-0.17.5/nng/src/core/message.c:774
+    #1 0x57c8dda9fb26 in tcptran_pipe_recv_cb /home/raptor/nanomq-0.17.5/nng/src/sp/transport/mqtt/broker_tcp.c:749
+    #2 0x57c8dd99950d in nni_taskq_thread /home/raptor/nanomq-0.17.5/nng/src/core/taskq.c:50
+    #3 0x57c8dd99a8c7 in nni_thr_wrap /home/raptor/nanomq-0.17.5/nng/src/core/thread.c:94
+    #4 0x57c8dd9a39a9 in nni_plat_thr_main /home/raptor/nanomq-0.17.5/nng/src/platform/posix/posix_thread.c:266
+    #5 0x76cf5145ea41 in asan_thread_start ../../../../src/libsanitizer/asan/asan_interceptors.cpp:234
+    #6 0x76cf5109caa3 in start_thread nptl/pthread_create.c:447
+    #7 0x76cf51129c3b in clone3 ../sysdeps/unix/sysv/linux/x86_64/clone3.S:78
+
+0x507000037086 is located 84 bytes after 66-byte region [0x507000036ff0,0x507000037032)
+allocated by thread T9 here:
+    #0 0x76cf514fd340 in calloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:77
+    #1 0x57c8dd99f0f2 in nni_zalloc /home/raptor/nanomq-0.17.5/nng/src/platform/posix/posix_alloc.c:26
+    #2 0x57c8dd987f51 in nni_chunk_grow /home/raptor/nanomq-0.17.5/nng/src/core/message.c:158
+    #3 0x57c8dd9891cd in nni_msg_alloc /home/raptor/nanomq-0.17.5/nng/src/core/message.c:397
+    #4 0x57c8dda9f57c in tcptran_pipe_recv_cb /home/raptor/nanomq-0.17.5/nng/src/sp/transport/mqtt/broker_tcp.c:685
+    #5 0x57c8dd99950d in nni_taskq_thread /home/raptor/nanomq-0.17.5/nng/src/core/taskq.c:50
+    #6 0x57c8dd99a8c7 in nni_thr_wrap /home/raptor/nanomq-0.17.5/nng/src/core/thread.c:94
+    #7 0x57c8dd9a39a9 in nni_plat_thr_main /home/raptor/nanomq-0.17.5/nng/src/platform/posix/posix_thread.c:266
+    #8 0x76cf5145ea41 in asan_thread_start ../../../../src/libsanitizer/asan/asan_interceptors.cpp:234
+    #9 0x76cf5109caa3 in start_thread nptl/pthread_create.c:447
+
+Thread T9 created by T0 here:
+    #0 0x76cf514f51f9 in pthread_create ../../../../src/libsanitizer/asan/asan_interceptors.cpp:245
+    #1 0x57c8dd9a3abe in nni_plat_thr_init /home/raptor/nanomq-0.17.5/nng/src/platform/posix/posix_thread.c:279
+    #2 0x57c8dd99ab73 in nni_thr_init /home/raptor/nanomq-0.17.5/nng/src/core/thread.c:121
+    #3 0x57c8dd999831 in nni_taskq_init /home/raptor/nanomq-0.17.5/nng/src/core/taskq.c:95
+    #4 0x57c8dd99a591 in nni_taskq_sys_init /home/raptor/nanomq-0.17.5/nng/src/core/taskq.c:294
+    #5 0x57c8dd9844e1 in nni_init_helper /home/raptor/nanomq-0.17.5/nng/src/core/init.c:35
+    #6 0x57c8dd9a3e63 in nni_plat_init /home/raptor/nanomq-0.17.5/nng/src/platform/posix/posix_thread.c:422
+    #7 0x57c8dd984562 in nni_init /home/raptor/nanomq-0.17.5/nng/src/core/init.c:58
+    #8 0x57c8dd9c8fce in nni_proto_mqtt_open /home/raptor/nanomq-0.17.5/nng/src/sp/protocol.c:37
+    #9 0x57c8dd9c53de in nng_nmq_tcp0_open /home/raptor/nanomq-0.17.5/nng/src/sp/protocol/mqtt/nmq_mqtt.c:1320
+    #10 0x57c8dd968e21 in broker /home/raptor/nanomq-0.17.5/nanomq/apps/broker.c:871
+    #11 0x57c8dd96d4ce in broker_start /home/raptor/nanomq-0.17.5/nanomq/apps/broker.c:1602
+    #12 0x57c8dd9383f9 in main /home/raptor/nanomq-0.17.5/nanomq/nanomq.c:142
+    #13 0x76cf5102a1c9 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+    #14 0x76cf5102a28a in __libc_start_main_impl ../csu/libc-start.c:360
+    #15 0x57c8dd936734 in _start (/home/raptor/nanomq-0.17.5/nanomq/nanomq+0x5f734) (BuildId: c2e25d61284963f1d3b7201dd201c9bd4dbfd671)
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow /home/raptor/nanomq-0.17.5/nng/src/core/message.c:774 in nni_msg_get_pub_pid
+Shadow bytes around the buggy address:
+  0x507000036e00: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x507000036e80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x507000036f00: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x507000036f80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa 00 00
+  0x507000037000: 00 00 00 00 00 00 02 fa fa fa fa fa fa fa fa fa
+=>0x507000037080:[fa]fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x507000037100: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x507000037180: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x507000037200: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x507000037280: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x507000037300: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+==223245==ABORTING
