@@ -2785,8 +2785,7 @@ read_byte(struct pos_buf *buf, uint8_t *val)
 		return MQTT_ERR_NOMEM;
 	}
 
-	*val = *(buf->curpos++);
-
+	*val = *(buf->curpos++); // VULN: crash
 	return 0;
 }
 

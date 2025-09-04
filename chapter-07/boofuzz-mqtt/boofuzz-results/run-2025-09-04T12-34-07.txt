@@ -1,0 +1,75 @@
+==221159==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x50200000101c at pc 0x595b9cd83597 bp 0x7687dc1ff990 sp 0x7687dc1ff980
+READ of size 1 at 0x50200000101c thread T24
+    #0 0x595b9cd83596 in get_var_integer /home/raptor/nanomq-0.17.5/nng/src/sp/protocol/mqtt/mqtt_parser.c:174
+    #1 0x595b9cd86041 in conn_handler /home/raptor/nanomq-0.17.5/nng/src/sp/protocol/mqtt/mqtt_parser.c:622
+    #2 0x595b9ce6d155 in tcptran_pipe_nego_cb /home/raptor/nanomq-0.17.5/nng/src/sp/transport/mqtt/broker_tcp.c:363
+    #3 0x595b9cd6950d in nni_taskq_thread /home/raptor/nanomq-0.17.5/nng/src/core/taskq.c:50
+    #4 0x595b9cd6a8c7 in nni_thr_wrap /home/raptor/nanomq-0.17.5/nng/src/core/thread.c:94
+    #5 0x595b9cd739a9 in nni_plat_thr_main /home/raptor/nanomq-0.17.5/nng/src/platform/posix/posix_thread.c:266
+    #6 0x7687fdc5ea41 in asan_thread_start ../../../../src/libsanitizer/asan/asan_interceptors.cpp:234
+    #7 0x7687fd89caa3 in start_thread nptl/pthread_create.c:447
+    #8 0x7687fd929c3b in clone3 ../sysdeps/unix/sysv/linux/x86_64/clone3.S:78
+
+0x50200000101c is located 0 bytes after 12-byte region [0x502000001010,0x50200000101c)
+allocated by thread T24 here:
+    #0 0x7687fdcfd9c7 in malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:69
+    #1 0x595b9cd6f0c1 in nni_alloc /home/raptor/nanomq-0.17.5/nng/src/platform/posix/posix_alloc.c:20
+    #2 0x595b9cd3dfc8 in nng_alloc /home/raptor/nanomq-0.17.5/nng/src/nng.c:60
+    #3 0x595b9ce6ce9e in tcptran_pipe_nego_cb /home/raptor/nanomq-0.17.5/nng/src/sp/transport/mqtt/broker_tcp.c:345
+    #4 0x595b9cd6950d in nni_taskq_thread /home/raptor/nanomq-0.17.5/nng/src/core/taskq.c:50
+    #5 0x595b9cd6a8c7 in nni_thr_wrap /home/raptor/nanomq-0.17.5/nng/src/core/thread.c:94
+    #6 0x595b9cd739a9 in nni_plat_thr_main /home/raptor/nanomq-0.17.5/nng/src/platform/posix/posix_thread.c:266
+    #7 0x7687fdc5ea41 in asan_thread_start ../../../../src/libsanitizer/asan/asan_interceptors.cpp:234
+    #8 0x7687fd89caa3 in start_thread nptl/pthread_create.c:447
+
+Thread T24 created by T0 here:
+    #0 0x7687fdcf51f9 in pthread_create ../../../../src/libsanitizer/asan/asan_interceptors.cpp:245
+    #1 0x595b9cd73abe in nni_plat_thr_init /home/raptor/nanomq-0.17.5/nng/src/platform/posix/posix_thread.c:279
+    #2 0x595b9cd6ab73 in nni_thr_init /home/raptor/nanomq-0.17.5/nng/src/core/thread.c:121
+    #3 0x595b9cd69831 in nni_taskq_init /home/raptor/nanomq-0.17.5/nng/src/core/taskq.c:95
+    #4 0x595b9cd6a591 in nni_taskq_sys_init /home/raptor/nanomq-0.17.5/nng/src/core/taskq.c:294
+    #5 0x595b9cd544e1 in nni_init_helper /home/raptor/nanomq-0.17.5/nng/src/core/init.c:35
+    #6 0x595b9cd73e63 in nni_plat_init /home/raptor/nanomq-0.17.5/nng/src/platform/posix/posix_thread.c:422
+    #7 0x595b9cd54562 in nni_init /home/raptor/nanomq-0.17.5/nng/src/core/init.c:58
+    #8 0x595b9cd98fce in nni_proto_mqtt_open /home/raptor/nanomq-0.17.5/nng/src/sp/protocol.c:37
+    #9 0x595b9cd953de in nng_nmq_tcp0_open /home/raptor/nanomq-0.17.5/nng/src/sp/protocol/mqtt/nmq_mqtt.c:1320
+    #10 0x595b9cd38e21 in broker /home/raptor/nanomq-0.17.5/nanomq/apps/broker.c:871
+    #11 0x595b9cd3d4ce in broker_start /home/raptor/nanomq-0.17.5/nanomq/apps/broker.c:1602
+    #12 0x595b9cd083f9 in main /home/raptor/nanomq-0.17.5/nanomq/nanomq.c:142
+    #13 0x7687fd82a1c9 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+    #14 0x7687fd82a28a in __libc_start_main_impl ../csu/libc-start.c:360
+    #15 0x595b9cd06734 in _start (/home/raptor/nanomq-0.17.5/nanomq/nanomq+0x5f734) (BuildId: c2e25d61284963f1d3b7201dd201c9bd4dbfd671)
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow /home/raptor/nanomq-0.17.5/nng/src/sp/protocol/mqtt/mqtt_parser.c:174 in get_var_integer
+Shadow bytes around the buggy address:
+  0x502000000d80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x502000000e00: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x502000000e80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x502000000f00: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x502000000f80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+=>0x502000001000: fa fa 00[04]fa fa 05 fa fa fa fa fa fa fa fa fa
+  0x502000001080: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x502000001100: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x502000001180: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x502000001200: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x502000001280: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+==221159==ABORTING

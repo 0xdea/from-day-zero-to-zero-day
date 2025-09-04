@@ -1,0 +1,90 @@
+==221707==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x507000010053 at pc 0x5cb41a93f5eb bp 0x7431987ff3b0 sp 0x7431987ff3a0
+READ of size 1 at 0x507000010053 thread T12
+...
+    #0 0x5cb41a93f5ea in read_byte /home/raptor/nanomq-0.17.5/nng/src/supplemental/mqtt/mqtt_codec.c:2788
+    #1 0x5cb41a9458a3 in decode_buf_properties /home/raptor/nanomq-0.17.5/nng/src/supplemental/mqtt/mqtt_codec.c:3841
+    #2 0x5cb41a945b65 in decode_properties /home/raptor/nanomq-0.17.5/nng/src/supplemental/mqtt/mqtt_codec.c:3864
+    #3 0x5cb41a88dd23 in decode_pub_message /home/raptor/nanomq-0.17.5/nanomq/pub_handler.c:1550
+    #4 0x5cb41a88b130 in handle_pub /home/raptor/nanomq-0.17.5/nanomq/pub_handler.c:1080
+    #5 0x5cb41a8b4337 in server_cb /home/raptor/nanomq-0.17.5/nanomq/apps/broker.c:400
+    #6 0x5cb41a8e8d07 in nni_task_exec /home/raptor/nanomq-0.17.5/nng/src/core/taskq.c:144
+    #7 0x5cb41a8cc0b6 in nni_aio_finish_impl /home/raptor/nanomq-0.17.5/nng/src/core/aio.c:454
+    #8 0x5cb41a8cc138 in nni_aio_finish_sync /home/raptor/nanomq-0.17.5/nng/src/core/aio.c:469
+    #9 0x5cb41a913c04 in nano_pipe_recv_cb /home/raptor/nanomq-0.17.5/nng/src/sp/protocol/mqtt/nmq_mqtt.c:1134
+    #10 0x5cb41a8e8d07 in nni_task_exec /home/raptor/nanomq-0.17.5/nng/src/core/taskq.c:144
+    #11 0x5cb41a8cc0b6 in nni_aio_finish_impl /home/raptor/nanomq-0.17.5/nng/src/core/aio.c:454
+    #12 0x5cb41a8cc138 in nni_aio_finish_sync /home/raptor/nanomq-0.17.5/nng/src/core/aio.c:469
+    #13 0x5cb41a9ef634 in tcptran_pipe_recv_cb /home/raptor/nanomq-0.17.5/nng/src/sp/transport/mqtt/broker_tcp.c:844
+    #14 0x5cb41a8e850d in nni_taskq_thread /home/raptor/nanomq-0.17.5/nng/src/core/taskq.c:50
+    #15 0x5cb41a8e98c7 in nni_thr_wrap /home/raptor/nanomq-0.17.5/nng/src/core/thread.c:94
+    #16 0x5cb41a8f29a9 in nni_plat_thr_main /home/raptor/nanomq-0.17.5/nng/src/platform/posix/posix_thread.c:266
+    #17 0x7431a825ea41 in asan_thread_start ../../../../src/libsanitizer/asan/asan_interceptors.cpp:234
+    #18 0x7431a7e9caa3 in start_thread nptl/pthread_create.c:447
+    #19 0x7431a7f29c3b in clone3 ../sysdeps/unix/sysv/linux/x86_64/clone3.S:78
+
+0x507000010053 is located 0 bytes after 67-byte region [0x507000010010,0x507000010053)
+allocated by thread T12 here:
+    #0 0x7431a82fd340 in calloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:77
+    #1 0x5cb41a8ee0f2 in nni_zalloc /home/raptor/nanomq-0.17.5/nng/src/platform/posix/posix_alloc.c:26
+    #2 0x5cb41a8d6f51 in nni_chunk_grow /home/raptor/nanomq-0.17.5/nng/src/core/message.c:158
+    #3 0x5cb41a8d81cd in nni_msg_alloc /home/raptor/nanomq-0.17.5/nng/src/core/message.c:397
+    #4 0x5cb41a9ee57c in tcptran_pipe_recv_cb /home/raptor/nanomq-0.17.5/nng/src/sp/transport/mqtt/broker_tcp.c:685
+    #5 0x5cb41a8e850d in nni_taskq_thread /home/raptor/nanomq-0.17.5/nng/src/core/taskq.c:50
+    #6 0x5cb41a8e98c7 in nni_thr_wrap /home/raptor/nanomq-0.17.5/nng/src/core/thread.c:94
+    #7 0x5cb41a8f29a9 in nni_plat_thr_main /home/raptor/nanomq-0.17.5/nng/src/platform/posix/posix_thread.c:266
+    #8 0x7431a825ea41 in asan_thread_start ../../../../src/libsanitizer/asan/asan_interceptors.cpp:234
+    #9 0x7431a7e9caa3 in start_thread nptl/pthread_create.c:447
+
+...
+
+Thread T12 created by T0 here:
+    #0 0x7431a82f51f9 in pthread_create ../../../../src/libsanitizer/asan/asan_interceptors.cpp:245
+    #1 0x5cb41a8f2abe in nni_plat_thr_init /home/raptor/nanomq-0.17.5/nng/src/platform/posix/posix_thread.c:279
+    #2 0x5cb41a8e9b73 in nni_thr_init /home/raptor/nanomq-0.17.5/nng/src/core/thread.c:121
+    #3 0x5cb41a8e8831 in nni_taskq_init /home/raptor/nanomq-0.17.5/nng/src/core/taskq.c:95
+    #4 0x5cb41a8e9591 in nni_taskq_sys_init /home/raptor/nanomq-0.17.5/nng/src/core/taskq.c:294
+    #5 0x5cb41a8d34e1 in nni_init_helper /home/raptor/nanomq-0.17.5/nng/src/core/init.c:35
+    #6 0x5cb41a8f2e63 in nni_plat_init /home/raptor/nanomq-0.17.5/nng/src/platform/posix/posix_thread.c:422
+    #7 0x5cb41a8d3562 in nni_init /home/raptor/nanomq-0.17.5/nng/src/core/init.c:58
+    #8 0x5cb41a917fce in nni_proto_mqtt_open /home/raptor/nanomq-0.17.5/nng/src/sp/protocol.c:37
+    #9 0x5cb41a9143de in nng_nmq_tcp0_open /home/raptor/nanomq-0.17.5/nng/src/sp/protocol/mqtt/nmq_mqtt.c:1320
+    #10 0x5cb41a8b7e21 in broker /home/raptor/nanomq-0.17.5/nanomq/apps/broker.c:871
+    #11 0x5cb41a8bc4ce in broker_start /home/raptor/nanomq-0.17.5/nanomq/apps/broker.c:1602
+    #12 0x5cb41a8873f9 in main /home/raptor/nanomq-0.17.5/nanomq/nanomq.c:142
+    #13 0x7431a7e2a1c9 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+    #14 0x7431a7e2a28a in __libc_start_main_impl ../csu/libc-start.c:360
+    #15 0x5cb41a885734 in _start (/home/raptor/nanomq-0.17.5/nanomq/nanomq+0x5f734) (BuildId: c2e25d61284963f1d3b7201dd201c9bd4dbfd671)
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow /home/raptor/nanomq-0.17.5/nng/src/supplemental/mqtt/mqtt_codec.c:2788 in read_byte
+Shadow bytes around the buggy address:
+  0x50700000fd80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x50700000fe00: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x50700000fe80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x50700000ff00: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x50700000ff80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+=>0x507000010000: fa fa 00 00 00 00 00 00 00 00[03]fa fa fa fa fa
+  0x507000010080: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x507000010100: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x507000010180: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x507000010200: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x507000010280: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+==221707==ABORTING

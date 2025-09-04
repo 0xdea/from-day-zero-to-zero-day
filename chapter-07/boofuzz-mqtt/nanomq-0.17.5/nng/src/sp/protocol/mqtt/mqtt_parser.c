@@ -171,7 +171,7 @@ get_var_integer(const uint8_t *buf, uint32_t *pos)
 	int      i = 0;
 
 	do {
-		temp   = *(buf + p);
+		temp   = *(buf + p); // VULN: crash
 		result = result + (uint32_t)(temp & 0x7f) * (power(0x80, i));
 		p++;
 	} while ((temp & 0x80) > 0 && i++ < 4);
