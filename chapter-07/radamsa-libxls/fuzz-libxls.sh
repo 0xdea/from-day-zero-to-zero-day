@@ -12,6 +12,7 @@
 # $ make
 # $ cd ..
 # $ chmod +x fuzz-libxls.sh
+# $ ulimit -c unlimited
 # $ ./fuzz-libxls.sh
 # ...
 # $ libxls-1.6.2/test2_libxls fuzzed.xls

@@ -1,0 +1,1241 @@
+//------------------------------------------------
+//--- 010 Editor v1.3.2 Binary Template
+//
+//      File: MP3.bt
+//   Authors: Ivan Getta
+//    E-mail: ivanitto@ukr.net
+//   Version: 1.2
+//   Purpose: Parse an MP3 music file.
+//  Category: Audio
+// File Mask: *.mp3
+//  ID Bytes: 49 44 33, FF
+//   History:
+//   1.2   2018-01-31 Bartosz Dziewonski: Added probably partial and incomplete support for ID3v2.4 tags.
+//   1.1   2016-01-29 SweetScape: Updated header for repository submission.
+//   1.0   2005-02-18 I Getta: Initial release.
+//
+//--- Template features ----------------
+//
+//   1) MPEG frames support:
+//        * MPEG-1, MPEG-2
+//        * Layer 1,2,3
+//   2) ID3v1 tags support
+//   3) ID3v1.1 tags support
+//   4) ID3v2.3 tags support
+//
+//--- Notes ----------------------------
+//
+// TODO:
+//   1) MPEG 2.5 support
+//   2) Resolve known bugs (see below)
+//
+// KNOWN BUGS (STILL PRESENT):
+//   1) Incorrect frame size detection for MPEG 1.0 layer 3
+//      mono files with low bitrate (for example 56k, 64k).
+//      Frame size must be detected twice long.
+//   2) Mp3pro files have some problems
+//
+//--- References -----------------------
+//
+//   1. "010 Editor templates"
+//          http://www.sweetscape.com/010editor/templates.html
+//
+//   2. "The private life of MP3 frames"
+//          http://www.id3.org/mp3frame.html
+//
+//   3. "ID3 made easy (ID3v1 & ID3v1.1)"
+//          http://www.id3.org/id3v1.html
+//
+//   4. "ID3 tag version 2.3.0 (Informal standard)"
+//          http://www.id3.org/id3v2.3.0.html
+//
+//------------------------------------------------
+//MP3 Header, everything as bslbf (left bit first)
+//
+//syncword 					12 bits (bits 31-21) all bits must be set
+//ID						 1 bit  (20, 19) (00 MPEG 2.5, 01 reserved, 10 MPEG 2, 11 MPEG 1)
+//layer						 2 bits (00 reserved, 01 Layer 3, 10 Layer 2, 11 Layer 1)
+//protection_bit			 1 bit (0 Protected by crc 16 bit CRC after header, 1 not protected)
+//bitrate_index				 4 bits
+//sampling_frequency		 2 bits
+//padding_bit				 1 bit
+//private_bit				 1 bit
+//mode						 2 bits
+//mode_extension			 2 bits
+//copyright					 1 bit
+//original					 1 bit
+//emphasis					 2 bits
+//
+//MP3 Header 32 bits in total 
+//
+//variable bit rate is required by layer 3 decoders, and may be supported by layer 1 and layer 2 decoders
+//
+//layer 2 combinations of bitrate and mode are not all allowed
+local uint32 bitrate, frame_size, sampling_freq, frames_count = 0;
+local quad frame_header_offset, seek_pos, sum_bitrate = 0;
+local uint16 data;
+local byte was_bad_sync, id3v1_tag_found = 0;
+local uchar buf[3];
+local uint32 id3v2_size = 0;
+local uint32 synchsafe_pos = 0;
+local uint32 mpeg_frame_start_pos = 0;
+
+
+typedef struct {
+	ubyte first <min=0, max=0>; //max=0x7F>;
+	ubyte second <min=0, max=0>; //max=0x7F>;
+	ubyte third <min=0x7F,/*, max=0>; /*/max=0x7F>;
+	ubyte fourth <min=0x7F, /*max=10>; /*/max=0x7F>;
+	Printf("First: %d\nSecond: %d\nThird: %d\nFourth: %d\n", first, second, third, fourth);
+
+    local uint32 computed = first;
+    computed <<= 7;
+    computed |= second;
+    computed <<= 7;
+    computed |= third;
+    computed <<= 7;
+    computed |= fourth;
+
+    if (first >= 0x80  ||  second >= 0x80  ||
+        third >= 0x80  ||  fourth >= 0x80)
+    {
+        Printf("MP3: warning: invalid ID3v2 synchsafe integer\n");
+    }
+} synchsafe_integer <read=read_synchsafe_integer>;
+
+string read_synchsafe_integer( synchsafe_integer &v )
+{
+    string s;
+    SPrintf( s, "%u", v.computed );
+    return s;
+}
+
+BigEndian();
+typedef enum <uint32> e_framesync
+{
+	frame_sync = 0xFFF,
+} E_FRAMESYNC;
+
+typedef enum <uint32> e_mpegVersion
+{
+    //mpegv25 = 0,
+	//reserved = 1, not allowed
+	mpegv2 = 0,
+	mpegv1 = 1,
+} E_MPEGVERSION;
+
+typedef enum <uint32> e_layerVersion
+{
+    //reserved = 0, not allowed
+	layer3 = 1,
+	layer2 = 2,
+	layer1 = 3,
+} E_LAYERVERSION;
+
+typedef enum <uint32> e_protectionBit
+{	//TODO research how MP3 handles CRC
+	//protect = 0, //16 bit crc checksum follows after header
+	unprotect = 1,
+} E_PROTECTIONBIT;
+
+typedef enum <uint32> e_bitRateIndexV1L1
+{
+    brFreeV1L1 = 0, //must be lower than max bit rate, but must stay constant
+	br32V1L1 = 1,
+	br64V1L1 = 2,
+	br96V1L1 = 3,
+	br128V1L1 = 4,
+	br160V1L1 = 5,
+	br192V1L1 = 6,
+	br224V1L1 = 7,
+	br256V1L1 = 8,
+	br288V1L1 = 9,
+	br320V1L1 = 10,
+	br352V1L1 = 11,
+	br384V1L1 = 12,
+	br416V1L1 = 13,
+	br448V1L1 = 14,
+	//bad = 15 Not allowed
+} E_BITRATEINDEXV1L1;
+
+typedef enum <uint32> e_bitRateIndexV1L2
+{
+    brFreeV1L2 = 0,
+	br32V1L2 = 1,
+	br48V1L2 = 2,
+	br56V1L2 = 3,
+	br64V1L2 = 4,
+	br80V1L2 = 5,
+	br96V1L2 = 6,
+	br112V1L2 = 7,
+	br128V1L2 = 8,
+	br160V1L2 = 9,
+	br192V1L2 = 10,
+	br224V1L2 = 11,
+	br256V1L2 = 12,
+	br320V1L2 = 13,
+	br384V1L2 = 14,
+	//bad = 15 Not allowed
+} E_BITRATEINDEXV1L2;
+
+typedef enum <uint32> e_bitRateIndexV1L3
+{
+    brFreeV1L3 = 0,
+	br32V1L3 = 1,
+	br40V1L3 = 2,
+	br48V1L3 = 3,
+	br56V1L3 = 4,
+	br64V1L3 = 5,
+	br80V1L3 = 6,
+	br96V1L3 = 7,
+	br112V1L3 = 8,
+	br128V1L3 = 9,
+	br160V1L3 = 10,
+	br192V1L3 = 11,
+	br224V1L3 = 12,
+	br256V1L3 = 13,
+	br320V1L3 = 14,
+	//bad = 15 Not allowed
+} E_BITRATEINDEXV1L3;
+
+typedef enum <uint32> e_bitRateIndexV2L1
+{
+    brFreeV2L1 = 0,
+	br32V2L1 = 1,
+	br48V2L1 = 2,
+	br56V2L1 = 3,
+	br64V2L1 = 4,
+	br80V2L1 = 5,
+	br96V2L1 = 6,
+	br112V2L1 = 7,
+	br128V2L1 = 8,
+	br144V2L1 = 9,
+	br160V2L1 = 10,
+	br176V2L1 = 11,
+	br192V2L1 = 12,
+	br224V2L1 = 13,
+	br256V2L1 = 14,
+	//bad = 15 Not allowed
+} E_BITRATEINDEXV2L1;
+
+typedef enum <uint32> e_bitRateIndexV2L2L3
+{
+    brFreeV2L2L3 = 0,
+	br8V2L2L3 = 1,
+	br16V2L2L3 = 2,
+	br24V2L2L3 = 3,
+	br32V2L2L3 = 4,
+	br40V2L2L3 = 5,
+	br48V2L2L3 = 6,
+	br56V2L2L3 = 7,
+	br64V2L2L3 = 8,
+	br80V2L2L3 = 9,
+	br96V2L2L3 = 10,
+	br112V2L2L3 = 11,
+	br128V2L2L3 = 12,
+	br144V2L2L3 = 13,
+	br160V2L2L3 = 14,
+	//bad = 15 Not allowed
+} E_BITRATEINDEXV2L2L3;
+
+typedef enum <uint32> e_samplingRateIndexV1
+{
+    Hz44100 = 0,
+	Hz48000 = 1,
+	Hz32000 = 2,
+	//reserved = 3,
+} E_SAMPLINGRATEINDEXV1;
+
+typedef enum <uint32> e_samplingRateIndexV2
+{
+    Hz22050 = 0,
+	Hz24000 = 1,
+	Hz16000 = 2,
+	//reserved = 3,
+} E_SAMPLINGRATEINDEXV2;
+
+typedef enum <uint32> e_samplingRateIndexV25
+{
+    Hz11025 = 0,
+	Hz12000 = 1,
+	Hz8000 = 2,
+	//reserved = 3,
+} E_SAMPLINGRATEINDEXV25;
+
+typedef enum <uint32> e_paddingBit
+{
+    unpadded = 0,
+	padded = 1, //used to exactly pad to the bitrate, datapoints need to be padded
+} E_PADDINGBIT;
+
+typedef enum <uint32> e_privateBit
+{
+    reserved1 = 0, //unknown usage
+	reserved2 = 1, //unknown usage
+} E_PRIVATEBIT;
+
+typedef enum <uint32> e_channelMode
+{
+    stereo = 0,
+	joint_stereo = 1,
+	dual_channel = 2, //2 mono channels, each uses EXACTLY half the bitrate
+	single_channel = 3, //mono
+} E_CHANNELMODE;
+
+typedef enum <uint32> e_channelModeSingle
+{
+	single_channelSingle = 3, //mono
+} E_CHANNELMODESINGLE;
+
+typedef enum <uint32> e_channelModeNonSingle
+{
+    stereoNonSingle = 0,
+	dual_channelNonSingle = 2, //2 mono channels, each uses EXACTLY half the bitrate
+	
+} E_CHANNELMODENONSINGLE;
+
+typedef enum <uint32> e_modeExtensionL1L2
+{
+    bands_4to31 = 0,
+	bands_8to31 = 1,
+	bands_12to31 = 2,
+	bands_16to31 = 3,
+} E_MODEEXTENSIONL1L2;
+
+typedef enum <uint32> e_modeExtensionL3
+{
+    noExtension = 0,
+	intensityStereo = 1,
+	msStereo = 2,
+	intensity_msStereo = 3,
+} E_MODEEXTENSIONL3;
+
+typedef enum <uint32> e_copyrightBit
+{
+    noCopyright = 0, 
+	copyright = 1, 
+} E_COPYRIGHTBIT;
+
+typedef enum <uint32> e_originalBit
+{
+    copy = 0, 
+	original = 1, 
+} E_ORIGINALBIT;
+
+typedef enum <uint32> e_emphasis //indicates to the decoder that file must be de-emphasized and mus re-equalize  the sound after dolby-like suppression, but rarely used
+{
+    none = 0,
+	ms50to15 = 1, //unknown usage, reasearch, ask for paper at university
+	reserved = 2, //unknown usage, reasearch, ask for paper at university
+	ccitj17 = 3,  //unknown usage, reasearch, ask for paper at university
+} E_EMPHASIS;
+
+typedef enum <ubyte> ID3_GENRES
+{
+    Blues, Classic_Rock, Country, Dance, Disco, Funk, Grunge, Hip_Hop, // 7
+    Jazz, Metal, New_Age, Oldies, Other, Pop, R_and_B, Rap, // 15
+    Reggae, Rock, Techno, Industrial, Alternative, Ska, Death_Metal, Pranks, // 23
+    Soundtrack, Euro_Techno, Ambient, Trip_Hop, Vocal, Jazz_Funk, Fusion, Trance, // 31
+    Classical, Instrumental, Acid, House, Game, Sound_Clip, Gospel, Noise, // 39
+    AlternRock, Bass, Soul, Punk, Space, Meditative, Instrumental_Pop, Instrumental_Rock, // 47
+    Ethnic, Gothic, Darkwave, Techno_Industrial, Electronic, Pop_Folk, Eurodance, Dream, // 55
+    Southern_Rock, Comedy, Cult, Gangsta, Top_40, Christian_Rap, Pop_Funk, Jungle, // 63
+    Native_American, Cabaret, New_Wave, Psychadelic, Rave, Showtunes, Trailer, Lo_Fi, // 71
+    Tribal, Acid_Punk, Acid_Jazz, Polka, Retro, Musical, Rock_n_Roll, Hard_Rock, // 79
+    Folk, Folk_Rock, National_Folk, Swing, Fast_Fusion, Bebob, Latin, Revival, // 87
+    Celtic, Bluegrass, Avantgarde, Gothic_Rock,
+    Progressive_Rock, Psychedelic_Rock, Symphonic_Rock, Slow_Rock, // 95
+    Big_Band, Chorus, Easy_Listening, Acoustic, Humour, Speech, Chanson, Opera, // 103
+    Chamber_Music, Sonata, Symphony, Booty_Bass, Primus, Porn_Groove, Satire, Slow_Jam, // 111
+    Club, Tango, Samba, Folklore, Ballad, Power_Ballad, Rhythmic_Soul, Freestyle, // 119
+    Duet, Punk_Rock, Drum_Solo, A_capella, Euro_House, Dance_Hall, Goa, Drum_and_Bass, // 127
+    Club_House, Hardcore, Terror, Indie, BritPop, Negerpunk, Polsk_Punk, Beat, // 135
+    Christian, Heavy_Metal, Black_Metal, Crossover,
+    Contemporary, Christian_Rock, Merengue, Salsa, Thrash_Metal, Anime, JPop, Synthpop // 147
+};
+
+const local BYTE ReadByteInitValues[] = { 0, 1 };
+
+struct ID3v1_TAG
+{
+    DisplayFormatDecimal();
+
+    SetBackColor(0x33BC55);
+	Printf("ID3v1 charID \n");
+    char id[3] = {"TAG"};; // always must be "TAG"
+
+    SetBackColor(0x48E048);
+	Printf("ID3v1 title \n");
+    char title[30];
+
+    SetBackColor(0x5DE45D);
+	Printf("ID3v1 artist \n");
+    char artist[30];
+
+    SetBackColor(0x72E872);
+	Printf("ID3v1 album \n");
+    char album[30];
+
+    SetBackColor(0x87EC87);
+	Printf("ID3v1 year \n");
+    char year[4]; //TODO restrict for numbers only
+
+    if ( ReadByte(FTell()+28) == 0  &&  ReadByte(FTell()+29) != 0 )
+    {
+        // We have ID3v1.1 tag
+
+        SetBackColor(0x9CF09C);
+		Printf("ID3v1.1 comment \n");
+        char comment[28];
+
+        SetBackColor(0xB1F4B1);
+        byte zero = { 0 };
+
+        SetBackColor(0xC6F8C6);
+        ubyte track;
+    }
+    else
+    {
+        // We have ID3v1.0 tag
+
+        SetBackColor(0x9CF09C);
+		Printf("ID3v1.0 comment \n");
+        char comment[30];
+    }
+
+    SetBackColor(0xDBFCDB);
+    ID3_GENRES genre;
+};
+
+struct ID3v2_HEADER
+{
+    char head[3] = {"ID3"}; 
+
+    char ver_major <min=3, max=4>; 
+    char ver_revision <min=2, max=4>; 
+
+	
+    struct FLAGS {
+		//generate flag values
+		local int current_pos;
+		current_pos = FTell();
+		local ubyte full_flags = 0;
+	
+		ubyte i_unsyn_used = { 0 }; //TODO reserach unsync
+		local ubyte unsyn_used = (i_unsyn_used << 7);
+		FSeek(current_pos);
+		//TODO change after extended header implementation
+		ubyte i_extend_head_pres = { 0 };
+		local ubyte extend_head_pres = (i_extend_head_pres << 6);
+		FSeek(current_pos);
+		ubyte i_experiment_tag = { 0 };
+		local ubyte experiment_tag = (i_experiment_tag << 5);
+		FSeek(current_pos);
+		ubyte reserv_flags = { 0 };
+		FSeek(current_pos);
+	
+		full_flags += unsyn_used + extend_head_pres + experiment_tag + reserv_flags;
+		ubyte flags = { full_flags };
+
+        local ubyte UNSYNCHRONISATION_USED = unsyn_used >> 7; //set bit indicates usage of unsynchronisation
+        local ubyte EXTENDED_HEADER_PRESENT = extend_head_pres >> 6; //extended header needs additional data
+        local ubyte EXPERIMENTAL_TAG = experiment_tag >> 5; //set when this version is still in beta/experimental stage
+        local ubyte RESERVED_FLAGS = reserv_flags;
+    } flags;
+    DisplayFormatHex();
+
+	synchsafe_pos = FTell();
+    synchsafe_integer size <min=0, max=100>; // Is the size of the complete tag after unsynchronisation,
+                   			// including padding, excluding the header but not excluding
+                   			// the extended header (total tag size - 10). Most
+                   			// significant bit (bit 7) of each byte is set to zero
+};
+
+struct ID3v2_EXTENDED_HEADER
+{
+	//TODO analyze size especially in other files
+    SetBackColor(0xA1D4FF);
+
+    DisplayFormatDecimal();
+	
+    uint32 size; // extended header size, excluding this 'size' field 6 - 10 bytes? 
+
+    uint16 FLAG_CRC_PRESENT :  1;   // extended header flags
+    uint16                  : 15;   //
+
+	//TODO fix padding_sz
+    uint32 padding_sz;
+
+    if (FLAG_CRC_PRESENT)
+    {
+        DisplayFormatHex();
+        uint32 crc;
+    }
+};
+
+struct FRAME_FLAGS {
+    uint16 TAG_ALTER_PRESERV  : 1;
+    uint16 FILE_ALTER_PRESERV : 1;
+    uint16 READ_ONLY_FRAME    : 1;
+    uint16                    : 5;
+    uint16 COMPRESSED_FRAME   : 1;
+    uint16 ENCRYPTED_FRAME    : 1;
+    uint16 GROUP_MEMBER_FRAME : 1;
+    uint16                    : 5;
+};
+
+
+struct ID3v2_FRAME
+{
+	Printf("ID3v2 frame alpha chars \n");
+    char id[4]; // four alpha chars
+
+    DisplayFormatDecimal();
+
+    uint32 size; // frame size without frame header
+
+    FRAME_FLAGS flags;
+
+    if (id[0] == 'T')
+    {
+        // frame contains text related data
+        if ( ReadByte(FTell()) == 0  &&  size > 1)
+        {
+            byte id_asciiz_str;
+			Printf("ID3v2 frame frame_data \n");
+            char frame_data [size - 1];
+        }
+        else
+			Printf("Size: %d\n", size);
+			Printf("ID3v2 frame frame_data else \n");
+            char frame_data [size];
+    }
+    else
+    {
+        DisplayFormatHex();
+		Printf("ID3v2 frame frame_data else 2 \n");
+        ubyte frame_data [size];
+    }
+};
+
+
+struct ID3v2_4_FRAME
+{
+	Printf("ID3v2.4 frame alpha chars \n");
+    char id[4]; // four alpha chars
+
+    DisplayFormatDecimal();
+
+    synchsafe_integer size; // frame size without frame header
+
+    FRAME_FLAGS flags;
+
+    if (id[0] == 'T')
+    {
+        // frame contains text related data
+        enum <ubyte> {
+            ISO_8859_1,
+            UTF_16_with_BOM,
+            UTF_16BE_without_BOM,
+            UTF_8
+        } encoding;
+		Printf("Size: %d\n", (size.computed - 1));
+		Printf("ID3v2.4 frame frame_data \n");
+        char frame_data [size.computed - 1];
+    }
+    else
+    {
+        DisplayFormatHex();
+		Printf("Size: %d\n", size.computed);
+		Printf("ID3v2.4 frame frame_data else \n");
+        ubyte frame_data [size.computed];
+    }
+};
+
+struct ID3v2_TAG
+{
+    ID3v2_HEADER hdr;
+
+    // calculating real size of the ID3v2 tag
+    local uint32 tag_sz = hdr.size.computed;
+	Printf("tag_sz: %d, hdr.size.computed: %d\n", tag_sz, hdr.size.computed);
+
+    //
+    // An ID3v2 tag header can be detected with the following pattern:
+    // $49 44 33 yy yy xx zz zz zz zz
+    // Where yy is less than $FF, xx is the 'flags' byte and zz is less than $80.
+    //
+    if (hdr.ver_major == 0xFF  ||  hdr.ver_revision == 0xFF)
+    {
+        Printf("MP3: warning: invalid ID3v2 tag header\n");
+    }
+    else
+    {
+        if ( !(hdr.ver_major == 3 || hdr.ver_major == 4)  ||  hdr.flags.UNSYNCHRONISATION_USED  ||  hdr.flags.EXPERIMENTAL_TAG)
+        {
+			Printf("Major: %d, Version: %d, Unsync: %d, Exp: %d\n", hdr.ver_major, hdr.ver_revision, hdr.flags.UNSYNCHRONISATION_USED, hdr.flags.EXPERIMENTAL_TAG);
+            Printf("MP3: warning: skipping unsupported ID3v2.%d tag\n", hdr.ver_major);
+            SetBackColor(0xA9DCFF);
+            DisplayFormatHex();
+			Printf("Unsupported ID3v2_data \n"); //TODO this is the issue, need to rewrite sizing
+            ubyte id3v2_data[tag_sz];
+        }
+        else
+        {
+            if ( hdr.flags.EXTENDED_HEADER_PRESENT )
+                ID3v2_EXTENDED_HEADER ext_hdr;
+
+            // Now reading ID3v2 frames
+            // A tag must contain at least one frame. A frame must be
+            // at least 1 byte big, excluding the header.
+            //
+            local uint32 frame_color = 0xC9FCFF;
+            do
+            {
+				//TODO fix frame size after creation
+                SetBackColor(frame_color);
+                if (hdr.ver_major == 3)
+                    ID3v2_FRAME tf;
+                else
+                    ID3v2_4_FRAME tf;
+                frame_color -= 0x020200;
+            }
+            while ( FTell() < tag_sz + sizeof(hdr)  &&  ReadByte(FTell()) != 0 );//TODO rewrite frames with while readbytes from wav.bt
+
+            SetBackColor(0x99CCFF);
+			Printf("tag_sz: %d\nsizeof(hdr): %d\nFtell(): %d\n", tag_sz, sizeof(hdr), FTell());
+			Printf("Size: %d\n", (tag_sz + sizeof(hdr) - FTell()));
+			Printf("id3v2_padding \n");
+            ubyte id3v2_padding [ tag_sz + sizeof(hdr) - FTell() ];
+        }
+    }
+};
+
+//local uint32 mpeg_id_values[] = { 1, 2 };
+//local uint32 protection_bit_values[] = { 0, 1 };
+//local uint32 bitrate_index_values[] = { 0, 1, 15 };
+
+// 32-bit MPEG frame header octets:
+// AAAAAAAA AAABBCCD EEEEFFGH IIJJKLMM
+//
+struct MPEG_HEADER{
+	DisplayFormatHex();
+	
+	local int current_pos;
+	current_pos = FTell();
+	local uint32 full_input = 0;
+	
+	//local uint32 frame_start =  0xFFF ;
+	local uint32 frame_sync = 0xFFF;
+	frame_sync = frame_sync << 20;
+	full_input += frame_sync;
+	
+	
+	e_mpegVersion input1;
+	local uint32 mpeg_id = input1;
+	mpeg_id = mpeg_id << 19;
+	full_input += mpeg_id;
+	FSeek(current_pos);
+	
+	e_layerVersion input2;
+	local uint32 layer_id = input2;
+	layer_id = layer_id << 17;
+	full_input += layer_id;
+	FSeek(current_pos);
+	
+	e_protectionBit input3;
+	local uint32 protection_bit = input3;
+	protection_bit = protection_bit << 16;
+	full_input += protection_bit;
+	FSeek(current_pos);
+	
+	//bitrate index
+	local uint32 bitrate_index = 0;
+	switch (mpeg_id) //0,2,3
+{
+		case 0:
+			switch(layer_id) //1,2,3
+			{
+				case 1:
+					e_bitRateIndexV2L2L3 input4;
+					bitrate_index = input4;
+					FSeek(current_pos);
+				break;
+				
+				case 2:
+					e_bitRateIndexV2L2L3 input4;
+					bitrate_index = input4;
+					FSeek(current_pos);
+				break;
+				
+				default:
+					e_bitRateIndexV2L1 input4;
+					bitrate_index = input4;
+					FSeek(current_pos);
+				break;
+			}
+		break;
+
+		case 2:
+			switch(layer_id) //1,2,3
+			{
+				case 1:
+					e_bitRateIndexV2L2L3 input4;
+					bitrate_index = input4;
+					FSeek(current_pos);
+				break;
+				
+				case 2:
+					e_bitRateIndexV2L2L3 input4;
+					bitrate_index = input4;
+					FSeek(current_pos);
+				break;
+				
+				default:
+					e_bitRateIndexV2L1 input4;
+					bitrate_index = input4;
+					FSeek(current_pos);
+				break;
+			}
+		break;
+	  
+		default:
+			switch(layer_id) //1,2,3
+			{
+				case 1:
+					e_bitRateIndexV1L3 input4;
+					bitrate_index = input4;
+					FSeek(current_pos);
+				break;
+				
+				case 2:
+					e_bitRateIndexV1L2 input4;
+					bitrate_index = input4;
+					FSeek(current_pos);
+				break;
+				
+				default:
+					e_bitRateIndexV1L1 input4;
+					bitrate_index = input4;
+					FSeek(current_pos);
+			}
+		break;
+}	
+	bitrate_index = bitrate_index << 12;
+	full_input += bitrate_index;
+
+	//sampling rate
+	local uint32 frequency_index = 0;
+	switch(mpeg_id) //0,2,3
+			{
+				case 0:
+					e_samplingRateIndexV25 input5;
+					frequency_index = input5;
+					FSeek(current_pos);
+				break;
+				
+				case 2:
+					e_samplingRateIndexV2 input5;
+					frequency_index = input5;
+					FSeek(current_pos);
+				break;
+				
+				default:
+					e_samplingRateIndexV1 input5;
+					frequency_index = input5;
+					FSeek(current_pos);
+				break;
+			}
+	frequency_index = frequency_index << 10;
+	full_input += frequency_index;
+	
+	//Padding slot for Layer 1 is 32 bits, layer 2 and 3 have 8 bits slots
+	e_paddingBit input6;
+	local uint32 padding_bit = input6;
+	padding_bit = padding_bit << 9;
+	full_input += padding_bit;
+	FSeek(current_pos);
+	
+	e_privateBit input7;
+	local uint32 private_bit = input7;
+	private_bit = private_bit << 8;
+	full_input += private_bit;
+	FSeek(current_pos);
+	
+	//channel mode for layer 2 that are allowed
+	//free		all			   0 1 2 3
+	//32		single channel       3
+	//48		single channel       3
+	//56		single channel       3
+	//64		all			   0 1 2 3
+	//80		single channel       3
+	//96		all			   0 1 2 3
+	//112		all			   0 1 2 3
+	//128		all			   0 1 2 3
+	//160		all			   0 1 2 3
+	//192		all			   0 1 2 3
+	//224		all exc. singl 0 1 2 
+	//256		all exc. singl 0 1 2 
+	//320		all exc. singl 0 1 2 
+	//384		all exc. singl 0 1 2 
+	local uint32 channel_mode = 0;
+	switch(layer_id) //1,2,3
+			{
+				case 1:
+					e_channelMode input8;
+					 channel_mode = input8;
+					FSeek(current_pos);
+				break;
+				
+				case 2: //Layer2 has exceptions
+					switch(bitrate_index) //0 - 14
+						{
+							case 0:
+								e_channelMode input8;
+								 channel_mode = input8;
+								FSeek(current_pos);
+							break;
+							
+							case 1:
+								e_channelModeSingle input8;
+								 channel_mode = input8;
+								FSeek(current_pos);
+							break;
+				
+							case 2:
+								e_channelModeSingle input8;
+								 channel_mode = input8;
+								FSeek(current_pos);
+							break;
+				
+							case 3:
+								e_channelModeSingle input8;
+								 channel_mode = input8;
+								FSeek(current_pos);
+							break;
+							
+							case 4:
+								e_channelMode input8;
+								 channel_mode = input8;
+								FSeek(current_pos);
+							break;
+							
+							case 5:
+								e_channelModeSingle input8;
+								 channel_mode = input8;
+								FSeek(current_pos);
+							break;
+							
+							case 6:
+								e_channelMode input8;
+								 channel_mode = input8;
+								FSeek(current_pos);
+							break;
+							
+							case 7:
+								e_channelMode input8;
+								 channel_mode = input8;
+								FSeek(current_pos);
+							break;
+							
+							case 8:
+								e_channelMode input8;
+								 channel_mode = input8;
+								FSeek(current_pos);
+							break;
+							
+							case 9:
+								e_channelMode input8;
+								 channel_mode = input8;
+								FSeek(current_pos);
+							break;
+							
+							case 10:
+								e_channelMode input8;
+								 channel_mode = input8;
+								FSeek(current_pos);
+							break;
+							
+							case 11:
+								e_channelModeNonSingle input8;
+								 channel_mode = input8;
+								FSeek(current_pos);
+							break;
+							
+							case 12:
+								e_channelModeNonSingle input8;
+								 channel_mode = input8;
+								FSeek(current_pos);
+							break;
+							
+							case 13:
+								e_channelModeNonSingle input8;
+								 channel_mode = input8;
+								FSeek(current_pos);
+							break;
+							
+							default:
+								e_channelModeNonSingle input8;
+								 channel_mode = input8;
+								FSeek(current_pos);
+							break;
+						}
+	
+				break;
+				
+				default:
+					e_channelMode input8;
+					 channel_mode = input8;
+					FSeek(current_pos);
+				break;
+	}
+	channel_mode = channel_mode << 6;
+	full_input += channel_mode;
+	
+	//mode extension with layer 2 exceptions
+	//only if joint stereo
+	//TODO research intensity stereo for layer 2 
+	//TODO research if differentiating betwen layer 3 and the others is necessary
+	e_modeExtensionL1L2 input9;
+	local uint32 mode_extension = input9;
+	mode_extension = mode_extension << 4;
+	full_input += mode_extension;
+	FSeek(current_pos);
+	
+	e_copyrightBit input10;
+	local uint32 copyright = input10;
+	copyright = copyright << 3;
+	full_input += copyright;
+	FSeek(current_pos);
+	
+	e_originalBit input11;
+	local uint32 original = input11;
+	original = original << 2;
+	full_input += original;
+	FSeek(current_pos);
+	
+	e_emphasis input12;
+	local uint32 emphasis = input12;
+	full_input += emphasis;
+	FSeek(current_pos);
+	
+	uint32 full_hdr = { full_input };
+	//TODO finish CRC checksum 
+};
+
+/*
+struct MPEG_HEADER
+{
+    SetBackColor(0xCC99FF);
+
+    DisplayFormatHex();
+
+    uint32 frame_sync        : 12;   // A
+
+    DisplayFormatDecimal();
+
+    uint32 mpeg_id           :  1<values=mpeg_id_values>;   // B
+    uint32 layer_id          :  2;   // C
+    uint32 protection_bit    :  1<values=protection_bit_values>;   // D
+    uint32 bitrate_index     :  4<values=bitrate_index_values>;   // E
+    uint32 frequency_index   :  2;   // F
+    uint32 padding_bit       :  1;   // G
+    uint32 private_bit       :  1;   // H
+    uint32 channel_mode      :  2;   // I
+    uint32 mode_extension    :  2;   // J
+    uint32 copyright         :  1;   // K
+    uint32 original          :  1;   // L
+    uint32 emphasis          :  2;   // M
+
+    if (protection_bit == 0)
+    {
+        DisplayFormatHex();
+        uint16 checksum;
+    }
+};*/
+
+
+struct MPEG_FRAME
+{
+	//Printf("Starting header\n");
+    MPEG_HEADER mpeg_hdr;
+	//Printf("Finished header\n");
+    // define frame bitrate
+    bitrate = 0;
+	//Printf("Starting sanity check\n");
+    // header sanity check
+    if (mpeg_hdr.frame_sync < 0xFFE  ||  mpeg_hdr.layer_id == 0  ||
+        mpeg_hdr.bitrate_index == 0  ||  mpeg_hdr.bitrate_index == 15  ||
+        mpeg_hdr.frequency_index == 3)
+    {
+        Printf("MP3: warning: invalid MPEG header in frame at offset 0x%X\n",
+            FTell() - 4 - (mpeg_hdr.protection_bit==0 ? 2:0) );
+
+        // Try to find MPEG header starting from offset (current - 2)
+        FSeek( FTell() - 2 );
+    }
+    else
+    {
+		//Printf("Finished sanity check\n");
+        if (mpeg_hdr.layer_id == 3)  // MPEG-1,2 Layer 1
+        {
+            bitrate = (uint32)mpeg_hdr.bitrate_index<<5;
+        }
+        else
+        {
+            if (mpeg_hdr.layer_id == 2)  // MPEG-1,2 Layer 2
+            {
+                bitrate = (uint32)mpeg_hdr.bitrate_index==1 ? 32 :
+                (1 << 5+(uint32)mpeg_hdr.bitrate_index/4) +
+                    ( ((uint32)mpeg_hdr.bitrate_index&3) <<
+                      3+(uint32)mpeg_hdr.bitrate_index/4  );
+            }
+            else
+            {
+                if (mpeg_hdr.mpeg_id == 1)  // MPEG-1 (Layer 3)
+                {
+                    bitrate = (1 << 5+((uint32)mpeg_hdr.bitrate_index-1)/4) +
+                        ( ((uint32)mpeg_hdr.bitrate_index-1&3) <<
+                          3+((uint32)mpeg_hdr.bitrate_index-1)/4);
+                }
+                else // (MPEG-2) (Layer 3)
+                {
+                    bitrate = (uint32)mpeg_hdr.bitrate_index<4 ?
+
+                        8*(uint32)mpeg_hdr.bitrate_index :
+
+                        (1<<4+(uint32)mpeg_hdr.bitrate_index/4) +
+                        (
+                            ((uint32)mpeg_hdr.bitrate_index&3)==0 ? 0 :
+
+                            ((uint32)mpeg_hdr.bitrate_index&3)==1 ?
+                                (1<<4+(uint32)mpeg_hdr.bitrate_index/4) :
+
+                            ((uint32)mpeg_hdr.bitrate_index&3)==2 ?
+                                (1<<4+(uint32)mpeg_hdr.bitrate_index/4) +
+                                ((1<<4+(uint32)mpeg_hdr.bitrate_index/4)>>1) :
+
+                            (1<<4+(uint32)mpeg_hdr.bitrate_index/4) -
+                                ((1<<4+(uint32)mpeg_hdr.bitrate_index/4)>>2)
+                        );
+                }
+            }
+        }
+    }
+	//Printf("Finished bitrate\n");
+    if (bitrate != 0)
+    {
+		//Printf("Starting freq\n");
+        //local uint32 freq[3]<optimize=false>; 
+		//Printf("Declared freq\n");
+        //freq[0] = 2205; TODO for some reason throws segmentation fault
+		local uint16 fr0 = 2205;
+		//Printf("Setting freq[0]\n");
+        //freq[1] = 2400;
+		local uint16 fr1 = 2400;
+        //freq[2] = 1600;
+		local uint16 fr2 = 1600;
+		
+		//Printf("Finished freq\n");
+		//TODO make this dependent on version of mpeg and layer
+		sampling_freq = 1600;
+		if (mpeg_hdr.frequency_index == 0){
+			sampling_freq = fr0;
+		}
+		if (mpeg_hdr.frequency_index == 1){
+			sampling_freq = fr1;
+		}
+		if (mpeg_hdr.frequency_index == 2){
+			sampling_freq = fr2;
+		}
+        //sampling_freq = freq[mpeg_hdr.frequency_index];
+		//Printf("Finished sampling_freq\n");
+        if (mpeg_hdr.mpeg_id == 1) // if MPEG-1
+            sampling_freq <<= 1;
+		//Printf("Finished MPEG-1 if\n");
+        frame_size = (bitrate * 14400) / sampling_freq;
+		//Printf("Finished frame size 1\n");
+        if (mpeg_hdr.channel_mode == 3)
+            frame_size >>= 1;
+
+        frame_size -= 4 + (mpeg_hdr.protection_bit==0 ? 2:0) - mpeg_hdr.padding_bit;
+		//Printf("Finished frame size 2\n");
+        frame_header_offset = FTell() - 4 - (mpeg_hdr.protection_bit==0 ? 2:0);
+		//Printf("Finished frame header\n");
+        // read frame data
+        if ( FTell() + frame_size  >  FileSize() )
+        {
+            Printf("MP3: warning: cut MPEG frame at end of file (frame header offset = 0x%LX, data length = %u)\n",
+                frame_header_offset, frame_size);
+
+            Printf("MP3: file parsing completed!\nMP3: valid MPEG frames found: %d\n", frames_count);
+
+            if (frames_count != 0)
+                Printf("MP3: average frame bitrate: %d kbit\n", sum_bitrate / frames_count);
+
+            return -1;
+        }
+        else
+        {
+            DisplayFormatHex();
+            SetBackColor(0xCCCCFF);
+			Printf("mpeg_frame_data \n");
+            ubyte mpeg_frame_data [ frame_size ];
+        }
+
+        sum_bitrate += bitrate;
+
+        frames_count++;
+    }
+};
+
+
+//--------------------------------------------------------------
+
+
+BigEndian();
+
+local char buf_input[3];
+//local string buf_tags[] = { "ID3", "TAG" };
+local string buf_values[] = { "ID3" };
+
+/*while(ReadBytes(buf_input, FTell(), 3, tag_values_preferred, tag_values_possible)){
+
+	switch( buf_input )
+    {
+        case "ID3": //ID3v2 found. Only in beginning of file
+			buf_tags -= { "ID3" };
+            break;
+
+		case "TAG": //ID3v1 found. Only in the end of file
+			buf_tags -= { "ID3" };
+            break;
+			break;
+
+		default: //MP3 frame. No ID3v2 can appear anymore. ID3v1 finishes the file
+			buf_tags -= { "ID3" };
+            break;
+
+
+}
+*/
+ReadBytes(buf, 0, 3, buf_values);
+
+if ( ! Strcmp(buf, "ID3") )
+{
+    Printf("MP3: ID3v2 tag found\n");
+    ID3v2_TAG id3v2_tag;
+	//TODO fix id3v2 tag size (total tag size -10)
+	local ubyte f_first = 0;
+	local ubyte f_second = 0;
+	local ubyte f_third = 0;
+	local ubyte f_fourth = 0;	
+
+	//encode size using syncsafe int system
+	local uint32 final_id3v2_tag_size = FTell() - 10;
+	local uint32 i = 0;
+	for (i; i <= 28; ++i){
+    	switch(i / 7){
+				case 0:
+					f_first += (final_id3v2_tag_size << (31 - i) >> (31 + i) );
+				break;
+	
+				case 1:
+					f_second += (final_id3v2_tag_size << (31 - i) >> (31 + i) );
+				break;
+
+				case 2:
+					f_third += (final_id3v2_tag_size << (31 - i) >> (31 + i) );
+				break;
+
+				default:
+					f_fourth += (final_id3v2_tag_size << (31 - i) >> (31 + i) );
+				break;
+		}
+  	}
+	
+	local uint32 jump_back_pos = FTell();
+	FSeek(synchsafe_pos);
+	ubyte syncsafe_1 = { f_first };
+	ubyte syncsafe_2 = { f_second };
+	ubyte syncsafe_3 = { f_third };
+	ubyte syncsafe_4 = { f_fourth };
+	FSeek(jump_back_pos);
+	
+}
+
+local ushort data_values[] = { 0x5441 };
+
+while ( !FEof()  &&  !id3v1_tag_found )
+{
+    // Reading file, until find frame synchronization
+    seek_pos = FTell();
+    was_bad_sync = 0;
+    do
+    {
+        data = ReadUShort( seek_pos, data_values );
+
+        if ( data == 0x5441  &&  ReadUByte(seek_pos+2) == 0x47 )
+            id3v1_tag_found = 1; // we found "TAG" identifier
+
+        if ( !was_bad_sync  &&  data < 0xFFE0  &&  !id3v1_tag_found )
+        {
+            Printf("MP3: warning: invalid MPEG frame synchronization at offset 0x%LX\n", seek_pos);
+            was_bad_sync = 1;
+        }
+
+        seek_pos++;
+    }
+    while ( data < 0xFFE0  &&  seek_pos < (FileSize()-1)  &&  !id3v1_tag_found );
+
+    if ( data >= 0xFFE0  ||  id3v1_tag_found )
+    {
+        FSeek(seek_pos - 1);
+    }
+    else
+    {
+        Printf("MP3: file parsing completed!\nMP3: valid MPEG frames found: %d\n", frames_count);
+
+        if (frames_count != 0)
+            Printf("MP3: average frame bitrate: %d kbit\n", sum_bitrate / frames_count);
+
+        return 0;
+    }
+
+    if ( !id3v1_tag_found )
+    {
+		//TODO fix size of id3v2 tag here
+		
+        MPEG_FRAME mf;
+
+        if (frames_count == 1  &&  bitrate)
+            Printf("MP3: first found MPEG frame parameters:\nMP3:\t- header ofsset: 0x%LX\nMP3:\t- bitrate: %d kbit\nMP3:\t- MPEG-%d layer %d\nMP3:\t- sampling frequency: %d Hz\nMP3:\t- channel mode: %s\nMP3:\t- CRC protected: %s\n",
+                frame_header_offset,
+                bitrate,
+                mf.mpeg_hdr.mpeg_id==1 ? 1:2,
+                mf.mpeg_hdr.layer_id==1 ? 3 : mf.mpeg_hdr.layer_id==2 ? 2:1,
+                sampling_freq*10,
+                mf.mpeg_hdr.channel_mode==3 ? "mono" :
+                mf.mpeg_hdr.channel_mode==0 ? "stereo" :
+                mf.mpeg_hdr.channel_mode==1 ? "joint stereo" : "dual channel",
+                mf.mpeg_hdr.protection_bit==0 ? "Yes" : "No");
+    }
+}
+
+if (id3v1_tag_found)
+{
+    Printf("MP3: ID3v1 tag found\n");
+    ID3v1_TAG id3v1_tag;
+	//TODO finish file after id3v1 tag, make sure nothing follows
+}
+
+if ( !FEof() )
+    Printf("MP3: warning: there is some unknown extra-data after ID3v1 tag at end of file\n");
+
+Printf("MP3: file parsing completed!\nMP3: valid MPEG frames found: %d\n", frames_count);
+
+if (frames_count != 0)
+    Printf("MP3: average frame bitrate: %d kbit\n", sum_bitrate / frames_count);
+
+//TODO edit syncsafe integer (frame size of ID3v2)
+//look up sizes for ALL ID3 tags (set them to not overflow array size)

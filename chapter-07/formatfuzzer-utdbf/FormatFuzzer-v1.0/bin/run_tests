@@ -1,0 +1,7 @@
+#!/bin/bash
+
+DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+
+cd $DIR/../tests
+
+pytest -n 5 --cov-report term --cov pfp "$@"
