@@ -1,0 +1,11 @@
+prefix=/usr/local
+exec_prefix=${prefix}
+includedir=${prefix}/include
+libdir=${exec_prefix}/lib
+
+Name: libxls
+Version: 1.6.2
+Description: Read binary Excel files from C/C++
+URL: https://github.com/libxls/libxls
+Cflags: -I${includedir}
+Libs: -L${libdir} -lxlsreader
