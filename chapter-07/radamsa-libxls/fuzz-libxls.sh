@@ -14,6 +14,8 @@
 # $ chmod +x fuzz-libxls.sh
 # $ ./fuzz-libxls.sh
 # ...
+# $ libxls-1.6.2/test2_libxls fuzzed.xls
+# ...
 # libxls : BOF
 #    ID: 000Ah EOF (End of File)
 #    Size: 0
@@ -55,6 +57,7 @@
 #    4   0x5f17c18c3465 _start+37
 #
 
+#radamsa=radamsa/bin/radamsa
 radamsa=rusty-radamsa/target/release/rustyradamsa
 
 while true
