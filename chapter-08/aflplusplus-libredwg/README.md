@@ -29,6 +29,50 @@ BuildVersion: 24F74
 [AFL++ 27458ad91b7b] /src # afl-fuzz -i fuzz-in -o fuzz-out -- programs/dwgread @@
 ```
 
+### Triage crashes
+
+```
+[AFL++ 27458ad91b7b] /src # gdb --args ./programs/dwgread crash-1.dwg
+(gdb) r
+Starting program: /src/programs/dwgread crash-1.dwg
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/aarch64-linux-gnu/libthread_db.so.1".
+
+Program received signal SIGSEGV, Segmentation fault.
+decode_preR13_auxheader (dat=0xffffffffde50, dwg=0xffffffffe020) at decode.c:6278
+6278	  crcc = bit_calc_CRC (
+(gdb) bt
+#0  decode_preR13_auxheader (dat=0xffffffffde50, dwg=0xffffffffe020) at decode.c:6278
+#1  0x0000aaaaaac93c04 in decode_preR13 (dat=0xffffffffde50, dwg=0xffffffffe020) at decode_r11.c:786
+#2  0x0000aaaaaab1fb00 in dwg_decode (dat=0xffffffffde50, dwg=0xffffffffe020) at /src/src/decode.c:217
+#3  dwg_read_file (filename=<optimized out>, dwg=0xffffffffe020) at dwg.c:261
+#4  0x0000aaaaaab1aac0 in main (argc=2, argv=0xfffffffff5a8) at dwgread.c:256
+(gdb)
+
+...
+
+[AFL++ 27458ad91b7b] /src # gdb --args ./programs/dwgread crash-2.dwg
+(gdb) r
+Starting program: /src/programs/dwgread crash-2.dwg
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/aarch64-linux-gnu/libthread_db.so.1".
+
+Program received signal SIGSEGV, Segmentation fault.
+0x0000aaaaaaca1cd0 in read_data_section (sec_dat=0xffffffffd900, dat=0xffffffffde50, sections_map=<optimized out>, pages_map=<optimized out>, sec_type=<optimized out>) at decode_r2007.c:840
+840	      r2007_section_page *section_page = section->pages[i];
+(gdb) bt
+#0  0x0000aaaaaaca1cd0 in read_data_section (sec_dat=0xffffffffd900, dat=0xffffffffde50, sections_map=<optimized out>,
+    pages_map=<optimized out>, sec_type=<optimized out>) at decode_r2007.c:840
+#1  0x0000aaaaaac9e324 in read_2007_section_revhistory (dat=0xffffffffde50, dwg=0xffffffffe020, sections_map=0xaaaaaafa9fc0,
+    pages_map=0xaaaaaafaa8e0) at decode_r2007.c:2023
+#2  read_r2007_meta_data (dat=<optimized out>, hdl_dat=<optimized out>, dwg=<optimized out>) at decode_r2007.c:2466
+#3  0x0000aaaaaab4a308 in decode_R2007 (dat=0xffffffffde50, dwg=0xffffffffe020) at decode.c:3469
+#4  0x0000aaaaaab1fc60 in dwg_decode (dat=0xffffffffde50, dwg=0xffffffffe020) at /src/src/decode.c:227
+#5  dwg_read_file (filename=<optimized out>, dwg=0xffffffffe020) at dwg.c:261
+#6  0x0000aaaaaab1aac0 in main (argc=2, argv=0xfffffffff5a8) at dwgread.c:256
+(gdb)
+```
+
 ## Linux
 
 ### Compile and install AFL++
