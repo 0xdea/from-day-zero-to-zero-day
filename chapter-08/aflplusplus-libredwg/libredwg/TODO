@@ -1,0 +1,89 @@
+* pre-R13: finish remaining entities and the blocks. Add tests.
+* add API for more complex entities, like 3dsolids, hatch, ACSH solids, dynblocks.
+* PROXY subentities, PROXY_ENTITY
+* rename all internal ent->tio.ENTITY to ent->tio._ENTITY, so that all 3D names can
+  stay asis. Which fixes the public API for all _3D names, to be more consistent.
+* extract seldomly used objects into extra sharedlib(s) as dynaloaded or linked plugin.
+  dynblocks, ACSH solids, ... to keep compile times managable.
+* TABLE_Cell
+* Enabled, but un(der)tested:
+  ASSOCDEPENDENCY ASSOC*SURFACEACTIONBODY DBCOLOR HELIX
+  OBJECT_PTR PROXY_OBJECT PLOTSETTINGS VISUALSTYLE TABLESTYLE (works only pre-2010)
+* Unhandled (fields spec'ed but broken/untested):
+  ARCALIGNEDTEXT GEOPOSITIONMARKER PLANESURFACE EXTRUDEDSURFACE DIMASSOC
+  LOFTEDSURFACE REVOLVEDSURFACE SWEPTSURFACE TABLE
+  TABLECONTENT CELLSTYLEMAP MATERIAL PLOTSETTINGS SUN
+  SUNSTUDY ASSOCACTION ASSOCNETWORK ASSOCALIGNEDDIMACTIONBODY ASSOCOSNAPPOINTREFACTIONPARAM
+  ASSOCPERSSUBENTMANAGER PERSUBENTMGR ASSOC2DCONSTRAINTGROUP EVALUATION_GRAPH
+  ACSH_SWEEP_CLASS ACDBNAVISWORKSMODELDEF
+  LIGHTLIST *OBJECTCONTEXTDATA ARC_DIMENSION ASSOCGEOMDEPENDENCY
+  ASSOCOSNAPPOINTREFACTIONPARAM ASSOCVERTEXACTIONPARAM DATATABLE
+  DATALINK LAYOUTPRINTCONFIG ...
+* Unhandled (i.e. passed through, no DXF and fields):
+  ACDSRECORD ACDSSCHEMA NPOCOLLECTION RAPIDRTRENDERENVIRONMENT
+  XREFPANELOBJECT
+* add test coverage - i.e. an extended example_2018.dwg with all types,
+  for the following missing entities:
+  BODY CAMERA DIMENSION_ANG3PT DIMENSION_DIAMETER
+  DIMENSION_RADIUS DUMMY DGNUNDERLAY DWFUNDERLAY
+  GEOPOSITIONMARKER IMAGE LEADER LONG_TRANSACTION MESH MINSERT
+  OLE2FRAME OLEFRAME POLYLINE_2D POLYLINE_MESH
+  PROXY_ENTITY SHAPE TOLERANCE VERTEX_2D VERTEX_MESH BACKGROUND
+* likewise for the following missing objects:
+  ARCALIGNEDTEXT CSACDOCUMENTOPTIONS  DETAILVIEWSTYLE
+  DWFDEFINITION DGNDEFINITION
+  XREFPANELOBJECT IDBUFFER IMAGEDEF
+  IMAGEDEF_REACTOR LIGHTLIST
+  NPOCOLLECTION OBJECT_PTR PROXY_OBJECT
+  RASTERVARIABLES UCS VBA_PROJECT
+* check-dxf/outdxf: DXFIN coverage for all generated dxfs. some objects even crash acad:
+  VERTEX_3D, MLINE.
+* DXFIN errors:
+  Drawing_2007-18: XRECORD starting at line 5318: Could not set the Color dictionary:
+  *2010: Updating handle seed. Invalid or incomplete DXF input
+  *2007: XRECORD read error
+  example_2000: REGION starting at line 2506: Xdata wasn't read
+  Drawing_2000_min: crash at AcDbLine
+
+* convert XRECORD xdata linked-list ResBuf to array of eed[],
+  same structure as common EED.
+* merge decode_r2007 with the 2004 decoder. It is almost the same, just
+  the sections have multiple pages. Only for this version. 2010+ uses
+  the 2004 format.
+* encode for 2004+: fix the remaining bugs, almost done.
+* finish binary DXF (easy). cross-check via: filedia 0, dxfout => Binary
+* finish GeoJSON http://geojson.org/geojson-spec.html
+  ELLIPSE, ARC, CIRCLE: needs segmentation into lines
+  MLINE, SPLINE, MINSERT, SOLID, TRACE, RAY(?), XLINE(?)
+* more dwgfilter examples, as from the osmctools, with keep and drop rules.
+* check osm tools https://gitlab.com/osm-c-tools/osmctools how
+  they could import GIS data easier.
+  Check OpenStreetMap XML and PBF formats.
+* add one of the easy OGR formats: gml, gpx. See the xmlsuite which does it also.
+  See https://wiki.openstreetmap.org/wiki/Dxf2gpx
+  https://grass.osgeo.org/grass74/manuals/v.in.dxf.html and dwg (teigha and opencad)
+  But only as external sharedlib plugin.
+* add more geom.c utils to tessellate curves (e.g. GeoJSON)
+* ACIS: We already convert the binary SAB to ASCII SAT version 2 (ASM ShapeManager,
+  forked from ACIS 7.0), but the add API is still struggling to create them.
+  At least I found proper docs for the ACIS SDK.
+* map DWG constraints to FreeCAD and SolveSpace constraints
+  https://www.freecadweb.org/wiki/Sketcher_Workbench#Sketcher_Constraints
+* check valabind vapi files to generate more and better bindings
+  (e.g. radare2-bindings). c++, c#, rust, go, node, java, perl, ruby, php,
+  autolisp (via ARX).
+  Did so, I dislike it. Too much work, valabind crashes and requires glib and gobject.
+  See the work/vapi branch.
+* Finalize the gambas3 bindings, a Visual Basic variant for linux. See the gambas3-bindings
+  repo and GauchoCAD on gitlab.
+* Add some UI to inspect the DWG internal structs (dwgiview), and maybe a viewer (dwgview).
+  Started with perl-tk
+
+* fix the remaining leaks: indxf
+* finish documentation of the API functions, refman.
+* add the basic DWG layout, sections and API to the docs.
+* add fuzzing and solver-based test generation (bits)
+* check testsuite errors when cross-compiled under wine.
+* check for a waiver/copyright assignment from
+  Alex Papazoglou <papazoga> for his reed-solomon code (yet unused).
+  Otherwise use rscode-1.3 by Henry Minsky <hqm@alum.mit.edu> which is GPLv3.

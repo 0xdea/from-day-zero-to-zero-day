@@ -1,0 +1,136 @@
+#!/bin/sh
+# json.test
+#
+# Copyright (C) 2018-2020 Free Software Foundation, Inc.
+#
+# This program is free software, licensed under the terms of the GNU
+# General Public License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any later version.
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+# Author: Reini Urban
+
+[ -z "$DATADIR" ] && DATADIR="../test/test-data"
+top_builddir=".."
+EXEEXT=""
+# artefact for "shellcheck"
+[ -z "$top_builddir" ] && echo $top_builddir
+
+i=0
+DATA="sample_2000 example_2000 example_2004 example_2007 example_2010"
+DATA="$DATA example_2013 example_2018 example_r14"
+#TODO="r11/ACEL10"
+SED=/usr/bin/sed
+JQ=
+GEOJSONLINT=
+[ -z "$SED" ] && echo "$SED"
+[ -z "$JQ" ] && echo "$JQ"
+[ -z "$GEOJSONLINT" ] && echo "$GEOJSONLINT"
+
+for d in $DATA; do
+    b="$(basename "$d")"
+    rm "./$b.json" 2>/dev/null
+done
+
+check_roundtrip() {
+    if [ -f "$dwg" ] && [ -x dwgwrite ]
+    then
+        json="$(basename "$dwg" .dwg).json"
+        tgt="$(basename "$dwg")"
+        log1="$(basename "$dwg" .dwg).log.orig"
+        log2="$(basename "$dwg" .dwg).log"
+         "./dwgread${EXEEXT}" -y -v2 -o "$json" "$dwg" 2>"$log1" >/dev/null
+         "./dwgwrite${EXEEXT}" -y -v0 -o "$tgt" "$json" 2>/dev/null >/dev/null
+         "./dwgread${EXEEXT}" -v2 "$tgt" 2>"$log2" >/dev/null
+        expect1="$(grep -E -c '^Add entity' "$log1")"
+        got1="$(grep -E -c '^Add entity' "$log2")"
+        expect2="$(grep -E -c '^Add object' "$log1")"
+        got2="$(grep -E -c '^Add object' "$log2")"
+        rm "./$json" "./$tgt" 2>/dev/null
+        if [ "$got1" -eq "$expect1" ] && [ "$got2" -ge "$expect2" ]
+        then
+            echo "$json roundtrip ok"
+            rm "./$log1" "./$log2" 2>/dev/null
+        else
+            echo "$json" "roundtrip fail: $expect1 vs $got1 entities, $expect2 vs $got2 objects"
+            i=$((i+1))
+            echo "expect entities: $expect1" >"$log"
+            # shellcheck disable=SC2129
+            echo "got    entities: $got1"    >>"$log"
+            echo "expect objects:  $expect2" >>"$log"
+            echo "got    objects:  $got2"    >>"$log"
+        fi
+    fi
+}
+
+for dwg in $DATA; do
+    json="$(basename "$dwg" .dwg).json"
+    log="$json.log"
+    dwg="${DATADIR}/$dwg.dwg"
+    echo "dwgread${EXEEXT}" -Ojson -o"$json" "$dwg"
+    # With --enable-debug fixup nan
+    if  "./dwgread${EXEEXT}" -Ojson -o"$json" "$dwg" 2>/dev/null && \
+       true "$json" && \
+       $JQ . "$json" >"$json.log" 2>&1
+    then
+        rm "./$json.log" "./$json"
+    else
+        cat "$json.log"
+        i=$((i+1))
+    fi
+
+    geojson="$(basename "$dwg" .dwg).geojson"
+    echo "./dwgread${EXEEXT}" -o"$geojson" "$dwg"
+    if  "./dwgread${EXEEXT}" -Ogeojson -o"$geojson" "$dwg" 2>/dev/null && \
+       true "$geojson" && \
+       $JQ . "$geojson" >>"$json.log" 2>&1
+    then
+        if [ -n "$GEOJSONLINT" ]; then
+            $GEOJSONLINT "$geojson" ||
+                i=$((i+1))
+        fi
+        rm "./$json.log" "./$geojson"
+    else
+        cat "$json.log"
+        i=$((i+1))
+    fi
+
+    check_roundtrip
+done
+
+if [ -n "$JQ" ]
+then
+    # check pipe (nocomma)
+    dwg="$DATADIR/example_2000.dwg"
+    json="example_2000.json"
+    echo "dwgread -O geojson $DATADIR/example_2000.dwg | jq ."
+    if  "./dwgread${EXEEXT}" -O geojson "$DATADIR/example_2000.dwg" | $JQ . >"$json.log" 2>&1
+    then
+        echo pipe to geojson ok
+        rm "./$json.log"
+    else
+        cat "$json.log"
+        i=$((i+1))
+    fi
+
+    echo "dwgread -O json $DATADIR/example_2000.dwg | jq ."
+    if  "./dwgread${EXEEXT}" -O json "$DATADIR/example_2000.dwg" | $JQ . >"$json.log" 2>&1
+    then
+        echo pipe to json ok
+        rm "./$json.log"
+    else
+        cat "$json.log"
+        i=$((i+1))
+    fi
+else
+    echo no jq, cannot check pipe
+fi
+
+if test "0" = "$i" ; then
+    exit 0
+else
+    echo "$(basename "$0"): $i failures"
+    ls -l ./*json.log
+    exit 1
+fi

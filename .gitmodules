@@ -1,6 +1,0 @@
-[submodule "chapter-08/aflplusplus-libredwg/libredwg"]
-        path = chapter-08/aflplusplus-libredwg/libredwg
-        url = https://github.com/spaceraccoon/libredwg.git
-[submodule "chapter-09/aflplusplus-libredwg/libredwg"]
-        path = chapter-09/aflplusplus-libredwg/libredwg
-        url = https://github.com/spaceraccoon/libredwg.git

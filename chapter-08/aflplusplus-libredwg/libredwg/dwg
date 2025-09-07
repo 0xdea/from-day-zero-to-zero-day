@@ -1,0 +1,108 @@
+#!/bin/sh
+# create -v3 logs and dwg's with dwgwrite from DXF, JSON or newer DWG
+srcdir="."
+top_builddir="."
+CFLAGS="-g -O2"
+timeout="timeout 30"
+
+case "$CFLAGS" in
+    *-DDEBUG_CLASSES*) timeout= ;;
+    *) ;;
+esac
+make -s -j4 -C src
+make -s -j4 -C programs dwgwrite
+# programs/dwgwrite
+v=-v3
+# dummy to please shellcheck
+test -z "$v" && echo $top_builddir
+args=-y
+out=
+ob="$b"
+big=
+
+for d in "$@"; do
+    case $d in
+        -y) ;; # the default
+        --as=*) args="$args $d" ;;
+        -Ijson)
+                args="$args $d"
+                ext=json
+                ;;
+        -Idxf)
+                args="$args $d"
+                ext=dxf
+                ;;
+        -Idxfb)
+                 args="$args $d"
+                ext=dxfb
+                ;;
+        --force-free)
+                      args="$args $d"
+             ;;
+        -v*)
+             v="$d"
+             ;;
+        --big)
+               timeout=
+               big=1
+             ;;
+        *)
+        if [ ! -f "$d" ]; then
+            if [ -f "$srcdir/test/test-data/$d" ]; then
+                d="$srcdir/test/test-data/$d"
+            elif [ -f "$srcdir/test/test-data/$d.json" ]; then
+                d="$srcdir/test/test-data/$d.json"
+                ext=json
+            elif [ -f "$srcdir/test/test-data/$d.dxf" ]; then
+                d="$srcdir/test/test-data/$d.dxf"
+                ext=dxf
+            elif [ -f "$srcdir/test/test-data/$d.dwg" ]; then
+                d="$srcdir/test/test-data/$d.dwg"
+                ext=dwg
+            fi
+        fi
+        if [ -n "$timeout" ]; then
+            filesize="$(wc -c <"$d")"
+            [ "$filesize" -gt 8000000 ] && timeout=
+        elif [ -z "$big" ] && [ -z "$timeout" ]; then
+            # reset timeout
+            filesize="$(wc -c <"$d")"
+            [ "$filesize" -lt 8000000 ] && timeout="timeout 30"
+        fi
+        xd=$(dirname "$d")
+        dir="_$(basename "$xd")"
+        if [ "$dir" = "_test-data" ]; then dir=""; fi
+        if [ "$dir" = "_td" ]; then dir=""; fi
+        if [ "$dir" = "_." ]; then dir=""; fi
+        if [ -z "$ext" ]; then
+            case $(basename "$d") in
+                *.dwg)  ext=dwg ;;
+                *.DWG)  ext=dwg ;;
+                *.dxf)  ext=dxf ;;
+                *.DXF)  ext=dxf ;;
+                *.dxfb) ext=dxfb ;;
+                *.DXFB) ext=dxfb ;;
+                *.json) ext=json ;;
+                *.JSON) ext=json ;;
+                *)
+                        echo "Illegal extension for $d"
+                                                         exit
+                                                              ;;
+            esac
+        fi
+        b=$(basename "$d" .$ext)
+        log="$b$dir.$ext.log"
+        out="$b$dir.dwg"
+        ori_timeout="$timeout"
+        [ "$ext" = "dxf" ] && timeout="env ASAN_OPTIONS=detect_leaks=0 $timeout"
+        echo "$timeout  programs/dwgwrite $args $v -o $out $d 2>$log"
+        # shellcheck disable=SC2086
+        $timeout  programs/dwgwrite $args "$v" -o "$out" "$d" 2>"$log"
+        timeout="$ori_timeout"
+        tail -n2 "$log"
+        ;;
+    esac
+done
+v=
+args=
+b=$ob

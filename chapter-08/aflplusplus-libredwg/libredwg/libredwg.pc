@@ -1,0 +1,12 @@
+# libredwg.pc.  Generated from libredwg.pc.in by configure.
+prefix=/usr/local
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: libredwg
+Description: Free implementation of the DWG file format
+Version: 0.12.5.721_77a8
+URL: https://savannah.gnu.org/projects/libredwg/
+Libs: -L${libdir} -lredwg -lm 
+Cflags: -I${includedir}

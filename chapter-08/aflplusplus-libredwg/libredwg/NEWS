@@ -1,0 +1,893 @@
+GNU LibreDWG NEWS -- history of user-visible changes.  -*-indented-text-*-
+Copyright (C) 2023 Free Software Foundation, Inc.
+See the end for copying conditions.
+
+LibreDWG version 0.13.0 - 2023/?? - beta:
+
+Major features:
+  * Added experimental pre-R13 DWG decode support for all old DWG formats
+    (with Michal Spacek). DXF and down-conversions not yet.
+  * Fixed dwgadd: (Dmitry Sinyavin #388, #415)
+  * New authors: Michal Josef Špaček (preR13 DWG formats),
+    Dmitry Sinyavin (dwgadd fixes).
+  * Add support for VS2019 (msvc with ucrt) and clang-cl cross-compilation
+    to Windows. (it is not error compatible to msvc, msvc errors much more).
+    Tested ok with tcc and a patched chibicc.
+Minor features:
+  * Added a third *int alloced arg to dwg_dynapi_handle_name()
+  * Renamed HEADER.unknown_s[] fields. (Michal Spacek #412)
+Minor bugfixes:
+  * Fixed HEADER.PLINEGEN pre-r13 (Michal Spacek #408)
+  * Fixed HEADER.OSMODE pre-r13 (Michal Spacek #409)
+  * Fixed LAYER.plotflag (#509)
+  * Fixed many more minor fuzzer errors with illegal input, detected by the
+    oss-fuzz service and others. More bounds and type checks, null-derefs,
+    double-free, missing zero-termination in fuzzer inputs.
+    Fixed GH issues 616, 615, 594, 581, 578, 528, 527, 524, 518, 494, 493,
+    492, 491, 490, 489, 488, 487, 486, 485, 484, 425.
+
+    Fixed oss-fuzz issues 54871, 54869, 54839, 54448, 54766, 54760,
+    54625, 54536, 54507, 54457, 54450, 54228, 54237, 53484, 52719,
+    52075, 53483, 51956, 53617, 53750, 53672, 53492, 53492, 53468,
+    50259, 49681, 49589, 48793, 47729, 47632, 47570, 47526, 47497,
+    47487, 47304, 47303, 47166, 47151, 47144, 47002, 46769, 46751,
+    47020, 47015, 47014, 46998, 46994, 46985, 46881, 44533, 44481,
+    44981, 44460, 44439, 43178, 42212, 40721, 40434, 39241, 39510,
+    39885, 38263, 36544, 37227, 36979, 36698, 35897.
+
+  * Fixed make install via cmake.
+  * Fixed cmake compilation with missing memmem on mingw. (#422)
+  * Fixed cmake compilation with -DBUILD_SHARED_LIBS=Off. (#421)
+
+LibreDWG version 0.12.5 - 2022/02/06 - beta:
+
+Major bugfixes:
+  * Fix handle size calculation on Windows GH #346.
+  * Restricted accepted DXF objects to all stable and unstable classes, minus
+    MATERIAL, ARC_DIMENSION, SUN, PROXY*. I.e. most unstable objects do not allow
+    unknown DXF codes anymore. This fixed most oss-fuzz errors.
+  * dwg2SVG: fixed ELLIPSE rx, ry radii. (#328)
+  * Fixed invalid free of static arrays
+  * Fix mingw release: add missing dwgfilter and pcre dll's (#337)
+  * Fix out_json for some invalid objects (FIELD, HATCH, TABLE) (#397)
+Minor bugfixes:
+  * dwgread: fix r2004_file_header crc32 calculation error (@huhexiang)
+  * Fixed LEADER.box_width DXF group
+  * Enforce limit of max obj->size in encode.
+  * Support --disable-json with --disable-dxf
+  * spec: fix wrong VALUEPARAM allocation. values[] are inlined, not per pointer.
+    GH #370
+  * Fixed many more minor fuzzer errors with illegal input, detected by the
+    oss-fuzz service and others. More bounds and type checks, null-derefs,
+    double-free, missing zero-termination in fuzzer inputs.
+    Fixed GH issues 338, 348, 349, 350, 352, 354, 357, 358, 359, 365, 366, 367,
+    368, 369, 371, 372, 373, 374, 375, 376, 378, 379, 380, 381, 383, 384, 385,
+    390, 391, 392.
+    Fixed oss-fuzz issues 33317, 33447, 36901, 36728, 39025, 39755, 41021.
+  * Special-case DXF import of clip_verts and associated num_clip_verts.
+  * Fix DXF import setting 10 to y (GH #365), fuzzing only
+  * Fix DXF import EOF within CMC (GH #367), fuzzing only
+  * Fix DXF import SAB_to_SAT1 overflows with tag 14 (GH #368), fuzzing only
+  * Fix dwg_handle_name NULL deref (GH #369), fuzzing only
+  * Fix out_dxf for not matching LWPOLYLINE widths and points (GH #372), fuzzing only
+  * auxheader: wrong maint_version_* fields and types.
+    fill both alt. variants of maint_version
+  * acds: wrong AcDs.segments.signature type
+  * decode: improve performance for big DWG's
+    double the size of allocated objects per cycle, not linear by 128.
+    dramatically improves dwg decode performance for big DWG's.
+  * Minor chain_alloc improvements: GH #364
+  * Optimize dxf_fixup_string, fixing a valgrind error
+  * Improved the rpm spec (Tadej Janež)
+  * Fix configure bashisms (Alexey Dokuchaev #329)
+  * minor cmake improvements (#333)
+  * Build asan fuzzers only on request (Fixes cygwin CI, GH #330)
+  * Update mingw and appveyor CI for upstream msys2 changes.
+  * Update macOS CI for texinfo
+
+LibreDWG version 0.12.4 - 2021/04/06 - beta:
+
+Major bugfixes:
+  * Fixed encode from dwg and json for many objects: missing size and bitsize
+    recalculation for objects with strings and DD types. (GH #322, #326)
+  * dwgadd: Fixed the pspace command. (GH #319)
+  * Missed all binary DXF groups 0. Still not working, but added to oss-fuzz.
+  * Support older gperf, older than 3.1. eg. macOS
+Minor bugfixes:
+  * Fixed many more minor fuzzer errors, mostly detected by the oss-fuzz
+    service and @zodf0055980:
+    More bounds-checks, null-derefs, a double-free, integer overflows, missing
+    zero-termination in fuzzer inputs.
+    Fixed GH #320, 321, 323-325
+    Fixed oss-fuzz issues 32950, 32758, 32755, 32663, 32639, 32627, 32604, 32455,
+    32408, 32397, 32348, 32335, 32275, 32251, 32179, 32171, 32112, 32094, 32029,
+    32022, 31878, 31873, 31789, 31724, 32165, 31660, 31657, 31656, 31654, 31647,
+    31591, 31574, 31564, 31542, 31533, 31516, 31470, 31462, 31456, 31454, 31450,
+    31436, 31432, 31426, 31425, 31422, 31419.
+  * in_dxf: better dynapi type-safety. e.g don't default scale to a 3BD_1
+    (1,1,1) point, because it can also be a handle, BD or 2BD with more exotic objects.
+  * dwgadd: Fixed sscanf usage on Windows
+Minor features:
+  * Added examples/llvmfuzz_standalone
+  * Added codecov.io integration, coveralls.io is not suited for C
+
+LibreDWG version 0.12.3 - 2021/02/26 - beta:
+
+Minor bugfixes:
+  * Fixed many more minor fuzzer errors, detected with the new llvmfuzz.
+  * Harmonize UBSAN access for unaligned shorts (unicode strings).
+    Wrong only with UBSAN or HAVE_ALIGNED_ACCESS_REQUIRED.
+  * Fix dwg2dxf/dxf2dwg uppercase extension problem (Windows) (GH #311).
+  * Fix section_string_stream offset for r2010 beta 2 (many public samples) (GH #318)
+Minor features:
+  * Added google oss-fuzz integration, by David Korczynski (PR #316)
+    libredwg is now fuzzed twice daily.
+  * Added examples/llvmfuzz for libfuzzer and the google oss-fuzz service.
+
+LibreDWG version 0.12.2 - 2021/02/23 - beta:
+
+Minor bugfixes:
+  * Fixed extending the write buffer for the 2 CRC bytes. Occurs very
+    seldomly (GH #315)
+
+LibreDWG version 0.12.1 - 2021/01/31 - beta:
+
+Major bugfixes:
+  * fixed dwg_bmp() and dwgbmp for >= r2004. Wrong dat offset.
+  * Fixed EED with code 3 for layer handles. (Fixes GH #310, shanzhugit)
+  * Fixed bit_convert_TU utf8 conversion with ubsan, wrong endian-ness.
+  Various fuzzing errors detected and fuzzed by Chew Kin Zhong (See GH #304):
+  * Fix possible null-deref with broken DWG's in dwg_get_first_object.
+  * Fix possible null-deref with broken DWG's in dwg_find_class with empty
+    CLASS.dxfname. (GH #309)
+  * Fix possible null-deref with broken DWG's in dwglayers with empty
+    LAYER.name. (GH #308)
+  * Fix short integer overflow in EED checks when decoding malcrafted DWG's,
+    which also led to encode buffer overflows. (GH #307)
+  * Fix possible null-derefs with broken DWG's in json export. (GH #306)
+  * Fix possible null-deref with broken DWG's in dwg_next_entity iterator. (GH #305)
+  * Fix wrong TFF overflow check for static strings, where we cannot set
+    the string nor the size. (GH #304)
+  * Fix heap-overflows and invalid free's when decoding broken 3DSOLID's
+    in malcrafted DWG's. Only accept version 1 and 2. (GH #304)
+Minor features:
+  * Added string converters with known TU sizes: bit_TU_to_utf8_len, bit_read_TU_len.
+
+LibreDWG version 0.12 - 2020/12/31 - beta:
+
+New features:
+  * Add a new experimental dwg_add_ENTITY/OBJECT API for easier CAD write support,
+    starting with GauchoCAD and SolveSpace. Most entities and some objects.
+    Similar to the VBA interface and object model, just with our names.
+  * cmake support enhanced to programs and LTO. Should be usable now by its own,
+    but MSVC is untested.
+  * Add a new experimental dwgadd helper, to create fresh DWG's easily from scratch.
+  * Added support for many more object/entity types:
+    Now stable: ACSH_CONE_CLASS ACSH_TORUS_CLASS BLOCKALIGNMENTPARAMETER
+      BLOCKALIGNMENTGRIP BLOCKLOOKUPGRIP BLOCKROTATIONGRIP
+    Now unstable:
+      ALDIMOBJECTCONTEXTDATA ASSOC2DCONSTRAINTGROUP ASSOCACTIONPARAM
+      ASSOCARRAYACTIONBODY ASSOCARRAYMODIFYPARAMETERS
+      ASSOCARRAYPATHPARAMETERS ASSOCARRAYPOLARPARAMETERS
+      ASSOCARRAYRECTANGULARPARAMETERS ASSOCASMBODYACTIONPARAM
+      ASSOCCOMPOUNDACTIONPARAM ASSOCDIMDEPENDENCYBODY ASSOCFACEACTIONPARAM
+      ASSOCOBJECTACTIONPARAM ASSOCOSNAPPOINTREFACTIONPARAM
+      ASSOCPATHACTIONPARAM ASSOCPOINTREFACTIONPARAM ASSOCVARIABLE
+      ASSOCVERTEXACTIONPARAM BLKREFOBJECTCONTEXTDATA
+      BLOCKALIGNEDCONSTRAINTPARAMETER BLOCKANGULARCONSTRAINTPARAMETER
+      BLOCKARRAYACTION BLOCKDIAMETRICCONSTRAINTPARAMETER
+      BLOCKHORIZONTALCONSTRAINTPARAMETER BLOCKLINEARCONSTRAINTPARAMETER
+      BLOCKLOOKUPACTION BLOCKLOOKUPPARAMETER BLOCKPARAMDEPENDENCYBODY
+      BLOCKPOINTPARAMETER BLOCKPOLARGRIP BLOCKPOLARPARAMETER
+      BLOCKPOLARSTRETCHACTION BLOCKRADIALCONSTRAINTPARAMETER
+      BLOCKREPRESENTATION BLOCKSTRETCHACTION BLOCKUSERPARAMETER
+      BLOCKVERTICALCONSTRAINTPARAMETER BLOCKXYGRIP DATALINK EVALUATION_GRAPH
+      FCFOBJECTCONTEXTDATA GRADIENT_BACKGROUND GROUND_PLANE_BACKGROUND
+      IBL_BACKGROUND IMAGE_BACKGROUND LEADEROBJECTCONTEXTDATA
+      MTEXTOBJECTCONTEXTDATA PARTIAL_VIEWING_FILTER PARTIAL_VIEWING_INDEX
+      PLANESURFACE POINTCLOUD POINTCLOUDCOLORMAP POINTCLOUDDEF
+      POINTCLOUDDEFEX POINTCLOUDDEF_REACTOR POINTCLOUDDEF_REACTOR_EX
+      POINTCLOUDEX RENDERENTRY RENDERENVIRONMENT RENDERGLOBAL
+      SKYLIGHT_BACKGROUND SOLID_BACKGROUND TEXTOBJECTCONTEXTDATA
+    Debugging changes: Renamed ATEXT to ArCALIGNEDTEXT,
+      Added POLARGRIPENTITY.
+  * Added dwg_obj_generic_handlevalue(), dwg_obj_generic_dwg(),
+API breaking changes:
+  * Disable old deprecated functional API, all object-specific field getters
+    and setters. Re-enable with -DUSE_DEPRECATED_API
+  * Renamed UNDERLAY to {PDF,DGN,DWF}UNDERLAY and likewise PDFDEFINITION, ...
+Minor features:
+  * fix more C++ compatibility: restrict is __restrict, disable __nonnull.
+    Now successfully used in SolveSpace.
+  * Add gperf hash tables for all objects and dxfclasses, for faster lookup
+    dxfnames to create classes, and object names with most properties.
+    Previously lookup was linear, now constant. Needs also less memory.
+  * Simplified API: dwg_obj_generic_parent(), dwg_ent_generic_parent() to take void*.
+  * Added public geometry helpers: dwg_geom_angle_normalize(), dwg_geom_normalize(),
+    dwg_geom_cross(), dwg_geom_transform_OCS()
+Major bugfixes:
+  * Enable python shared lib, add -no-undefined and PYTHON_LIBS.
+  * Disable static for Windows. This shrinks the released Windows zip file
+    from 41MB to 24MB. The 0.10.1 had 20MB, 0.6.1 15MB.
+
+LibreDWG version 0.11.1 - 2020/11/16 - beta:
+
+Major bugfixes:
+  * Fixed decode of Unicode string streams (GH #279)
+  * Fixed UCS-2 to UTF-8 conversion for the chars 128-255.
+  * Fixed DXF output of many objects: VISUALSTYLE, HATCH, DIMENSION*, ATTDEF,
+    ATTRIB, TEXT, VIEWPORT, INSERT, SEQEND, VERTEX, BLOCK, STYLE, MULTILEADER,
+    DICTIONARY, XRECORD INT64 type, MLINESTYLE angles, SPATIAL_FILTER.origin,
+    SPATIAL_INDEX class appname, duplicate STYLE eed, ACDBPLACEHOLDER for r13-r14,
+    LAYER.name with |, LAYER.plotflag for Defpoints, LTYPE.shape_flag, STLYE.flag,
+    PDFUNDERLAY group 170,
+    ACSH_CHAMFER_CLASS, ACSH_FILLET_CLASS, ACSH_BOOLEAN_CLASS, BLOCKBASEPOINTPARAMETER,
+    PROXY_OBJECT, PROXY_ENTITY.
+    HEADER.DIMSAV.
+    Common: lineweight, shadow_flags (GH #275)
+  * Moved PSPACE entities from BLOCKS to ENTITIES (GH #277)
+  * Fixed \r\n quoting in DXF texts (GH #275)
+  * Generalize and fix DXF text splitup into 255 chunks and quoting, add basic
+    shift-jis quoting support for Katagana and Hiragana letters
+    (Japanese \M+1xxxx => Unicode \U+XXXX)
+  * Added indxf dwg_has_subclass check to avoid buffer overflows when writing to
+    wrong subclasses. (GH #295)
+  * Fixed dwg_dim_blockname calculation, esp. for anonymous blocks.
+  * Improved SAB 2 to SAT 1 conversion: Split overlarge blocks into block_size of max 4096.
+    Add "^ " quoting rule.
+  * Fixed decode of empty classes section, esp. for r13c3 and r14.
+  * Keep IDBUFFER for old DXFs (r13-r14)
+  * Fixed SummaryInfo types from T to TU16, relevant for DXF headers also (GH #275)
+  * Add missing UTF-8 conversion in geojson for TEXT, MTEXT, GEOPOSITIONMARKER. (GH #271)
+  * Fixed and improved some Dockerfile, added a check-docker target.
+  * Drop unneeded perl/LibreDWG.xs, we rather use the generated c directly.
+Minor features:
+  * Add CMake basic library support, so the library can be included into cmake projects.
+    (no programs)
+  * Improved header C++ compat.
+  * Promoted ACSH_HISTORY_CLASS to stable. Needed for ACIS entities in DXF.
+  * Added to examples: filt_sat.pl and dec_sat.pl to compare and decode DXF sat parts.
+
+LibreDWG version 0.11 - 2020/08/07 - beta:
+
+New features:
+  * new programs dwgfilter, dxfwrite.
+    dwgfilter allows custom jq queries.
+    dxfwrite allows version conversions, which dwgwrite does not yet support.
+  * Can now read all 2004+ section types: added AppInfo, FileDepList,
+    Template, ObjFreeSpace;
+    and as blob: RevHistory, Security, AppInfoHistory.
+    AcDsPrototype_1b datastore not fully yet, so we cannot reliably yet read
+    new ACIS r2013+ SAB blobs stored there, but we extract them from the AcDs
+    blob by brute-force.
+  * Added new string types: T and T16, TU16, T32 (for those sections)
+  * Convert ACIS BinaryFile v2 SAB to old encrypted ACIS SAT v1 data, needed
+    to convert pre-r2013 ACIS v2 entities to DXF.
+  * Added support for many object/entity types:
+
+    Now stable: ACSH_BOOLEAN_CLASS ACSH_BOX_CLASS ACSH_CYLINDER_CLASS
+    ACSH_FILLET_CLASS ACSH_SPHERE_CLASS ACSH_WEDGE_CLASS LIGHT MESH
+    CELLSTYLEMAP DETAILVIEWSTYLE DYNAMICBLOCKPURGEPREVENTER INDEX
+    GEODATA LAYERFILTER MULTILEADER PLOTSETTINGS SECTION_MANAGER
+    SECTIONOBJECT SECTIONVIEWSTYLE VBA_PROJECT VISUALSTYLE.
+    and some Dynblocks: BLOCKGRIPLOCATIONCOMPONENT BLOCKBASEPOINTPARAMETER
+    BLOCKFLIPACTION BLOCKFLIPPARAMETER BLOCKFLIPGRIP BLOCKLINEARGRIP
+    BLOCKMOVEACTION BLOCKROTATEACTION BLOCKSCALEACTION
+    BLOCKVISIBILITYGRIP
+
+    New unstable: ACSH_BREP_CLASS ACSH_CHAMFER_CLASS ACSH_CONE_CLASS
+    ACSH_PYRAMID_CLASS ACSH_TORUS_CLASS ARC_DIMENSION ASSOCACTION
+    ASSOCBLENDSURFACEACTIONBODY ASSOCEXTENDSURFACEACTIONBODY
+    ASSOCEXTRUDEDSURFACEACTIONBODY ASSOCFILLETSURFACEACTIONBODY
+    ASSOCGEOMDEPENDENCY ASSOCLOFTEDSURFACEACTIONBODY ASSOCNETWORK
+    ASSOCNETWORKSURFACEACTIONBODY ASSOCOFFSETSURFACEACTIONBODY
+    ASSOCPATCHSURFACEACTIONBODY ASSOCREVOLVEDSURFACEACTIONBODY
+    ASSOCTRIMSURFACEACTIONBODY ASSOCVALUEDEPENDENCY BACKGROUND
+    BLOCKLINEARPARAMETER BLOCKLOOKUPGRIP BLOCKROTATIONPARAMETER
+    BLOCKXYPARAMETER BLOCKVISIBILITYPARAMETER HELIX
+    LARGE_RADIAL_DIMENSION LIGHTLIST MATERIAL MENTALRAYRENDERSETTINGS
+    RAPIDRTRENDERSETTINGS RENDERSETTINGS SECTION_SETTINGS
+    SPATIAL_INDEX SUN TABLESTYLE.
+
+    Fixed PROXY_OBJECT, PROXY_ENTITY.
+    Demoted to Unstable: SPATIAL_INDEX
+    Demoted to Debugging: PERSSUBENTMANAGER DIMASSOC
+
+    Note: Unstable objects are not preserved via DXF conversion, just
+    the external import is supported.
+
+    Add most Constraint (ASSOC*) and DYNBLOCK objects (BLOCK*).
+    Debugging classes added (needs --with-debug option):
+
+    ACMECOMMANDHISTORY ACMESCOPE ACMESTATEMGR ACSH_EXTRUSION_CLASS
+    ACSH_HISTORY_CLASS ACSH_LOFT_CLASS ACSH_REVOLVE_CLASS
+    ACSH_SWEEP_CLASS ALDIMOBJECTCONTEXTDATA ALIGNMENTPARAMETERENTITY
+    ANGDIMOBJECTCONTEXTDATA ANNOTSCALEOBJECTCONTEXTDATA
+    ASSOC3POINTANGULARDIMACTIONBODY ASSOCACTIONPARAM
+    ASSOCARRAYACTIONBODY ASSOCARRAYMODIFYACTIONBODY
+    ASSOCARRAYMODIFYPARAMETERS ASSOCARRAYPATHPARAMETERS
+    ASSOCARRAYPOLARPARAMETERS ASSOCARRAYRECTANGULARPARAMETERS
+    ASSOCASMBODYACTIONPARAM ASSOCCOMPOUNDACTIONPARAM
+    ASSOCDIMDEPENDENCYBODY ASSOCEDGEACTIONPARAM
+    ASSOCEDGECHAMFERACTIONBODY ASSOCEDGEFILLETACTIONBODY
+    ASSOCFACEACTIONPARAM ASSOCMLEADERACTIONBODY ASSOCOBJECTACTIONPARAM
+    ASSOCORDINATEDIMACTIONBODY ASSOCOSNAPPOINTREFACTIONPARAM
+    ASSOCPATHACTIONPARAM ASSOCPOINTREFACTIONPARAM
+    ASSOCRESTOREENTITYSTATEACTIONBODY ASSOCROTATEDDIMACTIONBODY
+    ASSOCSWEPTSURFACEACTIONBODY ASSOCVARIABLE ASSOCVERTEXACTIONPARAM
+    ATEXT BASEPOINTPARAMETERENTITY BLKREFOBJECTCONTEXTDATA
+    BLOCKALIGNEDCONSTRAINTPARAMETER BLOCKALIGNMENTGRIP
+    BLOCKALIGNMENTPARAMETER BLOCKANGULARCONSTRAINTPARAMETER
+    BLOCKARRAYACTION BLOCKDIAMETRICCONSTRAINTPARAMETER
+    BLOCKHORIZONTALCONSTRAINTPARAMETER BLOCKLINEARCONSTRAINTPARAMETER
+    BLOCKLOOKUPACTION BLOCKLOOKUPPARAMETER BLOCKPARAMDEPENDENCYBODY
+    BLOCKPOINTPARAMETER BLOCKPOLARGRIP BLOCKPOLARPARAMETER
+    BLOCKPOLARSTRETCHACTION BLOCKPROPERTIESTABLE
+    BLOCKPROPERTIESTABLEGRIP BLOCKRADIALCONSTRAINTPARAMETER
+    BLOCKREPRESENTATION BLOCKROTATIONGRIP BLOCKSTRETCHACTION
+    BLOCKUSERPARAMETER BLOCKVERTICALCONSTRAINTPARAMETER BLOCKXYGRIP
+    CONTEXTDATAMANAGER CSACDOCUMENTOPTIONS CURVEPATH DATALINK
+    DATATABLE DMDIMOBJECTCONTEXTDATA DYNAMICBLOCKPROXYNODE
+    EXTRUDEDSURFACE FCFOBJECTCONTEXTDATA FLIPPARAMETERENTITY
+    GEOPOSITIONMARKER LAYOUTPRINTCONFIG LEADEROBJECTCONTEXTDATA
+    LINEARPARAMETERENTITY LOFTEDSURFACE MLEADEROBJECTCONTEXTDATA
+    MOTIONPATH MPOLYGON MTEXTATTRIBUTEOBJECTCONTEXTDATA
+    MTEXTOBJECTCONTEXTDATA NAVISWORKSMODEL NURBSURFACE
+    ORDDIMOBJECTCONTEXTDATA PERSUBENTMGR PLANESURFACE
+    POINTPARAMETERENTITY POINTPATH RADIMLGOBJECTCONTEXTDATA
+    RADIMOBJECTCONTEXTDATA RENDERENTRY RENDERENVIRONMENT RENDERGLOBAL
+    REVOLVEDSURFACE ROTATIONPARAMETERENTITY RTEXT SUNSTUDY
+    SWEPTSURFACE TABLE TABLECONTENT TEXTOBJECTCONTEXTDATA
+    TVDEVICEPROPERTIES VISIBILITYGRIPENTITY VISIBILITYPARAMETERENTITY
+    XYPARAMETERENTITY
+
+  * Started support to write r2004+ format DWG's (which includes also r2010,
+    r2013, r2018, but not r2007), but this does not work fully yet.
+  * Added all remaining Dwg_Version types: R_1_3 for AC1.3, R_2_4 for AC1001, and
+    AC1013 for R_13c3.
+  * The header can now be compiled with C++ compilers, needed for some bindings.
+    Re-arranged nested structs, names, malloc casts, reserved keywords like this,
+    template.
+    Started with the gambas bindings, a Visual Basic clone for unix.
+  * DXF and JSON importers now create PLACEHOLDER objects for unsupported
+    objects.
+  * 3DSOLID got now material properties and revisionguid fields.
+  * Many parts of the API are now auto-generated/updated: dwg.i, dwg_api.c, dwg_api.h,
+    unions and setup in dwg.h
+  * Added geojsonhint or gjv linter support. Fixed all violations (esp. point arrays,
+    and POLYLINE_2D). Add a Feature id (the handle)
+  * Added support for GeoJSON RFC7946, write closed polygons, re-order by the
+    right-hand rule..
+  * new API functions:
+    dwg_ctrl_table, dwg_handle_name, dwg_find_dicthandle_objname, dwg_variable_dict,
+    dwg_next_entity, get_next_owned_block_entity, dwg_section_name,
+    dwg_version_type, dwg_version_as, dwg_errstrings,  dwg_rgb_palette,
+    dwg_find_color_index.
+  * new dynapi functions: dwg_dynapi_subclass_value, dwg_dynapi_subclass_field,
+    dwg_dynapi_fields_size.
+    (BTW. the dynapi proved to be a godsend for the json importer)
+
+API breaking changes:
+  * Renamed dwg_section_type to dwg_section_wtype, added a new dwg_section_type
+    for ASCII names.
+  * Removed all extra null_handle fields, and add the missing handle fields.
+  * Renamed all dwg_add_OBJECT functions to dwg_setup_OBJECT. They didn't add them, just setup
+    the internal structures.
+  * Renamed VPORT_ENTITY_HEADER to VX_TABLE_RECORD and VPORT_ENTITY_CONTROL to VX_CONTROL.
+    Also section enum SECTION_VPORT_ENTITY to SECTION_VX and dwg->vport_entity_control likewise.
+  * Hundreds of field renames due to harmonization efforts with the more generic
+    JSON importer. Note that some deprecated dwg_api accessor functions were also
+    renamed accordingly, but not all.
+
+    For the stable objects:
+    TEXT,ATTRIB,ATTDEF,SHAPE,STYLE: oblique_ang => oblique_angle,
+    TEXT,ATTRIB,ATTDEF,SHAPE,MTEXT,UNDERLAY,TABLE,...: insertion_pt => ins_pt,
+    DIMENSION_* _13_pt => xline1_pt, _14_pt => xline2_pt,
+      ext_line_rotation => oblique_angle
+    DIMENSION_ANG2LN _16_pt => xline1start_pt, _14_pt => xline2start_pt,
+      _13_pt => xline1end_pt, first_arc_pt => xline2end_pt
+    VIEW,VIEWPORT: view_direction => VIEWDIR (as it overrides this header),
+      view_twist => twist_angle,
+      view_height => VIEWSIZE,
+      snap_angle => SNAPANG,
+      view_center => VIEWCTR,
+      snap_base => SNAPBASE,
+      snap_spacing => SNAPUNIT,
+      grid_spacing => GRIDUNIT,
+      ucs_per_viewport => UCSVP,
+      ucs_origin => ucsorg,
+      ucs_x_axis => ucsxdir,
+      ucs_y_axis => ucsydir,
+      ucs_ortho_view_type => UCSORTHOVIEW
+    OLEFRAME.data_length => data_size,
+    LEADER.offset_to_block_ins_pt => inspt_offset
+    TOLERANCE.text_string => text_value
+    STYLE.vertical => is_vertical, shape_file => is_shape, fixed_height => text_size,
+      extref => xref
+    DICTIONARYVAR.intval => schema, str => strvalue
+
+    COMMON_TABLE_FIELDS: xrefref => is_xref_ref, xrefindex_plus1 => is_xref_resolved,
+      xrefdep => is_xref_dep. new common xref HANDLE field (was null_handle in many objects)
+
+    LAYER got a new visualstyle handle.
+    LTYPE.dashes got a new style handle and text field.
+    LTYPE has no styles H* anymore, moved to dashes.
+    LTYPE.text_area_is_present => has_strings_area, extref_handle => xref.
+    VIEW, VIEWPORT:
+      height => VIEWSIZE, width => view_width, center => VIEWCTR, target => view_target,
+      direction => VIEWDIR, front_clip => front_clip_z, back_clip => back_clip_z,
+      pspace_flag => is_pspace,
+      origin => ucsorg, x_direction => ucsxdir, y_direction => ucsydir,
+      elevation => ucs_elevation, orthographic_view_type => UCSORTHOVIEW,
+      camera_plottable => is_camera_plottable
+
+    UCS got a new orthopts array, and the renames as above.
+    DIMSTYLE got a new flag0. flag is computed from that.
+    VPORT_ENTITY_HEADER flag1 => is_on, vport_entity => viewport, xref_handle => xref,
+      new prev_entity handle.
+    MLINESTYLE index/ltype union changed to separate lt_index, lt_ltype fields.
+      They were overwriting each other on version conversions.
+    MLINESTYLE.desc => description, data_length => data_size.
+    HATCH booleans got a is_ prefix.
+    MTEXT.annotative => is_annotative.
+    MTEXT.drawing_dir => flow_dir.
+    XRECORD.num_databytes => xdata_size
+    MLEADERSTYLE text_frame => is_text_frame, is_new_format removed.
+      changed => is_changed.
+    DICTIONARYYWDFLT got a new format_flags and data_handle
+    SCALE.has_unit_scale => is_unit_scale
+    SORTENTSTABLE.dictionary => block_owner
+
+    Type changes in stable objects:
+    SPLINE.fit_pts are now ordinary BITCODE_3DPOINT*
+    SPLINE.color is BL, scale is now 3BD
+  * Changed truecolor attributes in GeoJSON with a # prefix.
+
+Major bugfixes:
+  * Fixed converting ASCII from and to Unicode strings, when converting across
+    versions. Embed Unicode as \U+XXXX into ASCII, and decode it back to Unicode.
+    Honor dat,dwg->from_version and use the new FIELD_T as separate type. (GH #185)
+  * Invalid numbers (read failures) are converted to 0.0 in the released version.
+  * Fixed wrong CMC color reads and writes, check the method, lookup the index,
+    support a CMTC truecolor-only type.
+  * Fixed EED writes, by writing to separate streams and merging them at the end,
+    with proper size calculation.
+  * All remaining assertions are now protected. (GH #187)
+
+Minor bugfixes:
+  * Fixed uncompressed sections overflows, some fuzzed (GH #183), some
+    with the new sections.
+  * Normalize extrusion vectors.
+  * Fix bit_write_BT, the thickness vector pre-R2000.
+  * Added many overflow checks, due to extensive fuzzing campaigns.
+  * Fixed wrong julian date conversions with TIMEBLL types.
+  * Fixed keyword conflicts with the bindings: No next, from, self fieldnames.
+  * Many more, see the ChangeLog.
+
+Other newsworthy changes:
+  * Harmonized 2004 section search with the better 2007 variant. Added a new
+    section and info fixedtype field.
+  * Added unit-tests for all supported objects.
+  * Added src/classes.c defining the class stability (stable, unstable, debugging, unhandled).
+  * Need now -lm, the system math library, in all cases.
+  * Got a complete collection of old DWGs to cross-check against. Many new object types
+    could be stabilized because of this. Many thanks to Michal Josef Špaček.
+  * CMC color got 2 new fields: raw (EMC only), method (the first rgb byte).
+  * Many DXF re-ordering fixes.
+
+Notes: The new constraint and dynblock objects just miss a major refactor into separate
+impl subclasses, and subent and curve support.
+
+LibreDWG version 0.10.1 - released 2020/01/13 - beta:
+
+Major bugfixes:
+  * Fixed dwg2SVG htmlescape overflows and off-by-ones (GH #182)
+  * Removed direct usages of fprintf and stderr in the lib. All can be
+    redefined now. (GH #181)
+
+Minor bugfixes:
+  * Fuzzing fixes for dwg2SVG, dwgread. (GH #182)
+  * Fixed eed.raw leaks
+
+LibreDWG version 0.10 - released 2020/01/08 - beta:
+
+API breaking changes:
+  * added a new int *isnewp argument to all dynapi utf8text getters,
+    if the returned string is freshly malloced or not.
+  * removed the UNKNOWN supertype, there are only UNKNOWN_OBJ and UNKNOWN_ENT
+    left, with common_entity_data.
+  * renamed BLOCK_HEADER.preview_data to preview, preview_data_size to preview_size
+  * renamed SHAPE.shape_no to style_id
+  * renamed CLASS.wasazombie to is_zombie
+
+Major bugfixes:
+  * Improved building the perl5 binding, proper dependencies.
+    Set proper -I and -L paths, create LibreDWG.c not swig_perl.c
+  * Harmonized INDXFB with INDXF, removed extra src/in_dxfb.c (GH #134).
+    Slimmed the .so size by 260Kb. Still untested though.
+  * Fixed encoding of added r2000 AUXHEADER address (broken since 0.9)
+  * Fixed EED encoding from dwgrewrite (a dxf2dwg regression from 0.9) (GH #180)
+
+Minor bugfixes:
+  * Many fuzzing and static analyzer fixes for dwg2dxf, dxf2dwg, dwgrewrite,
+    including a stack-overflow on outdxf cquote. (GH #172-174, #178, #179).
+    dwgrewrite and indxf are pretty robust now, but still highly experimental,
+    as many dxf2dwg import and DWG validity tests are missing.
+    indxf still has many asserts on many structural DXF errors.
+  * Protect indxf from many NULL ptr, overflows and truncation.
+  * Fixed most indxf and encode leaks. (GH #151)
+  * More section decoders protections from invalid (fuzzed) values.
+  * Stabilized the ASAN leak tests for make check.
+  * Fix MULTILEADER.ctx.lline handles <r2010
+  * Fix indxf color.alpha; at DXF 440
+  * Fixed most important make scan-build warnings, the rest are mostly bogus.
+
+Other newsworthy changes:
+  * Added LIBREDWG_VERSION et al to include/dwg.h
+  * Added support for AcDb3dSolid history_id (r2007+)
+  * Improved the indxf speed in new_object. Do a proper linear search, and
+    break on first found type.
+  * Rename the ./dxf helper to ./dwg, and added a ./dxf test helper.
+  * dxf2dwg got a new experimental --force-free option to check for leaks and
+    UAF or double-free's.
+  * Allow -o /dev/null sinks for dxf2dwg and dwg2dxf, for faster fuzzing.
+  * Harmonized *.spec formatting and adjusted gen-dynapi.pl
+  * Harmonized out_dxfb with out_dxf, e.g. the new mspace improvements (GH #173).
+
+LibreDWG version 0.9.3 - released 2019/12/25 - beta:
+
+Minor bugfixes:
+  * Added several overflow checks from fuzzing (GH #176)
+    CVE-2019-20009, CVE-2019-20010, CVE-2019-20011, CVE-2019-20012,
+    CVE-2019-20013, CVE-2019-20014, CVE-2019-20015
+  * Enabled AX_RESTRICT, undefining restrict in broken compilers (GH #141)
+  * Fixed AX_ADD_FORTIFY_SOURCE warnings with gcc-9 -Wcpp
+  * Disallow illegal SPLINE scenarios (GH #176)
+
+LibreDWG version 0.9.2 - released 2019/11/08 - beta:
+
+new API:
+  * Added the -x,--extnames option to dwglayers for r13-r14 DWGs,
+    displaying the extended variants with spaces. Since r2000 only
+    those "extended" names are stored. (GH #167)
+
+Minor bugfixes:
+  * Fixed some leaks: SORTENTSTABLE, PROXY_ENTITY.ownerhandle for r13.
+  * Add DICTIONARY.itemhandles[] for r13 and r14
+  * Fixed some dwglayers null pointer derefs, and flush its output
+    for each layer. (GH #166)
+
+Other newsworthy changes:
+  * Add geom utils to some programs: dwg2SVG and dwg2ps to transcode
+    points via its OCS (i.e. extrusion vector)
+  * Add basic POLYLINE_2D and LWPOLYLINE support to dwg2SVG. no arcs (bulges),
+    no other curve_types (spline, bezier), no widths.
+
+LibreDWG version 0.9.1 - released 2019/10/28 - beta:
+
+Minor bugfixes:
+  * Fixed bit_read_4BITS, off-by-one for the first bit.
+  * Fixed more null pointer dereferences, overflows, hangs and memory leaks
+    for fuzzed (i.e. illegal) dwg's.
+  * Fixed some more compiler warnings.
+  * Workaround stricter CPU's with ALIGNED_ACCESS_REQUIRED.
+  * Add -fstack-protector for newer mingw, to link -lssp, which is now mandatory
+    for _FORTIFY_SOURCE (a mingw-w64 libc headers bug).
+  * Do not use gcc-9.0 - gcc-9.2! This series is seriously broken, not
+    just for this project.
+  * dwg2SVG: honor TTF font styles => Verdana or Courier (GH #156)
+
+LibreDWG version 0.9 - released 2019/10/6 - beta:
+
+new API:
+  * Added the dxf importer, using the new dynapi and the r2000 encoder.
+    Status: experimental. Only for r2000 dxf's yet.
+  * Added utf8text conversion functions to the dynapi:
+    dwg_dynapi_header_utf8text, dwg_dynapi_entity_utf8text,
+    dwg_dynapi_common_utf8text converting unicode strings to UTF-8.
+    And it's higher level variants: dwg_{g,s}et_HEADER_utf8text,
+    dwg_{g,s}et_{ENTITY,OBJECT}_common,
+    dwg_{g,s}et_{ENTITY,OBJECT}_common_utf8text,
+    dwg_ent_{g,s}et_UTF8.
+  * Added the missing dwg_dynapi_common_set_value.
+  * Added dwg_dynapi_handle_name helper.
+  * Added to unstable objects: TABLESTYLE, TABLE.
+    TABLE r2018+ now includes TABLECONTENT.
+  * Added SummaryInfo section.
+  * Added 3DSOLID encoder.
+  * Added API's to find handles for names, searching in tables and dicts.
+  * Added TIMERLL type. raw, unencoded 2xRL julian date, for SummaryInfo.
+  * Added signed d variants to some types: BLd, BSd, RLd, ...
+    and x formatters: RLx.
+  * Added reverse dxf_revcvt_lweight().
+
+API breaking changes:
+  * Added an is_utf8 arg to the dynapi setters:
+    dwg_dynapi_header_set_value, dwg_dynapi_entity_set_value,
+    dwg_dynapi_common_set_value, converting UTF-8 strings to TV or TU.
+  * Generalize object handles:
+    * Rename common field ownerhandle, esp. not NAME_control 330.
+    * Remove various null_handle fields.
+    * Rename LTYPE.null_handle to LTYPE.extref_handle
+    * Add SORTENTSTABLE.dict_handle (previous called ownerhandle,
+      it IS the ownerhandle. ok, there we do have both, the parenthandle
+      and the ownerhandle)
+    * Remove xrecord,proxy get_ownerhandle API
+    * Move ownerhandle to parent Object_Object along reactors and xdicobjhandle.
+      This field is common to all objects. (GH #118)
+    * Remove unneeded ownerhandle fields.
+    * Renamed STYLE.null_handle to STYLE.extref_handle
+  * Changed DIMASSOC spec
+  * Minor POLYLINE/VERTEX field fixups for DXF. add COMMON_ENTITY_POLYLINE.has_vertex 66,
+    add VERTEX_PFACE_FACE.flag 70.
+  * Renamed two LAYOUT fields: pspace_block_record => block_header,
+    last_viewport => active_viewport.
+  * Harmonize DICTIONARY_NAMED_OBJECT (NOD) names:
+      LAYOUTS => LAYOUT, PLOTSTYLES => PLOTSTYLENAME, MATERIALS => MATERIAL,
+      COLORS => COLOR.
+  * Renamed all linetype* fields to ltype.
+  * Removed IMAGE/WIPEOUT boundary_pt{0,1} fields. Use clip_verts[0,1] instead.
+
+Important bugfixes:
+  * Fixed all remaining null pointer dereferences and memory leaks. We added
+    a smoke with asan, ubsan and lsan. Only the dxf importer is leaking.
+  * Fixed dwg_dynapi_common_*
+  * Fixed get_next_owned_entity, which omitted the last entity for r13-r2000.
+    (GH #143)
+  * Fixed the UCS-2 to utf-8 converter, causing corrupt DXF with unicode names
+    and strings. (GH #143)
+  * Fixed wrong object address (GH #112). handlestream_size is not part of obj->size.
+    This fixes the hdlpos += 8 FIXME's and many handles.
+  * Fixed FIELDLIST standard handles (GH #118)
+  * Fixed FIELD.childs and objects (GH #117)
+  * Fixed MLINESTYLE.ltype handles (GH #116)
+  * Fixed MULTILEADER content_block (GH #113)
+  * Added many missing handles 2007+ (GH #115)
+    Due to the fixed handle_stream offset, we can now reliably read many
+    more handles (GH #114):
+      DIMENSION_ORDINATE
+      DIMENSION_LINEAR
+      DIMENSION_ALIGNED
+      DIMENSION_ANG3PT
+      DIMENSION_ANG2LN
+      DIMENSION_RADIUS
+      DIMENSION_DIAMETER
+      MTEXT
+      BLOCK_CONTROL
+      STYLE
+      SORTENTSTABLE
+      APPID
+      DICTIONARYVAR
+      VPORT_ENTITY_HEADER
+  * Fixed OLE2FRAME encoder.
+  * Fixed EED code 5 as int64 (GH #110)
+  * More stable eed decoder with overflow, e.g. when dat does not advance error earlier.
+    Avoid endless loops on eed decoding errors.
+  * Various minor improvements in the dxf writer. (GH #143)
+  * Major improvements in the dxf reader. Most r2000 entities and many objects
+    can be imported, and read from acad dwg's.
+  * Various minor improvements in the dwg writer, esp. calculating the object
+    size and bitsize. fixed bit_write_4BITS (for VPORT.VIEWMODE)
+  * Protect all sizes from VALUEOUTOFBOUNDS with sensical values.
+    (i.e. new size restrictions)
+
+Other newsworthy changes:
+  * Restricted the three dat, hdl_dat and str_dat streams in its size and
+    offset to the current object to detect every overflow. And report this
+    overflow.
+  * Read COMMON_ENTITY_HANDLE_DATA earlier, so that we can remove extra 2nd
+    handle loops at the end for r2007+ (GH #85)
+  * Support reading uncompressed sections (e.g SummaryInfo)
+  * Added -y/--overwrite flag to most programs.
+  * Better LOG_TRACE [rcount1], [rcount2] logging, expanded to the actual
+    index.
+  * Removed the dejagnu based test/testcases, merged with proper
+    test/unit-testing
+  * With the new dxf importer, a lot of logic had to be added for missing fields,
+    calculating them, adding defaults, and support dxfname aliases.
+  * Harmonized internal REPEAT macro names.
+  * Added decode code to recover from invalid HANDLES handleoff UMC or offset MC.
+
+LibreDWG version 0.8 - released 2019/6/25 - still alpha:
+
+new API:
+  * added a new dynamic API, read and write all header and object fields
+    by name. Many of the old dwg_api.h field accessors are deprecated.
+  * add calculated DIMENSION.flag from flag1 and flag2
+  * add BITCODE_UMC type for Object-map section_handles
+  * add reverse dwg_find_objectref lookup: linear search, only done for
+    entities with subentities to find the ref for the current object.
+  * added to stable: UNDERLAY entities, UNDERLAYDEFINITION, CAMERA objects
+
+API breaking changes:
+  * rename get_first_owned_object to get_first_owned_entity,
+    get_next_owned_object to get_next_owned_entity.
+  * Changed these iterators in handling subentites (VERTEX, ATTRIB),
+    these are now skipped.
+  * rename <TABLE>.entry_name to name (GH #76)
+  * rename VPORT.shade_plot_handle back to sun_handle, dxf 361
+  * rename POLYLINE_3D.flag2 to curvetype, dxf 75.
+  * rename linewidth fields to linewt (GH #79)
+  * rename DIMENSION_ORDINATE.ucsorigin_pt to def.pt
+  * rename parenthandle fields to ownerhandle (GH #80)
+  * rename ent->parent to ent->ownerhandle (GH #82)
+  * replace ENTITY.subentity by ownerhandle 330
+  * rename _ent->entity_mode to entmode (as in ODA)
+
+Important bugfixes:
+  * dwg.h now always includes stdint.h and inttypes.h, no more
+    int vs int32_t confusion
+  * Fixed many errors in DXF output:
+    * split BLOCKS and ENTITIES (GH #88)
+      esp. in respect to Paper_Space (GH #81) and Model_Space entities.
+    * DICTIONARY: fix hard_owner DXF 350/360.
+    * Fix xdata dxf groups: +1000 or XRECORD.
+    * Fix block names (GH #81), take it from its linked BLOCK entity
+    * Fix DIMENSION blocknames, ditto (GH #81).
+    * Fix c-quote of strings with different quoting rules than json.
+    * Fix _3DSOLID,_3DFACE dxfname and 3DSOLID, BODY subclass names
+    * Add missing DIMSTYLE 3 handle
+    * Support DXF elevation and extrusion as pt,
+    * Add dxf.test to be shell compatible
+    * convert CELWEIGHT and linewt values (GH #79)
+    * Support proper 330 ent->parent->handle (GH #82) which is not always the
+      MSPACE record.
+    * fix colors a bit
+    * print HANDSEED as hex (GH #71)
+  * Fixed JSON output, add tests with jq. just not yet via pipes (NOCOMMA hack).
+    make HEADER a hash, better ARRAY, POINTS, VECTORs, c-quote strings.
+    Resemble more to the DWG structure, not DXF: Rename ENTITIES to OBJECTS,
+    TODO: FILEHEADER sections (GH #76)
+  * Validate decoded and sort DXF output of entities with subentities
+    (POLYLINE, INSERT) (GH #83). In DWG they have different orderings,
+    fixup some off-by-one decoding errors (e.g. wrong handle stream offset).
+  * Fixed HATCH gradientfill color (GH #89)
+  * decode: set proper ->dxfname from classes.inc, Fixes ACDBDICTIONARYWDFLT
+    DXF object and simplifies out_dxf.
+  * Fix some CRC checks: RSx vs RS_LE, add unused crc64 code.
+  * More overflow and free protections added by Denis Pruchkovsky
+  * Extend read/write bit_MC/UMC from 4 to 5 bytes (denis #70, PR #65)
+    This is broken in all other dwg libraries.
+  * Fix bit_convert_TU for >U+800 (GH #80)
+  * Fixed more memory leaks (denis and rurban)
+  * Fixed some double-free's and oob errors in EED (GH #99, #104)
+
+Other newsworthy changes:
+  * add --disable-bindings configure switch (GH #86)
+  * add more codepages to dxf: ANSI_1253, ANSI_1254, ANSI_936, ANSI_949
+  * add cirrus FreeBSD smoker
+  * rename dxf_example.{lsp,sh} to dxf-allcvt.*
+  * add dxf-roundtrip.sh, via TeighaFileConverter
+
+LibreDWG version 0.7 - released 2018/12/6 - still alpha:
+
+new API:
+  * add dwg_get_OBJECT(dwg) API for all objects in a DWG.
+    analog to dwg_get_ENTITY, but including all objects, tables,
+    block headers, even if unowned.
+  Note that the dwg_api will be revamped from static to dynamic before 1.0.
+  field accessors will be by name argument and ... (va_args)
+  See the work/dynapi branch #59 (in progress).
+  dwg_get_OBJECT(dwg) will be renamed to dwg_getall_OBJECT(dwg),
+  dwg_get_ENTITY(blkhdr) to dwg_getall_ENTITY(blkhdr).
+
+API breaking changes:
+  * Changed BITCODE_RC from signed to unsigned char (GH #44)
+  * LEADER changes: rename hooklineonxdir to hookline_dir,
+    rename unknown_bit_4 to hookline_on,
+    endptproj only until r2007. (but still not 100% correct)
+  * MULTILEADER changes: rename num_vertex to numpts (analog to LEADER),
+    change vertex to points[] (PR #49 Denis Pryt)
+  * Fixed dwg_get_ENTITY(hdr): NULL-terminate the result (GH #60)
+
+Important bugfixes:
+  * Fixed all memory leaks and double-free's (GH #43, #42, PR #58 Denis Pryt)
+  * Fixed EED sizes (PR #48, Denis Pryt)
+  * Fixed BLOCK_HEADER.num_inserts, esp. with xref's (GH #44).
+    For decode and encode.
+  * Fixed LTYPE.dash (GH #44)
+  * Fixup LEADER DXF values and path_type with annot_type mixup.
+  * Fixed TABLE.value.data_type with flags kGeneral (GH #54 Denis Pryt)
+  * Fixes VECTOR_CHKCOUNT segfault on unassigned obj->dxfname's
+    (esp. for <=R12), and fix overflows (GH #56)
+  * dwglayers: fix for DICTIONARY breaking the list output (GH #51)
+  * dxf: fix dxf_blocks_write for empty paper_space (GH #52)
+  * Fixed example/load_dwg.py allowing non-critical error codes
+
+Other newsworthy changes:
+  * Check for RUNNING_ON_VALGRIND and call dwg_free then, even
+    if previously skipped.
+  * Renamed all remaining API "null malloc" error messages to
+    "Out of memory"
+  * Harmonized in_dxfb with in_dxf, but still WIP
+
+
+LibreDWG version 0.6.2 - released 2018/11/07 - still alpha:
+
+Important bugfixes:
+  * Fixed several out_dxf segfaults (GH #39)
+  * Enhanced the section size limit from 2032 to 2040.
+    There were several DWG files with a section size of 2035
+    in the wild. (PR #41, Denis Pryt)
+  * Fixed EED realloc on decoding when end - dat->byte == 1
+    (PR #41, Denis Pryt)
+
+
+LibreDWG version 0.6.1 - released 2018/11/05 - still alpha:
+
+Important bugfixes:
+  * fix wrong FIELD_2DD_VECTOR in dwg decode (GH #40).
+
+
+
+LibreDWG version 0.6 - released 2018/08/13 - still alpha:
+
+API breaking changes:
+  * Removed dwg_obj_proxy_get_reactors(), use dwg_obj_get_reactors() instead.
+  * Renamed SORTENTSTABLE.owner_handle to SORTENTSTABLE.owner_dict.
+  * Renamed all -as-rNNNN program options to --as-rNNNN.
+
+Other newsworthy changes:
+  * Removed all unused type-specific reactors and xdicobjhandle fields,
+    use the generic object and entity fields instead.
+  * Added signed BITCODE_RLd and BITCODE_BLd (int32_t) types.
+  * Added unknown_bits field to all UNSTABLE/DEBUGGING classes.
+  * Custom CFLAGS are now honored.
+  * Support for GNU parallel and coreutils timeout logfile and picat processing.
+
+Important bugfixes:
+  * Fixed previously empty strings for r2007+ for some objects and entities (GH #34).
+  * Fixed r2010+ picture size calculation (DXF 160, 310), leading to wrong entity offsets.
+  * Added more checks for unstable objects: empty handles, controls, overflows, isnan.
+  * Fixed some common_entity_data, mostly with non-indexed colors and gradient filled HATCH
+    (GH #27, #28, #31)
+  * Fixed some proper relative handles, which were previously treated as NULL handle.
+  * Fixed writing TV strings, now the length includes the final \0 char.
+  * Fixed the initial minimal hash size, fixing an endless loop on very small
+    (truncated) DWG's (<1000 bytes).
+  * Much less memory leaks.
+  * Improved free, i.e. no more double free with EED data. (GH #33)
+  * Better perl bindings build support on Windows, prefer local dwg.h over
+    installed dwg.h on testing (GH #29).
+  * Fixed dejagnu compilation on C11 by using -fgnu89-inline (GH #2)
+
+New features:
+  * Added unstable support for the objects ASSOCDEPENDENCY, ASSOCPLANESURFACEACTIONBODY,
+    DBCOLOR, DIMASSOC, DYNAMICBLOCKPURGEPREVENTER, HELIX, LIGHT, PERSSUBENTMANAGER,
+    UNDERLAYDEFINITION and the entities MULTILEADER, UNDERLAY.
+  * Added getopt_long() support to all programs, position independent options.
+  * Implemented examples/unknown to find field layouts of unknown objects.
+    With bd and bits helpers to decode unknowns.
+    Now with a http://picat-lang.org helper. See also HACKING and savannah News.
+  * Implemented parsing ACIS version 2 to the binary SAB format.
+  * Added all missing dwg_object_to_OBJECT() functions for objects.
+  * Added dwg_ent_minsert_set_num_cols(), dwg_ent_minsert_set_num_rows()
+  * Added --disable-dxf, --enable--debug configure options. With debug there are many
+    more unstable objects available.
+  * Added libredwg.pc (GH #30)
+  * Added valgrind suppressions for known darwin/glibc leaks.
+  * Changed and clarified the semver version numbering on development checkouts with
+    major.minor[.patch[.build.nonmastercommits-gittag]]. See HACKING.
+
+
+LibreDWG version 0.5 - released 2018/07/05:
+
+This is the first public release ever, after several years of silence.
+It can read most r13-r2018 DWG files, and write r2000 DWG,
+write DXF and GeoJSON files for all versions.
+There are also many new programs: dwgread, dwgwrite, dwgrewrite,
+dwg2dxf, dwglayers, dwggrep, dwgbmp, dwg2SVG (very basic), dwg2ps (infancy).
+See the manual, ChangeLog or git history for details.
+
+The API is usable but still pretty rough, we might still rename
+some functions or names for better consistency and add more encoding API.
+
+Copyright information:
+
+Copyright (C) 2009-2020 Free Software Foundation, Inc.
+
+This library is free software, licensed under the terms of the GNU
+General Public License as published by the Free Software Foundation,
+either version 3 of the License, or (at your option) any later version.
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
