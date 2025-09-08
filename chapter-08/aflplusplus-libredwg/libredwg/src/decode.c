@@ -6275,7 +6275,7 @@ decode_preR13_auxheader (Bit_Chain *restrict dat, Dwg_Data *restrict dwg)
       decode_preR13_section_chk (SECTION_VX, dat, dwg);
     }
   FIELD_RLx (auxheader_address, 0);
-  crcc = bit_calc_CRC (
+  crcc = bit_calc_CRC ( // VULN: crash
       0xC0C1,
       &dat->chain[_obj->auxheader_address + 16], // after sentinel (16 bytes)
       _obj->auxheader_size - 2);                 // minus crc length (2 bytes)

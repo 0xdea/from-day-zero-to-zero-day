@@ -837,7 +837,7 @@ read_data_section (Bit_Chain *sec_dat, Bit_Chain *dat,
 
   for (i = 0; i < (int)section->num_pages; i++)
     {
-      r2007_section_page *section_page = section->pages[i];
+      r2007_section_page *section_page = section->pages[i]; // VULN: crash
       page = get_page (pages_map, section_page->id);
       if (page == NULL)
         {
