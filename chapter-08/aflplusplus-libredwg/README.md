@@ -29,7 +29,7 @@ BuildVersion: 24F74
 [AFL++ 27458ad91b7b] /src # afl-fuzz -i fuzz-in -o fuzz-out -- programs/dwgread @@
 ```
 
-### Patch libredwg to remove CRC and sentinel checks and start fuzzing again
+### Patch libredwg to remove CRC and sentinel checks
 
 ```
 % cd libredwg
@@ -42,6 +42,14 @@ $ make -C src
 $ make -C programs dwgread
 $ mv fuzz-out fuzz-out-1
 $ afl-fuzz -i fuzz-in -o fuzz-out -- programs/dwgread @@
+```
+
+### Minimize the seed corpus
+
+```
+[AFL++ 27458ad91b7b] /src # mv fuzz-out fuzz-out-2
+[AFL++ 27458ad91b7b] /src # afl-cmin -i test/test-data/2007 -o fuzz-in-cmin -- programs/dwgread @@
+[AFL++ 27458ad91b7b] afl-fuzz -i fuzz-in-cmin -o fuzz-out -- programs/dwgread @@
 ```
 
 ### Triage crashes
@@ -66,25 +74,25 @@ decode_preR13_auxheader (dat=0xffffffffde50, dwg=0xffffffffe020) at decode.c:627
 
 ...
 
-[AFL++ 27458ad91b7b] /src # gdb --args ./programs/dwgread crash-2.dwg
+[AFL++ 27458ad91b7b] /src # gdb --args ./programs/dwgread fuzz-out/default/crashes/id\:000000\,sig\:11\,src\:005382\,time\:2233789\,execs\:1796605\,op\:havoc\,rep\:3
 (gdb) r
-Starting program: /src/programs/dwgread crash-2.dwg
+Starting program: /src/programs/dwgread fuzz-out/default/crashes/id:000000,sig:11,src:005382,time:2233789,execs:1796605,op:havoc,rep:3
 [Thread debugging using libthread_db enabled]
 Using host libthread_db library "/lib/aarch64-linux-gnu/libthread_db.so.1".
 
 Program received signal SIGSEGV, Segmentation fault.
-0x0000aaaaaaca1cd0 in read_data_section (sec_dat=0xffffffffd900, dat=0xffffffffde50, sections_map=<optimized out>, pages_map=<optimized out>, sec_type=<optimized out>) at decode_r2007.c:840
+0x0000aaaaaaca0bbc in read_data_section (sec_dat=0xffffffffd8b0, dat=0xffffffffde00, sections_map=<optimized out>, pages_map=<optimized out>, sec_type=<optimized out>) at decode_r2007.c:840
 840	      r2007_section_page *section_page = section->pages[i];
 (gdb) bt
-#0  0x0000aaaaaaca1cd0 in read_data_section (sec_dat=0xffffffffd900, dat=0xffffffffde50, sections_map=<optimized out>,
+#0  0x0000aaaaaaca0bbc in read_data_section (sec_dat=0xffffffffd8b0, dat=0xffffffffde00, sections_map=<optimized out>,
     pages_map=<optimized out>, sec_type=<optimized out>) at decode_r2007.c:840
-#1  0x0000aaaaaac9e324 in read_2007_section_revhistory (dat=0xffffffffde50, dwg=0xffffffffe020, sections_map=0xaaaaaafa9fc0,
-    pages_map=0xaaaaaafaa8e0) at decode_r2007.c:2023
+#1  0x0000aaaaaac9d210 in read_2007_section_revhistory (dat=0xffffffffde00, dwg=0xffffffffdfd0, sections_map=0xaaaaaafa91d0,
+    pages_map=0xaaaaaafa9af0) at decode_r2007.c:2023
 #2  read_r2007_meta_data (dat=<optimized out>, hdl_dat=<optimized out>, dwg=<optimized out>) at decode_r2007.c:2466
-#3  0x0000aaaaaab4a308 in decode_R2007 (dat=0xffffffffde50, dwg=0xffffffffe020) at decode.c:3469
-#4  0x0000aaaaaab1fc60 in dwg_decode (dat=0xffffffffde50, dwg=0xffffffffe020) at /src/src/decode.c:227
-#5  dwg_read_file (filename=<optimized out>, dwg=0xffffffffe020) at dwg.c:261
-#6  0x0000aaaaaab1aac0 in main (argc=2, argv=0xfffffffff5a8) at dwgread.c:256
+#3  0x0000aaaaaab49b88 in decode_R2007 (dat=0xffffffffde00, dwg=0xffffffffdfd0) at decode.c:3469
+#4  0x0000aaaaaab1fa20 in dwg_decode (dat=0xffffffffde00, dwg=0xffffffffdfd0) at /src/src/decode.c:227
+#5  dwg_read_file (filename=<optimized out>, dwg=0xffffffffdfd0) at dwg.c:261
+#6  0x0000aaaaaab1a880 in main (argc=2, argv=0xfffffffff558) at dwgread.c:256
 (gdb)
 ```
 
