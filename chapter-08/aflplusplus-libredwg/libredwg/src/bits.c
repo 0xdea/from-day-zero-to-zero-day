@@ -1497,7 +1497,7 @@ bit_check_CRC (Bit_Chain *dat, long unsigned int start_address, uint16_t seed)
     {
       LOG_WARN ("check_CRC mismatch %lu-%lu = %ld: %04X <=> %04X\n",
                 start_address, dat->byte - 2, size, calculated, read)
-      return 0;
+      return 1;
     }
 }
 

@@ -701,7 +701,7 @@ decode_preR13 (Bit_Chain *restrict dat, Dwg_Data *restrict dwg)
     if (crc != crcc)
       {
         LOG_ERROR ("Header CRC mismatch %04X <=> %04X", crc, crcc);
-        error |= DWG_ERR_WRONGCRC;
+        // error |= DWG_ERR_WRONGCRC;
       }
   }
 

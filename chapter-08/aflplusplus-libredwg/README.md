@@ -29,6 +29,21 @@ BuildVersion: 24F74
 [AFL++ 27458ad91b7b] /src # afl-fuzz -i fuzz-in -o fuzz-out -- programs/dwgread @@
 ```
 
+### Patch libredwg to remove CRC and sentinel checks and start fuzzing again
+
+```
+% cd libredwg
+% cp ../remove_crc_sentinel.patch .
+% patch -p1 < remove_crc_sentinel.patch
+% docker run -ti -v /Users/raptor/Research/from-day-zero-to-zero-day/chapter-08/aflplusplus-libredwg/libredwg:/src aflplusplus/aflplusplus
+$ cd /src
+$ make clean
+$ make -C src
+$ make -C programs dwgread
+$ mv fuzz-out fuzz-out-1
+$ afl-fuzz -i fuzz-in -o fuzz-out -- programs/dwgread @@
+```
+
 ### Triage crashes
 
 ```
