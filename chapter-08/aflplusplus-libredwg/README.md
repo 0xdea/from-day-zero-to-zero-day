@@ -96,6 +96,79 @@ Program received signal SIGSEGV, Segmentation fault.
 (gdb)
 ```
 
+### Ensure that the most promising crash works on a release build
+
+```
+$ wget http://ftp.gnu.org/gnu/libredwg/libredwg-0.12.5.tar.gz
+$ tar xvfz libredwg-0.12.5.tar.gz
+$ ./configure --enable-release
+$ make
+$ LD_LIBRARY_PATH="./src/.libs:$LD_LIBRARY_PATH" pwndbg --args ./programs/.libs/dwgread /home/raptor/crash-2.dwg
+...
+pwndbg> r
+Starting program: /home/raptor/libredwg-0.12.5/programs/.libs/dwgread /home/raptor/crash-2.dwg
+
+This GDB supports auto-downloading debuginfo from the following URLs:
+  <https://debuginfod.ubuntu.com>
+Debuginfod has been disabled.
+To make this setting permanent, add 'set debuginfod enabled off' to .gdbinit.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+ERROR: Invalid num_pages 27303540899512437, skip
+ERROR: Invalid section->pages[0] size
+Warning: Failed to find section_info[1]
+ERROR: Failed to read header section
+Warning: Failed to find section_info[3]
+ERROR: Failed to read class section
+Warning: Failed to find section_info[7]
+ERROR: Failed to read objects section
+Warning: Failed to find section_info[2]
+ERROR: Preview overflow 119 + 0 > 27279
+Warning: thumbnail.size mismatch: 27279 != 0
+ERROR: Invalid product_checksum size 16. Need min. 16 bits, have 65280 for .
+
+Program received signal SIGSEGV, Segmentation fault.
+0x00007ffff728cd6c in read_data_section (sec_dat=sec_dat@entry=0x7fffffffca90, dat=dat@entry=0x7fffffffcd90, sections_map=sections_map@entry=0x55555556bfc0, pages_map=pages_map@entry=0x55555556c8e0, sec_type=sec_type@entry=SECTION_REVHISTORY) at decode_r2007.c:805
+805	      r2007_section_page *section_page = section->pages[i];
+...
+ ► 0x7ffff728cd6c <read_data_section+188>    mov    r12, qword ptr [rax]            <Cannot dereference [0]>
+   0x7ffff728cd6f <read_data_section+191>    mov    rdx, qword ptr [r12 + 0x10]
+   0x7ffff728cd74 <read_data_section+196>    je     read_data_section+1056      <read_data_section+1056>
+
+   0x7ffff728cd7a <read_data_section+202>    mov    qword ptr [rsp + 0x38], rbp
+   0x7ffff728cd7f <read_data_section+207>    xor    r13d, r13d                      R13D => 0
+   0x7ffff728cd82 <read_data_section+210>    nop    word ptr [rax + rax]
+   0x7ffff728cd88 <read_data_section+216>    mov    rax, qword ptr [rsp + 8]
+   0x7ffff728cd8d <read_data_section+221>    jmp    read_data_section+237       <read_data_section+237>
+    ↓
+   0x7ffff728cd9d <read_data_section+237>    cmp    qword ptr [rax], rdx
+   0x7ffff728cda0 <read_data_section+240>    jne    read_data_section+224       <read_data_section+224>
+
+   0x7ffff728cda2 <read_data_section+242>    cmp    r15, qword ptr [r12]
+...
+In file: /home/raptor/libredwg-0.12.5/src/decode_r2007.c:805
+   800   sec_dat->version = dat->version;
+   801   sec_dat->from_version = dat->from_version;
+   802
+   803   for (i = 0; i < (int)section->num_pages; i++)
+   804     {
+ ► 805       r2007_section_page *section_page = section->pages[i];
+   806       page = get_page (pages_map, section_page->id);
+   807       if (page == NULL)
+   808         {
+   809           free (decomp);
+   810           LOG_ERROR ("Failed to find page %d", (int)section_page->id)
+...
+ ► 0   0x7ffff728cd6c read_data_section+188
+   1   0x7ffff729207a read_2007_section_revhistory+74
+   2   0x7ffff72a94c9 read_r2007_meta_data+3081
+   3   0x7ffff728aa2e dwg_decode+1758
+   4   0x7ffff728aa2e dwg_decode+1758
+   5   0x7ffff6e6fcdd dwg_read_file+397
+   6   0x5555555556a9 main+1033
+   7   0x7ffff6a2a1ca __libc_start_call_main+122
+```
+
 ## Linux
 
 ### Compile and install AFL++
