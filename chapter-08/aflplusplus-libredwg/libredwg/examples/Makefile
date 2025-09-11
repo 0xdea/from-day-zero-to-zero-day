@@ -373,7 +373,7 @@ INSTALL_DATA = ${INSTALL} -m 644
 INSTALL_PROGRAM = ${INSTALL}
 INSTALL_SCRIPT = ${INSTALL}
 INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
-ISODATE = 2025-09-10
+ISODATE = 2025-09-11
 JING = 
 JQ = 
 JSON_SED_NAN = true
@@ -536,7 +536,7 @@ llvmfuzz_LDADD = $(top_builddir)/src/libredwg.la $(top_builddir)/src/bits.lo
 llvmfuzz_standalone_SOURCES = llvmfuzz.c
 # needs CC=clang
 llvmfuzz_CFLAGS = $(CFLAGS) $(AM_CFLAGS) \
-                              -fsanitize=fuzzer -fno-omit-frame-pointer
+                              -fsanitize=fuzzer,address -fno-omit-frame-pointer
 
 llvmfuzz_standalone_CFLAGS = $(CFLAGS) $(AM_CFLAGS) -DSTANDALONE -DHAVE_ASAN \
                               -fsanitize=address,undefined -fno-omit-frame-pointer

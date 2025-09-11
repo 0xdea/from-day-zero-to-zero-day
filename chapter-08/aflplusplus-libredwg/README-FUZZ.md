@@ -175,9 +175,9 @@ In file: /home/raptor/libredwg-0.12.5/src/decode_r2007.c:805
 % cp libredwg/examples/llvmfuzz.c libredwg/examples/llvmfuzz.c.bak
 % cp libredwg/examples/Makefile.am libredwg/examples/Makefile.am.bak
 % cp llvmfuzz.c libredwg/examples
-% cp Makefile.am libredwg/examples
+% cp Makefile-fuzzer.am libredwg/examples/Makefile.am
 % docker run -ti -v /Users/raptor/Research/from-day-zero-to-zero-day/chapter-08/aflplusplus-libredwg/libredwg:/src aflplusplus/aflplusplus
-[AFL++ 27458ad91b7b] /src # mv fuzz-out/ fuzz-out-cmin
+[AFL++ 27458ad91b7b] /src # mv fuzz-out fuzz-out-cmin
 [AFL++ 27458ad91b7b] /src # make clean
 [AFL++ 27458ad91b7b] /src # CC=afl-clang-lto ./configure --disable-bindings --disable-dxf --disable-json --disable-shared
 [AFL++ 27458ad91b7b] /src # make -C src
@@ -194,6 +194,22 @@ In file: /home/raptor/libredwg-0.12.5/src/decode_r2007.c:805
 [*] Target map size: 49801
 [*] Using SHARED MEMORY FUZZING feature.
 ...
+```
+
+### Fuzz in parallel with AFL++'s distributed mode
+
+```
+% cp Makefile-fuzzer-address.am libredwg/examples/Makefile.am
+% docker run -ti -v /Users/raptor/Research/from-day-zero-to-zero-day/chapter-08/aflplusplus-libredwg/libredwg:/src aflplusplus/aflplusplus
+[AFL++ 27458ad91b7b] /src # mv examples/llvmfuzz examples/llvmfuzz-main
+[AFL++ 27458ad91b7b] /src # mv fuzz-out fuzz-out-cmin2
+[AFL++ 27458ad91b7b] /src # make clean
+[AFL++ 27458ad91b7b] /src # CC=afl-clang-lto ./configure --disable-bindings --disable-dxf --disable-json --disable-shared
+[AFL++ 27458ad91b7b] /src # make -C src
+[AFL++ 27458ad91b7b] /src # make -C examples llvmfuzz
+[AFL++ 27458ad91b7b] /src # mv examples/llvmfuzz examples/llvmfuzz-asan
+[AFL++ 27458ad91b7b] /src # afl-fuzz -i fuzz-in-cmin -o fuzz-out -M main -- examples/llvmfuzz-main
+[AFL++ 27458ad91b7b] /src # afl-fuzz -i fuzz-in-cmin -o fuzz-out -M asan -- examples/llvmfuzz-asan
 ```
 
 ## Linux
