@@ -36,12 +36,12 @@ BuildVersion: 24F74
 % cp ../remove_crc_sentinel.patch .
 % patch -p1 < remove_crc_sentinel.patch
 % docker run -ti -v /Users/raptor/Research/from-day-zero-to-zero-day/chapter-08/aflplusplus-libredwg/libredwg:/src aflplusplus/aflplusplus
-$ cd /src
-$ make clean
-$ make -C src
-$ make -C programs dwgread
-$ mv fuzz-out fuzz-out-1
-$ afl-fuzz -i fuzz-in -o fuzz-out -- programs/dwgread @@
+[AFL++ 27458ad91b7b] /AFLplusplus # cd /src/
+[AFL++ 27458ad91b7b] /src #$ make clean
+[AFL++ 27458ad91b7b] /src # make -C src
+[AFL++ 27458ad91b7b] /src # make -C programs dwgread
+[AFL++ 27458ad91b7b] /src #$ mv fuzz-out fuzz-out-1
+[AFL++ 27458ad91b7b] /src #$ afl-fuzz -i fuzz-in -o fuzz-out -- programs/dwgread @@
 ```
 
 ### Minimize the seed corpus
@@ -167,6 +167,33 @@ In file: /home/raptor/libredwg-0.12.5/src/decode_r2007.c:805
    5   0x7ffff6e6fcdd dwg_read_file+397
    6   0x5555555556a9 main+1033
    7   0x7ffff6a2a1ca __libc_start_call_main+122
+```
+
+### Use AFL++'s persistent mode with a harness
+
+```
+% cp libredwg/examples/llvmfuzz.c libredwg/examples/llvmfuzz.c.bak
+% cp libredwg/examples/Makefile.am libredwg/examples/Makefile.am.bak
+% cp llvmfuzz.c libredwg/examples
+% cp Makefile.am libredwg/examples
+% docker run -ti -v /Users/raptor/Research/from-day-zero-to-zero-day/chapter-08/aflplusplus-libredwg/libredwg:/src aflplusplus/aflplusplus
+[AFL++ 27458ad91b7b] /src # mv fuzz-out/ fuzz-out-cmin
+[AFL++ 27458ad91b7b] /src # make clean
+[AFL++ 27458ad91b7b] /src # CC=afl-clang-lto ./configure --disable-bindings --disable-dxf --disable-json --disable-shared
+[AFL++ 27458ad91b7b] /src # make -C src
+[AFL++ 27458ad91b7b] /src # make -C examples llvmfuzz
+[AFL++ 27458ad91b7b] /src # afl-fuzz -i fuzz-in-cmin -o fuzz-out -- examples/llvmfuzz
+...
+[+] Persistent mode binary detected.
+[+] Deferred forkserver binary detected.
+[*] Scanning 'fuzz-in-cmin'...
+[*] Creating hard links for all input files...
+[+] Loaded a total of 19 seeds.
+[*] Spinning up the fork server...
+[+] All right - new fork server model v1 is up.
+[*] Target map size: 49801
+[*] Using SHARED MEMORY FUZZING feature.
+...
 ```
 
 ## Linux

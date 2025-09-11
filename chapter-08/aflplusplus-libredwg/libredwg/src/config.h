@@ -282,7 +282,7 @@
 
 /* Define to 1 if this is a release, skipping unstable DWG features, unknown
    DWG versions and objects. */
-/* #undef IS_RELEASE */
+#define IS_RELEASE 1
 
 /* Define to 1 if `lstat' dereferences a symlink specified with a trailing
    slash. */

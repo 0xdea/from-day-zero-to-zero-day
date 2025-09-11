@@ -1726,7 +1726,7 @@ configure:14715: afl-clang-lto -c -g -O2  conftest.c >&5
 configure:14715: $? = 0
 configure:14728: result: 4
 configure:16759: afl-clang-lto -c -g -O2  conftest.c >&5
-conftest.c:47:9: error: "no C++"
+conftest.c:48:9: error: "no C++"
        #error "no C++"
         ^
 1 error generated.
@@ -1775,6 +1775,7 @@ configure: failed program was:
 | #define SIZEOF_SIZE_T 8
 | #define SIZEOF_WCHAR_T 4
 | #define _POSIX_C_SOURCE 200809L
+| #define IS_RELEASE 1
 | /* end confdefs.h.  */
 | 
 |       #ifndef __cplusplus
@@ -1840,6 +1841,7 @@ configure: failed program was:
 | #define SIZEOF_SIZE_T 8
 | #define SIZEOF_WCHAR_T 4
 | #define _POSIX_C_SOURCE 200809L
+| #define IS_RELEASE 1
 | /* end confdefs.h.  */
 | 
 | int
@@ -2112,6 +2114,7 @@ configure: failed program was:
 | #define SIZEOF_SIZE_T 8
 | #define SIZEOF_WCHAR_T 4
 | #define _POSIX_C_SOURCE 200809L
+| #define IS_RELEASE 1
 | /* end confdefs.h.  */
 | 
 | int
@@ -2170,6 +2173,7 @@ configure: failed program was:
 | #define SIZEOF_SIZE_T 8
 | #define SIZEOF_WCHAR_T 4
 | #define _POSIX_C_SOURCE 200809L
+| #define IS_RELEASE 1
 | /* end confdefs.h.  */
 | 
 | int
@@ -2228,6 +2232,7 @@ configure: failed program was:
 | #define SIZEOF_SIZE_T 8
 | #define SIZEOF_WCHAR_T 4
 | #define _POSIX_C_SOURCE 200809L
+| #define IS_RELEASE 1
 | /* end confdefs.h.  */
 | 
 | int
@@ -2286,6 +2291,7 @@ configure: failed program was:
 | #define SIZEOF_SIZE_T 8
 | #define SIZEOF_WCHAR_T 4
 | #define _POSIX_C_SOURCE 200809L
+| #define IS_RELEASE 1
 | /* end confdefs.h.  */
 | 
 | int
@@ -2398,6 +2404,7 @@ configure: failed program was:
 | #define SIZEOF_SIZE_T 8
 | #define SIZEOF_WCHAR_T 4
 | #define _POSIX_C_SOURCE 200809L
+| #define IS_RELEASE 1
 | /* end confdefs.h.  */
 | 
 | int
@@ -2537,6 +2544,7 @@ configure: failed program was:
 | #define SIZEOF_SIZE_T 8
 | #define SIZEOF_WCHAR_T 4
 | #define _POSIX_C_SOURCE 200809L
+| #define IS_RELEASE 1
 | /* end confdefs.h.  */
 | 
 | int
@@ -2569,7 +2577,7 @@ configure:18661: : CFLAGS="$CFLAGS"
 configure:18664: $? = 0
 configure:18692: checking for __attribute__((gnu_format))
 configure:18714: afl-clang-lto -o conftest -g -O2 -Werror   conftest.c  >&5
-conftest.c:48:64: error: 'format' attribute argument not supported: gnu_printf [-Werror,-Wignored-attributes]
+conftest.c:49:64: error: 'format' attribute argument not supported: gnu_printf [-Werror,-Wignored-attributes]
                     int foo(const char *p, ...) __attribute__((format(gnu_printf, 1, 2)));
                                                                ^
 1 error generated.
@@ -2618,6 +2626,7 @@ configure: failed program was:
 | #define SIZEOF_SIZE_T 8
 | #define SIZEOF_WCHAR_T 4
 | #define _POSIX_C_SOURCE 200809L
+| #define IS_RELEASE 1
 | #define HAVE_ATTRIBUTE_VISIBILITY_DEFAULT 1
 | /* end confdefs.h.  */
 | 
@@ -2635,7 +2644,7 @@ configure: failed program was:
 configure:18729: result: no
 configure:18835: checking for __attribute__((ms_format))
 configure:18857: afl-clang-lto -o conftest -g -O2 -Werror   conftest.c  >&5
-conftest.c:48:64: error: 'format' attribute argument not supported: ms_printf [-Werror,-Wignored-attributes]
+conftest.c:49:64: error: 'format' attribute argument not supported: ms_printf [-Werror,-Wignored-attributes]
                     int foo(const char *p, ...) __attribute__((format(ms_printf, 1, 2)));
                                                                ^
 1 error generated.
@@ -2684,6 +2693,7 @@ configure: failed program was:
 | #define SIZEOF_SIZE_T 8
 | #define SIZEOF_WCHAR_T 4
 | #define _POSIX_C_SOURCE 200809L
+| #define IS_RELEASE 1
 | #define HAVE_ATTRIBUTE_VISIBILITY_DEFAULT 1
 | /* end confdefs.h.  */
 | 
@@ -2739,19 +2749,19 @@ configure:19762: checking for alloca
 configure:19807: result: yes
 configure:19874: checking for strtod
 configure:19874: afl-clang-lto -o conftest -g -O2   conftest.c  >&5
-conftest.c:73:6: warning: incompatible redeclaration of library function 'strtod' [-Wincompatible-library-redeclaration]
+conftest.c:74:6: warning: incompatible redeclaration of library function 'strtod' [-Wincompatible-library-redeclaration]
 char strtod ();
      ^
-conftest.c:73:6: note: 'strtod' is a builtin with type 'double (const char *, char **)'
+conftest.c:74:6: note: 'strtod' is a builtin with type 'double (const char *, char **)'
 1 warning generated.
 configure:19874: $? = 0
 configure:19874: result: yes
 configure:19882: checking for strdup
 configure:19882: afl-clang-lto -o conftest -g -O2   conftest.c  >&5
-conftest.c:73:6: warning: incompatible redeclaration of library function 'strdup' [-Wincompatible-library-redeclaration]
+conftest.c:74:6: warning: incompatible redeclaration of library function 'strdup' [-Wincompatible-library-redeclaration]
 char strdup ();
      ^
-conftest.c:73:6: note: 'strdup' is a builtin with type 'char *(const char *)'
+conftest.c:74:6: note: 'strdup' is a builtin with type 'char *(const char *)'
 1 warning generated.
 configure:19882: $? = 0
 configure:19882: result: yes
@@ -2773,13 +2783,13 @@ configure:19935: $? = 0
 configure:19935: result: yes
 configure:19946: checking for floor
 configure:19946: afl-clang-lto -o conftest -g -O2   conftest.c  >&5
-conftest.c:77:6: warning: incompatible redeclaration of library function 'floor' [-Wincompatible-library-redeclaration]
+conftest.c:78:6: warning: incompatible redeclaration of library function 'floor' [-Wincompatible-library-redeclaration]
 char floor ();
      ^
-conftest.c:77:6: note: 'floor' is a builtin with type 'double (double)'
+conftest.c:78:6: note: 'floor' is a builtin with type 'double (double)'
 1 warning generated.
 ld.lld: error: undefined symbol: floor
->>> referenced by conftest.c:88 (/src/conftest.c:88)
+>>> referenced by conftest.c:89 (/src/conftest.c:89)
 >>>               lto.tmp:(main)
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:19946: $? = 1
@@ -2827,6 +2837,7 @@ configure: failed program was:
 | #define SIZEOF_SIZE_T 8
 | #define SIZEOF_WCHAR_T 4
 | #define _POSIX_C_SOURCE 200809L
+| #define IS_RELEASE 1
 | #define HAVE_ATTRIBUTE_VISIBILITY_DEFAULT 1
 | #define HAVE_FUNC_ATTRIBUTE_FORMAT 1
 | #define HAVE_FUNC_ATTRIBUTE_MALLOC 1
@@ -2878,13 +2889,13 @@ configure: failed program was:
 configure:19946: result: no
 configure:19952: checking for sqrt
 configure:19952: afl-clang-lto -o conftest -g -O2   conftest.c  >&5
-conftest.c:77:6: warning: incompatible redeclaration of library function 'sqrt' [-Wincompatible-library-redeclaration]
+conftest.c:78:6: warning: incompatible redeclaration of library function 'sqrt' [-Wincompatible-library-redeclaration]
 char sqrt ();
      ^
-conftest.c:77:6: note: 'sqrt' is a builtin with type 'double (double)'
+conftest.c:78:6: note: 'sqrt' is a builtin with type 'double (double)'
 1 warning generated.
 ld.lld: error: undefined symbol: sqrt
->>> referenced by conftest.c:88 (/src/conftest.c:88)
+>>> referenced by conftest.c:89 (/src/conftest.c:89)
 >>>               lto.tmp:(main)
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:19952: $? = 1
@@ -2932,6 +2943,7 @@ configure: failed program was:
 | #define SIZEOF_SIZE_T 8
 | #define SIZEOF_WCHAR_T 4
 | #define _POSIX_C_SOURCE 200809L
+| #define IS_RELEASE 1
 | #define HAVE_ATTRIBUTE_VISIBILITY_DEFAULT 1
 | #define HAVE_FUNC_ATTRIBUTE_FORMAT 1
 | #define HAVE_FUNC_ATTRIBUTE_MALLOC 1
@@ -2983,10 +2995,10 @@ configure: failed program was:
 configure:19952: result: no
 configure:19959: checking for floor in -lm
 configure:19982: afl-clang-lto -o conftest -g -O2   conftest.c -lm   >&5
-conftest.c:65:6: warning: incompatible redeclaration of library function 'floor' [-Wincompatible-library-redeclaration]
+conftest.c:66:6: warning: incompatible redeclaration of library function 'floor' [-Wincompatible-library-redeclaration]
 char floor ();
      ^
-conftest.c:65:6: note: 'floor' is a builtin with type 'double (double)'
+conftest.c:66:6: note: 'floor' is a builtin with type 'double (double)'
 1 warning generated.
 configure:19982: $? = 0
 configure:19992: result: yes
@@ -2996,19 +3008,19 @@ configure:20003: $? = 0
 configure:20003: result: yes
 configure:20010: checking for memchr
 configure:20010: afl-clang-lto -o conftest -g -O2   conftest.c -lm  >&5
-conftest.c:79:6: warning: incompatible redeclaration of library function 'memchr' [-Wincompatible-library-redeclaration]
+conftest.c:80:6: warning: incompatible redeclaration of library function 'memchr' [-Wincompatible-library-redeclaration]
 char memchr ();
      ^
-conftest.c:79:6: note: 'memchr' is a builtin with type 'void *(const void *, int, unsigned long)'
+conftest.c:80:6: note: 'memchr' is a builtin with type 'void *(const void *, int, unsigned long)'
 1 warning generated.
 configure:20010: $? = 0
 configure:20010: result: yes
 configure:20016: checking for memmove
 configure:20016: afl-clang-lto -o conftest -g -O2   conftest.c -lm  >&5
-conftest.c:80:6: warning: incompatible redeclaration of library function 'memmove' [-Wincompatible-library-redeclaration]
+conftest.c:81:6: warning: incompatible redeclaration of library function 'memmove' [-Wincompatible-library-redeclaration]
 char memmove ();
      ^
-conftest.c:80:6: note: 'memmove' is a builtin with type 'void *(void *, const void *, unsigned long)'
+conftest.c:81:6: note: 'memmove' is a builtin with type 'void *(void *, const void *, unsigned long)'
 1 warning generated.
 configure:20016: $? = 0
 configure:20016: result: yes
@@ -3018,10 +3030,10 @@ configure:20022: $? = 0
 configure:20022: result: yes
 configure:20028: checking for strchr
 configure:20028: afl-clang-lto -o conftest -g -O2   conftest.c -lm  >&5
-conftest.c:82:6: warning: incompatible redeclaration of library function 'strchr' [-Wincompatible-library-redeclaration]
+conftest.c:83:6: warning: incompatible redeclaration of library function 'strchr' [-Wincompatible-library-redeclaration]
 char strchr ();
      ^
-conftest.c:82:6: note: 'strchr' is a builtin with type 'char *(const char *, int)'
+conftest.c:83:6: note: 'strchr' is a builtin with type 'char *(const char *, int)'
 1 warning generated.
 configure:20028: $? = 0
 configure:20028: result: yes
@@ -3031,37 +3043,37 @@ configure:20034: $? = 0
 configure:20034: result: yes
 configure:20040: checking for strrchr
 configure:20040: afl-clang-lto -o conftest -g -O2   conftest.c -lm  >&5
-conftest.c:84:6: warning: incompatible redeclaration of library function 'strrchr' [-Wincompatible-library-redeclaration]
+conftest.c:85:6: warning: incompatible redeclaration of library function 'strrchr' [-Wincompatible-library-redeclaration]
 char strrchr ();
      ^
-conftest.c:84:6: note: 'strrchr' is a builtin with type 'char *(const char *, int)'
+conftest.c:85:6: note: 'strrchr' is a builtin with type 'char *(const char *, int)'
 1 warning generated.
 configure:20040: $? = 0
 configure:20040: result: yes
 configure:20046: checking for strtol
 configure:20046: afl-clang-lto -o conftest -g -O2   conftest.c -lm  >&5
-conftest.c:85:6: warning: incompatible redeclaration of library function 'strtol' [-Wincompatible-library-redeclaration]
+conftest.c:86:6: warning: incompatible redeclaration of library function 'strtol' [-Wincompatible-library-redeclaration]
 char strtol ();
      ^
-conftest.c:85:6: note: 'strtol' is a builtin with type 'long (const char *, char **, int)'
+conftest.c:86:6: note: 'strtol' is a builtin with type 'long (const char *, char **, int)'
 1 warning generated.
 configure:20046: $? = 0
 configure:20046: result: yes
 configure:20052: checking for strtoul
 configure:20052: afl-clang-lto -o conftest -g -O2   conftest.c -lm  >&5
-conftest.c:86:6: warning: incompatible redeclaration of library function 'strtoul' [-Wincompatible-library-redeclaration]
+conftest.c:87:6: warning: incompatible redeclaration of library function 'strtoul' [-Wincompatible-library-redeclaration]
 char strtoul ();
      ^
-conftest.c:86:6: note: 'strtoul' is a builtin with type 'unsigned long (const char *, char **, int)'
+conftest.c:87:6: note: 'strtoul' is a builtin with type 'unsigned long (const char *, char **, int)'
 1 warning generated.
 configure:20052: $? = 0
 configure:20052: result: yes
 configure:20058: checking for strtoull
 configure:20058: afl-clang-lto -o conftest -g -O2   conftest.c -lm  >&5
-conftest.c:87:6: warning: incompatible redeclaration of library function 'strtoull' [-Wincompatible-library-redeclaration]
+conftest.c:88:6: warning: incompatible redeclaration of library function 'strtoull' [-Wincompatible-library-redeclaration]
 char strtoull ();
      ^
-conftest.c:87:6: note: 'strtoull' is a builtin with type 'unsigned long long (const char *, char **, int)'
+conftest.c:88:6: note: 'strtoull' is a builtin with type 'unsigned long long (const char *, char **, int)'
 1 warning generated.
 configure:20058: $? = 0
 configure:20058: result: yes
@@ -3079,10 +3091,10 @@ configure:20085: $? = 0
 configure:20085: result: yes
 configure:20092: checking for wcslen
 configure:20092: afl-clang-lto -o conftest -g -O2   conftest.c -lm  >&5
-conftest.c:91:6: warning: incompatible redeclaration of library function 'wcslen' [-Wincompatible-library-redeclaration]
+conftest.c:92:6: warning: incompatible redeclaration of library function 'wcslen' [-Wincompatible-library-redeclaration]
 char wcslen ();
      ^
-conftest.c:91:6: note: 'wcslen' is a builtin with type 'unsigned long (const unsigned int *)'
+conftest.c:92:6: note: 'wcslen' is a builtin with type 'unsigned long (const unsigned int *)'
 1 warning generated.
 configure:20092: $? = 0
 configure:20092: result: yes
@@ -3096,10 +3108,10 @@ configure:20104: $? = 0
 configure:20104: result: yes
 configure:20110: checking for wcscmp
 configure:20110: afl-clang-lto -o conftest -g -O2   conftest.c -lm  >&5
-conftest.c:94:6: warning: incompatible redeclaration of library function 'wcscmp' [-Wincompatible-library-redeclaration]
+conftest.c:95:6: warning: incompatible redeclaration of library function 'wcscmp' [-Wincompatible-library-redeclaration]
 char wcscmp ();
      ^
-conftest.c:94:6: note: 'wcscmp' is a builtin with type 'int (const unsigned int *, const unsigned int *)'
+conftest.c:95:6: note: 'wcscmp' is a builtin with type 'int (const unsigned int *, const unsigned int *)'
 1 warning generated.
 configure:20110: $? = 0
 configure:20110: result: yes
@@ -3110,7 +3122,7 @@ configure:20116: result: yes
 configure:20127: checking for sscanf_s
 configure:20127: afl-clang-lto -o conftest -g -O2   conftest.c -lm  >&5
 ld.lld: error: undefined symbol: sscanf_s
->>> referenced by conftest.c:108 (/src/conftest.c:108)
+>>> referenced by conftest.c:109 (/src/conftest.c:109)
 >>>               lto.tmp:(main)
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:20127: $? = 1
@@ -3158,6 +3170,7 @@ configure: failed program was:
 | #define SIZEOF_SIZE_T 8
 | #define SIZEOF_WCHAR_T 4
 | #define _POSIX_C_SOURCE 200809L
+| #define IS_RELEASE 1
 | #define HAVE_ATTRIBUTE_VISIBILITY_DEFAULT 1
 | #define HAVE_FUNC_ATTRIBUTE_FORMAT 1
 | #define HAVE_FUNC_ATTRIBUTE_MALLOC 1
@@ -3240,13 +3253,13 @@ configure:20268: $? = 0
 configure:20271: result: yes
 configure:20363: checking for C restrict usability
 configure:20401: afl-clang-lto -o conftest -g -O2  -D_FORTIFY_SOURCE=3  conftest.c -lm  >&5
-conftest.c:85:56: error: function definition is not allowed here
+conftest.c:86:56: error: function definition is not allowed here
     void copy (int * restrict to, int * restrict from) {
                                                        ^
-conftest.c:88:32: error: function definition is not allowed here
+conftest.c:89:32: error: function definition is not allowed here
     void test (int *a, int *b) {
                                ^
-conftest.c:93:17: error: function definition is not allowed here
+conftest.c:94:17: error: function definition is not allowed here
     int main () {
                 ^
 3 errors generated.
@@ -3296,6 +3309,7 @@ configure: failed program was:
 | #define SIZEOF_SIZE_T 8
 | #define SIZEOF_WCHAR_T 4
 | #define _POSIX_C_SOURCE 200809L
+| #define IS_RELEASE 1
 | #define HAVE_ATTRIBUTE_VISIBILITY_DEFAULT 1
 | #define HAVE_FUNC_ATTRIBUTE_FORMAT 1
 | #define HAVE_FUNC_ATTRIBUTE_MALLOC 1
@@ -3365,7 +3379,7 @@ configure:20461: checking --enable-trace
 configure:20472: result: no (default)
 configure:20480: checking for setenv
 configure:20480: afl-clang-lto -o conftest -g -O2  -D_FORTIFY_SOURCE=3  conftest.c -lm  >&5
-conftest.c:79:9: warning: 'restrict' macro redefined [-Wmacro-redefined]
+conftest.c:80:9: warning: 'restrict' macro redefined [-Wmacro-redefined]
 #define restrict 
         ^
 conftest.c:20:9: note: previous definition is here
@@ -3475,48 +3489,54 @@ generated by GNU Autoconf 2.71.  Invocation command line was
 
 on 27458ad91b7b
 
-config.status:1419: creating Makefile
-config.status:1419: creating src/Makefile
-config.status:1419: creating doc/Makefile
-config.status:1419: creating programs/Makefile
-config.status:1419: creating examples/Makefile
-config.status:1419: creating bindings/Makefile
-config.status:1419: creating bindings/python/Makefile
-config.status:1419: creating test/Makefile
-config.status:1419: creating test/xmlsuite/Makefile
-config.status:1419: creating test/unit-testing/Makefile
-config.status:1419: creating libredwg.pc
-config.status:1419: creating bindings/perl/Makefile.PL
-config.status:1419: creating programs/dwgfilter
-config.status:1419: creating programs/alive.test
-config.status:1419: creating programs/dxf.test
-config.status:1419: creating programs/json.test
-config.status:1419: creating programs/svg.test
-config.status:1419: creating examples/dwgadd_test.sh
-config.status:1419: creating logs-all.sh
-config.status:1419: creating log
-config.status:1419: creating dwg
-config.status:1419: creating dxf
-config.status:1419: creating json
-config.status:1419: creating svg
-config.status:1419: creating rw
-config.status:1419: creating dynapi_test_all.sh
-config.status:1419: creating unit_testing_all.sh
-config.status:1419: creating src/config.h
-config.status:1648: executing depfiles commands
-config.status:1725: cd src       && sed -e '/# am--include-marker/d' Makefile         | make -f - am--depfiles
-config.status:1730: $? = 0
-config.status:1725: cd programs       && sed -e '/# am--include-marker/d' Makefile         | make -f - am--depfiles
-config.status:1730: $? = 0
-config.status:1725: cd examples       && sed -e '/# am--include-marker/d' Makefile         | make -f - am--depfiles
-config.status:1730: $? = 0
-config.status:1725: cd bindings/python       && sed -e '/# am--include-marker/d' Makefile         | make -f - am--depfiles
-config.status:1730: $? = 0
-config.status:1725: cd test/xmlsuite       && sed -e '/# am--include-marker/d' Makefile         | make -f - am--depfiles
-config.status:1730: $? = 0
-config.status:1725: cd test/unit-testing       && sed -e '/# am--include-marker/d' Makefile         | make -f - am--depfiles
-config.status:1730: $? = 0
-config.status:1648: executing libtool commands
+config.status:1420: creating Makefile
+config.status:1420: creating src/Makefile
+config.status:1420: creating doc/Makefile
+config.status:1420: creating programs/Makefile
+config.status:1420: creating examples/Makefile
+config.status:1420: creating bindings/Makefile
+config.status:1420: creating bindings/python/Makefile
+config.status:1420: creating test/Makefile
+config.status:1420: creating test/xmlsuite/Makefile
+config.status:1420: creating test/unit-testing/Makefile
+config.status:1420: creating libredwg.pc
+config.status:1420: creating bindings/perl/Makefile.PL
+config.status:1420: creating programs/dwgfilter
+config.status:1420: creating programs/alive.test
+config.status:1420: creating programs/dxf.test
+config.status:1420: creating programs/json.test
+config.status:1420: creating programs/svg.test
+config.status:1420: creating examples/dwgadd_test.sh
+config.status:1420: creating logs-all.sh
+config.status:1420: creating log
+config.status:1420: creating dwg
+config.status:1420: creating dxf
+config.status:1420: creating json
+config.status:1420: creating svg
+config.status:1420: creating rw
+config.status:1420: creating dynapi_test_all.sh
+config.status:1420: creating unit_testing_all.sh
+config.status:1420: creating src/config.h
+config.status:1649: executing depfiles commands
+config.status:1726: cd src       && sed -e '/# am--include-marker/d' Makefile         | make -f - am--depfiles
+make: Nothing to be done for 'am--depfiles'.
+config.status:1731: $? = 0
+config.status:1726: cd programs       && sed -e '/# am--include-marker/d' Makefile         | make -f - am--depfiles
+make: Nothing to be done for 'am--depfiles'.
+config.status:1731: $? = 0
+config.status:1726: cd examples       && sed -e '/# am--include-marker/d' Makefile         | make -f - am--depfiles
+make: Nothing to be done for 'am--depfiles'.
+config.status:1731: $? = 0
+config.status:1726: cd bindings/python       && sed -e '/# am--include-marker/d' Makefile         | make -f - am--depfiles
+make: Nothing to be done for 'am--depfiles'.
+config.status:1731: $? = 0
+config.status:1726: cd test/xmlsuite       && sed -e '/# am--include-marker/d' Makefile         | make -f - am--depfiles
+make: Nothing to be done for 'am--depfiles'.
+config.status:1731: $? = 0
+config.status:1726: cd test/unit-testing       && sed -e '/# am--include-marker/d' Makefile         | make -f - am--depfiles
+make: Nothing to be done for 'am--depfiles'.
+config.status:1731: $? = 0
+config.status:1649: executing libtool commands
 
 ## ---------------- ##
 ## Cache variables. ##
@@ -3957,9 +3977,9 @@ INSTALL_DATA='${INSTALL} -m 644'
 INSTALL_PROGRAM='${INSTALL}'
 INSTALL_SCRIPT='${INSTALL}'
 INSTALL_STRIP_PROGRAM='$(install_sh) -c -s'
-ISODATE='2025-09-07'
-IS_RELEASE_FALSE=''
-IS_RELEASE_TRUE='#'
+ISODATE='2025-09-10'
+IS_RELEASE_FALSE='#'
+IS_RELEASE_TRUE=''
 JING=''
 JQ=''
 JSON_SED_NAN='true'
@@ -4187,6 +4207,7 @@ with_perl_install=''
 #define SIZEOF_SIZE_T 8
 #define SIZEOF_WCHAR_T 4
 #define _POSIX_C_SOURCE 200809L
+#define IS_RELEASE 1
 #define HAVE_ATTRIBUTE_VISIBILITY_DEFAULT 1
 #define HAVE_FUNC_ATTRIBUTE_FORMAT 1
 #define HAVE_FUNC_ATTRIBUTE_MALLOC 1
@@ -4230,21 +4251,3 @@ with_perl_install=''
 #define DISABLE_BINDINGS 1
 
 configure: exit 0
-
-## ---------------------- ##
-## Running config.status. ##
-## ---------------------- ##
-
-This file was extended by LibreDWG config.status 0.12.5.721_77a8, which was
-generated by GNU Autoconf 2.71.  Invocation command line was
-
-  CONFIG_FILES    = 
-  CONFIG_HEADERS  = 
-  CONFIG_LINKS    = 
-  CONFIG_COMMANDS = 
-  $ ./config.status src/config.h
-
-on 27458ad91b7b
-
-config.status:1419: creating src/config.h
-config.status:1600: src/config.h is unchanged
