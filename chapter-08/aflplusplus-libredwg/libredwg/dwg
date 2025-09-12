@@ -2,7 +2,7 @@
 # create -v3 logs and dwg's with dwgwrite from DXF, JSON or newer DWG
 srcdir="."
 top_builddir="."
-CFLAGS="-g -O2"
+CFLAGS="-fprofile-arcs -ftest-coverage -DFUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION"
 timeout="timeout 30"
 
 case "$CFLAGS" in

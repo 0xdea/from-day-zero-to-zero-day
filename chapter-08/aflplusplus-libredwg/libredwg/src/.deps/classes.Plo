@@ -10,15 +10,13 @@ classes.lo: classes.c config.h /usr/include/string.h \
   /usr/lib/llvm-16/lib/clang/16/include/stddef.h \
   /usr/include/aarch64-linux-gnu/bits/types/locale_t.h \
   /usr/include/aarch64-linux-gnu/bits/types/__locale_t.h \
-  /usr/include/aarch64-linux-gnu/bits/string_fortified.h \
   /usr/include/stdlib.h /usr/include/aarch64-linux-gnu/bits/waitflags.h \
   /usr/include/aarch64-linux-gnu/bits/waitstatus.h \
   /usr/include/aarch64-linux-gnu/bits/floatn.h \
   /usr/include/aarch64-linux-gnu/bits/floatn-common.h \
-  /usr/include/aarch64-linux-gnu/bits/stdlib-bsearch.h \
   /usr/include/aarch64-linux-gnu/bits/stdlib-float.h \
-  /usr/include/aarch64-linux-gnu/bits/stdlib.h /usr/include/assert.h \
-  common.h /usr/lib/llvm-16/lib/clang/16/include/__stddef_max_align_t.h \
+  /usr/include/assert.h common.h \
+  /usr/lib/llvm-16/lib/clang/16/include/__stddef_max_align_t.h \
   /usr/lib/llvm-16/lib/clang/16/include/stdint.h /usr/include/stdint.h \
   /usr/include/aarch64-linux-gnu/bits/types.h \
   /usr/include/aarch64-linux-gnu/bits/typesizes.h \
@@ -56,15 +54,12 @@ config.h:
 /usr/lib/llvm-16/lib/clang/16/include/stddef.h:
 /usr/include/aarch64-linux-gnu/bits/types/locale_t.h:
 /usr/include/aarch64-linux-gnu/bits/types/__locale_t.h:
-/usr/include/aarch64-linux-gnu/bits/string_fortified.h:
 /usr/include/stdlib.h:
 /usr/include/aarch64-linux-gnu/bits/waitflags.h:
 /usr/include/aarch64-linux-gnu/bits/waitstatus.h:
 /usr/include/aarch64-linux-gnu/bits/floatn.h:
 /usr/include/aarch64-linux-gnu/bits/floatn-common.h:
-/usr/include/aarch64-linux-gnu/bits/stdlib-bsearch.h:
 /usr/include/aarch64-linux-gnu/bits/stdlib-float.h:
-/usr/include/aarch64-linux-gnu/bits/stdlib.h:
 /usr/include/assert.h:
 common.h:
 /usr/lib/llvm-16/lib/clang/16/include/__stddef_max_align_t.h:

@@ -52,7 +52,7 @@ llvmfuzz_standalone_SOURCES = llvmfuzz.c
 if HAVE_ASAN_OR_LINUX
 # needs CC=clang
 llvmfuzz_CFLAGS             = $(CFLAGS) $(AM_CFLAGS) \
-                              -fsanitize=fuzzer,address -fno-omit-frame-pointer
+                              -fsanitize=fuzzer -fno-omit-frame-pointer
 # cflags already includes asan
 if HAVE_ASAN
 llvmfuzz_standalone_CFLAGS  = $(CFLAGS) $(AM_CFLAGS) -DSTANDALONE

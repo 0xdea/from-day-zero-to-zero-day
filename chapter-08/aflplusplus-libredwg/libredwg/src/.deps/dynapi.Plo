@@ -10,15 +10,13 @@ dynapi.lo: dynapi.c config.h /usr/include/string.h \
   /usr/lib/llvm-16/lib/clang/16/include/stddef.h \
   /usr/include/aarch64-linux-gnu/bits/types/locale_t.h \
   /usr/include/aarch64-linux-gnu/bits/types/__locale_t.h \
-  /usr/include/aarch64-linux-gnu/bits/string_fortified.h \
   /usr/include/stdlib.h /usr/include/aarch64-linux-gnu/bits/waitflags.h \
   /usr/include/aarch64-linux-gnu/bits/waitstatus.h \
   /usr/include/aarch64-linux-gnu/bits/floatn.h \
   /usr/include/aarch64-linux-gnu/bits/floatn-common.h \
-  /usr/include/aarch64-linux-gnu/bits/stdlib-bsearch.h \
   /usr/include/aarch64-linux-gnu/bits/stdlib-float.h \
-  /usr/include/aarch64-linux-gnu/bits/stdlib.h /usr/include/assert.h \
-  common.h /usr/lib/llvm-16/lib/clang/16/include/__stddef_max_align_t.h \
+  /usr/include/assert.h common.h \
+  /usr/lib/llvm-16/lib/clang/16/include/__stddef_max_align_t.h \
   /usr/lib/llvm-16/lib/clang/16/include/stdint.h /usr/include/stdint.h \
   /usr/include/aarch64-linux-gnu/bits/types.h \
   /usr/include/aarch64-linux-gnu/bits/typesizes.h \
@@ -48,13 +46,10 @@ dynapi.lo: dynapi.c config.h /usr/include/string.h \
   /usr/include/aarch64-linux-gnu/bits/types/__FILE.h \
   /usr/include/aarch64-linux-gnu/bits/types/FILE.h \
   /usr/include/aarch64-linux-gnu/bits/types/struct_FILE.h \
-  /usr/include/aarch64-linux-gnu/bits/stdio_lim.h \
-  /usr/include/aarch64-linux-gnu/bits/stdio.h \
-  /usr/include/aarch64-linux-gnu/bits/stdio2.h decode.h bits.h \
+  /usr/include/aarch64-linux-gnu/bits/stdio_lim.h decode.h bits.h \
   /usr/include/wchar.h \
   /usr/include/aarch64-linux-gnu/bits/types/wint_t.h \
-  /usr/include/aarch64-linux-gnu/bits/types/mbstate_t.h \
-  /usr/include/aarch64-linux-gnu/bits/wchar2.h decode_r11.h
+  /usr/include/aarch64-linux-gnu/bits/types/mbstate_t.h decode_r11.h
 config.h:
 /usr/include/string.h:
 /usr/include/aarch64-linux-gnu/bits/libc-header-start.h:
@@ -70,15 +65,12 @@ config.h:
 /usr/lib/llvm-16/lib/clang/16/include/stddef.h:
 /usr/include/aarch64-linux-gnu/bits/types/locale_t.h:
 /usr/include/aarch64-linux-gnu/bits/types/__locale_t.h:
-/usr/include/aarch64-linux-gnu/bits/string_fortified.h:
 /usr/include/stdlib.h:
 /usr/include/aarch64-linux-gnu/bits/waitflags.h:
 /usr/include/aarch64-linux-gnu/bits/waitstatus.h:
 /usr/include/aarch64-linux-gnu/bits/floatn.h:
 /usr/include/aarch64-linux-gnu/bits/floatn-common.h:
-/usr/include/aarch64-linux-gnu/bits/stdlib-bsearch.h:
 /usr/include/aarch64-linux-gnu/bits/stdlib-float.h:
-/usr/include/aarch64-linux-gnu/bits/stdlib.h:
 /usr/include/assert.h:
 common.h:
 /usr/lib/llvm-16/lib/clang/16/include/__stddef_max_align_t.h:
@@ -119,12 +111,9 @@ logging.h:
 /usr/include/aarch64-linux-gnu/bits/types/FILE.h:
 /usr/include/aarch64-linux-gnu/bits/types/struct_FILE.h:
 /usr/include/aarch64-linux-gnu/bits/stdio_lim.h:
-/usr/include/aarch64-linux-gnu/bits/stdio.h:
-/usr/include/aarch64-linux-gnu/bits/stdio2.h:
 decode.h:
 bits.h:
 /usr/include/wchar.h:
 /usr/include/aarch64-linux-gnu/bits/types/wint_t.h:
 /usr/include/aarch64-linux-gnu/bits/types/mbstate_t.h:
-/usr/include/aarch64-linux-gnu/bits/wchar2.h:
 decode_r11.h:

@@ -1,7 +1,5 @@
-llvmfuzz-llvmfuzz.o: \
-  /usr/lib/llvm-16/lib/clang/16/share/asan_ignorelist.txt llvmfuzz.c \
-  ../include/dwg.h /usr/lib/llvm-16/lib/clang/16/include/stdint.h \
-  /usr/include/stdint.h \
+llvmfuzz-llvmfuzz.o: llvmfuzz.c ../include/dwg.h \
+  /usr/lib/llvm-16/lib/clang/16/include/stdint.h /usr/include/stdint.h \
   /usr/include/aarch64-linux-gnu/bits/libc-header-start.h \
   /usr/include/features.h /usr/include/features-time64.h \
   /usr/include/aarch64-linux-gnu/bits/wordsize.h \
@@ -33,8 +31,7 @@ llvmfuzz-llvmfuzz.o: \
   /usr/include/aarch64-linux-gnu/bits/types/__fpos_t.h \
   /usr/include/aarch64-linux-gnu/bits/types/__fpos64_t.h \
   /usr/include/aarch64-linux-gnu/bits/types/struct_FILE.h \
-  /usr/include/aarch64-linux-gnu/bits/stdio_lim.h \
-  /usr/include/aarch64-linux-gnu/bits/stdio.h /usr/include/string.h \
+  /usr/include/aarch64-linux-gnu/bits/stdio_lim.h /usr/include/string.h \
   /usr/include/strings.h \
   /usr/lib/llvm-16/lib/clang/16/include/__stddef_max_align_t.h \
   /usr/lib/llvm-16/lib/clang/16/include/stdbool.h ../src/common.h \
@@ -51,7 +48,6 @@ llvmfuzz-llvmfuzz.o: \
   /usr/include/endian.h /usr/include/aarch64-linux-gnu/bits/byteswap.h \
   /usr/include/aarch64-linux-gnu/bits/uintn-identity.h ../src/decode.h \
   ../src/decode_r11.h
-/usr/lib/llvm-16/lib/clang/16/share/asan_ignorelist.txt:
 ../include/dwg.h:
 /usr/lib/llvm-16/lib/clang/16/include/stdint.h:
 /usr/include/stdint.h:
@@ -92,7 +88,6 @@ llvmfuzz-llvmfuzz.o: \
 /usr/include/aarch64-linux-gnu/bits/types/__fpos64_t.h:
 /usr/include/aarch64-linux-gnu/bits/types/struct_FILE.h:
 /usr/include/aarch64-linux-gnu/bits/stdio_lim.h:
-/usr/include/aarch64-linux-gnu/bits/stdio.h:
 /usr/include/string.h:
 /usr/include/strings.h:
 /usr/lib/llvm-16/lib/clang/16/include/__stddef_max_align_t.h:

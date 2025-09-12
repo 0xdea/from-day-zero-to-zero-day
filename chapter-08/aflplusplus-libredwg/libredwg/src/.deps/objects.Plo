@@ -10,11 +10,9 @@ objects.lo: objects.c /usr/include/string.h \
   /usr/lib/llvm-16/lib/clang/16/include/stddef.h \
   /usr/include/aarch64-linux-gnu/bits/types/locale_t.h \
   /usr/include/aarch64-linux-gnu/bits/types/__locale_t.h \
-  /usr/include/strings.h \
-  /usr/include/aarch64-linux-gnu/bits/strings_fortified.h \
-  /usr/include/aarch64-linux-gnu/bits/string_fortified.h config.h \
-  ../include/dwg.h /usr/lib/llvm-16/lib/clang/16/include/stdint.h \
-  /usr/include/stdint.h /usr/include/aarch64-linux-gnu/bits/types.h \
+  /usr/include/strings.h config.h ../include/dwg.h \
+  /usr/lib/llvm-16/lib/clang/16/include/stdint.h /usr/include/stdint.h \
+  /usr/include/aarch64-linux-gnu/bits/types.h \
   /usr/include/aarch64-linux-gnu/bits/typesizes.h \
   /usr/include/aarch64-linux-gnu/bits/time64.h \
   /usr/include/aarch64-linux-gnu/bits/wchar.h \
@@ -51,8 +49,6 @@ objects.lo: objects.c /usr/include/string.h \
 /usr/include/aarch64-linux-gnu/bits/types/locale_t.h:
 /usr/include/aarch64-linux-gnu/bits/types/__locale_t.h:
 /usr/include/strings.h:
-/usr/include/aarch64-linux-gnu/bits/strings_fortified.h:
-/usr/include/aarch64-linux-gnu/bits/string_fortified.h:
 config.h:
 ../include/dwg.h:
 /usr/lib/llvm-16/lib/clang/16/include/stdint.h:

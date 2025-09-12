@@ -10,7 +10,6 @@ reedsolomon.lo: reedsolomon.c config.h /usr/include/string.h \
   /usr/lib/llvm-16/lib/clang/16/include/stddef.h \
   /usr/include/aarch64-linux-gnu/bits/types/locale_t.h \
   /usr/include/aarch64-linux-gnu/bits/types/__locale_t.h \
-  /usr/include/aarch64-linux-gnu/bits/string_fortified.h \
   /usr/include/stdio.h /usr/lib/llvm-16/lib/clang/16/include/stdarg.h \
   /usr/include/aarch64-linux-gnu/bits/types.h \
   /usr/include/aarch64-linux-gnu/bits/typesizes.h \
@@ -24,13 +23,10 @@ reedsolomon.lo: reedsolomon.c config.h /usr/include/string.h \
   /usr/include/aarch64-linux-gnu/bits/stdio_lim.h \
   /usr/include/aarch64-linux-gnu/bits/floatn.h \
   /usr/include/aarch64-linux-gnu/bits/floatn-common.h \
-  /usr/include/aarch64-linux-gnu/bits/stdio.h \
-  /usr/include/aarch64-linux-gnu/bits/stdio2.h /usr/include/stdlib.h \
-  /usr/include/aarch64-linux-gnu/bits/waitflags.h \
+  /usr/include/stdlib.h /usr/include/aarch64-linux-gnu/bits/waitflags.h \
   /usr/include/aarch64-linux-gnu/bits/waitstatus.h \
-  /usr/include/aarch64-linux-gnu/bits/stdlib-bsearch.h \
   /usr/include/aarch64-linux-gnu/bits/stdlib-float.h \
-  /usr/include/aarch64-linux-gnu/bits/stdlib.h /usr/include/malloc.h \
+  /usr/include/malloc.h \
   /usr/lib/llvm-16/lib/clang/16/include/__stddef_max_align_t.h logging.h \
   reedsolomon.h
 config.h:
@@ -48,7 +44,6 @@ config.h:
 /usr/lib/llvm-16/lib/clang/16/include/stddef.h:
 /usr/include/aarch64-linux-gnu/bits/types/locale_t.h:
 /usr/include/aarch64-linux-gnu/bits/types/__locale_t.h:
-/usr/include/aarch64-linux-gnu/bits/string_fortified.h:
 /usr/include/stdio.h:
 /usr/lib/llvm-16/lib/clang/16/include/stdarg.h:
 /usr/include/aarch64-linux-gnu/bits/types.h:
@@ -63,14 +58,10 @@ config.h:
 /usr/include/aarch64-linux-gnu/bits/stdio_lim.h:
 /usr/include/aarch64-linux-gnu/bits/floatn.h:
 /usr/include/aarch64-linux-gnu/bits/floatn-common.h:
-/usr/include/aarch64-linux-gnu/bits/stdio.h:
-/usr/include/aarch64-linux-gnu/bits/stdio2.h:
 /usr/include/stdlib.h:
 /usr/include/aarch64-linux-gnu/bits/waitflags.h:
 /usr/include/aarch64-linux-gnu/bits/waitstatus.h:
-/usr/include/aarch64-linux-gnu/bits/stdlib-bsearch.h:
 /usr/include/aarch64-linux-gnu/bits/stdlib-float.h:
-/usr/include/aarch64-linux-gnu/bits/stdlib.h:
 /usr/include/malloc.h:
 /usr/lib/llvm-16/lib/clang/16/include/__stddef_max_align_t.h:
 logging.h:

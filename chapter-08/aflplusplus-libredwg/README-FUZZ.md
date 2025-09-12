@@ -177,6 +177,7 @@ In file: /home/raptor/libredwg-0.12.5/src/decode_r2007.c:805
 % cp llvmfuzz.c libredwg/examples
 % cp Makefile-fuzzer.am libredwg/examples/Makefile.am
 % docker run -ti -v /Users/raptor/Research/from-day-zero-to-zero-day/chapter-08/aflplusplus-libredwg/libredwg:/src aflplusplus/aflplusplus
+[AFL++ 27458ad91b7b] /AFLplusplus # cd /src/
 [AFL++ 27458ad91b7b] /src # mv fuzz-out fuzz-out-cmin
 [AFL++ 27458ad91b7b] /src # make clean
 [AFL++ 27458ad91b7b] /src # CC=afl-clang-lto ./configure --disable-bindings --disable-dxf --disable-json --disable-shared
@@ -201,6 +202,7 @@ In file: /home/raptor/libredwg-0.12.5/src/decode_r2007.c:805
 ```
 % cp Makefile-fuzzer-address.am libredwg/examples/Makefile.am
 % docker run -ti -v /Users/raptor/Research/from-day-zero-to-zero-day/chapter-08/aflplusplus-libredwg/libredwg:/src aflplusplus/aflplusplus
+[AFL++ 27458ad91b7b] /AFLplusplus # cd /src/
 [AFL++ 27458ad91b7b] /src # mv examples/llvmfuzz examples/llvmfuzz-main
 [AFL++ 27458ad91b7b] /src # mv fuzz-out fuzz-out-cmin2
 [AFL++ 27458ad91b7b] /src # make clean
@@ -210,6 +212,24 @@ In file: /home/raptor/libredwg-0.12.5/src/decode_r2007.c:805
 [AFL++ 27458ad91b7b] /src # mv examples/llvmfuzz examples/llvmfuzz-asan
 [AFL++ 27458ad91b7b] /src # afl-fuzz -i fuzz-in-cmin -o fuzz-out -M main -- examples/llvmfuzz-main
 [AFL++ 27458ad91b7b] /src # afl-fuzz -i fuzz-in-cmin -o fuzz-out -M asan -- examples/llvmfuzz-asan
+```
+
+### Measure fuzzing coverage with afl-cov
+
+```
+% cp Makefile-fuzzer.am libredwg/examples/Makefile.am
+% docker run -ti -v /Users/raptor/Research/from-day-zero-to-zero-day/chapter-08/aflplusplus-libredwg/libredwg:/src aflplusplus/aflplusplus
+[AFL++ 763972a07a54] /AFLplusplus # cd /src/
+[AFL++ 763972a07a54] /src # make clean
+[AFL++ 763972a07a54] /src # afl-cov-build.sh -c ./configure --disable-bindings --disable-dxf --disable-json --disable-shared
+[AFL++ 763972a07a54] /src # make -C src
+[AFL++ 763972a07a54] /src # make -C examples llvmfuzz
+[AFL++ 763972a07a54] /src # ln -s /usr/bin/llvm-cov-16 /usr/bin/llvm-cov
+[AFL++ 763972a07a54] /src # afl-cov.sh -v -c fuzz-out/ "examples/llvmfuzz @@"
+[AFL++ 763972a07a54] /src # sed -i 's/src\/src/src/g' fuzz-out/default/cov/lcov/trace.lcov_info_final
+[AFL++ 763972a07a54] /src # genhtml --ignore-errors source --output-directory fuzz-out/default/cov/web/ fuzz-out/default/cov/lcov/trace.lcov_info_final
+[AFL++ 763972a07a54] /src # exit
+% open libredwg/fuzz-out/default/cov/web/index.html
 ```
 
 ## Linux
@@ -247,3 +267,5 @@ $ mkdir fuzz-in
 $ cp test/test-data/example_2000.dwg fuzz-in/
 $ afl-fuzz -i fuzz-in -o fuzz-out -- programs/dwgread @@
 ```
+
+*Note: See also chapter 8 in the book*

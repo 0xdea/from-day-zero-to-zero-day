@@ -21,8 +21,6 @@ dxfclasses.lo: dxfclasses.c /usr/include/stdio.h \
   /usr/include/aarch64-linux-gnu/bits/stdio_lim.h \
   /usr/include/aarch64-linux-gnu/bits/floatn.h \
   /usr/include/aarch64-linux-gnu/bits/floatn-common.h \
-  /usr/include/aarch64-linux-gnu/bits/stdio.h \
-  /usr/include/aarch64-linux-gnu/bits/stdio2.h \
   /usr/lib/llvm-16/lib/clang/16/include/stdint.h /usr/include/stdint.h \
   /usr/include/aarch64-linux-gnu/bits/wchar.h \
   /usr/include/aarch64-linux-gnu/bits/stdint-intn.h \
@@ -30,11 +28,9 @@ dxfclasses.lo: dxfclasses.c /usr/include/stdio.h \
   /usr/include/string.h \
   /usr/include/aarch64-linux-gnu/bits/types/locale_t.h \
   /usr/include/aarch64-linux-gnu/bits/types/__locale_t.h \
-  /usr/include/strings.h \
-  /usr/include/aarch64-linux-gnu/bits/strings_fortified.h \
-  /usr/include/aarch64-linux-gnu/bits/string_fortified.h \
-  /usr/lib/llvm-16/lib/clang/16/include/stdbool.h config.h \
-  ../include/dwg.h /usr/lib/llvm-16/lib/clang/16/include/inttypes.h \
+  /usr/include/strings.h /usr/lib/llvm-16/lib/clang/16/include/stdbool.h \
+  config.h ../include/dwg.h \
+  /usr/lib/llvm-16/lib/clang/16/include/inttypes.h \
   /usr/include/inttypes.h common.h \
   /usr/lib/llvm-16/lib/clang/16/include/__stddef_max_align_t.h \
   /usr/include/time.h /usr/include/aarch64-linux-gnu/bits/time.h \
@@ -74,8 +70,6 @@ dxfclasses.lo: dxfclasses.c /usr/include/stdio.h \
 /usr/include/aarch64-linux-gnu/bits/stdio_lim.h:
 /usr/include/aarch64-linux-gnu/bits/floatn.h:
 /usr/include/aarch64-linux-gnu/bits/floatn-common.h:
-/usr/include/aarch64-linux-gnu/bits/stdio.h:
-/usr/include/aarch64-linux-gnu/bits/stdio2.h:
 /usr/lib/llvm-16/lib/clang/16/include/stdint.h:
 /usr/include/stdint.h:
 /usr/include/aarch64-linux-gnu/bits/wchar.h:
@@ -85,8 +79,6 @@ dxfclasses.lo: dxfclasses.c /usr/include/stdio.h \
 /usr/include/aarch64-linux-gnu/bits/types/locale_t.h:
 /usr/include/aarch64-linux-gnu/bits/types/__locale_t.h:
 /usr/include/strings.h:
-/usr/include/aarch64-linux-gnu/bits/strings_fortified.h:
-/usr/include/aarch64-linux-gnu/bits/string_fortified.h:
 /usr/lib/llvm-16/lib/clang/16/include/stdbool.h:
 config.h:
 ../include/dwg.h:

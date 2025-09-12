@@ -2,7 +2,7 @@
 # create -v3 logs and json's from DWG or DXF with dwgread -Ojson
 srcdir="."
 top_builddir="."
-CFLAGS="-g -O2"
+CFLAGS="-fprofile-arcs -ftest-coverage -DFUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION"
 timeout="timeout 30"
 
 case "$CFLAGS" in

@@ -21,9 +21,7 @@ decode_r11.lo: decode_r11.c config.h /usr/include/stdio.h \
   /usr/include/aarch64-linux-gnu/bits/stdio_lim.h \
   /usr/include/aarch64-linux-gnu/bits/floatn.h \
   /usr/include/aarch64-linux-gnu/bits/floatn-common.h \
-  /usr/include/aarch64-linux-gnu/bits/stdio.h \
-  /usr/include/aarch64-linux-gnu/bits/stdio2.h /usr/include/stdlib.h \
-  /usr/include/aarch64-linux-gnu/bits/waitflags.h \
+  /usr/include/stdlib.h /usr/include/aarch64-linux-gnu/bits/waitflags.h \
   /usr/include/aarch64-linux-gnu/bits/waitstatus.h \
   /usr/include/aarch64-linux-gnu/sys/types.h \
   /usr/include/aarch64-linux-gnu/bits/types/clock_t.h \
@@ -41,7 +39,6 @@ decode_r11.lo: decode_r11.c config.h /usr/include/stdio.h \
   /usr/include/aarch64-linux-gnu/bits/types/__sigset_t.h \
   /usr/include/aarch64-linux-gnu/bits/types/struct_timeval.h \
   /usr/include/aarch64-linux-gnu/bits/types/struct_timespec.h \
-  /usr/include/aarch64-linux-gnu/bits/select2.h \
   /usr/include/aarch64-linux-gnu/bits/pthreadtypes.h \
   /usr/include/aarch64-linux-gnu/bits/thread-shared-types.h \
   /usr/include/aarch64-linux-gnu/bits/pthreadtypes-arch.h \
@@ -49,16 +46,12 @@ decode_r11.lo: decode_r11.c config.h /usr/include/stdio.h \
   /usr/include/aarch64-linux-gnu/bits/struct_mutex.h \
   /usr/include/aarch64-linux-gnu/bits/struct_rwlock.h \
   /usr/include/alloca.h \
-  /usr/include/aarch64-linux-gnu/bits/stdlib-bsearch.h \
   /usr/include/aarch64-linux-gnu/bits/stdlib-float.h \
-  /usr/include/aarch64-linux-gnu/bits/stdlib.h /usr/include/string.h \
+  /usr/include/string.h \
   /usr/include/aarch64-linux-gnu/bits/types/locale_t.h \
   /usr/include/aarch64-linux-gnu/bits/types/__locale_t.h \
-  /usr/include/strings.h \
-  /usr/include/aarch64-linux-gnu/bits/strings_fortified.h \
-  /usr/include/aarch64-linux-gnu/bits/string_fortified.h \
-  /usr/lib/llvm-16/lib/clang/16/include/stdbool.h /usr/include/assert.h \
-  logging.h ../include/dwg_api.h ../include/dwg.h \
+  /usr/include/strings.h /usr/lib/llvm-16/lib/clang/16/include/stdbool.h \
+  /usr/include/assert.h logging.h ../include/dwg_api.h ../include/dwg.h \
   /usr/lib/llvm-16/lib/clang/16/include/stdint.h /usr/include/stdint.h \
   /usr/include/aarch64-linux-gnu/bits/wchar.h \
   /usr/include/aarch64-linux-gnu/bits/stdint-uintn.h \
@@ -70,10 +63,10 @@ decode_r11.lo: decode_r11.c config.h /usr/include/stdio.h \
   /usr/include/aarch64-linux-gnu/bits/types/struct_itimerspec.h bits.h \
   /usr/include/wchar.h \
   /usr/include/aarch64-linux-gnu/bits/types/wint_t.h \
-  /usr/include/aarch64-linux-gnu/bits/types/mbstate_t.h \
-  /usr/include/aarch64-linux-gnu/bits/wchar2.h decode.h decode_r11.h \
-  free.h dynapi.h dec_macros.h /usr/include/ctype.h importer.h spec.h \
-  header_variables_r11.spec common_entity_data.spec header.spec
+  /usr/include/aarch64-linux-gnu/bits/types/mbstate_t.h decode.h \
+  decode_r11.h free.h dynapi.h dec_macros.h /usr/include/ctype.h \
+  importer.h spec.h header_variables_r11.spec common_entity_data.spec \
+  header.spec
 config.h:
 /usr/include/stdio.h:
 /usr/include/aarch64-linux-gnu/bits/libc-header-start.h:
@@ -100,8 +93,6 @@ config.h:
 /usr/include/aarch64-linux-gnu/bits/stdio_lim.h:
 /usr/include/aarch64-linux-gnu/bits/floatn.h:
 /usr/include/aarch64-linux-gnu/bits/floatn-common.h:
-/usr/include/aarch64-linux-gnu/bits/stdio.h:
-/usr/include/aarch64-linux-gnu/bits/stdio2.h:
 /usr/include/stdlib.h:
 /usr/include/aarch64-linux-gnu/bits/waitflags.h:
 /usr/include/aarch64-linux-gnu/bits/waitstatus.h:
@@ -122,7 +113,6 @@ config.h:
 /usr/include/aarch64-linux-gnu/bits/types/__sigset_t.h:
 /usr/include/aarch64-linux-gnu/bits/types/struct_timeval.h:
 /usr/include/aarch64-linux-gnu/bits/types/struct_timespec.h:
-/usr/include/aarch64-linux-gnu/bits/select2.h:
 /usr/include/aarch64-linux-gnu/bits/pthreadtypes.h:
 /usr/include/aarch64-linux-gnu/bits/thread-shared-types.h:
 /usr/include/aarch64-linux-gnu/bits/pthreadtypes-arch.h:
@@ -130,15 +120,11 @@ config.h:
 /usr/include/aarch64-linux-gnu/bits/struct_mutex.h:
 /usr/include/aarch64-linux-gnu/bits/struct_rwlock.h:
 /usr/include/alloca.h:
-/usr/include/aarch64-linux-gnu/bits/stdlib-bsearch.h:
 /usr/include/aarch64-linux-gnu/bits/stdlib-float.h:
-/usr/include/aarch64-linux-gnu/bits/stdlib.h:
 /usr/include/string.h:
 /usr/include/aarch64-linux-gnu/bits/types/locale_t.h:
 /usr/include/aarch64-linux-gnu/bits/types/__locale_t.h:
 /usr/include/strings.h:
-/usr/include/aarch64-linux-gnu/bits/strings_fortified.h:
-/usr/include/aarch64-linux-gnu/bits/string_fortified.h:
 /usr/lib/llvm-16/lib/clang/16/include/stdbool.h:
 /usr/include/assert.h:
 logging.h:
@@ -160,7 +146,6 @@ bits.h:
 /usr/include/wchar.h:
 /usr/include/aarch64-linux-gnu/bits/types/wint_t.h:
 /usr/include/aarch64-linux-gnu/bits/types/mbstate_t.h:
-/usr/include/aarch64-linux-gnu/bits/wchar2.h:
 decode.h:
 decode_r11.h:
 free.h:

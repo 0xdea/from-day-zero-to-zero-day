@@ -536,7 +536,7 @@ llvmfuzz_LDADD = $(top_builddir)/src/libredwg.la $(top_builddir)/src/bits.lo
 llvmfuzz_standalone_SOURCES = llvmfuzz.c
 # needs CC=clang
 @HAVE_ASAN_OR_LINUX_TRUE@llvmfuzz_CFLAGS = $(CFLAGS) $(AM_CFLAGS) \
-@HAVE_ASAN_OR_LINUX_TRUE@                              -fsanitize=fuzzer,address -fno-omit-frame-pointer
+@HAVE_ASAN_OR_LINUX_TRUE@                              -fsanitize=fuzzer -fno-omit-frame-pointer
 
 @HAVE_ASAN_FALSE@@HAVE_ASAN_OR_LINUX_TRUE@llvmfuzz_standalone_CFLAGS = $(CFLAGS) $(AM_CFLAGS) -DSTANDALONE -DHAVE_ASAN \
 @HAVE_ASAN_FALSE@@HAVE_ASAN_OR_LINUX_TRUE@                              -fsanitize=address,undefined -fno-omit-frame-pointer

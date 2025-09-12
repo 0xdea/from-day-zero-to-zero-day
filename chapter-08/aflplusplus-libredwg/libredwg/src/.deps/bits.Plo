@@ -21,16 +21,12 @@ bits.lo: bits.c config.h /usr/include/stdio.h \
   /usr/include/aarch64-linux-gnu/bits/stdio_lim.h \
   /usr/include/aarch64-linux-gnu/bits/floatn.h \
   /usr/include/aarch64-linux-gnu/bits/floatn-common.h \
-  /usr/include/aarch64-linux-gnu/bits/stdio.h \
-  /usr/include/aarch64-linux-gnu/bits/stdio2.h /usr/include/stdlib.h \
-  /usr/include/aarch64-linux-gnu/bits/waitflags.h \
+  /usr/include/stdlib.h /usr/include/aarch64-linux-gnu/bits/waitflags.h \
   /usr/include/aarch64-linux-gnu/bits/waitstatus.h \
-  /usr/include/aarch64-linux-gnu/bits/stdlib-bsearch.h \
   /usr/include/aarch64-linux-gnu/bits/stdlib-float.h \
-  /usr/include/aarch64-linux-gnu/bits/stdlib.h /usr/include/string.h \
+  /usr/include/string.h \
   /usr/include/aarch64-linux-gnu/bits/types/locale_t.h \
   /usr/include/aarch64-linux-gnu/bits/types/__locale_t.h \
-  /usr/include/aarch64-linux-gnu/bits/string_fortified.h \
   /usr/include/ctype.h /usr/include/aarch64-linux-gnu/bits/endian.h \
   /usr/include/aarch64-linux-gnu/bits/endianness.h \
   /usr/lib/llvm-16/lib/clang/16/include/stdint.h /usr/include/stdint.h \
@@ -49,7 +45,6 @@ bits.lo: bits.c config.h /usr/include/stdio.h \
   logging.h bits.h /usr/include/wchar.h \
   /usr/include/aarch64-linux-gnu/bits/types/wint_t.h \
   /usr/include/aarch64-linux-gnu/bits/types/mbstate_t.h \
-  /usr/include/aarch64-linux-gnu/bits/wchar2.h \
   /usr/lib/llvm-16/lib/clang/16/include/__stddef_max_align_t.h \
   /usr/lib/llvm-16/lib/clang/16/include/stdbool.h common.h \
   /usr/include/time.h /usr/include/aarch64-linux-gnu/bits/time.h \
@@ -88,18 +83,13 @@ config.h:
 /usr/include/aarch64-linux-gnu/bits/stdio_lim.h:
 /usr/include/aarch64-linux-gnu/bits/floatn.h:
 /usr/include/aarch64-linux-gnu/bits/floatn-common.h:
-/usr/include/aarch64-linux-gnu/bits/stdio.h:
-/usr/include/aarch64-linux-gnu/bits/stdio2.h:
 /usr/include/stdlib.h:
 /usr/include/aarch64-linux-gnu/bits/waitflags.h:
 /usr/include/aarch64-linux-gnu/bits/waitstatus.h:
-/usr/include/aarch64-linux-gnu/bits/stdlib-bsearch.h:
 /usr/include/aarch64-linux-gnu/bits/stdlib-float.h:
-/usr/include/aarch64-linux-gnu/bits/stdlib.h:
 /usr/include/string.h:
 /usr/include/aarch64-linux-gnu/bits/types/locale_t.h:
 /usr/include/aarch64-linux-gnu/bits/types/__locale_t.h:
-/usr/include/aarch64-linux-gnu/bits/string_fortified.h:
 /usr/include/ctype.h:
 /usr/include/aarch64-linux-gnu/bits/endian.h:
 /usr/include/aarch64-linux-gnu/bits/endianness.h:
@@ -124,7 +114,6 @@ bits.h:
 /usr/include/wchar.h:
 /usr/include/aarch64-linux-gnu/bits/types/wint_t.h:
 /usr/include/aarch64-linux-gnu/bits/types/mbstate_t.h:
-/usr/include/aarch64-linux-gnu/bits/wchar2.h:
 /usr/lib/llvm-16/lib/clang/16/include/__stddef_max_align_t.h:
 /usr/lib/llvm-16/lib/clang/16/include/stdbool.h:
 common.h:
