@@ -268,4 +268,4 @@ $ cp test/test-data/example_2000.dwg fuzz-in/
 $ afl-fuzz -i fuzz-in -o fuzz-out -- programs/dwgread @@
 ```
 
-*Note: See also chapter 8 in the book*
+*Note: See also chapter 8 in the book for Linux and OSS-Fuzz examples*
