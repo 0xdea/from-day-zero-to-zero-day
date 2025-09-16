@@ -1,4 +1,4 @@
-# Example AFL++ fuzzing session
+# Example AFL++ source-assisted fuzzing sessions
 
 ## macOS
 
