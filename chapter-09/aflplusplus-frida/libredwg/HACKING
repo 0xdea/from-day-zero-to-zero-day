@@ -1,0 +1,408 @@
+HACKING LibreDWG
+
+"???" means that there is still some question to resolve;
+someone should probably think about and resolve them!
+
+* regen
+
+  To regenerate the configure script and Makefile.in files,
+  change to the top-level directory and do: "sh autogen.sh".
+  Make sure you have recent Autoconf, Automake, Libtool installed.
+  (See comments in autogen.sh for specific versions tested.)
+
+* other tools
+
+  Aside from the the autotools (see "regen", above),
+  you will also need GNU Texinfo to build the manual.
+  See e.g. the github action for recipes, or .appveyor.yml
+  for another Mingw recipe.
+  The compiler needs to support C99, i.e. MSVC cannot be used.
+
+* coding standards
+
+  We try to follow the GNU Coding Standards, with some exceptions.
+  - from Emacs: (info "(standards)")
+  - from shell: $ info standards
+
+  We format the code now with clang-format. For include/*.h we would
+  require >= 8.0 for the new StatementMacros option, but we don't process
+  include yet, because src/gen-dynapi.pl is too fragile.
+  You can use
+
+    $ bash build-aux/clang-format-all.sh src programs examples test
+
+  or use some clang-format editor integration.
+  See https://clang.llvm.org/docs/ClangFormat.html
+
+  The exceptions are:
+  - [[change log maintenance]]
+
+* version numbers
+
+  We follow semantic versioning, using git-version-gen with no v prefix.
+  e.g. 0.5, 0.5.0.1099, 0.5.0.1093.1_967f
+
+  Major for breaking changes in the API of otherwise declared stable entities.
+
+  Minor for adding features, bugfixes and minor changes.
+  Releases mostly only carry those two, and maybe the patch number.
+
+  Patch for backwards-compatible bug fixes. It's optional and left-out if 0.
+
+  The build number is automatically incremented for smoke and master builds
+  and creates a volatile tag.
+  It's left out in releases, only serves as volatile tag for nightly master
+  builds on github.
+
+  The optional number after those 4 numbers is the number of commits not yet
+  merged to master. E.g. the 1 in 0.5.0.1093.1_967f.
+  And finally for local development builds the abbrevated git tag, e.g. the 967f
+  in 0.5.0.1093.1_967f.
+
+  So a released version will be 2 or 3 numbers, a development version will also
+  carry the 4-digit build number, and if it's a branch also two more elements.
+
+  Version numbers are generated manually for a release by pushing a 2-3 number tag, 
+  and automatically by bumping the version in .appveyor.yml.
+
+* make regen-dynapi
+
+  Whenever you change a class or any class field (add, remove, rename, change a type),
+  add a separate make regen-dynapi commit, as result of this command. So the small change
+  is separated from the automatically created changes by gen-dynapi.pl.
+
+  This command updates several generated lists of objects, classes, and its tests.
+
+* change log maintenance
+
+  Presently, there is only one top-level ChangeLog file, and commits go
+  in without updating it.  For releases, we generate
+  ChangeLog entries based on the commit logs.
+  We use the script create-changelog (in build-aux/) for that.
+
+  This means that then the commit logs should follow
+  the GNU Coding Standards.  For example:
+
+  | Add foo, with increased bar.
+  |
+  | Normally, we don't need to foo, but sometimes it is necessary.
+  | In those cases, we might as well use a bigger bar.
+  |
+  | * src/part.h (foo): New decl.
+  |   (bar): Bump value of this #define to 42.
+  | * src/part.c (foo): New func.
+  | * src/main.c (main): In the case of `sometimes', call `foo'.
+  | * test/special.test (normally): Don't test `sometimes'.
+  |   (sometimes): New test case.
+  | * doc/whole.texi (Special Cases): Document `sometimes' handling.
+
+  This example has three parts: a one-line sentence describing the change,
+  followed by two newlines, followed by a short discussion of the change,
+  followed by entries for each of the five changed files.  A template:
+
+  | ONE-LINE SENTENCE
+  |
+  | DISCUSSION
+  |
+  | * CHANGES-TO-FILE
+  | [...]
+
+  For small changes or when the one-line sentence suffices, the discussion
+  (and its following two newlines) can be dropped:
+
+  | ONE-LINE SENTENCE
+  |
+  | * CHANGES-TO-FILE
+  | [...]
+
+  There are some conventions for the one-line sentence:
+
+  - Suffix "; nfc." means no functional change (e.g., changing comments only).
+    This causes create-changelog to omit the entry from its output.
+
+  - Prefix "TOPIC:" means this change is about some TOPIC.
+    Some topics we use are:
+    - admin  -- administrative stuff (e.g., this file)
+    - build  -- configuration, makefiles, etc
+    - decode -- read path (decoding)
+    - encode -- write path (encoding)
+    - dxf    -- dxf writer
+    - indxf  -- dxf reader
+    - binding -- language bindings
+    - api    -- user API
+    - doc    -- documentation
+
+* trailing whitespace
+
+  Don't be uncool; avoid introducing trailing whitespace!  See:
+  <http://old.nabble.com/Re:-whitespace-cleanup-p6850253.html>
+
+* branch names
+
+  If you want to push a branch that may be "git rebase"d in the future,
+  either use the prefix "wip-" (work in progress), or your Savannah
+  username followed by a slash (e.g., "juca/").
+  There are also "work/*" and "smoke/*" branches.
+
+* make release
+
+  This might be better in an in-tree ./configure, not in an extra build
+  directory. But out-of-tree is also supported now.
+  It needs the default configure options, esp. the enabled bindings.
+
+  Before a release:
+  - update NEWS, .appveyor.yml, libredwg.spec manually
+  - generate the missing ChangeLog entries
+    e.g. via build-aux/gitlog-to-changelog --since='2018-11-05' >x
+  - make distcheck
+  - push a smoke/ branch to check the CI results for linux, darwin, freebsd, mingw
+    and cygwin.
+  - create a temp. tag with the correct version number (see above):
+    e.g. git tag -s -m 'release 0.6.2' 0.6.2
+  - sh autogen.sh to update the version
+  - make regen-man to update the manpages
+
+  - update/create the release commit and sign it with -S
+    e.g. git commit -S --amend -a -m 'Release 0.6.2
+    see NEWS'
+  - merge it into master (ff)
+  - update the tag: git tag -d 0.6.2; git tag -s -m 'release 0.6.2' 0.6.2
+  - make dist to create the source tarballs
+  - push master and tags to run the CI and create the windows binaries on appveyor
+  - upload the dist tarballs
+    build-aux/gnupload --to ftp.gnu.org:libredwg libredwg-0.6.2.tar.gz libredwg-0.6.2.tar.xz
+  - download the appveyor artifacts and sha256sum and sign it
+    gpg -b -a libredwg-0.6.2-win32.zip; mv libredwg-0.6.2-win32.asc libredwg-0.6.2-win32.sig
+    sha256sum libredwg-0.6.2*
+  - edit the github release, copy from the previous and fix up the text with the sha256sum's,
+    upload the dists and sigs to this page.
+  - regen the docs, the refman and manual
+    make manual refman
+  - update the libredwg-cvs checkout for the docs and GNU homepage with the updated docs via
+    make release-web
+  - create the announcement via build-aux/announce-gen (needs lots of args)
+    and fixup the header with the NEWS
+  - create a savannah news item with the announcement, and post it to the announcement
+    mailinglist and twitter. maybe also to reddit.com/r/cad and similar forums.
+
+* using gdb with programs in examples/
+
+  The programs in examples are built by libtool and dynamically linked
+  against the pre-installed library by using a wrapper script.  To run
+  them under gdb, use:
+
+  $ libtool --mode=execute gdb PROGRAM
+
+  But it is easier to pass --disable-shared to configure and call
+  gdb --args directly.
+
+* mingw cross-compilation
+
+  If you have 32-bit wine use the i686-w64-mingw32 target,
+  add CFLAGS="-gdwarf-2" for debugging with winedbg, best with --disable-shared.
+  Copy some required mingw dll's into your programs dir.
+
+  Recommended for debugging:
+
+  $ ./configure --enable-trace --enable-write --host=i686-w64-mingw32
+  $ make CFLAGS="-gdwarf-2"
+
+  Sample session in programs:
+
+  $ make -C .. CFLAGS="-gstabs" && \
+    cp ../src/.libs/libredwg-0.dll . && \
+    LIBREDWG_TRACE=4  winedbg .libs/dwgread.exe ../test/test-data/2000/Leader.dwg
+  > b dwg_decode_eed
+  > cont
+
+* python on macports
+
+  On macports with system python overriding the macports python2.7 you'd might need to set
+  either:
+
+  $ export PYTHONPATH=/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/
+
+  or run the tests with:
+
+  $ make check PYTHON=/opt/local/bin/python2.7
+
+  because the system python is missing libxml2.
+
+  Or add the macports libxml2 to the system python2.7:
+
+  $ port install py27-libxml2
+  $ sudo cp /opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/libxml2* \
+            /System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/
+
+* fuzzing with afl-fuzz
+
+On darwin I need to set AFL_CC and CC.
+
+  make clean
+  CC=afl-clang ../configure --disable-bindings --disable-write --disable-dxf --disable-json --disable-shared
+  make -C src && make -C programs dwgread
+  mkdir fuzz-in; cp test/test-data/example_2000.dwg fuzz-in/
+  afl-fuzz -i fuzz-in -o fuzz-out -- programs/dwgread -
+
+Using the fast option and an internal loop is slower to compile, but faster to run.
+I get 220/sec uninstrumented and 800/sec instrumented without -O2, which is fast enough
+to finish within 30m for a 32k DWG.
+
+  make clean
+  CC="afl-clang-fast" \
+    CFLAGS="-O2 -g -Wall -Wextra -march=native -fsanitize=address,undefined -fno-omit-frame-pointer" \
+    ../configure --disable-bindings --disable-dxf --disable-json --disable-shared
+  make -C src && make -C examples dwgfuzz
+  mkdir fuzz-in; cp test/test-data/example_2000.dwg fuzz-in/
+  afl-fuzz -i fuzz-in -o fuzz-out -- examples/dwgfuzz -dwg -
+
+With honggfuzz:
+
+    ../configure --disable-shared --disable-bindings CC=hfuzz-clang CFLAGS='-O2 -g -fsanitize=address,undefined -fno-omit-frame-pointer -I/usr/local/include'
+    make -C src && make -C examples dwgfuzz
+    honggfuzz -i ../.fuzz-in-dxf -- examples/dwgfuzz -indxf ___FILE___
+
+I added a better examples/dwgfuzz for faster persisent mode and more coverage. Up to 2000/sec.
+There's also a new examples/llvmfuzz which finds even more bugs.
+
+    make -C src
+    clang -I../src -Isrc -g -O3 -fsanitize=address,fuzzer ../examples/llvmfuzz.c -Lsrc/.libs -lredwg
+    LD_LIBRARY_PATH=src/.libs ./a.out  -timeout=4000 -detect_leaks=0 -rss_limit_mb=8000 ../test/test-data/
+
+* adding other code
+
+You can only add significant code by some author who has copyright
+assigned to the FSF or signed a copyright disclaimer with the FSF. See
+CONTRIBUTING.
+
+The license of this work (code, docs, ...) must be GPLv3 compatible,
+see the list at USING_FOREIGN_CODE.
+
+* reverse-engineering with examples/unknown
+
+There's a lot of code related to examples/unknown to automatically
+find the field layout of yet unknown classes. At first you need
+DWG/DXF pairs of unknown entities or objects and put them into
+test/test-data/. At creation take care to create uniquely identifiable
+names and numbers, not to create DXF fields all with the same value 0.
+Then you'll never known which field in the DWG is which.
+
+Then run make -C examples regen-unknown, which does this:
+
+run ./logs-all.sh to create -v4 logfiles with the binary blobs for all
+UNKNOWN_OBJ and UNKNOWN_ENT instances in those DWG's.
+
+Then the perl script log_unknown.pl creates the include file
+alldwg.inc adding all those blobs.
+
+The next perl script log_unknown_dxf.pl parses alldwg.inc and looks
+for matching DXF files, and creates the 3 include files alldxf_0.inc
+with the matching blob data from alldwg.inc, alldxf_1.inc with the
+matching field types and values from the DXF and alldxf_2.inc to
+workaround some static initialization issues in the C file.
+
+Next run make unknown, which does this:
+
+Compiles and runs examples/unknown, which creates for a every string
+value in the DXF some bits representations and tries to find them in
+the UNKNOWN blobs. If it doesn't find them, either the string-to-bit
+conversion lost too much precision to be able to find them, esp. with
+doubles, or we have a different problem. make unknown creates a big
+log file unknown-`git describe`.log in which you can see the
+individual statistics and initial layout guesses.
+
+E.g.
+42/230=18.3%
+possible: [34433333344443333334444333333311xxxxxxxxxx3443333...
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+11 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 11   1]
+
+The x stands for a fixed field, the numbers and a dot for the number
+of variants this bit is used for (the dot for >9) and a space means
+this is a hole for a field which is not represented as DXF field, i.e.
+a FIELD_*(name, 0) in the dwg.spec with DXF group code 0.
+
+unknown also creates picat data files in examples/ which are then used with
+picat from http://picat-lang.org to enhance the search for the best layout
+guess for each particular class. picat is a nice mix of a functional
+programming tool with an optional constraint solver. The first part in
+the picat process does almost the same as unknown.c, finding the fixed
+layout, possible variants and holes in a straight-forward functional
+fashion. This language is very similar to erlang, untyped haskell or prolog.
+The second optimization part of picat uses a solver with
+constraints to improve the layout of the found variants and holes to
+find the best guess for the needed dwg.spec layout.
+Note that picat list and array indices are one-based, so you need to
+subtract 1 from each found offset. 1-32 mean the bits 0-31.
+
+The field names are filled in by examples/log_unknown_dxf.pl automatically.
+We could parse dwg.spec for this, but for now I went with a manual solution,
+as the number of unknown classes gets less, not more.
+
+E.g. for ACAD_EVALUATION_GRAPH.pi with a high percentage from the above
+possible layout, it currently produces this:
+
+Definite result:
+----------------
+HOLE([1,32],01000000010100000001010000000110) len = 32
+FIELD_BL (edge_flags, 93);	// 32 [33,42]
+HOLE([43,52],0100000001) len = 10
+FIELD_BL (node_edge1, 92);	// -1 [53,86]
+FIELD_BL (node_edge2, 92);	// -1 [87,120]
+FIELD_BL (node_edge3, 92);	// -1 [121,154]
+FIELD_BL (node_edge4, 92);	// -1 [155,188]
+HOLE([189,191],100) len = 3
+FIELD_H (ownerhandle, 330);	// 6.0.0 [192,199]
+FIELD_H (evalexpr, 360);	// 3.2.2E2 [200,223]
+HOLE([224,230],1100111) len = 7
+----------------
+Todo: 32 + 178 = 210, Missing: 20
+FIELD_BL (has_graph, 96);	// 1 0100000001 [[1,10],[11,20],[21,30],[43,52]]
+FIELD_BL (unknown1, 97);	// 1 0100000001 [[1,10],[11,20],[21,30],[43,52]]
+FIELD_BL (nodeid, 91);	// 0 10 [[2,3],[10,11],[12,13],[20,21],[22,23],[31,32],[44,45],[52,53],[189,190],[225,226]]
+FIELD_BL (num_evalexpr, 95);	// 1 0100000001 [[1,10],[11,20],[21,30],[43,52]]
+
+The next picat steps will automate the following reasoning:
+
+The first hole 1-32 is filled by the 3 1 values from BL96, BL97 and
+BL95, followed by the 0 value from BL91. The second hole is clearly
+another unknown BL with value 1.  The third hole at 189-191 is padding
+before the handle stream, and can be ignored.  This is from a r2010
+file, which has separate handle and text streams.  The last hole
+224-230 could theoretically hold almost another unknown handle, but
+practically it's also just padding. The last handles are always
+optional reactors and the xdicobject handle for objects, and 7 bits is
+not enough for a handle value. A code 4 null-handle would be 01000000.
+
+You start by finding the DXF documentation and the ObjectARX header
+file of the class, to get the names and description of the class.
+
+You add the names and types to dwg.h and dwg.spec, change the class
+type in classes.inc to DEBUGGING or UNSTABLE. With DEBUGGING add the
+-DDEBUG_CLASSES flag to CFLAGS in src/Makefile (e.g. by
+--enable-debug) and test the dwg's with programs/dwgread -v4 (e.g. by ./log file).
+Some layouts are version dependent, some need a REPEAT loop or vector
+with a num_field field.
+
+The picat constraints module examples/unknown.pi is still being worked
+and is getting better and better identifying all missing classes
+automatically. The problem with AutoCAD DWG's is that everybody can
+add their own custom classes as ObjectARX application, and that
+reverse-engineering them never stops. So it has to be automated somehow.
+
+There are also two more helpers bd and bits in examples/, which decode a bit
+pattern to the most likely value/type combination or all.
+
+* Convert unknown_bits HEX to binary
+
+Store the HEX string from the log into a file, like acds.hex.
+
+    perl -ne'$_ =~ s/(..)/chr(hex($1))/ge; print' acds.hex >acds.dat
+
+* etc
+#+STARTUP: odd
+  Local variables:
+  mode: org
+  End:
+
