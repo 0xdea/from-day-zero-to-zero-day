@@ -42,4 +42,14 @@ Aborted
 ...
 ```
 
+### Frida mode - Removing fuzz blockers via dynamic binary instrumentation
+
+```
+% cp patch.js libredwg
+% docker run -ti -v /Users/raptor/Research/from-day-zero-to-zero-day/chapter-09/aflplusplus-frida/libredwg:/src aflplusplus/aflplusplus
+[AFL++ d0cab7325ce4] /AFLplusplus # cd /src
+[AFL++ d0cab7325ce4] /src # AFL_FRIDA_JS_SCRIPT=patch.js AFL_DEBUG=1 afl-fuzz -O -i fuzz-in-cmin -o fuzz-out-2 -- programs/dwgread @@
+[AFL++ d0cab7325ce4] /src # AFL_FRIDA_JS_SCRIPT=patch.js afl-fuzz -O -i fuzz-in-cmin -o fuzz-out-2 -- programs/dwgread @@
+```
+
 *Note: See also chapter 9 for other Linux examples*
