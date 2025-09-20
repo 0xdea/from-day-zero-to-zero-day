@@ -52,4 +52,15 @@ Aborted
 [AFL++ d0cab7325ce4] /src # AFL_FRIDA_JS_SCRIPT=patch.js afl-fuzz -O -i fuzz-in-cmin -o fuzz-out-2 -- programs/dwgread @@
 ```
 
+### Frida mode - Setting persistent mode start address via dynamic binary instrumentation
+
+```
+% cp offset.js libredwg
+% docker run -ti -v /Users/raptor/Research/from-day-zero-to-zero-day/chapter-09/aflplusplus-frida/libredwg:/src aflplusplus/aflplusplus
+[AFL++ d0cab7325ce4] /AFLplusplus # cd /src
+[AFL++ d0cab7325ce4] /src # cp programs/dwgread programs/dwgread-stripped
+[AFL++ d0cab7325ce4] /src # strip programs/dwgread-stripped
+[AFL++ d0cab7325ce4] /src # AFL_FRIDA_JS_SCRIPT=offset.js afl-fuzz -O -i fuzz-in-cmin -o fuzz-out-3 -- programs/dwgread-stripped @@
+```
+
 *Note: See also chapter 9 for other Linux examples*
