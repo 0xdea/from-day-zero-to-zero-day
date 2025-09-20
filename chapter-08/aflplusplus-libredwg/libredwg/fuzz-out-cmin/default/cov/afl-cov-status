@@ -1,3 +1,0 @@
-afl_cov_pid     : 4686
-afl_cov_version : 0.7.0
-command_line    : /usr/local/bin/afl-cov -v --clang -d /src/fuzz-out-cmin/default --cover-corpus --coverage-cmd examples/llvmfuzz @@ --code-dir . --overwrite

@@ -1,0 +1,244 @@
+name: Github CI
+on:
+  push:
+    branches:
+      - master
+      - smoke/*
+      - gh/*
+    tags:
+      - '0.*.*'
+      - '0.*'
+  pull_request:
+    branches:
+      - '*'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+#strategy:
+#  matrix:
+#    os: [ubuntu-14.04, ubuntu-18.04, ubuntu-latest]
+
+jobs:
+  linux:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: true
+      matrix:
+        CONFIGURE_ARGS:
+          - --disable-bindings CFLAGS="-O0 -fno-omit-frame-pointer -fsanitize=address,undefined -fno-var-tracking"
+          - CC="clang"
+          - --enable-release
+          - --enable-gcov --disable-bindings
+          - --disable-write
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 1
+        submodules: recursive
+    - name: setup-python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.8
+    - name: setup-python-libxml2
+      run: |
+        python -m pip install --upgrade pip libxml2-python3
+    - run: sh autogen.sh
+    - run: ./configure ${{ matrix.CONFIGURE_ARGS }}
+    - if: matrix.CONFIGURE_ARGS != '--enable-release'
+      run: make -j
+    - if: matrix.CONFIGURE_ARGS != '--enable-gcov --disable-bindings' && matrix.CONFIGURE_ARGS != '--enable-release' && startsWith(github.ref, 'refs/heads/')
+      run: make -j check
+    #  run: |
+    #    python -m pip install cpp-coveralls
+    #    make gcov
+    #    coveralls -e test -e bindings
+    - if: matrix.CONFIGURE_ARGS == '--enable-gcov --disable-bindings'
+      name: Run make codecov if --enable-gcov
+      run: make codecov
+    - if: matrix.CONFIGURE_ARGS == '--enable-release'
+      name: Run make distcheck if --enable-release
+      run: |
+        sudo apt-get -y install texlive help2man libconvert-binary-c-perl
+        make distcheck
+    - if: matrix.CONFIGURE_ARGS == '--enable-release' && startsWith(github.ref, 'refs/tags/')
+      name: Prep-Release
+      run: sha256sum libredwg-*.tar.* > dist.sha256
+    - if: matrix.CONFIGURE_ARGS == '--enable-release' && startsWith(github.ref, 'refs/tags/')
+      name: Release
+      continue-on-error: true
+      uses: softprops/action-gh-release@v1
+      with:
+        body_path: dist.sha256
+        files: |
+          dist.sha256
+          libredwg-*.tar.*
+  linux-cmake:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    #strategy:
+    #  fail-fast: true
+    #  matrix:
+    #    CMAKE_ARGS:
+    #      - ""
+    #      - "-DLIBREDWG_LIBONLY=On -DLIBREDWG_DISABLE_JSON=On"
+    #      - "-DLIBREDWG_DISABLE_WRITE=On"
+    steps:
+    - name: setup-python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.8
+    - name: checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 1
+        submodules: recursive
+    - run: cmake -DLIBREDWG_LIBONLY=On .
+    - run: make -j
+    - run: make -j test
+  macOS:
+    name: macOS
+    runs-on: macOS-latest
+    steps:
+    - name: init
+      run: brew install automake texinfo
+    - name: link texinfo
+      run: brew link texinfo --force
+    - name: setup-python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.8
+    - name: checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 1
+        submodules: recursive
+    - run: sh autogen.sh
+    - run: ./configure --disable-bindings
+    - run: PATH="/usr/local/opt/texinfo/bin:$PATH" make
+    - run: PATH="/usr/local/opt/texinfo/bin:$PATH" make check
+    #- run: make distcheck
+  mingw:
+    name: mingw
+    runs-on: windows-latest
+    env:
+      MSYS2_DIR: msys64
+      MSYS2_ARCH: x86_64
+      MSYSTEM: MINGW64
+      ARCH: win64
+      PLATFORM: x64
+      #PATH: "C:\%MSYS2_DIR%\%MSYSTEM%\bin;C:\%MSYS2_DIR%\usr\bin;%PATH%"
+    steps:
+      # see https://github.com/msys2/setup-msys2
+    - name: setup-msys2
+      uses: msys2/setup-msys2@v2
+      with:
+        path-type: minimal
+        update: true
+        install: >-
+          git
+          base-devel
+          mingw-w64-x86_64-toolchain
+          mingw-w64-x86_64-libtool
+          mingw-w64-x86_64-libiconv
+          mingw-w64-x86_64-libxml2
+          mingw-w64-x86_64-swig
+          mingw-w64-x86_64-python2
+          libtool
+          autoconf-wrapper
+          automake-wrapper
+          texinfo
+          gperf
+          mingw-w64-x86_64-perl
+          mingw-w64-x86_64-pcre2
+    - run: reg add "HKLM\Software\Microsoft\Windows\Windows Error Reporting" /f /v DontShowUI /d 1
+    - name: checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 1
+        submodules: recursive
+    - shell: msys2 {0}
+      run: sh ./autogen.sh
+      continue-on-error: true
+    - shell: msys2 {0}
+      run: ./configure --disable-dependency-tracking
+    - shell: msys2 {0}
+      run: make -j
+    - if: failure()
+      run: make -C src dwg_api.i; tar cfz artefact-failure.tgz src/dwg_api.i src/config.h
+    - if: failure()
+      uses: actions/upload-artifact@v3
+      with:
+        name: artefact-failure.tgz
+        path: artefact-failure.tgz
+    - shell: msys2 {0}
+      run: make -j check
+  mingw-cmake:
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+    - name: setup-msys2
+      uses: msys2/setup-msys2@v2
+      with:
+        path-type: minimal
+    - name: checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 1
+        submodules: recursive
+    - run: cmake -G "MinGW Makefiles" .
+    - run: mingw32-make -j VERBOSE=1 | tee make.log
+    - if: failure()
+      run: tar cfz msys-failure.tgz make.log src/config.h
+  vs2019:
+    runs-on: windows-2019
+    timeout-minutes: 20
+    steps:
+    - name: checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 1
+        submodules: recursive
+    - run: cmake -G "Visual Studio 16 2019" -A x64 -DCMAKE_BUILD_TYPE=Release .
+    - run: cmake --build . --config Release
+    - run: copy Release/libredwg.dll test/unit-testing/Release/
+    - run: ctest .
+    - if: failure()
+      run: tar cfz msvc-failure.tgz Testing/Temporary/LastTest.log src/config.h
+  vs2019-ninja:
+    runs-on: windows-2019
+    timeout-minutes: 20
+    env:
+      ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+    steps:
+    - name: checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 1
+        submodules: recursive
+    - name: ilammy/msvc-dev-cmd
+      uses: ilammy/msvc-dev-cmd@v1.3.0
+    - run: choco install ninja
+      # use the preinstalled vcpkg from image
+      # https://github.com/actions/virtual-environments/blob/main/images/win/Windows2019-Readme.md#package-management
+    - name: Setup vcpkg
+      uses: lukka/run-vcpkg@v10
+      with:
+        vcpkgDirectory: C:/vcpkg
+        doNotUpdateVcpkg: true  # the preinstalled vcpkg is updated regularly      
+    - name: cmake -G "Ninja"
+      shell: cmd
+      run: |
+        cmake -G "Ninja" ^
+          -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_BUILD_TYPE=Release ^
+          -DCMAKE_TOOLCHAIN_FILE=C:\vcpkg\scripts\buildsystems\vcpkg.cmake ^
+          -DVCPKG_TARGET_TRIPLET=x64-windows-static-release ^
+          -DVERBOSE_CONFIGURE=ON ^
+          -DCMAKE_CXX_COMPILER=cl ^
+          -DCMAKE_C_COMPILER=cl
+    - run: ninja
+    - name: prep test
+      run: copy libredwg.dll test\unit-testing\
+    - run: ninja test

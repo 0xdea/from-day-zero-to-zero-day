@@ -29,7 +29,7 @@ BuildVersion: 24F74
 [AFL++ 27458ad91b7b] /src # afl-fuzz -i fuzz-in -o fuzz-out -- programs/dwgread @@
 ```
 
-### Patch libredwg to remove CRC and sentinel checks
+### Patch libredwg to remove fuzz blockers (CRC and sentinel checks)
 
 ```
 % cd libredwg
