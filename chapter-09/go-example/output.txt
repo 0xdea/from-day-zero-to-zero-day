@@ -1,0 +1,25 @@
+$ cd go-example/
+$ go mod init example/fuzz
+$ go run .
+true
+true
+false
+$ go test -fuzz=FuzzValidateURLDomain
+fuzz: elapsed: 0s, gathering baseline coverage: 0/1 completed
+fuzz: elapsed: 0s, gathering baseline coverage: 1/1 completed, now fuzzing with 12 workers
+fuzz: elapsed: 3s, execs: 675752 (225246/sec), new interesting: 208 (total: 209)
+fuzz: elapsed: 6s, execs: 1492858 (272353/sec), new interesting: 256 (total: 257)
+fuzz: elapsed: 9s, execs: 2207764 (238294/sec), new interesting: 278 (total: 279)
+fuzz: minimizing 50-byte failing input file
+fuzz: elapsed: 12s, minimizing
+fuzz: elapsed: 12s, minimizing
+--- FAIL: FuzzValidateURLDomain (12.19s)
+    --- FAIL: FuzzValidateURLDomain (0.00s)
+        fuzz_test.go:19: Incorrectly validated "http://00example.com"
+
+    Failing input written to testdata/fuzz/FuzzValidateURLDomain/9d94b251d721e736
+    To re-run:
+    go test -run=FuzzValidateURLDomain/9d94b251d721e736
+FAIL
+exit status 1
+FAIL	example/fuzz	12.197s

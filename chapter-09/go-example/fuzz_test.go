@@ -14,6 +14,7 @@ func FuzzValidateURLDomain(f *testing.F) {
         parsedURL, err := url.Parse(data)
         if (err == nil) {
             host := strings.ToLower(parsedURL.Host)
+            // Crasher to check whether the validation passes for domains that do not match.
             if (ValidateURLDomain(data, domain) && host != domain &&
                 !strings.HasSuffix(host, "."+domain)) {
                 t.Errorf("Incorrectly validated %q", data)

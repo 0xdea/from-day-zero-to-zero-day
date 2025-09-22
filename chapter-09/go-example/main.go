@@ -11,7 +11,7 @@ func ValidateURLDomain(inputURL string, expectedDomain string) bool {
 	expectedDomain = regexp.QuoteMeta(expectedDomain)
 
 	regexPattern := `^https?://(?:[A-Za-z0-9-]+.)*` + expectedDomain + 
-		`($|/|\?)`
+		`($|/|\?)` // VULN: the dot is not escaped
 
 	regex, err := regexp.Compile(regexPattern)
 	if err != nil {
