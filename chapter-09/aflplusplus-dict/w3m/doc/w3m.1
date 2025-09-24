@@ -1,0 +1,332 @@
+.nr N -1
+.nr D 5
+.TH W3M 1 "2016-08-06" "w3m 0.5.3"
+.SH NAME
+w3m \- a text based web browser and pager
+.SH SYNOPSIS
+w3m [OPTION]... [ \fIfile\fP | \fIURL\fP ]...
+.SH DESCRIPTION
+.\" This defines appropriate quote strings for nroff and troff
+.ds lq \&"
+.ds rq \&"
+.if t .ds lq ``
+.if t .ds rq ''
+.\" Just in case these number registers aren't set yet...
+.if \nN==0 .nr N 10
+.if \nD==0 .nr D 5
+
+\fIw3m\fP is a text based browser which can display local or remote
+web pages as well as other documents.
+It is able to process HTML
+tables and frames but it ignores JavaScript and Cascading Style
+Sheets.
+\fIw3m\fP can also serve as a pager for text files named as
+arguments or passed on standard input, and as a general purpose
+directory browser.
+
+\fIw3m\fP organizes its content in buffers or tabs, allowing easy
+navigation between them.
+With the w3m-img extension installed, \fIw3m\fP can
+display inline graphics in web pages.
+And whenever \fIw3m\fP's HTML
+rendering capabilities do not meet your needs, the target URL can be
+handed over to a graphical browser with a single command.
+
+For help with runtime options, press \(lqH\(rq while running \fIw3m\fP.
+
+.SH ARGUMENTS
+
+When given one or more command line arguments, \fIw3m\fP will handle
+targets according to content type.
+For web, \fIw3m\fP gets this
+information from HTTP headers; for relative or absolute file system
+paths, it relies on filenames.
+
+With no argument, \fIw3m\fP expects data from standard input and
+assumes \(lqtext/plain\(rq unless another MIME type is given by the user.
+
+If provided with no target and no fallback target (see for instance
+option \fB\-v\fP below), \fIw3m\fP will exit with usage information.
+.SH OPTIONS
+Command line options are introduced with a single \(lq\-\(rq character and
+may take an argument.
+.SS General options
+.TP
+\fB\-B\fP
+with no other target defined, use the bookmark page for startup
+.TP
+\fB\-H\fP
+use high-intensity colors
+.TP
+\fB\-M\fP
+monochrome display
+.TP
+\fB\-no-mouse\fP
+deactivate mouse support
+.TP
+\fB\-num\fP
+display each line's number
+.TP
+\fB\-N\fP
+distribute multiple command line arguments to tabs.
+By default, a
+stack of buffers is used
+.TP
+\fB\-ppc \fInum\fR
+width of \fInum\fR pixels per character.
+Range of 4.0 to 32.0, default 8.0.
+Larger values will make tables narrower.
+(Implementation not verified)
+.TP
+\fB\-ppl \fInum\fR
+height of \fInum\fR pixels per line.
+Range of 4.0 to 64.0.
+(Implementation not verified)
+.TP
+\fB\-title\fP, \fB\-title=TERM\fP
+use the buffer name as terminal title string.
+With specified TERM,
+this sets the title configuration style accordingly
+.TP
+\fB\-v\fP
+with no other target defined, welcome users with a built-in page
+.TP
+\fB\-W\fP
+toggle wrapping mode in searches
+.TP
+\fB\-X\fP
+do not initialize/deinitialize the terminal
+.TP
+\fB+\fInum\fR
+go to line \fInum\fR;
+only effective for \fInum\fR larger than the number of lines in the terminal
+.SS Browser options
+.TP
+\fB\-cols \fInum\fR
+with stdout as destination; HTML is rendered to lines of \fInum\fR characters
+.TP
+\fB\-cookie\fP, \fB\-no-cookie\fP
+use stored cookies and accept new ones, or do neither
+.TP
+\fB\-F\fP
+render frames
+.TP
+\fB\-graph\fP, \fB\-no-graph\fP
+use or do not use graphic characters for drawing HTML table and frame borders
+.TP
+\fB\-header \fIstring\fR
+append \fIstring\fR to the HTTP(S) request.
+Expected to match the header syntax \f(CWVariable: Value\fP
+.TP
+\fB\-m\fP
+Render the body of Usenet messages according to the header \(lqContent-type\(rq
+.TP
+\fB\-no-proxy\fP
+do not use proxy
+.TP
+\fB\-post \fIfile\fR
+use POST method to upload data defined in \fIfile\fR.
+The syntax to be used
+is \f(CWvar1=value1[&var2=value2]...\fP
+.TP
+\fB\-4\fP
+IPv4 only.
+Corresponds to dns_order=4 in configuration files
+.TP
+\fB\-6\fP
+IPv6 only.
+Corresponds to dns_order=6 in configuration files
+.TP
+\fB\-insecure\fP
+use insecure SSL config options,
+alias for \f(CW-o ssl_cipher=ALL:eNULL:@SECLEVEL=0 -o ssl_min_version=all
+-o ssl_forbid_method= -o ssl_verify_server=0\fP
+.SS Text pager options
+.TP
+\fB\-l \fInum\fR
+number of lines preserved internally when receiving plain text from
+stdin (default 10,000)
+.TP
+\fB\-r\fP
+use caret notation to display special escape characters (such
+as ANSI escapes or nroff-style backspaces for bold and underlined
+characters) instead of processing them
+.TP
+\fB\-s\fP
+squeeze multiple blank lines into one
+.TP
+\fB\-t\fP \fInum\fP
+set tab width to \fInum\fR columns.
+No effect on stdout
+.SS Data type/encoding options
+.TP
+\fB\-I \fIcharset\fR
+user defined character encoding of input data
+.TP
+\fB\-O \fIcharset\fR
+user defined character encoding of output data
+.TP
+\fB\-T \fItype\fR
+explicit characterization of input data by MIME type
+.SS Options for data output, followed by immediate exit
+.TP
+\fB\-dump\fP
+dump rendered page into stdout.
+Set implicitly when output is directed
+to a file or pipe
+.TP
+\fB\-dump_source\fP
+dump the page's source code into stdout
+.TP
+\fB\-dump_head\fP
+dump response of a HEAD request for a URL into stdout
+.TP
+\fB\-dump_both\fP
+dump HEAD, and source code for a URL into stdout
+.TP
+\fB\-dump_extra\fP
+dump HEAD, source code, and extra information for a URL into stdout
+.TP
+\fB\-help\fP
+show a summary of compiled-in features and command line options
+.TP
+\fB\-show-option\fP
+show all available configuration options
+.TP
+\fB\-version\fP
+show the version of \fIw3m\fP
+.SS Options for overriding default settings and resources
+.TP
+\fB\-bookmark \fIfile\fR
+use \fIfile\fR instead of the default bookmark.html file
+.TP
+\fB\-config \fIfile\fR
+use \fIfile\fR instead of the default configuration file
+.TP
+\fB\-o \fIoption=value\fR
+modify one configuration item with an explicitly given value;
+without \fIoption=value\fR, equivalent to \fB\-show-option\fR
+.TP
+\fB\-debug\fP
+use debug mode (only for debugging)
+.TP
+\fB\-reqlog\fP
+log headers of HTTP communication in file \f(CW~/.w3m/request.log\fP
+.SH EXAMPLES
+.SS Pager-like usage
+.TP
+Combine snippets of HTML code and preview the page
+.EX
+$ cat header.html footer.html | w3m \-T text/html
+.EE
+.TP
+Compare two files using tabs
+.EX
+$ w3m \-N config.old config
+.EE
+.SS Browser-like usage
+.TP
+Display web content in monochrome terminal
+.EX
+$ w3m \-M http://w3m.sourceforge.net
+.EE
+.TP
+Display embedded graphics
+.EX
+$ w3m \-o auto_image=TRUE http://w3m.sourceforge.net
+.EE
+.TP
+Display content from Usenet
+.EX
+$ w3m \-m nntp://news.aioe.org/comp.os.linux.networking
+.EE
+.TP
+Upload data for a URL using the POST method
+.EX
+$ w3m \-post \- http://example.com/form.php <<<'a=0&b=1'
+.EE
+.SS Filter-like usage
+.TP
+Convert an HTML file to plain text with a defined line length
+.EX
+$ w3m \-cols 40 foo.html > foo.txt
+.EE
+.TP
+Output the bookmarks page as text with an appended list of links
+.EX
+$ w3m \-B \-o display_link_number=1 > out.txt
+.EE
+.TP
+Conversion of file format and character encoding
+.EX
+$ w3m \-T text/html \-I EUC-JP \-O UTF-8 < foo.html > foo.txt
+.EE
+.SS Start with no input
+.TP
+Welcome users with a built-in page
+.EX
+$ w3m \-v
+.EE
+.\".SH Errors
+.SH ENVIRONMENT
+\fIw3m\fP recognises the environment variable \fBWWW_HOME\fP as
+defining a fallback target for use if it is invoked without one.
+
+If the \fBW3M_DIR\fP environment variable is set to a directory
+name, \fIw3m\fP will store its user files there instead of
+under the ~/.w3m directory.
+.SH FILES
+The default locations of some files are listed below. These
+locations can be altered via the \fBW3M_DIR\fP environment
+variable.
+.TP
+\f(CW~/.w3m/bookmark.html\fP
+default bookmark file
+.TP
+\f(CW~/.w3m/config\fP
+user defined configuration file; overrides \f(CW/etc/w3m/config\fP
+.TP
+\f(CW~/.w3m/cookie\fP
+cookie jar; written on exit, read on launch
+.TP
+\f(CW~/.w3m/history\fP
+browser history - visited files and URLs
+.TP
+\f(CW~/.w3m/keymap\fP
+user defined key bindings; overrides default key bindings
+.TP
+\f(CW~/.w3m/mailcap\fP
+external viewer configuration file
+.TP
+\f(CW~/.w3m/menu\fP
+user defined menu; overrides default menu
+.TP
+\f(CW~/.w3m/mime.types\fP
+MIME types file
+.TP
+\f(CW~/.w3m/mouse\fP
+user defined mouse settings
+.TP
+\f(CW~/.w3m/passwd\fP
+password and username file
+.TP
+\f(CW~/.w3m/pre_form\fP
+contains predefined values to fill recurrent HTML forms
+.\" .TP
+.\" .I $~/.w3m/urimethodmap
+.\" ???
+.SH SEE ALSO
+README and example files are to be found in the doc directory of your
+\fIw3m\fP installation.
+Recent information about \fIw3m\fP may be found on
+.UR http://w3m.sourceforge.net
+the project's web pages at
+.UE
+.SH ACKNOWLEDGMENTS
+\fIw3m\fP has incorporated code from several sources.
+Users have contributed patches and suggestions over time.
+.SH AUTHOR
+.MT aito@fw.ipsj.or.jp
+Akinori ITO
+.ME
+

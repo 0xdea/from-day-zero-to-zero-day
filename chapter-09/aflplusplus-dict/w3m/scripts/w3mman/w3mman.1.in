@@ -1,0 +1,78 @@
+.TH W3MMAN 1 "2016-07-13"
+.\" Please adjust this date whenever revising the manpage.
+.\"
+.\" Some roff macros, for reference:
+.\" .nh        disable hyphenation
+.\" .hy        enable hyphenation
+.\" .ad l      left justify
+.\" .ad b      justify to both left and right margins
+.\" .nf        disable filling
+.\" .fi        enable filling
+.\" .br        insert line break
+.\" .sp <n>    insert n+1 empty lines
+.\" for manpage-specific macros, see man(7)
+.SH NAME
+w3mman \- an interface to the on-line reference manuals via w3m(1)
+.SH SYNOPSIS
+.\" mh 2016-07-04: "page" is an optional argument.
+.\" Started without it, w3mman displays a form that allows selection
+.\" of a manual page according to section, name and keyword.
+.\" Therefore square brackets introduced
+.B w3mman
+[
+.BI \-M " path"
+] [ [
+.I section
+]
+.I page
+]
+.br
+.B w3mman
+[
+.BI \-M " path"
+] [
+.I section
+]
+.BI \-k " keyword"
+.br
+.B w3mman
+.BI \-l " file"
+.br
+.SH DESCRIPTION
+.\" mh 2016-07-04 text edited. This section shall deliver
+.\" more information than section NAME 
+.B w3mman
+is a Perl script that uses 
+.BR w3m (1)
+to serve as a pager for on-line reference manuals.
+.SH OPTIONS
+A summary of options is included below.
+.TP
+.BI \-M " path"
+Specify  
+.I path
+as alternative MANPATH to use.
+.TP
+.BI \-k " keyword"
+Specify \fIkeyword\fP.
+.TP
+.BI \-l " file"
+Specify a \fIfile\fP.
+.SH ENVIRONMENT
+Two variables are available for debugging.
+.TP
+.B W3MMAN_W3M
+If W3MMAN_W3M is set, its value is used instead of @W3M@.
+.TP
+.B W3MMAN_MAN
+If W3MMAN_MAN is set, its value is used instead of @MAN@.
+.SH FILES
+.TP
+.I @libexecdir@/@PACKAGE@/cgi-bin/w3mman2html.cgi
+manual page to HTML converter.
+.SH SEE ALSO
+.BR man (1),
+.BR w3m (1).
+.SH AUTHOR
+This manual page was written by Fumitoshi UKAI <ukai@debian.or.jp>,
+for the Debian GNU/Linux system (but may be used by others).

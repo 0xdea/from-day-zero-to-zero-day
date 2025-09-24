@@ -1,0 +1,6 @@
+# List of source files containing translatable strings.
+#main.c
+menu.c
+rc.c
+#w3mbookmark.c
+#w3mhelperpanel.c
