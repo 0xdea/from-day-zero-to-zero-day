@@ -13,6 +13,7 @@
 
 My code and notes for "From Day Zero to Zero Day", a book on vulnerability research by [Eugene Lim](https://github.com/spaceraccoon).
 
-See also:  
-https://fromdayzerotozeroday.com  
-https://github.com/spaceraccoon/from-day-zero-to-zero-day  
+## See also
+
+* <https://fromdayzerotozeroday.com>
+* <https://github.com/spaceraccoon/from-day-zero-to-zero-day>
