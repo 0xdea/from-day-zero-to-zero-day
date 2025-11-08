@@ -8,7 +8,7 @@
 
 > "Once we know where we are, then the world becomes as narrow as a map.  
 > When we don’t know, the world feels unlimited."  
->   
+> 
 > -- Liu Cixin, The Dark Forest
 
 My code and notes for "From Day Zero to Zero Day", a book on vulnerability research by [Eugene Lim](https://github.com/spaceraccoon).
