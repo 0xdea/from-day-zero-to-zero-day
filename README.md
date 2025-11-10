@@ -11,9 +11,8 @@
 > 
 > -- Liu Cixin, The Dark Forest
 
-My code and notes for "From Day Zero to Zero Day", a book on vulnerability research by [Eugene Lim](https://github.com/spaceraccoon).
+My code and notes for [From Day Zero to Zero Day](https://fromdayzerotozeroday.com), a book on vulnerability research by [Eugene Lim](https://github.com/spaceraccoon).
 
 ## See also
 
-* <https://fromdayzerotozeroday.com>
 * <https://github.com/spaceraccoon/from-day-zero-to-zero-day>
